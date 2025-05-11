@@ -2,8 +2,7 @@ package com.arpangroup.user_service.validation.impl;
 
 import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.validation.UserValidator;
-import exception.DuplicateRecordExceptionUser;
-import exception.InvalidRequestExceptionUser;
+import com.arpangroup.user_service.exception.DuplicateRecordExceptionUser;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

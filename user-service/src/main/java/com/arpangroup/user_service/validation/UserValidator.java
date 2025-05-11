@@ -1,8 +1,8 @@
 package com.arpangroup.user_service.validation;
 
 import com.arpangroup.user_service.dto.UserCreateRequest;
-import exception.DuplicateRecordExceptionUser;
-import exception.InvalidRequestExceptionUser;
+import com.arpangroup.user_service.exception.DuplicateRecordExceptionUser;
+import com.arpangroup.user_service.exception.InvalidRequestExceptionUser;
 import jakarta.validation.ValidationException;
 
 

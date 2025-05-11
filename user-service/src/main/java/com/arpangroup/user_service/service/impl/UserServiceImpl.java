@@ -4,7 +4,7 @@ import com.arpangroup.user_service.dto.UserCreateRequest;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.service.UserService;
 import com.arpangroup.user_service.validation.UserValidator;
-import exception.InvalidRequestExceptionUser;
+import com.arpangroup.user_service.exception.InvalidRequestExceptionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

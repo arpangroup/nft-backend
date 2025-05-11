@@ -1,4 +1,4 @@
-package exception.base;
+package com.arpangroup.user_service.exception.base;
 
 public class UserValidationException extends RuntimeException{
     public UserValidationException() {
