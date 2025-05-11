@@ -4,16 +4,14 @@ import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.validation.UserValidator;
 import exception.DuplicateRecordExceptionUser;
 import exception.InvalidRequestExceptionUser;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class UserRegistrationRequestValidator extends UserValidator {
     private final UserRepository userRepository;
-
-    @Override
-    protected void validateUsername(String username) throws InvalidRequestExceptionUser {
-
-    }
 
     @Override
     protected void validateDuplicateUsername(String username) throws DuplicateRecordExceptionUser {
@@ -21,12 +19,7 @@ public class UserRegistrationRequestValidator extends UserValidator {
     }
 
     @Override
-    protected void validatePassword(String password, int minLength, int maxLength, boolean isAlphanumericCheck) throws InvalidRequestExceptionUser {
-
-    }
-
-    @Override
-    protected void validateConfirmPassword(String password, String confirmPassword) throws InvalidRequestExceptionUser {
+    protected void validateValidEmailFormat(String email) throws DuplicateRecordExceptionUser {
 
     }
 
@@ -36,8 +29,18 @@ public class UserRegistrationRequestValidator extends UserValidator {
     }
 
     @Override
+    protected void validateMobileFormat(String mobile) throws DuplicateRecordExceptionUser {
+
+    }
+
+    @Override
     protected void validateDuplicateMobile(String mobile) throws DuplicateRecordExceptionUser {
 
+    }
+
+    @Override
+    protected boolean isMobileNumberVerified(String mobile) throws ValidationException {
+        return false;
     }
 
     @Override

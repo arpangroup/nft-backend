@@ -1,4 +1,8 @@
 package com.arpangroup.user_service.repository;
 
-public interface UserRepository {
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+@Component
+public class UserRepository {
 }

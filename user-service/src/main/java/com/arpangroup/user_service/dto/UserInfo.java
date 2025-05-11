@@ -1,20 +1,23 @@
-package com.arpangroup.user_service.entity;
+package com.arpangroup.user_service.dto;
 
-import lombok.AllArgsConstructor;
+import com.arpangroup.user_service.entity.Address;
+import com.arpangroup.user_service.entity.Kyc;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
-    private int id;
+@Getter
+@Builder
+public class UserInfo {
+    private String username;
     private String firstname;
     private String lastname;
-    private String username;
     private String email;
     private String mobile;
-
     private int referBy;
 
     private int posId;
@@ -39,8 +42,4 @@ public class User {
     private String provider;
     private int providerId;
 
-    public User(int id, String username) {
-        this.id = id;
-        this.username = username;
-    }
 }
