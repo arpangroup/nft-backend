@@ -31,5 +31,5 @@ public class UserCreateRequest {
     @Pattern(regexp = "^$|^[0-9]{10}$", message = "mobile number must be exactly 10 digits") // Mobile number must be exactly 10 digits if provided
     private String mobile;
 
-    private String referBy;
+    private String referralCode;
 }

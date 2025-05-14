@@ -1,8 +1,10 @@
 package com.arpangroup.user_service.repository;
 
-import org.springframework.stereotype.Component;
+import com.arpangroup.user_service.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Component
-public class UserRepository {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByReferralCode(String referralCode);
 }

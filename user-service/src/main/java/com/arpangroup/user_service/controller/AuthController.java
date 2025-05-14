@@ -1,12 +1,14 @@
 package com.arpangroup.user_service.controller;
 
+import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.dto.UserCreateRequest;
-import com.arpangroup.user_service.dto.UserInfo;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.service.UserService;
+import com.arpangroup.user_service.service.registration.RegistrationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,9 +23,15 @@ public class AuthController {
         return "Hello";
     }
 
-    @PostMapping("/register")
-    public UserInfo register(@Valid  @RequestBody UserCreateRequest request) {
+    /*@PostMapping("/register")
+    public ResponseEntity<?> registerUser(@Valid  @RequestBody UserCreateRequest request) {
         User user = userService.registerUser(request);
-        return mapper.mapTo(user);
+        return ResponseEntity.ok(mapper.mapTo(user));
+    }*/
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest request) {
+        User userResponse = userService.registerUser(mapper.mapTo(request), request.getReferralCode());
+        return ResponseEntity.ok(userResponse);
     }
 }

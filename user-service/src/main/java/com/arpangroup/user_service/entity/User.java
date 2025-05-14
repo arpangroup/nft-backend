@@ -1,17 +1,37 @@
 package com.arpangroup.user_service.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    private int id;
-    private String firstname;
-    private String lastname;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "username", nullable = false, length = 255)
     private String username;
+    @Column(name = "referral_code", unique = true, length = 255)
+    private String referralCode;
+    @Column(name = "reserve_balance", precision = 10)
+    private double reserveBalance;
+    @Column(name = "level")
+    private int level;
+
+   /* @OneToOne
+    @JoinColumn(name = "referrer_id", referencedColumnName = "id")
+    private User referrer;*/
+
+
+
+
+    /*private String firstname;
+    private String lastname;
     private String email;
     private String mobile;
 
@@ -37,10 +57,12 @@ public class User {
 
     private String rememberToken;
     private String provider;
-    private int providerId;
+    private int providerId;*/
 
-    public User(int id, String username) {
+    public User(String username, double reserveBalance) {
         this.id = id;
         this.username = username;
+        this.referralCode = "ReferBy_"+username;
+        this.reserveBalance = reserveBalance;
     }
 }

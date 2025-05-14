@@ -43,7 +43,7 @@ public class UserRegistrationRequestValidator extends UserValidator {
     }
 
     @Override
-    protected void validateReferralId(String referralId) throws DuplicateRecordExceptionUser {
+    protected void validateReferralCode(String referralCode) throws DuplicateRecordExceptionUser {
 
     }
 }

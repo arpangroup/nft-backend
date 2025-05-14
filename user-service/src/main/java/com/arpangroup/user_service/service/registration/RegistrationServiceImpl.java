@@ -1,8 +1,7 @@
-package com.arpangroup.user_service.service.impl;
+package com.arpangroup.user_service.service.registration;
 
 import com.arpangroup.user_service.dto.UserCreateRequest;
 import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.service.UserService;
 import com.arpangroup.user_service.validation.UserValidator;
 import com.arpangroup.user_service.exception.InvalidRequestExceptionUser;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class RegistrationServiceImpl implements RegistrationService {
     private final UserValidator validator;
 
     @Override

@@ -20,8 +20,8 @@ public abstract class UserValidator {
             validateDuplicateMobile(request.getMobile());
             isMobileNumberVerified(request.getMobile());
         }
-        if (request.getReferBy() != null){
-            validateReferralId(request.getReferBy());
+        if (request.getReferralCode() != null){
+            validateReferralCode(request.getReferralCode());
         }
     }
 
@@ -32,5 +32,5 @@ public abstract class UserValidator {
     protected abstract void validateMobileFormat(String mobile) throws DuplicateRecordExceptionUser;
     protected abstract void validateDuplicateMobile(String mobile) throws DuplicateRecordExceptionUser;
     protected abstract boolean isMobileNumberVerified(String mobile) throws ValidationException;
-    protected abstract void validateReferralId(String referralId) throws DuplicateRecordExceptionUser;
+    protected abstract void validateReferralCode(String referralCode) throws DuplicateRecordExceptionUser;
 }
