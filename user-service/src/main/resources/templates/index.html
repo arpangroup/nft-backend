@@ -177,8 +177,10 @@
 
     async function loadTree() {
         try {
-          //const response = await fetch('/api/tree'); // Adjust path if needed
-          const response = await fetch('/downline-tree/1'); // Adjust path if needed
+          const urlParams = new URLSearchParams(window.location.search);
+          const userId = urlParams.get('id') || 1; // Use 1 if userId is null or empty
+
+          const response = await fetch(`/api/downline-tree/${userId}`); // Adjust path if needed
           const treeData = await response.json();
           document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
         } catch (error) {

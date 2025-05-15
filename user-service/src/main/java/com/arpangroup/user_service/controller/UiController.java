@@ -20,7 +20,7 @@ public class UiController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/user/{id}/downline")
+    /*@GetMapping("/user/{id}/downline")
     public String getUserDownline(@PathVariable Long id, Model model) {
         List<UserHierarchy> downline = userService.getDownline(id);
         Map<Long, List<UserHierarchy>> hierarchy = HierarchyHelper.buildHierarchy(downline);
@@ -30,17 +30,12 @@ public class UiController {
         model.addAttribute("hierarchy", hierarchy);
 
         return "userDownline";
-    }
+    }*/
 
     @GetMapping("/tree")
     public String downlineTree() {
         return "index";
     }
 
-    @GetMapping("/downline-tree/{userId}")
-    public ResponseEntity<UserTreeNode> getDownlineTree(@PathVariable Long userId) {
-        UserTreeNode tree = userService.getDownlineTree(userId);
-        return ResponseEntity.ok(tree);
-    }
 
 }

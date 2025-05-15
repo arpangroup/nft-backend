@@ -7,6 +7,8 @@ import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.repository.ReferralRepository;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
+import com.arpangroup.user_service.transaction.TransactionRemarks;
+import com.arpangroup.user_service.transaction.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserHierarchyRepository userHierarchyRepository;
     private final ReferralRepository referralRepository;
+    private final TransactionService transactionService;
 
     public User registerUser(final User user, final String referralCode) {
         // validate referralCode
@@ -36,9 +39,15 @@ public class UserService {
         User referrer = userRepository.findByReferralCode(referralCode);
         if (referrer != null) {
             User newUser = userRepository.save(user);
+
+            // 1. Allocate WelcomeBonus if enabled
+            transactionService.deposit(newUser.getId(), 100, TransactionRemarks.WELCOME_BONUS);
+
+            // 2. Allocate Referral (Direct) Bonus if enabled
             double directBonus = calculateDirectBonus(newUser.getReserveBalance());
             Referral referral = new Referral(referrer.getId(), newUser.getId(), directBonus);
             referralRepository.save(referral);
+            transactionService.deposit(referrer.getId(), directBonus, TransactionRemarks.REFERRAL_BONUS + " for userId: " + newUser.getId());
 
             updateHierarchy(referrer.getId(), newUser.getId());
             //propagateBonus(referrer.getId(), referral.getBonus());

@@ -1,20 +1,18 @@
 package com.arpangroup.user_service.controller;
 
 import com.arpangroup.user_service.dto.RegistrationRequest;
-import com.arpangroup.user_service.dto.UserCreateRequest;
+import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.service.UserService;
-import com.arpangroup.user_service.service.registration.RegistrationService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/")
 @RequiredArgsConstructor
-public class AuthController {
+public class RegistrationController {
     private final UserService userService;
     private final UserMapper mapper;
 
@@ -53,5 +51,12 @@ public class AuthController {
 
 
         return ResponseEntity.ok("successful");
+    }
+
+
+    @GetMapping("/downline-tree/{userId}")
+    public ResponseEntity<UserTreeNode> getDownlineTree(@PathVariable Long userId) {
+        UserTreeNode tree = userService.getDownlineTree(userId);
+        return ResponseEntity.ok(tree);
     }
 }
