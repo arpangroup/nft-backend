@@ -1,5 +1,6 @@
 package com.arpangroup.user_service.service;
 
+import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.Referral;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
@@ -10,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /*
@@ -40,9 +43,13 @@ public class UserService {
             updateHierarchy(referrer.getId(), newUser.getId());
             //propagateBonus(referrer.getId(), referral.getBonus());
 
-            // Determine the user's level after registration
+            // Determine the new user's level after registration and hierarchy update
             newUser.setLevel(determineLevel(newUser.getId(), newUser.getReserveBalance()));
             userRepository.save(newUser);
+
+            // Recalculate and update the referrer's level
+            referrer.setLevel(determineLevel(referrer.getId(), referrer.getReserveBalance()));
+            userRepository.save(referrer); // Save the updated level for the referrer
         } else {
             User newUser = userRepository.save(user);
             //UserHierarchy directPath = new UserHierarchy(newUser.getId(), newUser.getId(), 0);
@@ -220,5 +227,40 @@ public class UserService {
         return 0;
     }
 
+    public List<UserHierarchy> getDownline(Long userId) {
+        return userHierarchyRepository.findByAncestor(userId).stream()
+                .filter(path -> path.getDepth() <= 3)
+                .collect(Collectors.toList());
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+
+    public UserTreeNode getDownlineTree(Long rootUserId) {
+        User root = userRepository.findById(rootUserId).orElse(null);
+        if (root == null) return null;
+
+        UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername());
+        buildTreeRecursively(rootNode, 1, 3); // max level 3
+        return rootNode;
+    }
+
+    private void buildTreeRecursively(UserTreeNode parentNode, int currentLevel, int maxLevel) {
+        if (currentLevel > maxLevel) return;
+
+        List<UserHierarchy> directChildrenPaths = userHierarchyRepository.findByAncestorAndDepth(parentNode.getUserId(), 1);
+
+        for (UserHierarchy path : directChildrenPaths) {
+            Long childId = path.getDescendant();
+            User childUser = userRepository.findById(childId).orElse(null);
+            if (childUser != null) {
+                UserTreeNode childNode = new UserTreeNode(childUser.getId(), childUser.getUsername());
+                parentNode.addChild(childNode);
+                buildTreeRecursively(childNode, currentLevel + 1, maxLevel);
+            }
+        }
+    }
 
 }

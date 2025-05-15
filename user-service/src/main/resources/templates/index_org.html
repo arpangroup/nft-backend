@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tree View with Zoom and Lines</title>
+    <style>
+        body {
+          font-family: sans-serif;
+          margin: 0;
+        }
+
+        .controls {
+          text-align: center;
+          padding: 10px;
+        }
+
+        .controls button {
+          margin: 0 5px;
+          padding: 6px 12px;
+          font-size: 16px;
+        }
+
+        .tree-wrapper {
+          position: relative;
+          overflow: auto;
+          width: 100%;
+          height: calc(100vh - 60px);
+        }
+
+        .tree-zoom-container {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          padding: 50px;
+          transform-origin: top center;
+          transition: transform 0.2s ease;
+        }
+
+        .tree-container {
+          position: relative;
+          z-index: 1;
+        }
+
+        .tree-node {
+          position: relative;
+          background-color: #e0f7fa;
+          border: 2px solid #00796b;
+          border-radius: 8px;
+          padding: 10px;
+          font-weight: bold;
+          min-width: 100px;
+          text-align: center;
+        }
+
+        .tree-branch {
+          display: flex;
+          justify-content: center;
+          margin-top: 60px;
+        }
+
+        .tree-child {
+          margin: 0 30px;
+        }
+
+        svg#connector-lines {
+          position: absolute;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="controls">
+    <button onclick="zoomIn()">Zoom In +</button>
+    <button onclick="zoomOut()">Zoom Out −</button>
+</div>
+
+<div class="tree-wrapper">
+    <div id="zoom-container" class="tree-zoom-container">
+        <svg id="connector-lines"></svg>
+        <div id="tree" class="tree-container"></div>
+    </div>
+</div>
+
+<script>
+    const treeData = {
+      "userId": 1,
+      "username": "user1",
+      "children": [
+        {
+          "userId": 2,
+          "username": "user2",
+          "children": [
+            {
+              "userId": 4,
+              "username": "user4",
+              "children": [
+                  {
+                  "userId": 7,
+                  "username": "user7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "userId": 5,
+              "username": "user5",
+              "children": []
+            }
+          ]
+        },
+        {
+          "userId": 3,
+          "username": "user3",
+          "children": [
+            {
+              "userId": 6,
+              "username": "user6",
+              "children": []
+            }
+          ]
+        }
+      ]
+    };
+
+    let zoomLevel = 1;
+
+    function zoomIn() {
+      zoomLevel += 0.1;
+      document.getElementById('zoom-container').style.transform = `scale(${zoomLevel})`;
+    }
+
+    function zoomOut() {
+      zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+      document.getElementById('zoom-container').style.transform = `scale(${zoomLevel})`;
+    }
+
+    function createTreeNode(user) {
+      const nodeWrapper = document.createElement('div');
+      nodeWrapper.className = 'tree-child';
+
+      const node = document.createElement('div');
+      node.className = 'tree-node';
+      node.setAttribute('data-userid', user.userId);
+      node.textContent = user.username;
+
+      nodeWrapper.appendChild(node);
+
+      if (user.children && user.children.length > 0) {
+        const branch = document.createElement('div');
+        branch.className = 'tree-branch';
+
+        user.children.forEach(child => {
+          branch.appendChild(createTreeNode(child));
+        });
+
+        nodeWrapper.appendChild(branch);
+      }
+
+      return nodeWrapper;
+    }
+
+    function renderTree() {
+      const tree = document.getElementById('tree');
+      tree.innerHTML = '';
+      tree.appendChild(createTreeNode(treeData));
+    }
+
+    function drawLines() {
+      const svg = document.getElementById('connector-lines');
+      svg.innerHTML = '';
+
+      const zoomBox = document.getElementById('zoom-container');
+      const bbox = zoomBox.getBoundingClientRect();
+      svg.setAttribute('width', bbox.width);
+      svg.setAttribute('height', bbox.height);
+
+      const container = document.getElementById('tree');
+
+      function drawLine(fromEl, toEl) {
+        const fromBox = fromEl.getBoundingClientRect();
+        const toBox = toEl.getBoundingClientRect();
+
+        const startX = fromBox.left + fromBox.width / 2 - bbox.left;
+        const startY = fromBox.bottom - bbox.top;
+        const endX = toBox.left + toBox.width / 2 - bbox.left;
+        const endY = toBox.top - bbox.top;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M${startX},${startY} C${startX},${startY + 30} ${endX},${endY - 30} ${endX},${endY}`);
+        path.setAttribute('stroke', '#00796b');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke-width', '2');
+
+        svg.appendChild(path);
+      }
+
+      function walkTree(node) {
+        const current = node.querySelector('.tree-node');
+        const children = node.querySelectorAll(':scope > .tree-branch > .tree-child');
+
+        children.forEach(child => {
+          const childNode = child.querySelector('.tree-node');
+          drawLine(current, childNode);
+          walkTree(child);
+        });
+      }
+
+      walkTree(container.firstElementChild);
+    }
+
+    window.addEventListener('load', () => {
+      renderTree();
+      setTimeout(drawLines, 100); // Wait for layout
+    });
+
+    window.addEventListener('resize', () => {
+      setTimeout(drawLines, 100);
+    });
+
+    // Redraw lines after zoom change
+    const observer = new MutationObserver(() => {
+      setTimeout(drawLines, 100);
+    });
+    observer.observe(document.getElementById('zoom-container'), { attributes: true, attributeFilter: ['style'] });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tree Zoom Example</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+        }
+
+        .controls {
+          padding: 10px;
+          text-align: center;
+          background: #f0f0f0;
+        }
+
+        .controls button {
+          margin: 0 5px;
+          padding: 6px 12px;
+          font-size: 16px;
+        }
+
+        .svg-container {
+          width: 100%;
+          height: calc(100vh - 50px);
+          overflow: scroll;
+          background-color: #fafafa;
+        }
+
+        .node {
+          fill: #80cbc4;
+          stroke: #00695c;
+          stroke-width: 2;
+        }
+
+        .label {
+          font-size: 14px;
+          text-anchor: middle;
+          fill: #004d40;
+          font-weight: bold;
+        }
+
+        .link {
+          stroke: #00897b;
+          stroke-width: 2;
+          fill: none;
+        }
+    </style>
+</head>
+<body>
+<div class="controls">
+    <button onclick="zoomIn()">Zoom In +</button>
+    <button onclick="zoomOut()">Zoom Out −</button>
+</div>
+
+<div class="svg-container">
+    <svg id="treeSvg" width="2000" height="1000">
+        <g id="treeGroup"></g>
+    </svg>
+</div>
+
+<script>
+    const data = {
+      "userId": 1,
+      "username": "user1",
+      "children": [
+        {
+          "userId": 2,
+          "username": "user2",
+          "children": [
+            {
+              "userId": 4,
+              "username": "user4",
+              "children": [
+                  {
+                  "userId": 7,
+                  "username": "user7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "userId": 5,
+              "username": "user5",
+              "children": []
+            }
+          ]
+        },
+        {
+          "userId": 3,
+          "username": "user3",
+          "children": [
+            {
+              "userId": 6,
+              "username": "user6",
+              "children": []
+            }
+          ]
+        }
+      ]
+    };
+
+    const svg = document.getElementById('treeSvg');
+    const group = document.getElementById('treeGroup');
+    let zoom = 1;
+
+    function zoomIn() {
+      zoom += 0.1;
+      group.setAttribute('transform', `scale(${zoom})`);
+    }
+
+    function zoomOut() {
+      zoom = Math.max(0.3, zoom - 0.1);
+      group.setAttribute('transform', `scale(${zoom})`);
+    }
+
+    function drawTree(node, x, y, depth, parentPos = null) {
+      const nodeWidth = 100;
+      const nodeHeight = 40;
+      const verticalSpacing = 100;
+      const horizontalSpacing = 180;
+
+      const currentX = x;
+      const currentY = y + depth * verticalSpacing;
+
+      // Draw connection
+      if (parentPos) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', parentPos.x);
+        line.setAttribute('y1', parentPos.y);
+        line.setAttribute('x2', currentX);
+        line.setAttribute('y2', currentY);
+        line.setAttribute('class', 'link');
+        group.appendChild(line);
+      }
+
+      // Draw node box
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', currentX - nodeWidth / 2);
+      rect.setAttribute('y', currentY - nodeHeight / 2);
+      rect.setAttribute('width', nodeWidth);
+      rect.setAttribute('height', nodeHeight);
+      rect.setAttribute('rx', 8);
+      rect.setAttribute('class', 'node');
+      group.appendChild(rect);
+
+      // Add text label
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', currentX);
+      text.setAttribute('y', currentY + 5);
+      text.setAttribute('class', 'label');
+      text.textContent = node.username;
+      group.appendChild(text);
+
+      // Children positions
+      if (node.children && node.children.length > 0) {
+        const startX = x - ((node.children.length - 1) * horizontalSpacing) / 2;
+        node.children.forEach((child, i) => {
+          drawTree(child, startX + i * horizontalSpacing, y, depth + 1, { x: currentX, y: currentY + nodeHeight / 2 });
+        });
+      }
+    }
+
+    drawTree(data, 1000, 50, 0);
+</script>
+</body>
+</html>

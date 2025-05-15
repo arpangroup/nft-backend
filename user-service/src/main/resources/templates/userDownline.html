@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Downline</title>
+</head>
+<body>
+    <h1>User Downline</h1>
+    <u1>
+        <li th:text="${user.username}">User Name</li>
+        <ul th:each="levelA : ${hierarchy[user.id]}">
+            <li th:text="${levelA.descendant}">LevelA User</li>
+            <ul th:each="levelB : ${hierarchy[levelA.descendant]}">
+                <li th:text="${levelB.descendant}">LevelB User</li>
+                <ul th:each="levelC : ${hierarchy[levelB.descendant]}">
+                    <li th:text="${levelC.descendant}">LevelC User</li>
+                </ul>
+            </ul>
+        </ul>
+    </u1>
+</body>
+</html>

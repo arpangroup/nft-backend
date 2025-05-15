@@ -34,4 +34,24 @@ public class AuthController {
         User userResponse = userService.registerUser(mapper.mapTo(request), request.getReferralCode());
         return ResponseEntity.ok(userResponse);
     }
+
+    @GetMapping("/add-users")
+    public ResponseEntity<?> registerUser() {
+        RegistrationRequest user2 = new RegistrationRequest("user2", null, 1000);
+        RegistrationRequest user3 = new RegistrationRequest("user3", null, 1000);
+        RegistrationRequest user4 = new RegistrationRequest("user4", null, 1000);
+        RegistrationRequest user5 = new RegistrationRequest("user5", null, 1000);
+        RegistrationRequest user6 = new RegistrationRequest("user6", null, 1000);
+        RegistrationRequest user7 = new RegistrationRequest("user7", null, 1000);
+
+        userService.registerUser(mapper.mapTo(user2), "ReferBy_user1");
+        userService.registerUser(mapper.mapTo(user3), "ReferBy_user1");
+        userService.registerUser(mapper.mapTo(user4), "ReferBy_user2");
+        userService.registerUser(mapper.mapTo(user5), "ReferBy_user2");
+        userService.registerUser(mapper.mapTo(user6), "ReferBy_user3");
+        userService.registerUser(mapper.mapTo(user7), "ReferBy_user4");
+
+
+        return ResponseEntity.ok("successful");
+    }
 }

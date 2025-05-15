@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic MLM Tree</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          overflow: hidden;
+        }
+
+        .controls {
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          z-index: 1000;
+        }
+
+        .controls button {
+          margin-right: 5px;
+          padding: 6px 12px;
+          font-size: 14px;
+        }
+
+        .canvas {
+          width: 100vw;
+          height: 100vh;
+          overflow: auto;
+          background: #f5f5f5;
+        }
+
+        .tree-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform-origin: top center;
+          transition: transform 0.3s ease;
+          padding: 50px 0;
+          min-width: 1200px;
+        }
+
+        .tree ul {
+          position: relative;
+          padding-top: 20px;
+          display: table;
+          margin: 0 auto;
+        }
+
+        .tree li {
+          display: table-cell;
+          text-align: center;
+          position: relative;
+          padding: 20px 5px 0 5px;
+          vertical-align: top;
+        }
+
+        .tree li::before,
+        .tree li::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 50%;
+          height: 20px;
+          border-top: 2px solid #333;
+        }
+
+        .tree li::before {
+          left: 0;
+          border-right: 2px solid #333;
+        }
+
+        .tree li::after {
+          right: 0;
+          border-left: 2px solid #333;
+        }
+
+        .tree li:only-child::before,
+        .tree li:only-child::after {
+          content: none;
+        }
+
+        .tree li:only-child {
+          padding-top: 0;
+        }
+
+        .tree ul::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          border-left: 2px solid #333;
+          height: 20px;
+        }
+
+        .node {
+          display: inline-block;
+          padding: 6px 12px;
+          background: #fff;
+          border: 1px solid #333;
+          border-radius: 6px;
+          position: relative;
+          z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="controls">
+    <button onclick="zoomIn()">Zoom In</button>
+    <button onclick="zoomOut()">Zoom Out</button>
+    <button onclick="resetZoom()">Reset</button>
+</div>
+
+<div class="canvas">
+    <div class="tree-wrapper" id="treeWrapper">
+        <div class="tree" id="mlmTree"></div>
+    </div>
+</div>
+
+<script>
+    const treeData = {
+      "userId": 1,
+      "username": "user1",
+      "children": [
+        {
+          "userId": 2,
+          "username": "user2",
+          "children": [
+            {
+              "userId": 4,
+              "username": "user4",
+              "children": [
+                {
+                  "userId": 7,
+                  "username": "user7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "userId": 5,
+              "username": "user5",
+              "children": []
+            }
+          ]
+        },
+        {
+          "userId": 3,
+          "username": "user3",
+          "children": [
+            {
+              "userId": 6,
+              "username": "user6",
+              "children": []
+            }
+          ]
+        }
+      ]
+    };
+
+    function buildTree(node) {
+      let html = `<li><div class="node">${node.username}</div>`;
+      if (node.children && node.children.length > 0) {
+        html += `<ul>`;
+        node.children.forEach(child => {
+          html += buildTree(child);
+        });
+        html += `</ul>`;
+      }
+      html += `</li>`;
+      return html;
+    }
+
+    //document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
+
+
+    async function loadTree() {
+        try {
+          //const response = await fetch('/api/tree'); // Adjust path if needed
+          const response = await fetch('/downline-tree/1'); // Adjust path if needed
+          const treeData = await response.json();
+          document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
+        } catch (error) {
+          console.error('Failed to load tree data:', error);
+          document.getElementById('mlmTree').innerText = 'Failed to load tree.';
+        }
+    }
+
+    // Initial call
+    loadTree();
+
+    // Zoom Controls
+    let scale = 1;
+    const treeWrapper = document.getElementById('treeWrapper');
+
+    function zoomIn() {
+      scale += 0.1;
+      treeWrapper.style.transform = `scale(${scale})`;
+    }
+
+    function zoomOut() {
+      scale = Math.max(0.2, scale - 0.1);
+      treeWrapper.style.transform = `scale(${scale})`;
+    }
+
+    function resetZoom() {
+      scale = 1;
+      treeWrapper.style.transform = `scale(1)`;
+    }
+
+</script>
+
+</body>
+</html>
