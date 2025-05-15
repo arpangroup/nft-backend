@@ -13,7 +13,7 @@ public class TransactionService {
 
     public Transaction deposit(final long userId, final double amount, String remarks, String txnRefId, Double txnFee, String status) {
         validateUniqueTxnRefId(txnRefId);
-        Transaction lastTxn = transactionRepository.findLastTransactionByUserId(userId);
+        Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
         double currentBalance = lastTxn != null ? lastTxn.getBalance() : 0;
 
         Transaction transaction = new Transaction(userId, amount, TransactionType.DEPOSIT, currentBalance + amount);
@@ -30,7 +30,7 @@ public class TransactionService {
     }
 
     public Transaction withdraw(final long userId, final double amount, String remarks, Double txnFee, String status) {
-        Transaction lastTxn = transactionRepository.findLastTransactionByUserId(userId);
+        Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
         double currentBalance = lastTxn != null ? lastTxn.getBalance() : 0;
         if (currentBalance < amount) throw new TransactionException("Insufficient balance to withdraw");
 
@@ -47,7 +47,7 @@ public class TransactionService {
     }
 
     public Transaction transfer(final long sender, final long receiver, final double amount, String remarks, Double txnFee, String status) {
-        Transaction senderLastTxn = transactionRepository.findLastTransactionByUserId(sender);
+        Transaction senderLastTxn = transactionRepository.findFirstBySenderIdOrderByTxnDateDesc(sender);
         double senderCurrentBalance = senderLastTxn != null ? senderLastTxn.getBalance() : 0;
         if (senderCurrentBalance < amount) throw new TransactionException("Insufficient balance to transfer");
         Transaction senderTxn = new Transaction(receiver, amount, TransactionType.TRANSFER, senderCurrentBalance - amount);
@@ -58,7 +58,7 @@ public class TransactionService {
         senderTxn.setTxnFee(txnFee);
         transactionRepository.save(senderTxn);
 
-        Transaction receiverLastTxn = transactionRepository.findLastTransactionByUserId(receiver);
+        Transaction receiverLastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(receiver);
         double receiverCurrentBalance = receiverLastTxn != null ? receiverLastTxn.getBalance() : 0;
         Transaction receiverTxn = new Transaction(receiver, amount, TransactionType.TRANSFER, receiverCurrentBalance + amount);
         receiverTxn.setSenderId(sender);

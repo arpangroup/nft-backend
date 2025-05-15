@@ -8,6 +8,10 @@ import org.springframework.data.repository.query.Param;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     boolean existsByTxnRefId(String txnRefId);
 
-    @Query("SELECT t FROM Transaction t WHERE t.senderId = :userId OR t.userId = :userId ORDER BY t.txnDate DESC")
-    Transaction findLastTransactionByUserId(@Param("userId") Long userId);
+    //@Query("SELECT t FROM Transaction t WHERE t.senderId = :userId OR t.userId = :userId ORDER BY t.txnDate DESC")
+    //Transaction findLastTransactionByUserId(@Param("userId") Long userId);
+
+    Transaction findFirstBySenderIdOrderByTxnDateDesc(Long senderId);
+
+    Transaction findFirstByUserIdOrderByTxnDateDesc(Long userId);
 }
