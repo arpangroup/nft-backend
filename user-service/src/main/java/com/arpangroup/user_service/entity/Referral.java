@@ -20,7 +20,7 @@ EX: Consider a scenario where userA refers userB
 @AllArgsConstructor
 public class Referral {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
    /* @OneToOne
