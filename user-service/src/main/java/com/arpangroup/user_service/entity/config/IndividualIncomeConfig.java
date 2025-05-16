@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "config_community_rebate")
+@Table(name = "config_individual_income")
 @Data
 @NoArgsConstructor
 public class IndividualIncomeConfig {

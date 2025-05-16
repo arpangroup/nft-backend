@@ -10,7 +10,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none # it will stop creating table automatically
 
 server:
   port: 9092
