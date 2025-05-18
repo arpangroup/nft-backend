@@ -3,23 +3,36 @@ package com.arpangroup.user_service.controller;
 import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
+import com.arpangroup.user_service.entity.UserHierarchy;
+import com.arpangroup.user_service.exception.InvalidRequestException;
 import com.arpangroup.user_service.mapper.UserMapper;
+import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-public class RegistrationController {
+public class UserController {
     private final UserService userService;
     private final UserMapper mapper;
+    private final UserHierarchyRepository userHierarchyRepository;
 
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello";
+    @GetMapping
+    public ResponseEntity<List<User>> users() {
+        return ResponseEntity.ok(userService.getUsers());
     }
+
+    @GetMapping("/hierarchy")
+    public ResponseEntity<List<UserHierarchy>> userHierarch() {
+        return ResponseEntity.ok(userHierarchyRepository.findAll());
+    }
+
 
     /*@PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid  @RequestBody UserCreateRequest request) {
@@ -28,7 +41,7 @@ public class RegistrationController {
     }*/
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest request) throws InvalidRequestException {
         User userResponse = userService.registerUser(mapper.mapTo(request), request.getReferralCode());
         return ResponseEntity.ok(userResponse);
     }
@@ -42,12 +55,12 @@ public class RegistrationController {
         RegistrationRequest user6 = new RegistrationRequest("user6", null, 1000);
         RegistrationRequest user7 = new RegistrationRequest("user7", null, 1000);
 
-        userService.registerUser(mapper.mapTo(user2), "ReferBy_user1");
-        userService.registerUser(mapper.mapTo(user3), "ReferBy_user1");
-        userService.registerUser(mapper.mapTo(user4), "ReferBy_user2");
-        userService.registerUser(mapper.mapTo(user5), "ReferBy_user2");
-        userService.registerUser(mapper.mapTo(user6), "ReferBy_user3");
-        userService.registerUser(mapper.mapTo(user7), "ReferBy_user4");
+        userService.registerUser(mapper.mapTo(user2), "user1");
+        userService.registerUser(mapper.mapTo(user3), "user1");
+        userService.registerUser(mapper.mapTo(user4), "user2");
+        userService.registerUser(mapper.mapTo(user5), "user2");
+        userService.registerUser(mapper.mapTo(user6), "user3");
+        userService.registerUser(mapper.mapTo(user7), "user4");
 
 
         return ResponseEntity.ok("successful");

@@ -1,6 +1,8 @@
 package com.arpangroup.user_service.exception;
 
+import com.arpangroup.user_service.exception.base.UserValidationException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -56,6 +58,47 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 ((ServletWebRequest) request).getRequest().getRequestURI()
         );
 
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex, HttpServletRequest request) {
+        String message = "Data integrity violation";
+        Throwable rootCause = ex.getRootCause();
+
+        if (rootCause != null && rootCause.getMessage() != null) {
+            String causeMessage = rootCause.getMessage();
+
+            if (causeMessage.contains("Duplicate entry")) {
+                if (causeMessage.contains("username")) {
+                    message = "Username already exists.";
+                } else if (causeMessage.contains("referral_code")) {
+                    message = "Referral code already exists.";
+                } else {
+                    message = "Duplicate entry exists.";
+                }
+            } else if (causeMessage.contains("cannot be null")) {
+                message = "Required field is missing.";
+            }
+        }
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.CONFLICT.value(),
+                "Database Constraint Violation",
+                message,
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(UserValidationException.class)
+    public ResponseEntity<ErrorResponse> handleAllExceptions(UserValidationException ex, HttpServletRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "Validation Exception",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 

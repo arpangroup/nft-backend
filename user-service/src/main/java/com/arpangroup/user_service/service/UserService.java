@@ -4,6 +4,7 @@ import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.Referral;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
+import com.arpangroup.user_service.exception.InvalidRequestException;
 import com.arpangroup.user_service.repository.ReferralRepository;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
@@ -31,12 +32,16 @@ public class UserService {
     private final ReferralRepository referralRepository;
     private final TransactionService transactionService;
 
-    public User registerUser(final User user, final String referralCode) {
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+    public User registerUser(final User user, final String referralCode) throws InvalidRequestException {
         // validate referralCode
         // Create user
         // Allocate bonus to referrer
 
-        User referrer = userRepository.findByReferralCode(referralCode);
+        User referrer = userRepository.findByReferralCode(referralCode).orElseThrow(() -> new InvalidRequestException("invalid referralCode"));
         if (referrer != null) {
             User newUser = userRepository.save(user);
 
@@ -59,11 +64,12 @@ public class UserService {
             // Recalculate and update the referrer's level
             referrer.setLevel(determineLevel(referrer.getId(), referrer.getReserveBalance()));
             userRepository.save(referrer); // Save the updated level for the referrer
-        } else {
+        }
+        /*else {
             User newUser = userRepository.save(user);
             //UserHierarchy directPath = new UserHierarchy(newUser.getId(), newUser.getId(), 0);
             //userHierarchyRepository.save(directPath);
-        }
+        }*/
         return user;
     }
 

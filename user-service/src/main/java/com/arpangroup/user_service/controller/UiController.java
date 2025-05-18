@@ -20,6 +20,15 @@ public class UiController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+
+
+
+
+
     /*@GetMapping("/user/{id}/downline")
     public String getUserDownline(@PathVariable Long id, Model model) {
         List<UserHierarchy> downline = userService.getDownline(id);

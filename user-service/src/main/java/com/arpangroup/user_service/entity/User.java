@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "username", nullable = false, length = 255)
+    @Column(name = "username", unique = true, nullable = false, length = 255)
     private String username;
     @Column(name = "referral_code", unique = true, length = 255)
     private String referralCode;
@@ -59,10 +59,15 @@ public class User {
     private String provider;
     private int providerId;*/
 
+    @PostPersist
+    private void setReferralAfterInsert() {
+        this.referralCode = "REF" + this.id;
+    }
+
     public User(String username, double reserveBalance) {
         this.id = id;
         this.username = username;
-        this.referralCode = "ReferBy_"+username;
+        this.referralCode = "R_"+username;
         this.reserveBalance = reserveBalance;
     }
 }

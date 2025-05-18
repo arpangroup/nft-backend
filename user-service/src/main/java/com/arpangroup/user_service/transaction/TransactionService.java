@@ -1,15 +1,29 @@
 package com.arpangroup.user_service.transaction;
 
+import com.arpangroup.user_service.dto.DepositBalanceRequest;
 import com.arpangroup.user_service.entity.Transaction;
 import com.arpangroup.user_service.entity.User;
+import com.arpangroup.user_service.repository.UserRepository;
 import io.micrometer.common.util.StringUtils;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
     private final TransactionRepository transactionRepository;
+    private final UserRepository userRepository;
+
+    public List<Transaction> getTransactions() {
+        return transactionRepository.findAll();
+    }
+
+    public List<Transaction> getTransactionsByUserId(Long userId) {
+        return transactionRepository.findAllByUserId(userId);
+    }
 
     public Transaction deposit(final long userId, final double amount, String remarks, String txnRefId, Double txnFee, String status) {
         validateUniqueTxnRefId(txnRefId);
@@ -22,7 +36,13 @@ public class TransactionService {
         transaction.setTxnRefId(txnRefId);
         transaction.setStatus(status);
         transaction.setTxnFee(txnFee);
-        return transactionRepository.save(transaction);
+
+        transaction = transactionRepository.save(transaction);
+        User user = userRepository.findById(userId).get();
+        user.setReserveBalance(user.getReserveBalance() + amount);
+        userRepository.save(user);
+
+        return transaction;
     }
 
     public Transaction deposit(final long userId, final double amount, String remarks) {
@@ -40,7 +60,13 @@ public class TransactionService {
         transaction.setTxnRefId(null);
         transaction.setStatus(status);
         transaction.setTxnFee(txnFee);
-        return transactionRepository.save(transaction);
+
+        transaction = transactionRepository.save(transaction);
+        User user = userRepository.findById(userId).get();
+        user.setReserveBalance(user.getReserveBalance() - amount);
+        userRepository.save(user);
+
+        return transaction;
     }
     public Transaction withdraw(final long userId, final double amount) {
         return this.withdraw(userId, amount, TransactionRemarks.WITHDRAWAL, null, null);
