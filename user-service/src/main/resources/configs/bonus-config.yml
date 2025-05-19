@@ -1,0 +1,8 @@
+bonus:
+  welcome:
+    enable: true
+    amount: 300
+  referral:
+    enable: true
+    amount: 300 # Direct Bonus
+

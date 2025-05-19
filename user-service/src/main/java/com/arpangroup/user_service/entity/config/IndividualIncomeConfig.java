@@ -34,7 +34,7 @@ public class IndividualIncomeConfig {
     @Column(name = "calculation_type", nullable = false)
     private CalculationType calculationType = CalculationType.PERCENTAGE;
 
-    @Column(name = "transactions_per_day", nullable = false)
+    @Column(name = "txn_per_day", nullable = false)
     private Integer transactionsPerDay;
 
 

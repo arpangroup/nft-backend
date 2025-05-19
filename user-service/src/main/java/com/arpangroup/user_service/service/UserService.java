@@ -1,5 +1,6 @@
 package com.arpangroup.user_service.service;
 
+import com.arpangroup.user_service.config.BonusConfig;
 import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.Referral;
 import com.arpangroup.user_service.entity.User;
@@ -27,6 +28,7 @@ When a new user registers, bonuses can be propagated upwards through the referra
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    private final BonusConfig bonusConfig;
     private final UserRepository userRepository;
     private final UserHierarchyRepository userHierarchyRepository;
     private final ReferralRepository referralRepository;
@@ -46,7 +48,9 @@ public class UserService {
             User newUser = userRepository.save(user);
 
             // 1. Allocate WelcomeBonus if enabled
-            transactionService.deposit(newUser.getId(), 100, TransactionRemarks.WELCOME_BONUS);
+            if (bonusConfig.isWelcomeBonusEnable) {
+                transactionService.deposit(newUser.getId(), bonusConfig.welcomeBonusAmount, TransactionRemarks.WELCOME_BONUS);
+            }
 
             // 2. Allocate Referral (Direct) Bonus if enabled
             double directBonus = calculateDirectBonus(newUser.getReserveBalance());

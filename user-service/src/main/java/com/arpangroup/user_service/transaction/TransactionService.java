@@ -7,6 +7,7 @@ import com.arpangroup.user_service.repository.UserRepository;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class TransactionService {
     private final UserRepository userRepository;
 
     public List<Transaction> getTransactions() {
-        return transactionRepository.findAll();
+        return transactionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     public List<Transaction> getTransactionsByUserId(Long userId) {

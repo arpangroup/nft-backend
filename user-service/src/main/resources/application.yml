@@ -1,6 +1,9 @@
 spring:
   application:
     name: user-service
+  config:
+    import:
+      - classpath:configs/bonus-config.yml
   profiles:
     active: dev
 
