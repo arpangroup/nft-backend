@@ -1,11 +1,12 @@
 package com.arpangroup.user_service.service;
 
-import com.arpangroup.user_service.config.BonusConfig;
 import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.Referral;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.exception.InvalidRequestException;
+import com.arpangroup.user_service.processor.ReferralBonusProcessor;
+import com.arpangroup.user_service.processor.WelcomeBonusProcessor;
 import com.arpangroup.user_service.repository.ReferralRepository;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
@@ -15,9 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /*
@@ -28,11 +27,12 @@ When a new user registers, bonuses can be propagated upwards through the referra
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final BonusConfig bonusConfig;
     private final UserRepository userRepository;
     private final UserHierarchyRepository userHierarchyRepository;
     private final ReferralRepository referralRepository;
     private final TransactionService transactionService;
+    private final WelcomeBonusProcessor welcomeBonusProcessor;
+    private final ReferralBonusProcessor referralBonusProcessor;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -46,19 +46,30 @@ public class UserService {
         User referrer = userRepository.findByReferralCode(referralCode).orElseThrow(() -> new InvalidRequestException("invalid referralCode"));
         if (referrer != null) {
             User newUser = userRepository.save(user);
+            updateHierarchy(referrer.getId(), newUser.getId());
 
             // 1. Allocate WelcomeBonus if enabled
-            if (bonusConfig.isWelcomeBonusEnable) {
-                transactionService.deposit(newUser.getId(), bonusConfig.welcomeBonusAmount, TransactionRemarks.WELCOME_BONUS);
-            }
+            welcomeBonusProcessor.calculateIfEnabled(newUser).ifPresent(welcomeBonus -> {
+                transactionService.deposit(newUser.getId(), welcomeBonus, TransactionRemarks.WELCOME_BONUS);
+            });
+
+            /*if (referralBonusProperties.isEnable()) {
+                double directBonus = referralBonusProcessor.calculate(newUser);
+                double directBonus = calculateDirectBonus(newUser.getReserveBalance());
+                Referral referral = new Referral(referrer.getId(), newUser.getId(), directBonus);
+                referralRepository.save(referral);
+                transactionService.deposit(referrer.getId(), directBonus, TransactionRemarks.REFERRAL_BONUS + " for userId: " + newUser.getId());
+            }*/
 
             // 2. Allocate Referral (Direct) Bonus if enabled
-            double directBonus = calculateDirectBonus(newUser.getReserveBalance());
-            Referral referral = new Referral(referrer.getId(), newUser.getId(), directBonus);
-            referralRepository.save(referral);
-            transactionService.deposit(referrer.getId(), directBonus, TransactionRemarks.REFERRAL_BONUS + " for userId: " + newUser.getId());
+            referralBonusProcessor.calculateIfEnabled(newUser).ifPresent(referralAmt -> {
+                Referral referral = new Referral(referrer.getId(), newUser.getId(), referralAmt); // directBonus
+                referralRepository.save(referral);
+                transactionService.deposit(referrer.getId(), referralAmt, TransactionRemarks.REFERRAL_BONUS + " for userId: " + newUser.getId());
+            });
 
-            updateHierarchy(referrer.getId(), newUser.getId());
+
+
             //propagateBonus(referrer.getId(), referral.getBonus());
 
             // Determine the new user's level after registration and hierarchy update

@@ -16,5 +16,8 @@ public enum CalculationType {
     PERCENTAGE,   // Relative amount (e.g., 5% of something)
     SCALE,        // Tiered scaling (e.g., rate increases by level)
     MULTIPLIER,   // Multiplied based on some factor
-    FORMULA       // Custom formula (e.g., (A * B) / C)
-}
+    FORMULA,      // Custom formula (e.g., (A * B) / C)
+    TIERED,       // optional for future
+    FIXED_PERCENT,// optional for future
+    CUSTOM        // optional for advanced logic
+    }

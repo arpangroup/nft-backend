@@ -1,8 +1,13 @@
 bonus:
   welcome:
     enable: true
-    amount: 300
+    calculation-type: FLAT
+    flat-amount: 300
   referral:
     enable: true
-    amount: 300 # Direct Bonus
+    calculation-type: PERCENTAGE #[FLAT, PERCENTAGE]
+    percentage-rate: 0.05  # 5%
+    flat-amount: 300 # Direct Bonus
+  community:
+    max-depth: 3
 
