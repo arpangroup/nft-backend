@@ -320,327 +320,302 @@
 
   <!-- Info Sidebar -->
   <div id="sidebar-info" class="sidebar info">
-    <h2>Common Database Queries</h2>
-    <h4>SHow all users:</h4>
-    <div class="copy-section">
-      <pre class="copy-text">
-select id, username, referral_code, reserve_balance, `level` from users;
-        </pre>
-      <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
-      <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
-    </div>
-
-    <h4>SHow user_hierarchy table:</h4>
-    <div class="copy-section">
-      <pre class="copy-text">
-select id, ancestor, descendant,`depth`  from user_hierarchy uh ;
-        </pre>
-      <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
-      <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
-    </div>
-
-
-    <div class="copy-section">
-      <pre class="copy-text">
-select id, user_id, sender_id, txn_type, amount, balance, remarks  from transactions t ;
-        </pre>
-      <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
-      <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
-    </div>
-
-
-    <div class="copy-section">
-      <pre class="copy-text">
-SELECT id, 'level', min_reserv_amt, max_reserv_amt,  profit,
-calculation_type, profit_frequency, txn_per_day, annualized_returns,
-lv_a_require, lv_b_require, lv_c_require
-FROM config_individual_income ic;
-        </pre>
-      <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
-      <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
-    </div>
-
-    <div class="copy-section">
-      <pre class="copy-text">
-select u.id, u.username from users u where u.id in(
-	select `descendant` from user_hierarchy uh where uh.ancestor =2 and depth = 1
-);
-        </pre>
-      <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
-      <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
-    </div>
-
-
-
+      <h2>Common Database Queries</h2>
+      <div id="query-container"></div>
   </div>
 
   <div class="canvas">
-    <div class="tree-wrapper" id="treeWrapper">
-      <div class="tree" id="mlmTree"></div>
-    </div>
+      <div class="tree-wrapper" id="treeWrapper">
+          <div class="tree" id="mlmTree"></div>
+      </div>
   </div>
 
+  <script src="queries.js"></script>
   <script>
-    function buildTree(node, level = 0) {
-      let html = `<li><div class="node" data-level="${level}" onclick="showUserInfo('${node.userId}', '${node.username}', event)">${node.username}</div>`;
-      if (node.children && node.children.length > 0) {
-        html += `<ul>`;
-        node.children.forEach(child => {
-          html += buildTree(child, level + 1); // Pass incremented level
+      function loadQueries() {
+        const container = document.getElementById("query-container");
+        container.innerHTML = "";
+
+        queryData.forEach(item => {
+          const block = document.createElement("div");
+
+          block.innerHTML = `
+            <h4>${item.title}</h4>
+            <div class="copy-section">
+              <pre class="copy-text">${item.query}</pre>
+              <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
+              <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
+            </div>
+          `;
+
+          container.appendChild(block);
         });
-        html += `</ul>`;
-      }
-      html += `</li>`;
-      return html;
-    }
-
-    async function loadTree() {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get('id') || 1;
-        const response = await fetch(`/api/v1/users/downline-tree/${userId}`);
-        const treeData = await response.json();
-        console.log("TREE_DATA: ", treeData);
-        document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
-      } catch (error) {
-        console.error('Failed to load tree data:', error);
-        document.getElementById('mlmTree').innerText = 'Failed to load tree.';
-      }
-    }
-
-    loadTree();
-
-    // Zoom
-    let scale = 1;
-    const treeWrapper = document.getElementById('treeWrapper');
-
-    function zoomIn() {
-      scale += 0.1;
-      treeWrapper.style.transform = `scale(${scale})`;
-    }
-
-    function zoomOut() {
-      scale = Math.max(0.2, scale - 0.1);
-      treeWrapper.style.transform = `scale(${scale})`;
-    }
-
-    function resetZoom() {
-      scale = 1;
-      treeWrapper.style.transform = `scale(1)`;
-    }
-
-    function addUsers() {
-      fetch("/api/v1/users/add-users")
-        .then(response => response.json())
-        .then(data => {
-          console.log("reloading.....");
-          //location.reload();
-          loadTree();
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
-    /*function showUserInfo(userId, username, event) {
-      const label = document.getElementById('userLabel');
-      label.textContent = `Selected User: ${username} (ID: ${userId})`;
-
-       // Remove 'selected' class from any previously selected node
-      document.querySelectorAll('.node.selected').forEach(node => {
-        node.classList.remove('selected');
-      });
-
-      // Highlight the clicked node
-      const clickedNode = event.currentTarget;
-      clickedNode.classList.add('selected');
-    }*/
-
-
-    let selectedNodeElement = null;
-    let selectedUserId = null;
-    function showUserInfo(userId, username, event) {
-      selectedUserId = userId;
-
-      // Remove previous selection
-      if (selectedNodeElement) {
-        selectedNodeElement.classList.remove("selected");
       }
 
-      // Mark current node as selected
-      selectedNodeElement = event.target;
-      selectedNodeElement.classList.add("selected");
-
-      // Show label (you can customize where to show)
-      const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId})`;
-    }
+      // Load queries on page load
+      window.addEventListener("DOMContentLoaded", loadQueries);
 
 
-    // Sidebar
-    function toggleSidebar(type) {
-      const sidebarSql = document.getElementById('sidebar-sql');
-      const sidebarInfo = document.getElementById('sidebar-info');
-      const backdrop = document.getElementById('backdrop');
-
-      if (type === 'sql') {
-        sidebarSql.classList.toggle('open');
-      } else if (type === 'info') {
-        sidebarInfo.classList.toggle('open');
-      }
-
-      // Show backdrop if either sidebar is open
-      if (sidebarSql.classList.contains('open') || sidebarInfo.classList.contains('open')) {
-        backdrop.classList.add('active');
-      } else {
-        backdrop.classList.remove('active');
-      }
-    }
-
-    function closeAllSidebars() {
-      document.getElementById('sidebar-sql').classList.remove('open');
-      document.getElementById('sidebar-info').classList.remove('open');
-      document.getElementById('backdrop').classList.remove('active');
-    }
-
-    function copyToClipboard(icon) {
-      // Find the related copy-section container
-      const copySection = icon.closest('.copy-section');
-      const textElem = copySection.querySelector('.copy-text');
-      const statusElem = copySection.querySelector('.copy-status');
-
-      const text = textElem.innerText;
-
-      navigator.clipboard.writeText(text).then(() => {
-        statusElem.textContent = 'Copied text';
-        statusElem.style.color = 'green';
-        statusElem.style.display = 'block';
-
-        setTimeout(() => {
-          statusElem.style.display = 'none';
-        }, 2000);
-      }).catch(() => {
-        statusElem.textContent = 'Failed to copy';
-        statusElem.style.color = 'red';
-        statusElem.style.display = 'block';
-
-        setTimeout(() => {
-          statusElem.style.display = 'none';
-        }, 2000);
-      });
-    }
-
-    // Execute button (demo logic)
-    async function runQuery() {
-      const query = document.getElementById('sqlInput').value;
-      const resultDiv = document.getElementById("result");
-      const errorDiv = document.getElementById("error");
-      resultDiv.innerHTML = "";
-      errorDiv.textContent = "";
-
-      try {
-        const response = await fetch("/api/sql/execute", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query }),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Query execution failed");
+        function buildTree(node, level = 0) {
+          let html = `<li><div class="node" data-level="${level}" onclick="showUserInfo('${node.userId}', '${node.username}', event)">${node.username}</div>`;
+          if (node.children && node.children.length > 0) {
+            html += `<ul>`;
+            node.children.forEach(child => {
+              html += buildTree(child, level + 1); // Pass incremented level
+            });
+            html += `</ul>`;
+          }
+          html += `</li>`;
+          return html;
         }
 
-        const data = await response.json();
-
-        if (!Array.isArray(data) || data.length === 0) {
-          resultDiv.innerHTML = "<p>No results found.</p>";
-          return;
+        async function loadTree() {
+          try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('id') || 1;
+            const response = await fetch(`/api/v1/users/downline-tree/${userId}`);
+            const treeData = await response.json();
+            console.log("TREE_DATA: ", treeData);
+            document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
+          } catch (error) {
+            console.error('Failed to load tree data:', error);
+            document.getElementById('mlmTree').innerText = 'Failed to load tree.';
+          }
         }
 
-        const table = document.createElement("table");
-        const thead = document.createElement("thead");
-        const headerRow = document.createElement("tr");
+        loadTree();
 
-        Object.keys(data[0]).forEach((key) => {
-          const th = document.createElement("th");
-          th.textContent = key;
-          headerRow.appendChild(th);
-        });
+        // Zoom
+        let scale = 1;
+        const treeWrapper = document.getElementById('treeWrapper');
 
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
+        function zoomIn() {
+          scale += 0.1;
+          treeWrapper.style.transform = `scale(${scale})`;
+        }
 
-        const tbody = document.createElement("tbody");
+        function zoomOut() {
+          scale = Math.max(0.2, scale - 0.1);
+          treeWrapper.style.transform = `scale(${scale})`;
+        }
 
-        data.forEach((row) => {
-          const tr = document.createElement("tr");
-          Object.values(row).forEach((value) => {
-            const td = document.createElement("td");
-            td.textContent = value !== null ? value : "";
-            tr.appendChild(td);
+        function resetZoom() {
+          scale = 1;
+          treeWrapper.style.transform = `scale(1)`;
+        }
+
+        function addUsers() {
+          fetch("/api/v1/users/add-users")
+            .then(response => response.json())
+            .then(data => {
+              console.log("reloading.....");
+              //location.reload();
+              loadTree();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        /*function showUserInfo(userId, username, event) {
+          const label = document.getElementById('userLabel');
+          label.textContent = `Selected User: ${username} (ID: ${userId})`;
+
+           // Remove 'selected' class from any previously selected node
+          document.querySelectorAll('.node.selected').forEach(node => {
+            node.classList.remove('selected');
           });
-          tbody.appendChild(tr);
+
+          // Highlight the clicked node
+          const clickedNode = event.currentTarget;
+          clickedNode.classList.add('selected');
+        }*/
+
+
+        let selectedNodeElement = null;
+        let selectedUserId = null;
+        function showUserInfo(userId, username, event) {
+          selectedUserId = userId;
+
+          // Remove previous selection
+          if (selectedNodeElement) {
+            selectedNodeElement.classList.remove("selected");
+          }
+
+          // Mark current node as selected
+          selectedNodeElement = event.target;
+          selectedNodeElement.classList.add("selected");
+
+          // Show label (you can customize where to show)
+          const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId})`;
+        }
+
+
+        // Sidebar
+        function toggleSidebar(type) {
+          const sidebarSql = document.getElementById('sidebar-sql');
+          const sidebarInfo = document.getElementById('sidebar-info');
+          const backdrop = document.getElementById('backdrop');
+
+          if (type === 'sql') {
+            sidebarSql.classList.toggle('open');
+          } else if (type === 'info') {
+            sidebarInfo.classList.toggle('open');
+          }
+
+          // Show backdrop if either sidebar is open
+          if (sidebarSql.classList.contains('open') || sidebarInfo.classList.contains('open')) {
+            backdrop.classList.add('active');
+          } else {
+            backdrop.classList.remove('active');
+          }
+        }
+
+        function closeAllSidebars() {
+          document.getElementById('sidebar-sql').classList.remove('open');
+          document.getElementById('sidebar-info').classList.remove('open');
+          document.getElementById('backdrop').classList.remove('active');
+        }
+
+        function copyToClipboard(icon) {
+          // Find the related copy-section container
+          const copySection = icon.closest('.copy-section');
+          const textElem = copySection.querySelector('.copy-text');
+          const statusElem = copySection.querySelector('.copy-status');
+
+          const text = textElem.innerText;
+
+          navigator.clipboard.writeText(text).then(() => {
+            statusElem.textContent = 'Copied text';
+            statusElem.style.color = 'green';
+            statusElem.style.display = 'block';
+
+            setTimeout(() => {
+              statusElem.style.display = 'none';
+            }, 2000);
+          }).catch(() => {
+            statusElem.textContent = 'Failed to copy';
+            statusElem.style.color = 'red';
+            statusElem.style.display = 'block';
+
+            setTimeout(() => {
+              statusElem.style.display = 'none';
+            }, 2000);
+          });
+        }
+
+        // Execute button (demo logic)
+        async function runQuery() {
+          const query = document.getElementById('sqlInput').value;
+          const resultDiv = document.getElementById("result");
+          const errorDiv = document.getElementById("error");
+          resultDiv.innerHTML = "";
+          errorDiv.textContent = "";
+
+          try {
+            const response = await fetch("/api/sql/execute", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ query }),
+            });
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.message || "Query execution failed");
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data) || data.length === 0) {
+              resultDiv.innerHTML = "<p>No results found.</p>";
+              return;
+            }
+
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const headerRow = document.createElement("tr");
+
+            Object.keys(data[0]).forEach((key) => {
+              const th = document.createElement("th");
+              th.textContent = key;
+              headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement("tbody");
+
+            data.forEach((row) => {
+              const tr = document.createElement("tr");
+              Object.values(row).forEach((value) => {
+                const td = document.createElement("td");
+                td.textContent = value !== null ? value : "";
+                tr.appendChild(td);
+              });
+              tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            resultDiv.appendChild(table);
+          } catch (err) {
+            errorDiv.textContent = err.message;
+          }
+        }
+        const sqlInput = document.getElementById("sqlInput");
+        sqlInput.addEventListener("keydown", function (e) {
+          if (e.ctrlKey && e.key === "Enter") {
+            e.preventDefault();
+            runQuery();
+          }
         });
 
-        table.appendChild(tbody);
-        resultDiv.appendChild(table);
-      } catch (err) {
-        errorDiv.textContent = err.message;
-      }
-    }
-    const sqlInput = document.getElementById("sqlInput");
-    sqlInput.addEventListener("keydown", function (e) {
-      if (e.ctrlKey && e.key === "Enter") {
-        e.preventDefault();
-        runQuery();
-      }
-    });
+        function highlightLevel(relativeLevel) {
+          if (!selectedNodeElement) {
+            alert("Please select a user first.");
+            return;
+          }
 
-    function highlightLevel(relativeLevel) {
-      if (!selectedNodeElement) {
-        alert("Please select a user first.");
-        return;
-      }
+          clearHighlights(true);
 
-      clearHighlights(true);
+          const baseLevel = parseInt(selectedNodeElement.dataset.level);
+          const targetLevel = baseLevel + relativeLevel;
 
-      const baseLevel = parseInt(selectedNodeElement.dataset.level);
-      const targetLevel = baseLevel + relativeLevel;
+          // Select LI node (tree structure)
+          const selectedLI = selectedNodeElement.closest("li");
 
-      // Select LI node (tree structure)
-      const selectedLI = selectedNodeElement.closest("li");
+          // Search inside selected subtree only
+          const descendants = selectedLI.querySelectorAll(".node");
 
-      // Search inside selected subtree only
-      const descendants = selectedLI.querySelectorAll(".node");
+          // Highlight target nodes
+          descendants.forEach(node => {
+            const nodeLevel = parseInt(node.dataset.level);
+            if (nodeLevel === targetLevel) {
+              node.classList.add("level-highlight");
+            }
+          });
 
-      // Highlight target nodes
-      descendants.forEach(node => {
-        const nodeLevel = parseInt(node.dataset.level);
-        if (nodeLevel === targetLevel) {
-          node.classList.add("level-highlight");
+          // Highlight the clicked button
+          document.querySelectorAll(".controls-highlight button").forEach(btn => {
+            btn.classList.remove("selected");
+
+            if (btn.dataset.level === String(relativeLevel)) {
+              btn.classList.add("selected");
+            }
+          });
         }
-      });
 
-      // Highlight the clicked button
-      document.querySelectorAll(".controls-highlight button").forEach(btn => {
-        btn.classList.remove("selected");
+        function clearHighlights(removeButtonHighlight = true) {
+          // Remove node highlights
+          document.querySelectorAll('.node.level-highlight').forEach(el => {
+            el.classList.remove('level-highlight');
+          });
 
-        if (btn.dataset.level === String(relativeLevel)) {
-          btn.classList.add("selected");
+          // Optionally remove highlight button styles
+          if (removeButtonHighlight) {
+            document.querySelectorAll('.controls-highlight button').forEach(btn => {
+              btn.classList.remove('selected');
+            });
+          }
         }
-      });
-    }
-
-    function clearHighlights(removeButtonHighlight = true) {
-      // Remove node highlights
-      document.querySelectorAll('.node.level-highlight').forEach(el => {
-        el.classList.remove('level-highlight');
-      });
-
-      // Optionally remove highlight button styles
-      if (removeButtonHighlight) {
-        document.querySelectorAll('.controls-highlight button').forEach(btn => {
-          btn.classList.remove('selected');
-        });
-      }
-    }
 
   </script>
 
