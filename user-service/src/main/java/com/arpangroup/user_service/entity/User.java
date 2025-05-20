@@ -70,4 +70,8 @@ public class User {
         this.referralCode = "R_"+username;
         this.reserveBalance = reserveBalance;
     }
+
+    public User(String username) {
+        this.username = username;
+    }
 }

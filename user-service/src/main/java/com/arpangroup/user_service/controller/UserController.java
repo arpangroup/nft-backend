@@ -7,6 +7,7 @@ import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.exception.InvalidRequestException;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
+import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +49,7 @@ public class UserController {
 
     @GetMapping("/add-users")
     public ResponseEntity<?> registerUser() {
-        RegistrationRequest user2 = new RegistrationRequest("user2", null, 1000);
+        /*RegistrationRequest user2 = new RegistrationRequest("user2", null, 1000);
         RegistrationRequest user3 = new RegistrationRequest("user3", null, 1000);
         RegistrationRequest user4 = new RegistrationRequest("user4", null, 1000);
         RegistrationRequest user5 = new RegistrationRequest("user5", null, 1000);
@@ -60,10 +61,41 @@ public class UserController {
         userService.registerUser(mapper.mapTo(user4), "user2");
         userService.registerUser(mapper.mapTo(user5), "user2");
         userService.registerUser(mapper.mapTo(user6), "user3");
-        userService.registerUser(mapper.mapTo(user7), "user4");
-
+        userService.registerUser(mapper.mapTo(user7), "user4");*/
+        addDummyUsers();
 
         return ResponseEntity.ok("successful");
+    }
+
+    private void addDummyUsers() {
+        User root = userService.getUserById(1L);
+
+        User user1 = userService.registerUser(new User("user1"), root.getReferralCode());
+        User user2 = userService.registerUser(new User("user2"), root.getReferralCode());
+        User user3 = userService.registerUser(new User("user3"), root.getReferralCode());
+
+        User user1_1 = userService.registerUser(new User("user1_1"), user1.getReferralCode());
+        User user1_2 = userService.registerUser(new User("user1_2"), user1.getReferralCode());
+        User user2_1 = userService.registerUser(new User("user2_1"), user2.getReferralCode());
+        User user2_2 = userService.registerUser(new User("user2_2"), user2.getReferralCode());
+        User user3_1 = userService.registerUser(new User("user3_1"), user3.getReferralCode());
+
+        User user1_1_1 = userService.registerUser(new User("user1_1_1"), user1_1.getReferralCode());
+        User user1_1_2 = userService.registerUser(new User("user1_1_2"), user1_1.getReferralCode());
+        User user2_1_1 = userService.registerUser(new User("user2_1_1"), user2_1.getReferralCode());
+        User user2_1_2 = userService.registerUser(new User("user2_1_2"), user2_1.getReferralCode());
+        User user3_1_1 = userService.registerUser(new User("user3_1_1"), user3_1.getReferralCode());
+
+        User user1_1_1_1 = userService.registerUser(new User("user1_1_1_1"), user1_1_1.getReferralCode());
+        User user1_1_2_1 = userService.registerUser(new User("user1_1_2_1"), user1_1_2.getReferralCode());
+        User user1_1_2_2 = userService.registerUser(new User("user1_1_2_2"), user1_1_2.getReferralCode());
+        User user3_1_1_1 = userService.registerUser(new User("user3_1_1_1"), user3_1_1.getReferralCode());
+
+
+        User user1_1_2_2_1 = userService.registerUser(new User("user1_1_2_2_1"), user1_1_2_2.getReferralCode());
+        User user1_1_2_2_2 = userService.registerUser(new User("user1_1_2_2_2"), user1_1_2_2.getReferralCode());
+        User user3_1_1_1_1 = userService.registerUser(new User("user3_1_1_1_1"), user3_1_1_1.getReferralCode());
+        User user3_1_1_1_2 = userService.registerUser(new User("user3_1_1_1_2"), user3_1_1_1.getReferralCode());
     }
 
 

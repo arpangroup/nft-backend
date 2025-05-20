@@ -38,43 +38,35 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User registerUser(final User user, final String referralCode) throws InvalidRequestException {
+    public User registerUser(User user, final String referralCode) throws InvalidRequestException {
         // validate referralCode
         // Create user
         // Allocate bonus to referrer
 
         User referrer = userRepository.findByReferralCode(referralCode).orElseThrow(() -> new InvalidRequestException("invalid referralCode"));
         if (referrer != null) {
-            User newUser = userRepository.save(user);
-            updateHierarchy(referrer.getId(), newUser.getId());
+            user = userRepository.save(user);
+            updateHierarchy(referrer.getId(), user.getId());
 
             // 1. Allocate WelcomeBonus if enabled
-            welcomeBonusProcessor.calculateIfEnabled(newUser).ifPresent(welcomeBonus -> {
+            /*welcomeBonusProcessor.calculateIfEnabled(newUser).ifPresent(welcomeBonus -> {
                 transactionService.deposit(newUser.getId(), welcomeBonus, TransactionRemarks.WELCOME_BONUS);
-            });
-
-            /*if (referralBonusProperties.isEnable()) {
-                double directBonus = referralBonusProcessor.calculate(newUser);
-                double directBonus = calculateDirectBonus(newUser.getReserveBalance());
-                Referral referral = new Referral(referrer.getId(), newUser.getId(), directBonus);
-                referralRepository.save(referral);
-                transactionService.deposit(referrer.getId(), directBonus, TransactionRemarks.REFERRAL_BONUS + " for userId: " + newUser.getId());
-            }*/
+            });*/
 
             // 2. Allocate Referral (Direct) Bonus if enabled
-            referralBonusProcessor.calculateIfEnabled(newUser).ifPresent(referralAmt -> {
+            /*referralBonusProcessor.calculateIfEnabled(newUser).ifPresent(referralAmt -> {
                 Referral referral = new Referral(referrer.getId(), newUser.getId(), referralAmt); // directBonus
                 referralRepository.save(referral);
                 transactionService.deposit(referrer.getId(), referralAmt, TransactionRemarks.REFERRAL_BONUS + " for userId: " + newUser.getId());
-            });
+            });*/
 
 
 
             //propagateBonus(referrer.getId(), referral.getBonus());
 
             // Determine the new user's level after registration and hierarchy update
-            newUser.setLevel(determineLevel(newUser.getId(), newUser.getReserveBalance()));
-            userRepository.save(newUser);
+            user.setLevel(determineLevel(user.getId(), user.getReserveBalance()));
+            userRepository.save(user);
 
             // Recalculate and update the referrer's level
             referrer.setLevel(determineLevel(referrer.getId(), referrer.getReserveBalance()));
