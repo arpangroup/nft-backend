@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -64,7 +65,7 @@ public class UserController {
         userService.registerUser(mapper.mapTo(user7), "user4");*/
         addDummyUsers();
 
-        return ResponseEntity.ok("successful");
+        return ResponseEntity.ok(Map.of("result", "success"));
     }
 
     private void addDummyUsers() {

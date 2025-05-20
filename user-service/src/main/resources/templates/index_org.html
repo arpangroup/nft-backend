@@ -2,230 +2,549 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tree View with Zoom and Lines</title>
+    <title>Dynamic MLM Tree</title>
     <style>
         body {
-          font-family: sans-serif;
           margin: 0;
+          font-family: Arial, sans-serif;
+          overflow: hidden;
         }
 
         .controls {
-          text-align: center;
-          padding: 10px;
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          z-index: 1000;
         }
 
         .controls button {
-          margin: 0 5px;
+          margin-right: 5px;
           padding: 6px 12px;
-          font-size: 16px;
+          font-size: 14px;
+        }
+
+        .sidebar-toggle {
+          position: fixed;
+          top: 10px;
+          right: 0px;
+          z-index: 1001;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .sidebar-toggle button {
+          padding: 6px 12px;
+          font-size: 14px;
+        }
+
+        .canvas {
+          width: 100vw;
+          height: 100vh;
+          overflow: auto;
+          background: #f5f5f5;
         }
 
         .tree-wrapper {
-          position: relative;
-          overflow: auto;
-          width: 100%;
-          height: calc(100vh - 60px);
-        }
-
-        .tree-zoom-container {
-          position: relative;
           display: flex;
           justify-content: center;
-          padding: 50px;
+          align-items: center;
           transform-origin: top center;
-          transition: transform 0.2s ease;
+          transition: transform 0.3s ease;
+          padding: 50px 0;
+          min-width: 1200px;
         }
 
-        .tree-container {
+        .tree ul {
+          position: relative;
+          padding-top: 20px;
+          display: table;
+          margin: 0 auto;
+        }
+
+        .tree li {
+          display: table-cell;
+          text-align: center;
+          position: relative;
+          padding: 20px 5px 0 5px;
+          vertical-align: top;
+        }
+
+        .tree li::before,
+        .tree li::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 50%;
+          height: 20px;
+          border-top: 2px solid #333;
+        }
+
+        .tree li::before {
+          left: 0;
+          border-right: 2px solid #333;
+        }
+
+        .tree li::after {
+          right: 0;
+          border-left: 2px solid #333;
+        }
+
+        .tree li:only-child::before,
+        .tree li:only-child::after {
+          content: none;
+        }
+
+        .tree li:only-child {
+          padding-top: 0;
+        }
+
+        .tree ul::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          border-left: 2px solid #333;
+          height: 20px;
+        }
+
+        .node {
+          display: inline-block;
+          padding: 6px 12px;
+          background: #fff;
+          border: 1px solid #333;
+          border-radius: 6px;
           position: relative;
           z-index: 1;
         }
 
-        .tree-node {
-          position: relative;
-          background-color: #e0f7fa;
-          border: 2px solid #00796b;
-          border-radius: 8px;
-          padding: 10px;
+        .node.selected {
+          background-color: #4caf50;
+          color: white;
+          border-color: #388e3c;
           font-weight: bold;
-          min-width: 100px;
-          text-align: center;
         }
 
-        .tree-branch {
-          display: flex;
-          justify-content: center;
-          margin-top: 60px;
+        /* Common Sidebar Styles */
+        .sidebar {
+          position: fixed;
+          top: 0;
+          right: -900px;
+          width: 800px;
+          height: 100%;
+          background: #ffffff;
+          border-left: 1px solid #ccc;
+          box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+          transition: right 0.3s ease;
+          z-index: 1002;
+          padding: 20px;
+          overflow-y: auto;
         }
 
-        .tree-child {
-          margin: 0 30px;
+        .sidebar.open {
+          right: 0;
         }
 
-        svg#connector-lines {
-          position: absolute;
+        /* Backdrop */
+        .backdrop {
+          position: fixed;
           top: 0;
           left: 0;
-          pointer-events: none;
-          z-index: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.4);
+          z-index: 1001;
+          display: none;
         }
+
+        .backdrop.active {
+          display: block;
+        }
+
+        /* SQL Panel Content */
+        textarea {
+          width: 100%;
+          height: 100px;
+          margin-bottom: 10px;
+        }
+
+        button.execute-btn {
+          display: block;
+          margin-bottom: 15px;
+          padding: 8px 16px;
+        }
+
+        #error {
+          color: red;
+          margin-top: 10px;
+        }
+
+        #result {
+          margin-top: 10px;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+
+        th, td {
+          padding: 8px;
+          border: 1px solid #ccc;
+          text-align: left;
+        }
+
+        th {
+          background-color: #f0f0f0;
+        }
+
+        /* Info Sidebar */
+        .sidebar.info {
+          background-color: #fdfdfd;
+          z-index: 1003;
+        }
+
+        /* Copy Section */
+        .copy-section {
+          position: relative;
+          margin-top: 20px;
+        }
+
+        .copy-section pre {
+          background-color: #eee;
+          padding: 10px;
+          border-radius: 5px;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          position: relative;
+        }
+        .copy-icon {
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          cursor: pointer;
+          opacity: 0.7;
+          transition: opacity 0.2s;
+        }
+
+        .copy-icon:hover {
+          opacity: 1;
+        }
+
+        .copy-status {
+          color: green;
+          margin-top: 10px;
+          display: none;
+          font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
 
 <div class="controls">
-    <button onclick="zoomIn()">Zoom In +</button>
-    <button onclick="zoomOut()">Zoom Out −</button>
+    <button onclick="zoomIn()">Zoom In</button>
+    <button onclick="zoomOut()">Zoom Out</button>
+    <button onclick="resetZoom()">Reset</button>
+    <button onclick="addUsers()">Add Dummy USers</button>
+    <div id="userLabel" style="position: fixed; bottom: 10px; left: 10px; background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px;">
+        Click a user to see info here.
+    </div>
 </div>
 
-<div class="tree-wrapper">
-    <div id="zoom-container" class="tree-zoom-container">
-        <svg id="connector-lines"></svg>
-        <div id="tree" class="tree-container"></div>
+<div class="sidebar-toggle">
+    <button onclick="toggleSidebar('sql')"> ☰ Execute</button>
+    <button onclick="toggleSidebar('info')">ℹ️ Show Info</button>
+</div>
+
+<div class="backdrop" id="backdrop" onclick="closeAllSidebars()"></div>
+
+<div id="sidebar-sql" class="sidebar">
+    <h3>Tools Panel</h3>
+    <textarea id="sqlInput" rows="5" placeholder="Enter SQL (e.g., SELECT * FROM users)"></textarea>
+    <button class="execute-btn" onclick="runQuery()">Execute</button>
+
+    <div id="error"></div>
+    <div id="result"></div>
+</div>
+
+<!-- Info Sidebar -->
+<div id="sidebar-info" class="sidebar info">
+    <h2>Common Database Queries</h2>
+    <h4>SHow all users:</h4>
+    <div class="copy-section">
+        <pre class="copy-text">
+select id, username, referral_code, reserve_balance, `level` from users;
+        </pre>
+        <img src="clipboard.png"
+             alt="Copy"
+             class="copy-icon"
+             onclick="copyToClipboard(this)"
+             title="Copy to Clipboard" />
+        <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
+    </div>
+
+    <h4>SHow user_hierarchy table:</h4>
+    <div class="copy-section">
+        <pre class="copy-text">
+select id, ancestor, descendant,`depth`  from user_hierarchy uh ;
+        </pre>
+        <img src="clipboard.png"
+             alt="Copy"
+             class="copy-icon"
+             onclick="copyToClipboard(this)"
+             title="Copy to Clipboard" />
+        <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
+    </div>
+
+
+    <div class="copy-section">
+        <pre class="copy-text">
+select id, user_id, sender_id, txn_type, amount, balance, remarks  from transactions t ;
+        </pre>
+        <img src="clipboard.png"
+             alt="Copy"
+             class="copy-icon"
+             onclick="copyToClipboard(this)"
+             title="Copy to Clipboard" />
+        <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
+    </div>
+
+
+    <div class="copy-section">
+        <pre class="copy-text">
+SELECT id, 'level', min_reserv_amt, max_reserv_amt,  profit,
+calculation_type, profit_frequency, txn_per_day, annualized_returns,
+lv_a_require, lv_b_require, lv_c_require
+FROM config_individual_income ic;
+        </pre>
+        <img src="clipboard.png"
+             alt="Copy"
+             class="copy-icon"
+             onclick="copyToClipboard(this)"
+             title="Copy to Clipboard" />
+        <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
+    </div>
+
+    <div class="copy-section">
+        <pre class="copy-text">
+select u.id, u.username from users u where u.id in(
+	select `descendant` from user_hierarchy uh where uh.ancestor =2 and depth = 1
+);
+        </pre>
+        <img src="clipboard.png"
+             alt="Copy"
+             class="copy-icon"
+             onclick="copyToClipboard(this)"
+             title="Copy to Clipboard" />
+        <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
+    </div>
+
+
+
+</div>
+
+<div class="canvas">
+    <div class="tree-wrapper" id="treeWrapper">
+        <div class="tree" id="mlmTree"></div>
     </div>
 </div>
 
 <script>
-    const treeData = {
-      "userId": 1,
-      "username": "user1",
-      "children": [
-        {
-          "userId": 2,
-          "username": "user2",
-          "children": [
-            {
-              "userId": 4,
-              "username": "user4",
-              "children": [
-                  {
-                  "userId": 7,
-                  "username": "user7",
-                  "children": []
-                }
-              ]
-            },
-            {
-              "userId": 5,
-              "username": "user5",
-              "children": []
-            }
-          ]
-        },
-        {
-          "userId": 3,
-          "username": "user3",
-          "children": [
-            {
-              "userId": 6,
-              "username": "user6",
-              "children": []
-            }
-          ]
-        }
-      ]
-    };
+    function buildTree(node) {
+      let html = `<li><div class="node" onclick="showUserInfo('${node.userId}', '${node.username}')">${node.username}</div>`;
+      if (node.children && node.children.length > 0) {
+        html += `<ul>`;
+        node.children.forEach(child => {
+          html += buildTree(child);
+        });
+        html += `</ul>`;
+      }
+      html += `</li>`;
+      return html;
+    }
 
-    let zoomLevel = 1;
+    async function loadTree() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id') || 1;
+        const response = await fetch(`/api/v1/users/downline-tree/${userId}`);
+        const treeData = await response.json();
+        console.log("TREE_DATA: ", treeData);
+        document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
+      } catch (error) {
+        console.error('Failed to load tree data:', error);
+        document.getElementById('mlmTree').innerText = 'Failed to load tree.';
+      }
+    }
+
+    loadTree();
+
+    // Zoom
+    let scale = 1;
+    const treeWrapper = document.getElementById('treeWrapper');
 
     function zoomIn() {
-      zoomLevel += 0.1;
-      document.getElementById('zoom-container').style.transform = `scale(${zoomLevel})`;
+      scale += 0.1;
+      treeWrapper.style.transform = `scale(${scale})`;
     }
 
     function zoomOut() {
-      zoomLevel = Math.max(0.5, zoomLevel - 0.1);
-      document.getElementById('zoom-container').style.transform = `scale(${zoomLevel})`;
+      scale = Math.max(0.2, scale - 0.1);
+      treeWrapper.style.transform = `scale(${scale})`;
     }
 
-    function createTreeNode(user) {
-      const nodeWrapper = document.createElement('div');
-      nodeWrapper.className = 'tree-child';
+    function resetZoom() {
+      scale = 1;
+      treeWrapper.style.transform = `scale(1)`;
+    }
 
-      const node = document.createElement('div');
-      node.className = 'tree-node';
-      node.setAttribute('data-userid', user.userId);
-      node.textContent = user.username;
+    function addUsers() {
+        fetch("/api/v1/users/add-users")
+            .then(response => response.json())
+            .then(data => {
+                console.log("reloading.....");
+                //location.reload();
+                loadTree();
+            })
+            .catch(error => console.error('Error:', error));
+    }
 
-      nodeWrapper.appendChild(node);
+    function showUserInfo(userId, username) {
+      const label = document.getElementById('userLabel');
+      label.textContent = `Selected User: ${username} (ID: ${userId})`;
 
-      if (user.children && user.children.length > 0) {
-        const branch = document.createElement('div');
-        branch.className = 'tree-branch';
+       // Remove 'selected' class from any previously selected node
+      document.querySelectorAll('.node.selected').forEach(node => {
+        node.classList.remove('selected');
+      });
 
-        user.children.forEach(child => {
-          branch.appendChild(createTreeNode(child));
-        });
+      // Highlight the clicked node
+      const clickedNode = event.currentTarget;
+      clickedNode.classList.add('selected');
+    }
 
-        nodeWrapper.appendChild(branch);
+    // Sidebar
+    function toggleSidebar(type) {
+      const sidebarSql = document.getElementById('sidebar-sql');
+      const sidebarInfo = document.getElementById('sidebar-info');
+      const backdrop = document.getElementById('backdrop');
+
+        if (type === 'sql') {
+          sidebarSql.classList.toggle('open');
+        } else if (type === 'info') {
+          sidebarInfo.classList.toggle('open');
+        }
+
+      // Show backdrop if either sidebar is open
+      if (sidebarSql.classList.contains('open') || sidebarInfo.classList.contains('open')) {
+        backdrop.classList.add('active');
+      } else {
+        backdrop.classList.remove('active');
       }
-
-      return nodeWrapper;
     }
 
-    function renderTree() {
-      const tree = document.getElementById('tree');
-      tree.innerHTML = '';
-      tree.appendChild(createTreeNode(treeData));
+    function closeAllSidebars() {
+      document.getElementById('sidebar-sql').classList.remove('open');
+      document.getElementById('sidebar-info').classList.remove('open');
+      document.getElementById('backdrop').classList.remove('active');
     }
 
-    function drawLines() {
-      const svg = document.getElementById('connector-lines');
-      svg.innerHTML = '';
+    function copyToClipboard(icon) {
+      // Find the related copy-section container
+      const copySection = icon.closest('.copy-section');
+      const textElem    = copySection.querySelector('.copy-text');
+      const statusElem  = copySection.querySelector('.copy-status');
 
-      const zoomBox = document.getElementById('zoom-container');
-      const bbox = zoomBox.getBoundingClientRect();
-      svg.setAttribute('width', bbox.width);
-      svg.setAttribute('height', bbox.height);
+      const text = textElem.innerText;
 
-      const container = document.getElementById('tree');
+      navigator.clipboard.writeText(text).then(() => {
+        statusElem.textContent = 'Copied text';
+        statusElem.style.color = 'green';
+        statusElem.style.display = 'block';
 
-      function drawLine(fromEl, toEl) {
-        const fromBox = fromEl.getBoundingClientRect();
-        const toBox = toEl.getBoundingClientRect();
+        setTimeout(() => {
+          statusElem.style.display = 'none';
+        }, 2000);
+      }).catch(() => {
+        statusElem.textContent = 'Failed to copy';
+        statusElem.style.color = 'red';
+        statusElem.style.display = 'block';
 
-        const startX = fromBox.left + fromBox.width / 2 - bbox.left;
-        const startY = fromBox.bottom - bbox.top;
-        const endX = toBox.left + toBox.width / 2 - bbox.left;
-        const endY = toBox.top - bbox.top;
+        setTimeout(() => {
+          statusElem.style.display = 'none';
+        }, 2000);
+      });
+    }
 
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d', `M${startX},${startY} C${startX},${startY + 30} ${endX},${endY - 30} ${endX},${endY}`);
-        path.setAttribute('stroke', '#00796b');
-        path.setAttribute('fill', 'none');
-        path.setAttribute('stroke-width', '2');
+    // Execute button (demo logic)
+    async function runQuery() {
+        const query = document.getElementById('sqlInput').value;
+        const resultDiv = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+        resultDiv.innerHTML = "";
+        errorDiv.textContent = "";
 
-        svg.appendChild(path);
+        try {
+            const response = await fetch("/api/sql/execute", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query }),
+            });
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.message || "Query execution failed");
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data) || data.length === 0) {
+              resultDiv.innerHTML = "<p>No results found.</p>";
+              return;
+            }
+
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const headerRow = document.createElement("tr");
+
+            Object.keys(data[0]).forEach((key) => {
+              const th = document.createElement("th");
+              th.textContent = key;
+              headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement("tbody");
+
+            data.forEach((row) => {
+              const tr = document.createElement("tr");
+              Object.values(row).forEach((value) => {
+                const td = document.createElement("td");
+                td.textContent = value !== null ? value : "";
+                tr.appendChild(td);
+              });
+              tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            resultDiv.appendChild(table);
+      } catch (err) {
+        errorDiv.textContent = err.message;
       }
-
-      function walkTree(node) {
-        const current = node.querySelector('.tree-node');
-        const children = node.querySelectorAll(':scope > .tree-branch > .tree-child');
-
-        children.forEach(child => {
-          const childNode = child.querySelector('.tree-node');
-          drawLine(current, childNode);
-          walkTree(child);
-        });
-      }
-
-      walkTree(container.firstElementChild);
     }
-
-    window.addEventListener('load', () => {
-      renderTree();
-      setTimeout(drawLines, 100); // Wait for layout
+    const sqlInput = document.getElementById("sqlInput");
+    sqlInput.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && e.key === "Enter") {
+          e.preventDefault();
+          runQuery();
+        }
     });
-
-    window.addEventListener('resize', () => {
-      setTimeout(drawLines, 100);
-    });
-
-    // Redraw lines after zoom change
-    const observer = new MutationObserver(() => {
-      setTimeout(drawLines, 100);
-    });
-    observer.observe(document.getElementById('zoom-container'), { attributes: true, attributeFilter: ['style'] });
 </script>
 
 </body>
