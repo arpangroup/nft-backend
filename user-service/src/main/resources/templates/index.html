@@ -179,6 +179,10 @@
       right: 0;
     }
 
+    #query-container{
+      padding-bottom: 30px;
+    }
+
     /* Backdrop */
     .backdrop {
       position: fixed;
@@ -266,6 +270,20 @@
       transition: opacity 0.2s;
     }
 
+    .exec-btn {
+      background-color: #e0e0e0;
+      border: none;
+      padding: 4px 8px;
+      margin-left: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+      border-radius: 4px;
+    }
+
+    .exec-btn:hover {
+      background-color: #ccc;
+    }
+
     .copy-icon:hover {
       opacity: 1;
     }
@@ -275,6 +293,63 @@
       margin-top: 10px;
       display: none;
       font-size: 14px;
+    }
+
+    #registerForm {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    #registerForm label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    #registerForm input,
+    #registerForm select {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    #registerForm button[type="submit"] {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #registerForm button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    #registerStatus {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .success {
+      background-color: #d4edda;  /* light green */
+      color: #155724;             /* dark green text */
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+    }
+
+    .error {
+      background-color: #f8d7da;  /* light red */
+      color: #721c24;             /* dark red text */
+      border: 1px solid #f5c6cb;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -301,8 +376,9 @@
   </div>
 
   <div class="sidebar-toggle">
-    <button onclick="toggleSidebar('sql')"> ☰ Execute</button>
-    <button onclick="toggleSidebar('info')">ℹ️ Show Info</button>
+    <button onclick="toggleSidebar('sidebar-sql')"> ☰ Execute</button>
+    <button onclick="toggleSidebar('sidebar-info')">ℹ️ Show Info</button>
+    <button onclick="toggleSidebar('sidebar-register')">📝 Register User</button>
   </div>
 
 
@@ -310,7 +386,8 @@
   <div class="backdrop" id="backdrop" onclick="closeAllSidebars()"></div>
 
   <div id="sidebar-sql" class="sidebar">
-    <h3>Tools Panel</h3>
+    <h2>Execute SQL Query</h2>
+    <p class="sql-description">Lorem Ipsum</p>
     <textarea id="sqlInput" rows="5" placeholder="Enter SQL (e.g., SELECT * FROM users)"></textarea>
     <button class="execute-btn" onclick="runQuery()">Execute</button>
 
@@ -322,6 +399,26 @@
   <div id="sidebar-info" class="sidebar info">
       <h2>Common Database Queries</h2>
       <div id="query-container"></div>
+  </div>
+
+  <!-- Register Sidebar -->
+  <div id="sidebar-register" class="sidebar register">
+    <h2>Register New User</h2>
+    <form id="registerForm">
+      <label>Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label>Referrer:</label>
+      <select name="referral_code" id="referralSelect" required>
+        <option value="" disabled selected>-- Select Referrer --</option>
+      </select>
+
+      <label>Referral Code:</label>
+      <input type="text" name="referral_code" disabled>
+
+      <button type="submit">Register</button>
+    </form>
+    <div id="registerStatus" style="margin-top: 10px; padding: 8px; display: none;"></div>
   </div>
 
   <div class="canvas">
@@ -341,9 +438,10 @@
 
           block.innerHTML = `
             <h4>${item.title}</h4>
-            <div class="copy-section">
+            <div class="copy-section" data-title="${item.title.replace(/"/g, '&quot;')}">
               <pre class="copy-text">${item.query}</pre>
               <img src="clipboard.png" alt="Copy" class="copy-icon" onclick="copyToClipboard(this)" title="Copy to Clipboard" />
+              <button class="exec-btn" onclick="executeFromBlock(this)">▶️ Execute</button>
               <div class="copy-status" style="color: green; margin-top: 10px; display: none;">Copied text</div>
             </div>
           `;
@@ -384,6 +482,36 @@
         }
 
         loadTree();
+
+        function loadUsers() {
+          const select = document.getElementById('referralSelect');
+          select.innerHTML = '<option value="">-- Select Referrer --</option>'; // Reset
+
+          // Simulated user fetch (replace with actual fetch from backend if needed)
+          /*const users = [
+            { username: "alice", referral_code: "R001" },
+            { username: "bob", referral_code: "R002" },
+            { username: "carol", referral_code: "R003" }
+          ];*/
+
+
+          fetch("/api/v1/users")
+            .then(response => response.json())
+            .then(data => {
+              console.log("USERS: ", data);
+              const users = data;
+
+              users.forEach(user => {
+                const option = document.createElement("option");
+                option.text = user.username;
+                option.value = user.referralCode;
+                select.add(option);
+              });
+          })
+          .catch(error => console.error('Error:', error));
+
+
+        }
 
         // Zoom
         let scale = 1;
@@ -434,6 +562,7 @@
         let selectedUserId = null;
         function showUserInfo(userId, username, event) {
           selectedUserId = userId;
+          clearHighlights(true);
 
           // Remove previous selection
           if (selectedNodeElement) {
@@ -450,28 +579,52 @@
 
 
         // Sidebar
-        function toggleSidebar(type) {
+        /*function toggleSidebar(type) {
           const sidebarSql = document.getElementById('sidebar-sql');
           const sidebarInfo = document.getElementById('sidebar-info');
+          const sidebarRegister = document.getElementById('sidebar-register');
           const backdrop = document.getElementById('backdrop');
 
           if (type === 'sql') {
             sidebarSql.classList.toggle('open');
           } else if (type === 'info') {
             sidebarInfo.classList.toggle('open');
+          } else if (type === 'register') {
+            loadUsers();
+            sidebarRegister.classList.toggle('open');
           }
 
           // Show backdrop if either sidebar is open
-          if (sidebarSql.classList.contains('open') || sidebarInfo.classList.contains('open')) {
+          if (sidebarSql.classList.contains('open') || sidebarInfo.classList.contains('open') || sidebarInfo.classList.contains('open') || sidebarRegister.classList.contains('open')) {
             backdrop.classList.add('active');
           } else {
             backdrop.classList.remove('active');
+          }
+        }*/
+
+        function toggleSidebar(id) {
+          // Close all sidebars by removing 'open' class
+          document.querySelectorAll('.sidebar').forEach(s => s.classList.remove('open'));
+
+          // Show the target sidebar
+          const target = document.getElementById(id);
+          if (target) {
+            target.classList.add('open');
+
+            // Show backdrop
+            document.getElementById('backdrop').classList.add('active');
+
+            // Load referral users if opening register sidebar
+            if (id === 'sidebar-register') {
+              loadUsers();
+            }
           }
         }
 
         function closeAllSidebars() {
           document.getElementById('sidebar-sql').classList.remove('open');
           document.getElementById('sidebar-info').classList.remove('open');
+          document.getElementById('sidebar-register').classList.remove('open');
           document.getElementById('backdrop').classList.remove('active');
         }
 
@@ -616,6 +769,69 @@
             });
           }
         }
+
+    function executeFromBlock(button) {
+      const copySection = button.closest('.copy-section');
+      const query = copySection.querySelector('.copy-text')?.textContent.trim();
+      const title = copySection.dataset.title || "Executing SQL Query";
+
+      // Paste into SQL input and run the query
+      document.getElementById('sqlInput').value = query;
+      runQuery();
+
+      // Set description
+      document.querySelector('.sql-description').textContent = title;
+
+      toggleSidebar('sql');
+      toggleSidebar('info');
+    }
+
+    function showRegistrationStatusMessage(text, isSuccess) {
+      const registerStatusDiv = document.getElementById('registerStatus');
+      registerStatusDiv.textContent = text;
+      registerStatusDiv.style.display = 'block';
+
+      if (isSuccess) {
+        registerStatusDiv.classList.add('success');
+        registerStatusDiv.classList.remove('error');
+      } else {
+        registerStatusDiv.classList.add('error');
+        registerStatusDiv.classList.remove('success');
+      }
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+       const username = document.getElementById("username").value;
+       const referralCode = document.getElementById("referralSelect").value;
+
+      fetch("/api/v1/users/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: username,
+            referralCode: referralCode
+          })
+        })
+        .then(async response => {
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.message || "Registration failed");
+          return data;
+        })
+        .then(data => {
+            //alert("Registration successful");
+            console.log(data); // Optional: show success data
+            showRegistrationStatusMessage("Registration successful!", true);
+            loadTree();
+        })
+        .catch(error => {
+          showRegistrationStatusMessage(error.message, false);
+          console.log("Error: ", error);
+        });
+    });
 
   </script>
 
