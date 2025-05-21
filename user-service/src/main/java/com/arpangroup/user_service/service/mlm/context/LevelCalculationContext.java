@@ -1,4 +1,4 @@
-package com.arpangroup.user_service.processor.level.model;
+package com.arpangroup.user_service.service.mlm.context;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.arpangroup.user_service.processor;
 
 import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.processor.level.model.LevelCalculationContext;
+import com.arpangroup.user_service.service.mlm.context.LevelCalculationContext;
 
 public class Level3Handler extends AbstractLevelHandler{
     @Override

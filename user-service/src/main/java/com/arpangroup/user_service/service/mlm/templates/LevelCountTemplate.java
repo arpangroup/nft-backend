@@ -1,7 +1,7 @@
-package com.arpangroup.user_service.processor.level;
+package com.arpangroup.user_service.service.mlm.templates;
 
-import com.arpangroup.user_service.processor.level.model.LevelCalculationContext;
-import com.arpangroup.user_service.processor.level.model.LevelCounts;
+import com.arpangroup.user_service.service.mlm.context.LevelCalculationContext;
+import com.arpangroup.user_service.service.mlm.model.LevelCounts;
 
 public abstract class LevelCountTemplate {
     public final LevelCounts calculateAllLevels(Long userId) {

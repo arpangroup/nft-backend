@@ -1,8 +1,8 @@
-package com.arpangroup.user_service.processor.level.impl;
+package com.arpangroup.user_service.service.mlm;
 
 import com.arpangroup.user_service.entity.UserHierarchy;
-import com.arpangroup.user_service.processor.level.LevelCountTemplate;
-import com.arpangroup.user_service.processor.level.model.LevelCalculationContext;
+import com.arpangroup.user_service.service.mlm.templates.LevelCountTemplate;
+import com.arpangroup.user_service.service.mlm.context.LevelCalculationContext;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import lombok.RequiredArgsConstructor;
 
