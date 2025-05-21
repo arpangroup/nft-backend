@@ -1,9 +1,9 @@
-package com.arpangroup.user_service.processor;
+package com.arpangroup.user_service.processor.bonus;
 
-import com.arpangroup.user_service.config.properties.ReferralBonusConfig;
+import com.arpangroup.user_service.config.properties.WelcomeBonusConfig;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.config.CalculationType;
-import com.arpangroup.user_service.processor.strategy.ReferralBonusStrategy;
+import com.arpangroup.user_service.processor.bonus.strategy.WelcomeBonusStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class ReferralBonusProcessor {
-    private final Map<CalculationType, ReferralBonusStrategy> strategyMap;
-    private final ReferralBonusConfig config;
+public class WelcomeBonusProcessor {
+    private final Map<CalculationType, WelcomeBonusStrategy> strategyMap;
+    private final WelcomeBonusConfig config;
 
-    public ReferralBonusProcessor(List<ReferralBonusStrategy> strategies, ReferralBonusConfig config) {
+    public WelcomeBonusProcessor(List<WelcomeBonusStrategy> strategies, WelcomeBonusConfig config) {
         this.strategyMap = strategies.stream()
                 .collect(Collectors.toMap(
                         strategy -> strategy.getSupportedType(),  // each strategy tells what type it supports
@@ -31,7 +31,7 @@ public class ReferralBonusProcessor {
     public double calculate(User user) {
         log.info("Calculating WelcomeBonus for userId: {}", user.getId());
         CalculationType type = config.getCalculationType(); // e.g. "percentage", "flat"
-        ReferralBonusStrategy strategy = strategyMap.get(type);
+        WelcomeBonusStrategy strategy = strategyMap.get(type);
 
         if (strategy == null) {
             throw new IllegalArgumentException("Unsupported bonus type: " + type);
@@ -41,6 +41,7 @@ public class ReferralBonusProcessor {
 
     public Optional<Double> calculateIfEnabled(User user) {
         if (!config.isEnable()) {
+            log.warn("WelcomeBonus not enable in properties");
             return Optional.empty();
         }
         return Optional.of(calculate(user));

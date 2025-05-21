@@ -1,9 +1,9 @@
-package com.arpangroup.user_service.processor.strategy.impl;
+package com.arpangroup.user_service.processor.bonus.strategy.impl;
 
 import com.arpangroup.user_service.config.properties.ReferralBonusConfig;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.config.CalculationType;
-import com.arpangroup.user_service.processor.strategy.ReferralBonusStrategy;
+import com.arpangroup.user_service.processor.bonus.strategy.ReferralBonusStrategy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

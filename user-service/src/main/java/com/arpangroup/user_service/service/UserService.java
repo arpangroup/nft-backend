@@ -1,16 +1,15 @@
 package com.arpangroup.user_service.service;
 
 import com.arpangroup.user_service.dto.UserTreeNode;
-import com.arpangroup.user_service.entity.Referral;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.exception.InvalidRequestException;
-import com.arpangroup.user_service.processor.ReferralBonusProcessor;
-import com.arpangroup.user_service.processor.WelcomeBonusProcessor;
+import com.arpangroup.user_service.processor.LevelService;
+import com.arpangroup.user_service.processor.bonus.ReferralBonusProcessor;
+import com.arpangroup.user_service.processor.bonus.WelcomeBonusProcessor;
 import com.arpangroup.user_service.repository.ReferralRepository;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
-import com.arpangroup.user_service.transaction.TransactionRemarks;
 import com.arpangroup.user_service.transaction.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,7 @@ public class UserService {
     private final TransactionService transactionService;
     private final WelcomeBonusProcessor welcomeBonusProcessor;
     private final ReferralBonusProcessor referralBonusProcessor;
+    private final LevelService levelService;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -65,7 +65,10 @@ public class UserService {
             //propagateBonus(referrer.getId(), referral.getBonus());
 
             // Determine the new user's level after registration and hierarchy update
-            user.setLevel(determineLevel(user.getId(), user.getReserveBalance()));
+            /*user.setLevel(determineLevel(user.getId(), user.getReserveBalance()));
+            userRepository.save(user);*/
+            int level = levelService.determineLevel(user);
+            user.setLevel(level);
             userRepository.save(user);
 
             // Recalculate and update the referrer's level
