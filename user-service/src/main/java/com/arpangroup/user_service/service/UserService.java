@@ -260,12 +260,12 @@ public class UserService {
     }
 
 
-    public UserTreeNode getDownlineTree(Long rootUserId) {
+    public UserTreeNode getDownlineTree(Long rootUserId, int maxLevel) {
         User root = userRepository.findById(rootUserId).orElse(null);
         if (root == null) return null;
 
         UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername());
-        buildTreeRecursively(rootNode, 1, 3); // max level 3
+        buildTreeRecursively(rootNode, 1, maxLevel); // max level 3
         return rootNode;
     }
 

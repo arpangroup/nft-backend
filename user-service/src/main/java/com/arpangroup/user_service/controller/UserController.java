@@ -97,12 +97,26 @@ public class UserController {
         User user1_1_2_2_2 = userService.registerUser(new User("user1_1_2_2_2"), user1_1_2_2.getReferralCode());
         User user3_1_1_1_1 = userService.registerUser(new User("user3_1_1_1_1"), user3_1_1_1.getReferralCode());
         User user3_1_1_1_2 = userService.registerUser(new User("user3_1_1_1_2"), user3_1_1_1.getReferralCode());
+
+
+        User x = userService.registerUser(new User("x"), user2_1_1.getReferralCode());
+        User y = userService.registerUser(new User("Y"), user2_1_1.getReferralCode());
+
+        User x1 = userService.registerUser(new User("x1"), x.getReferralCode());
+        User x2 = userService.registerUser(new User("x2"), x.getReferralCode());
+
+        User y1 = userService.registerUser(new User("y1"), y.getReferralCode());
+        User y2 = userService.registerUser(new User("y2"), y.getReferralCode());
+
+
+        User x2_1 = userService.registerUser(new User("x2_1"), x2.getReferralCode());
+        User x2_2 = userService.registerUser(new User("x2_2"), x2.getReferralCode());
     }
 
 
     @GetMapping("/downline-tree/{userId}")
-    public ResponseEntity<UserTreeNode> getDownlineTree(@PathVariable Long userId) {
-        UserTreeNode tree = userService.getDownlineTree(userId);
+    public ResponseEntity<UserTreeNode> getDownlineTree(@PathVariable Long userId, @RequestParam(name = "maxLevel", defaultValue = "3") int maxLevel) {
+        UserTreeNode tree = userService.getDownlineTree(userId, maxLevel);
         return ResponseEntity.ok(tree);
     }
 }
