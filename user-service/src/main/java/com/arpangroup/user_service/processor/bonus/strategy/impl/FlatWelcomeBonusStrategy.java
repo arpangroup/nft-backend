@@ -16,7 +16,7 @@ public class FlatWelcomeBonusStrategy implements WelcomeBonusStrategy {
 
     @Override
     public double calculateBonus(User user) {
-        log.info("Calculating WelcomeBonus for userID: {} using strategy: {}, WalletBalance: {}, bonusAmt: {}", user.getId(), getSupportedType(), user.getReserveBalance(), bonusProperties.getCalculationType());
+        log.info("Calculating WelcomeBonus for userID: {} using strategy: {}, WalletBalance: {}, bonusAmt: {}", user.getId(), getSupportedType(), user.getWalletBalance(), bonusProperties.getCalculationType());
         return bonusProperties.getFlatAmount();
     }
 

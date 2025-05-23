@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -18,8 +20,8 @@ public class User {
     private String username;
     @Column(name = "referral_code", unique = true, length = 255)
     private String referralCode;
-    @Column(name = "reserve_balance", precision = 10)
-    private double reserveBalance;
+    @Column(name = "wallet_balance", precision = 10)
+    private double walletBalance;
     @Column(name = "level")
     private int level;
 
@@ -64,11 +66,11 @@ public class User {
         this.referralCode = "REF" + this.id;
     }
 
-    public User(String username, double reserveBalance) {
+    public User(String username, double walletBalance) {
         this.id = id;
         this.username = username;
         this.referralCode = "R_"+username;
-        this.reserveBalance = reserveBalance;
+        this.walletBalance = walletBalance;
     }
 
     public User(String username) {

@@ -16,9 +16,9 @@ public class PercentageReferralBonusStrategy implements ReferralBonusStrategy {
 
     @Override
     public double calculateBonus(User user) {
-        log.info("Calculating ReferralBonus for userID: {} using strategy: {}, WalletBalance: {}, Rate: {}", user.getId(), getSupportedType(), user.getReserveBalance(), bonusProperties.getPercentageRate());
+        log.info("Calculating ReferralBonus for userID: {} using strategy: {}, WalletBalance: {}, Rate: {}", user.getId(), getSupportedType(), user.getWalletBalance(), bonusProperties.getPercentageRate());
         double rate = bonusProperties.getPercentageRate();
-        return user.getReserveBalance() * rate;
+        return user.getWalletBalance() * rate;
     }
 
     @Override

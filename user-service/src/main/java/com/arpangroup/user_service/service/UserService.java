@@ -72,7 +72,7 @@ public class UserService {
             userRepository.save(user);
 
             // Recalculate and update the referrer's level
-            referrer.setLevel(determineLevel(referrer.getId(), referrer.getReserveBalance()));
+            referrer.setLevel(determineLevel(referrer.getId(), referrer.getWalletBalance()));
             userRepository.save(referrer); // Save the updated level for the referrer
         }
         /*else {
@@ -113,7 +113,7 @@ public class UserService {
         if (referrer != null) {
             double rebate = calculateRebate(referrer.getLevel(), "LvA");
             double bonus = bonusAmount * rebate;
-            referrer.setReserveBalance(referrer.getReserveBalance() + bonus);
+            referrer.setWalletBalance(referrer.getWalletBalance() + bonus);
             userRepository.save(referrer);
 
             // Continue propagating upwards if needed
@@ -242,10 +242,10 @@ public class UserService {
         User user = userRepository.findById(userId).orElse(null);
         if (user != null) {
             switch (user.getLevel()) {
-                case 1: return user.getReserveBalance() * 0.018; // 1.80% daily profit
-                case 2: return user.getReserveBalance() * 0.021; // 2.10% daily prof
-                case 3: return user.getReserveBalance() * 0.026; // 2.60% daily prof
-                case 4: return user.getReserveBalance() * 0.031; // 3.10% daily prof
+                case 1: return user.getWalletBalance() * 0.018; // 1.80% daily profit
+                case 2: return user.getWalletBalance() * 0.021; // 2.10% daily prof
+                case 3: return user.getWalletBalance() * 0.026; // 2.60% daily prof
+                case 4: return user.getWalletBalance() * 0.031; // 3.10% daily prof
                 default: return 0;
             }
         }
@@ -267,7 +267,7 @@ public class UserService {
         User root = userRepository.findById(rootUserId).orElse(null);
         if (root == null) return null;
 
-        UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername());
+        UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername(), root.getWalletBalance());
         buildTreeRecursively(rootNode, 1, maxLevel); // max level 3
         return rootNode;
     }
@@ -281,7 +281,7 @@ public class UserService {
             Long childId = path.getDescendant();
             User childUser = userRepository.findById(childId).orElse(null);
             if (childUser != null) {
-                UserTreeNode childNode = new UserTreeNode(childUser.getId(), childUser.getUsername());
+                UserTreeNode childNode = new UserTreeNode(childUser.getId(), childUser.getUsername(), childUser.getWalletBalance());
                 parentNode.addChild(childNode);
                 buildTreeRecursively(childNode, currentLevel + 1, maxLevel);
             }

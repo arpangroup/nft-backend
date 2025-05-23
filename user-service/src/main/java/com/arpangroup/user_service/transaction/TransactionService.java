@@ -1,11 +1,8 @@
 package com.arpangroup.user_service.transaction;
 
-import com.arpangroup.user_service.dto.DepositBalanceRequest;
 import com.arpangroup.user_service.entity.Transaction;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.repository.UserRepository;
-import io.micrometer.common.util.StringUtils;
-import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -40,7 +37,7 @@ public class TransactionService {
 
         transaction = transactionRepository.save(transaction);
         User user = userRepository.findById(userId).get();
-        user.setReserveBalance(user.getReserveBalance() + amount);
+        user.setWalletBalance(user.getWalletBalance() + amount);
         userRepository.save(user);
 
         return transaction;
@@ -64,7 +61,7 @@ public class TransactionService {
 
         transaction = transactionRepository.save(transaction);
         User user = userRepository.findById(userId).get();
-        user.setReserveBalance(user.getReserveBalance() - amount);
+        user.setWalletBalance(user.getWalletBalance() - amount);
         userRepository.save(user);
 
         return transaction;
