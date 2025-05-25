@@ -6,7 +6,6 @@ import com.arpangroup.referral_service.domain.enums.BonusStatus;
 import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
 import com.arpangroup.referral_service.dto.UserInfo;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -56,6 +56,7 @@ public class ReferralBonus {
 
     private String remarks; // Optional explanation for rejection or approval reason.
 
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime evaluatedAt;
