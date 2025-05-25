@@ -1,20 +1,24 @@
 package com.arpangroup.user_service.dto;
 
-import com.arpangroup.user_service.entity.Address;
-import com.arpangroup.user_service.entity.Kyc;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Getter
+import java.math.BigDecimal;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserInfo {
+    private Long id;
     private String username;
-    private String firstname;
+    private String referralCode;
+    private BigDecimal walletBalance;
+    private int level;
+
+    /*private String firstname;
     private String lastname;
     private String email;
     private String mobile;
@@ -40,6 +44,5 @@ public class UserInfo {
 
     private String rememberToken;
     private String provider;
-    private int providerId;
-
+    private int providerId;*/
 }

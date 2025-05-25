@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -15,10 +17,10 @@ public class PercentageReferralBonusStrategy implements ReferralBonusStrategy {
     private final ReferralBonusConfig bonusProperties;
 
     @Override
-    public double calculateBonus(User user) {
+    public BigDecimal calculateBonus(User user) {
         log.info("Calculating ReferralBonus for userID: {} using strategy: {}, WalletBalance: {}, Rate: {}", user.getId(), getSupportedType(), user.getWalletBalance(), bonusProperties.getPercentageRate());
-        double rate = bonusProperties.getPercentageRate();
-        return user.getWalletBalance() * rate;
+        BigDecimal rate = bonusProperties.getPercentageRate();
+        return user.getWalletBalance().multiply(rate);
     }
 
     @Override

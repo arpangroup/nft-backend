@@ -203,18 +203,18 @@ For better separation of concerns, you could use **Spring Events** to trigger **
 public class ReferralBonusEvent extends ApplicationEvent {
     private final User referrer;
     private final User referee;
-    private final String triggerType; // e.g., "firstDeposit", "activation"
+    private final String referralBonusTriggerType; // e.g., "firstDeposit", "activation"
 
-    public ReferralBonusEvent(Object source, User referrer, User referee, String triggerType) {
+    public ReferralBonusEvent(Object source, User referrer, User referee, String referralBonusTriggerType) {
         super(source);
         this.referrer = referrer;
         this.referee = referee;
-        this.triggerType = triggerType;
+        this.referralBonusTriggerType = referralBonusTriggerType;
     }
 
     public User getReferrer() { return referrer; }
     public User getReferee() { return referee; }
-    public String getTriggerType() { return triggerType; }
+    public String getTriggerType() { return referralBonusTriggerType; }
 }
 ````
 

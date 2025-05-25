@@ -1,7 +1,6 @@
-package com.arpangroup.user_service.service.income.referral.strategy;
+package com.arpangroup.referral_service.service.strategy.impl;
 
-import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.service.income.referral.ReferralBonusStrategy;
+import com.arpangroup.referral_service.service.strategy.ReferralBonusStrategy;
 
 public class ManualApprovalBonusStrategy implements ReferralBonusStrategy {
 

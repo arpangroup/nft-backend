@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -23,12 +24,12 @@ public class TransactionService {
         return transactionRepository.findAllByUserId(userId);
     }
 
-    public Transaction deposit(final long userId, final double amount, String remarks, String txnRefId, Double txnFee, String status) {
+    public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
         validateUniqueTxnRefId(txnRefId);
         Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
-        double currentBalance = lastTxn != null ? lastTxn.getBalance() : 0;
+        BigDecimal currentBalance = lastTxn != null ? lastTxn.getBalance() : BigDecimal.ZERO;
 
-        Transaction transaction = new Transaction(userId, amount, TransactionType.DEPOSIT, currentBalance + amount);
+        Transaction transaction = new Transaction(userId, amount, TransactionType.DEPOSIT, currentBalance.add(amount));
         transaction.setSenderId(null);
         transaction.setRemarks(remarks);
         transaction.setTxnRefId(txnRefId);
@@ -37,22 +38,22 @@ public class TransactionService {
 
         transaction = transactionRepository.save(transaction);
         User user = userRepository.findById(userId).get();
-        user.setWalletBalance(user.getWalletBalance() + amount);
+        user.setWalletBalance(user.getWalletBalance().add(amount));
         userRepository.save(user);
 
         return transaction;
     }
 
-    public Transaction deposit(final long userId, final double amount, String remarks) {
+    public Transaction deposit(final long userId, final BigDecimal amount, String remarks) {
         return this.deposit(userId, amount, remarks, null, null, null);
     }
 
-    public Transaction withdraw(final long userId, final double amount, String remarks, Double txnFee, String status) {
+    public Transaction withdraw(final long userId, final BigDecimal amount, String remarks, Double txnFee, String status) {
         Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
-        double currentBalance = lastTxn != null ? lastTxn.getBalance() : 0;
-        if (currentBalance < amount) throw new TransactionException("Insufficient balance to withdraw");
+        BigDecimal currentBalance = lastTxn != null ? lastTxn.getBalance() : BigDecimal.ZERO;
+        if (currentBalance.compareTo(amount) < 0) throw new TransactionException("Insufficient balance to withdraw");
 
-        Transaction transaction = new Transaction(userId, amount, TransactionType.WITHDRAWAL, currentBalance - amount);
+        Transaction transaction = new Transaction(userId, amount, TransactionType.WITHDRAWAL, currentBalance.subtract(amount));
         transaction.setSenderId(null);
         transaction.setRemarks(remarks);
         transaction.setTxnRefId(null);
@@ -61,20 +62,20 @@ public class TransactionService {
 
         transaction = transactionRepository.save(transaction);
         User user = userRepository.findById(userId).get();
-        user.setWalletBalance(user.getWalletBalance() - amount);
+        user.setWalletBalance(user.getWalletBalance().subtract(amount));
         userRepository.save(user);
 
         return transaction;
     }
-    public Transaction withdraw(final long userId, final double amount) {
+    public Transaction withdraw(final long userId, final BigDecimal amount) {
         return this.withdraw(userId, amount, TransactionRemarks.WITHDRAWAL, null, null);
     }
 
-    public Transaction transfer(final long sender, final long receiver, final double amount, String remarks, Double txnFee, String status) {
+    public Transaction transfer(final long sender, final long receiver, final BigDecimal amount, String remarks, Double txnFee, String status) {
         Transaction senderLastTxn = transactionRepository.findFirstBySenderIdOrderByTxnDateDesc(sender);
-        double senderCurrentBalance = senderLastTxn != null ? senderLastTxn.getBalance() : 0;
-        if (senderCurrentBalance < amount) throw new TransactionException("Insufficient balance to transfer");
-        Transaction senderTxn = new Transaction(receiver, amount, TransactionType.TRANSFER, senderCurrentBalance - amount);
+        BigDecimal senderCurrentBalance = senderLastTxn != null ? senderLastTxn.getBalance() : BigDecimal.ZERO;
+        if (senderCurrentBalance.compareTo(amount) < 0) throw new TransactionException("Insufficient balance to transfer");
+        Transaction senderTxn = new Transaction(receiver, amount, TransactionType.TRANSFER, senderCurrentBalance.subtract(amount));
         senderTxn.setSenderId(sender);
         senderTxn.setRemarks(remarks);
         senderTxn.setTxnRefId(null);
@@ -83,8 +84,8 @@ public class TransactionService {
         transactionRepository.save(senderTxn);
 
         Transaction receiverLastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(receiver);
-        double receiverCurrentBalance = receiverLastTxn != null ? receiverLastTxn.getBalance() : 0;
-        Transaction receiverTxn = new Transaction(receiver, amount, TransactionType.TRANSFER, receiverCurrentBalance + amount);
+        BigDecimal receiverCurrentBalance = receiverLastTxn != null ? receiverLastTxn.getBalance() : BigDecimal.ZERO;;
+        Transaction receiverTxn = new Transaction(receiver, amount, TransactionType.TRANSFER, receiverCurrentBalance.add(amount));
         receiverTxn.setSenderId(sender);
         receiverTxn.setRemarks(remarks);
         receiverTxn.setTxnRefId(null);
@@ -93,7 +94,7 @@ public class TransactionService {
         return transactionRepository.save(receiverTxn);
     }
 
-    public Transaction transfer(final long sender, final long receiver, final double amount) {
+    public Transaction transfer(final long sender, final long receiver, final BigDecimal amount) {
         return this.transfer(sender, receiver, amount, TransactionRemarks.TRANSFER, null, null);
     }
 

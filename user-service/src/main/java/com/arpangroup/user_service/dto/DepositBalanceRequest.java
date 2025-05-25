@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 public class DepositBalanceRequest {
@@ -14,7 +16,7 @@ public class DepositBalanceRequest {
     @Min(value = 1, message = "User ID must be greater than 0")
     private long userId;
     @Min(value = 1, message = "Amount must be greater than 0")
-    private double amount;
+    private BigDecimal amount;
     @NotNull(message = "Transaction type is required")
     private TransactionType transactionType = TransactionType.DEPOSIT;
     private String remarks;

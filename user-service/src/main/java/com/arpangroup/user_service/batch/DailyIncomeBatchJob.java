@@ -1,12 +1,6 @@
 package com.arpangroup.user_service.batch;
 
-import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.service.UserService;
-import com.arpangroup.user_service.transaction.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Scheduled;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 public class DailyIncomeBatchJob {

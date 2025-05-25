@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,13 @@ public class User {
     private String username;
     @Column(name = "referral_code", unique = true, length = 255)
     private String referralCode;
-    @Column(name = "wallet_balance", precision = 10)
-    private double walletBalance;
+    @Column(name = "wallet_balance", precision = 19, scale = 4)
+    private BigDecimal walletBalance;
     @Column(name = "level")
     private int level;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
    /* @OneToOne
     @JoinColumn(name = "referrer_id", referencedColumnName = "id")
@@ -61,19 +64,20 @@ public class User {
     private String provider;
     private int providerId;*/
 
+
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
     @PostPersist
     private void setReferralAfterInsert() {
         this.referralCode = "REF" + this.id;
     }
 
-    public User(String username, double walletBalance) {
+    public User(String username) {
         this.id = id;
         this.username = username;
         this.referralCode = "R_"+username;
-        this.walletBalance = walletBalance;
-    }
-
-    public User(String username) {
-        this.username = username;
     }
 }

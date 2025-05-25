@@ -16,10 +16,10 @@ import java.util.List;
 public class UserTreeNode {
     private Long userId;
     private String username;
-    private double walletBalance;
+    private BigDecimal walletBalance;
     private List<UserTreeNode> children = new ArrayList<>();
 
-    public UserTreeNode(Long userId, String username, double walletBalance) {
+    public UserTreeNode(Long userId, String username, BigDecimal walletBalance) {
         this.userId = userId;
         this.username = username;
         this.walletBalance = walletBalance;

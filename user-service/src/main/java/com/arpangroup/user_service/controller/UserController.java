@@ -5,10 +5,11 @@ import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.exception.InvalidRequestException;
+import com.arpangroup.user_service.exception.UserIdNotFoundException;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
-import com.arpangroup.user_service.service.UserService;
+import com.arpangroup.user_service.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,10 @@ import java.util.Map;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final UserMapper mapper;
     private final UserHierarchyRepository userHierarchyRepository;
+    private final UserRepository userRepository;
 
     @GetMapping
     public ResponseEntity<List<User>> users() {
@@ -69,7 +71,7 @@ public class UserController {
     }
 
     private void addDummyUsers() {
-        User root = userService.getUserById(1L);
+        User root = userRepository.findById(1L).orElseThrow(()-> new UserIdNotFoundException("root userId not found"));
 
         User user1 = userService.registerUser(new User("user1"), root.getReferralCode());
         User user2 = userService.registerUser(new User("user2"), root.getReferralCode());

@@ -7,6 +7,7 @@ import com.arpangroup.user_service.processor.bonus.strategy.ReferralBonusStrateg
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -28,7 +29,7 @@ public class ReferralBonusProcessor {
         this.config = config;
     }
 
-    public double calculate(User user) {
+    public BigDecimal calculate(User user) {
         log.info("Calculating WelcomeBonus for userId: {}", user.getId());
         CalculationType type = config.getCalculationType(); // e.g. "percentage", "flat"
         ReferralBonusStrategy strategy = strategyMap.get(type);
@@ -39,7 +40,7 @@ public class ReferralBonusProcessor {
         return strategy.calculateBonus(user);
     }
 
-    public Optional<Double> calculateIfEnabled(User user) {
+    public Optional<BigDecimal> calculateIfEnabled(User user) {
         if (!config.isEnable()) {
             return Optional.empty();
         }

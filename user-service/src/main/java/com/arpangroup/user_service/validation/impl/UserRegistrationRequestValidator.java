@@ -1,16 +1,14 @@
 package com.arpangroup.user_service.validation.impl;
 
 import com.arpangroup.user_service.repository.UserRepository;
-import com.arpangroup.user_service.validation.UserValidator;
+import com.arpangroup.user_service.validation.UserValidatorTemplate;
 import com.arpangroup.user_service.exception.DuplicateRecordExceptionUser;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class UserRegistrationRequestValidator extends UserValidator {
-    private final UserRepository userRepository;
+public class UserRegistrationRequestValidator extends UserValidatorTemplate {
 
     @Override
     protected void validateDuplicateUsername(String username) throws DuplicateRecordExceptionUser {

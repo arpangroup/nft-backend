@@ -9,7 +9,11 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
     public UserInfo mapTo(User user) {
         return UserInfo.builder()
+                .id(user.getId())
+                .referralCode(user.getReferralCode())
+                .walletBalance(user.getWalletBalance())
                 .username(user.getUsername())
+                .level(user.getLevel())
 //                .firstname(user.getFirstname())
 //                .lastname(user.getLastname())
 //                .email(user.getEmail())
@@ -19,6 +23,6 @@ public class UserMapper {
     }
 
     public User mapTo(RegistrationRequest request) {
-        return new User(request.getUsername(), request.getReserveBalance());
+        return new User(request.getUsername());
     }
 }

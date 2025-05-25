@@ -1,14 +1,14 @@
 package com.arpangroup.user_service.validation;
 
-import com.arpangroup.user_service.dto.UserCreateRequest;
+import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.exception.DuplicateRecordExceptionUser;
 import com.arpangroup.user_service.exception.InvalidRequestException;
 import jakarta.validation.ValidationException;
 
 
-public abstract class UserValidator {
+public abstract class UserValidatorTemplate {
 
-    public final void validateRegistrationRequest(UserCreateRequest request) throws InvalidRequestException {
+    public final void validateRegistrationRequest(RegistrationRequest request) throws InvalidRequestException {
         //verifyCaptcha();
         validateDuplicateUsername(request.getUsername());
         if (request.getEmail() != null) {
