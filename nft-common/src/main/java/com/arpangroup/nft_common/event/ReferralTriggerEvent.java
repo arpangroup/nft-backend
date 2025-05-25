@@ -6,5 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ReferralTriggerEvent {
-    private final Long userId;             // Referee ID
+    private Long userId;             // Referee ID
 }

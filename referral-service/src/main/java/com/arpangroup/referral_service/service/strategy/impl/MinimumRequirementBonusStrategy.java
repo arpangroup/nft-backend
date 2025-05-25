@@ -1,17 +1,26 @@
 package com.arpangroup.referral_service.service.strategy.impl;
 
-import com.arpangroup.referral_service.service.strategy.ReferralBonusStrategy;
+import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
+import com.arpangroup.referral_service.dto.UserInfo;
+import com.arpangroup.referral_service.service.strategy.AbstractReferralBonusStrategy;
 
-public class MinimumRequirementBonusStrategy implements ReferralBonusStrategy {
+import java.math.BigDecimal;
 
+import static com.arpangroup.referral_service.domain.enums.UserRank.BRONZE;
+
+public class MinimumRequirementBonusStrategy extends AbstractReferralBonusStrategy {
     @Override
-    public boolean isEligible(User referee) {
-        //return referee.getRank() >= Rank.BRONZE; // or check invites etc.
-        return false;
+    public boolean isEligible(UserInfo referee) {
+        return referee.getRank() >= BRONZE.getValue(); // or check invites etc.
     }
 
     @Override
-    public void applyBonus(User referrer, User referee) {
-        // Apply bonus
+    protected BigDecimal getBonusAmount(UserInfo referrer, UserInfo referee) {
+        return getFixedBonusAmount();
+    }
+
+    @Override
+    protected ReferralBonusTriggerType getTriggerType() {
+        return null;
     }
 }

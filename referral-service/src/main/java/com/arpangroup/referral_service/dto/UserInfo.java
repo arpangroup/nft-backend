@@ -16,7 +16,9 @@ public class UserInfo {
     private String username;
     private String referralCode;
     private BigDecimal walletBalance;
-    private int level;
 
     private BigDecimal balance;
+    private boolean active;
+    private boolean referralApproved;
+    private int rank;
 }

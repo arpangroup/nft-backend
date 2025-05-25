@@ -19,4 +19,14 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     Transaction findFirstBySenderIdOrderByTxnDateDesc(Long senderId);
 
     Transaction findFirstByUserIdOrderByTxnDateDesc(Long userId);
+
+
+    @Query(value = """
+        SELECT EXISTS (
+            SELECT 1 FROM transactions
+            WHERE user_id = :userId AND txn_type = :txnType 
+            LIMIT 1
+        )
+    """, nativeQuery = true)
+    boolean existsDepositTransaction(@Param("userId") Long userId, @Param("txnType") TransactionType txnType);
 }

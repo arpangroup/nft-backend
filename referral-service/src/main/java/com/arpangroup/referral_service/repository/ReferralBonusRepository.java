@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReferralBonusRepository extends JpaRepository<ReferralBonus, Long> {
@@ -17,4 +18,6 @@ public interface ReferralBonusRepository extends JpaRepository<ReferralBonus, Lo
     // Optional alias:
     @Query("SELECT rb FROM ReferralBonus rb WHERE rb.status = 'PENDING'")
     List<ReferralBonus> findAllPending();
+
+    Optional<ReferralBonus> findByRefereeIdAndStatus(Long refereeId, BonusStatus bonusStatus);
 }

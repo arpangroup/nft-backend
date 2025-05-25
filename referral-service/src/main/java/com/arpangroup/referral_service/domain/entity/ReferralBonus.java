@@ -40,6 +40,8 @@ public class ReferralBonus {
     private Long id;
 
     private Long referrerId;  // ID of the user who should receive the bonus. The existing user who shared the referral link/code.
+
+    @Column(unique = true, nullable = false) // refereeId should be unique
     private Long refereeId;   // ID of the newly referred user (the one who triggers the bonus).
 
     @Column(nullable = false, precision = 19, scale = 4)

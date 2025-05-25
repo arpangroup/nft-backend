@@ -1,5 +1,6 @@
 package com.arpangroup.referral_service.service.strategy;
 
+import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.dto.UserInfo;
 
 /**
@@ -9,4 +10,5 @@ import com.arpangroup.referral_service.dto.UserInfo;
 public interface ReferralBonusStrategy {
     boolean isEligible(UserInfo referee);
     void applyBonus(UserInfo referrer, UserInfo referee);
+    boolean processPendingBonus(ReferralBonus bonus);
 }
