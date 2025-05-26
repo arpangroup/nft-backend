@@ -1,7 +1,6 @@
 package com.arpangroup.nft_common.event;
 
 import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -43,6 +43,7 @@ public class UserServiceImpl {
     private final LevelService levelService;
     private final UserMapper userMapper;
     private final ObjectMapper objectMapper;
+    private final UserHierarchyService userHierarchyService;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -88,7 +89,7 @@ public class UserServiceImpl {
         User referrer = userRepository.findByReferralCode(referralCode).orElseThrow(() -> new InvalidRequestException("invalid referralCode"));
         if (referrer != null) {
             user = userRepository.save(user);
-            updateHierarchy(referrer.getId(), user.getId());
+            userHierarchyService.updateHierarchy(referrer.getId(), user.getId());
 
             // 1. Allocate WelcomeBonus if enabled
             /*welcomeBonusProcessor.calculateIfEnabled(newUser).ifPresent(welcomeBonus -> {
@@ -130,25 +131,7 @@ public class UserServiceImpl {
         return reserveBalance * 0.05; // Example: 5% Bonus
     }
 
-    private void updateHierarchy(Long referredId, Long newUserId) {
-        List<UserHierarchy> pathToSave = new ArrayList<>();
 
-        // Insert direct path
-        UserHierarchy directPath = new UserHierarchy(referredId, newUserId, 1);
-        pathToSave.add(directPath);
-
-        // Insert paths for all ancestors of the referrer, up to a maximum depth of 3
-        List<UserHierarchy> ancestorPaths = userHierarchyRepository.findByDescendant(referredId);
-        pathToSave.addAll(
-                ancestorPaths.stream()
-                        .filter(path -> path.getDepth() < 3) // Restrict to a maximum 3 levels
-                        .map(path -> new UserHierarchy(path.getAncestor(), newUserId, path.getDepth() + 1))
-                        .toList()
-        );
-
-        // Save all paths in a single batch operation
-        userHierarchyRepository.saveAll(pathToSave);
-    }
 
     /*private void propagateBonus(Long referredId, double bonusAmount) {
         User referrer = userRepository.findById(referredId).orElse(null);
@@ -293,39 +276,5 @@ public class UserServiceImpl {
         }
         return 0;
     }*/
-
-    public List<UserHierarchy> getDownline(Long userId) {
-        return userHierarchyRepository.findByAncestor(userId).stream()
-                .filter(path -> path.getDepth() <= 3)
-                .collect(Collectors.toList());
-    }
-
-
-
-
-    public UserTreeNode getDownlineTree(Long rootUserId, int maxLevel) {
-        User root = userRepository.findById(rootUserId).orElse(null);
-        if (root == null) return null;
-
-        UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername(), root.getWalletBalance());
-        buildTreeRecursively(rootNode, 1, maxLevel); // max level 3
-        return rootNode;
-    }
-
-    private void buildTreeRecursively(UserTreeNode parentNode, int currentLevel, int maxLevel) {
-        if (currentLevel > maxLevel) return;
-
-        List<UserHierarchy> directChildrenPaths = userHierarchyRepository.findByAncestorAndDepth(parentNode.getUserId(), 1);
-
-        for (UserHierarchy path : directChildrenPaths) {
-            Long childId = path.getDescendant();
-            User childUser = userRepository.findById(childId).orElse(null);
-            if (childUser != null) {
-                UserTreeNode childNode = new UserTreeNode(childUser.getId(), childUser.getUsername(), childUser.getWalletBalance());
-                parentNode.addChild(childNode);
-                buildTreeRecursively(childNode, currentLevel + 1, maxLevel);
-            }
-        }
-    }
 
 }

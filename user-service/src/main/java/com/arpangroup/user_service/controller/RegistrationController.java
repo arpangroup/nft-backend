@@ -6,7 +6,9 @@ import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.exception.InvalidRequestException;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.repository.UserRepository;
+import com.arpangroup.user_service.service.RegistrationService;
 import com.arpangroup.user_service.service.UserServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +20,14 @@ import java.util.Map;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class RegistrationController {
+    private final RegistrationService registrationService;
     private final UserServiceImpl userService;
     private final UserRepository userRepository;
     private final UserMapper mapper;
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody RegistrationRequest request) throws InvalidRequestException {
-        User userResponse = userService.registerUser(mapper.mapTo(request), request.getReferralCode());
+        User userResponse = registrationService.registerUser(request);
         return ResponseEntity.ok(userResponse);
     }
 

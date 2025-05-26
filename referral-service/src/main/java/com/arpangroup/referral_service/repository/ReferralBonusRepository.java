@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReferralBonusRepository extends JpaRepository<ReferralBonus, Long> {
-    List<ReferralBonus> findByRefereeIdAndTriggerTypeAndEvaluatedFalse(Long refereeId, ReferralBonusTriggerType referralBonusTriggerType);
+//    List<ReferralBonus> findByRefereeIdAndTriggerTypeAndEvaluatedFalse(Long refereeId, ReferralBonusTriggerType referralBonusTriggerType);
     List<ReferralBonus> findByStatus(BonusStatus status);
 
     // Optional alias:

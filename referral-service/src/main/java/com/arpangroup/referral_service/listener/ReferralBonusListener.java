@@ -13,7 +13,7 @@ public class ReferralBonusListener {
 
     @EventListener
     public void handleUserRegistered(ReferralTriggerEvent event) {
-        log.info("handleUserRegistered for userId: {}.....", event.getUserId());
+        log.info("Listening :: handleUserRegistered for userId: {}.....", event.getUserId());
         referralBonusService.evaluateBonus(event.getUserId());
     }
 }
