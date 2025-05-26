@@ -4,6 +4,7 @@ import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.exception.InvalidRequestException;
+import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.processor.LevelService;
 import com.arpangroup.user_service.processor.bonus.ReferralBonusProcessor;
@@ -12,12 +13,16 @@ import com.arpangroup.user_service.repository.ReferralRepository;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.transaction.TransactionService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /*
@@ -37,9 +42,42 @@ public class UserServiceImpl {
     private final ReferralBonusProcessor referralBonusProcessor;
     private final LevelService levelService;
     private final UserMapper userMapper;
+    private final ObjectMapper objectMapper;
 
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(()-> new IdNotFoundException("userId: " + userId + " not found"));
+    }
+
+    public List<User> getUserByIds(List<Long> userIds) {
+        return userRepository.findByIdIn(userIds);
+    }
+
+    public User getUserByReferralCode(String referralCode) {
+        return userRepository.findByReferralCode(referralCode).orElseThrow(() -> new IdNotFoundException("invalid referralCode"));
+    }
+
+    public Boolean hasDeposit(Long userId) {
+        return transactionService.hasDepositTransaction(userId);
+    }
+
+    public User updateUser(Long userId, Map<String, Object> fieldsToUpdate) {
+        User user = getUserById(userId);
+
+        fieldsToUpdate.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(User.class, key);
+            if (field != null) {
+                field.setAccessible(true);
+                Object convertedValue = objectMapper.convertValue(value, field.getType());
+                ReflectionUtils.setField(field, user, convertedValue );
+            } else {
+                log.warn("Attempted to patch unknown field: {}", key);
+            }
+        });
+        return userRepository.save(user);
     }
 
     public User registerUser(User user, final String referralCode) throws InvalidRequestException {

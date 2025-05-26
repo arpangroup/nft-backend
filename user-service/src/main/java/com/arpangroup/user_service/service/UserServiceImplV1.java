@@ -4,7 +4,7 @@ import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
 import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.exception.UserIdNotFoundException;
+import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.transaction.TransactionRepository;
@@ -40,7 +40,7 @@ public class UserServiceImplV1 implements UserService {
     @Override
     public void activateAccount(Long userId) {
 
-        User user = userRepository.findById(userId).orElseThrow(UserIdNotFoundException::new);
+        User user = userRepository.findById(userId).orElseThrow(IdNotFoundException::new);
 
 
     }

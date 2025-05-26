@@ -24,7 +24,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query(value = """
         SELECT EXISTS (
             SELECT 1 FROM transactions
-            WHERE user_id = :userId AND txn_type = :txnType 
+            WHERE user_id = :userId AND txn_type = :txnType
             LIMIT 1
         )
     """, nativeQuery = true)

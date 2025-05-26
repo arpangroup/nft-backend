@@ -24,6 +24,10 @@ public class TransactionService {
         return transactionRepository.findAllByUserId(userId);
     }
 
+    public Boolean hasDepositTransaction(Long userId) {
+        return transactionRepository.existsDepositTransaction(userId, TransactionType.DEPOSIT);
+    }
+
     public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
         validateUniqueTxnRefId(txnRefId);
         Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);

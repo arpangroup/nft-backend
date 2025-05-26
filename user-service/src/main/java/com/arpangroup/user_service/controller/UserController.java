@@ -5,7 +5,7 @@ import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.exception.InvalidRequestException;
-import com.arpangroup.user_service.exception.UserIdNotFoundException;
+import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
@@ -32,11 +32,40 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsers());
     }
 
+    @PostMapping("/batch")
+    public ResponseEntity<List<User>> getUserInfoByIds(@RequestBody List<Long> userIds) {
+        return ResponseEntity.ok(userService.getUserByIds(userIds));
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getUserInfo(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getUserById(userId));
+    }
+
+    @GetMapping("/referralCode/{referralCode}")
+    public ResponseEntity<User> getUserByReferralCode(@PathVariable String referralCode) {
+        return ResponseEntity.ok(userService.getUserByReferralCode(referralCode));
+    }
+
+
+    @PatchMapping("/{userId}")
+    public ResponseEntity<User> updateUserInfo(@PathVariable Long userId, @RequestBody Map<String, Object> fieldsToUpdate) {
+        return ResponseEntity.ok(userService.updateUser(userId, fieldsToUpdate));
+    }
+
+    @GetMapping("/{userId}/has-deposit")
+    public ResponseEntity<Boolean> hasDeposit(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.hasDeposit(userId));
+    }
+
+    // #############################################################################//
+    // #############################################################################//
+
+
     @GetMapping("/hierarchy")
     public ResponseEntity<List<UserHierarchy>> userHierarch() {
         return ResponseEntity.ok(userHierarchyRepository.findAll());
     }
-
 
     /*@PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid  @RequestBody UserCreateRequest request) {
@@ -71,7 +100,7 @@ public class UserController {
     }
 
     private void addDummyUsers() {
-        User root = userRepository.findById(1L).orElseThrow(()-> new UserIdNotFoundException("root userId not found"));
+        User root = userRepository.findById(1L).orElseThrow(()-> new IdNotFoundException("root userId not found"));
 
         User user1 = userService.registerUser(new User("user1"), root.getReferralCode());
         User user2 = userService.registerUser(new User("user2"), root.getReferralCode());

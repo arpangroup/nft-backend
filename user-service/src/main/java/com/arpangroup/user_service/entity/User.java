@@ -21,7 +21,7 @@ public class User {
     @Column(name = "referral_code", unique = true, length = 255)
     private String referralCode;
     @Column(name = "wallet_balance", precision = 19, scale = 4)
-    private BigDecimal walletBalance;
+    private BigDecimal walletBalance = BigDecimal.ZERO;
     @Column(name = "level")
     private int level;
 

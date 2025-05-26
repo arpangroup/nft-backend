@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByReferralCode(String referralCode);
-    List<User> findAllByIdIn(List<Long> ids);
+    List<User> findByIdIn(List<Long> ids);
 }
