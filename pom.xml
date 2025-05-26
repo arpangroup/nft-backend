@@ -50,6 +50,13 @@
         </dependency>
     </dependencies>
 
+    <modules>
+        <module>nft-common</module>
+        <module>user-service</module>
+        <module>referral-service</module>
+        <module>nft-core</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>

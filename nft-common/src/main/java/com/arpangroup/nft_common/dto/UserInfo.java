@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-/*@Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,7 +18,7 @@ public class UserInfo {
     private BigDecimal walletBalance;
     private int level;
 
-    *//*private String firstname;
+    /*private String firstname;
     private String lastname;
     private String email;
     private String mobile;
@@ -44,5 +44,5 @@ public class UserInfo {
 
     private String rememberToken;
     private String provider;
-    private int providerId;*//*
-}*/
+    private int providerId;*/
+}

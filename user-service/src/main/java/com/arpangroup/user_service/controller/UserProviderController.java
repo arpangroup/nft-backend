@@ -1,8 +1,10 @@
 package com.arpangroup.user_service.controller;
 
 import com.arpangroup.user_service.entity.User;
+import com.arpangroup.user_service.service.UserProviderService;
 import com.arpangroup.user_service.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/v1/provider/users")
 @RequiredArgsConstructor
 public class UserProviderController {
-    private final UserServiceImpl userService;
+    private final UserProviderService userService;
 
     @PostMapping("/batch")
     public ResponseEntity<List<User>> getUserInfoByIds(@RequestBody List<Long> userIds) {

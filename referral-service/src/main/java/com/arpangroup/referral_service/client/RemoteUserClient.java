@@ -13,7 +13,7 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 
 @Service
-@ConditionalOnProperty(name = "user.provider.type", havingValue = "remote")
+//@ConditionalOnProperty(name = "user.provider.type", havingValue = "remote")
 @Slf4j
 public class RemoteUserClient implements UserClient {
     private final RestClient restClient;

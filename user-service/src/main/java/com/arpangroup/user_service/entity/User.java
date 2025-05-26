@@ -22,15 +22,17 @@ public class User {
     private String referralCode;
     @Column(name = "wallet_balance", precision = 19, scale = 4)
     private BigDecimal walletBalance = BigDecimal.ZERO;
+
+    @OneToOne
+    @JoinColumn(name = "referrer_id", referencedColumnName = "id")
+    private User referrer;
+
     @Column(name = "level")
     private int level;
 
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-   /* @OneToOne
-    @JoinColumn(name = "referrer_id", referencedColumnName = "id")
-    private User referrer;*/
 
 
 

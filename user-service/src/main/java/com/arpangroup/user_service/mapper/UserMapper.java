@@ -1,7 +1,7 @@
 package com.arpangroup.user_service.mapper;
 
+import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.user_service.dto.RegistrationRequest;
-import com.arpangroup.user_service.dto.UserInfo;
 import com.arpangroup.user_service.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +20,10 @@ public class UserMapper {
 //                .mobile(user.getMobile())
 //                .referBy(user.getReferBy())
                 .build();
+    }
+
+    public User mapTo(UserInfo info) {
+        return null;
     }
 
     public User mapTo(RegistrationRequest request) {

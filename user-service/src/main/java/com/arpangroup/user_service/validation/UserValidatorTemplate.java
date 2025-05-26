@@ -4,11 +4,13 @@ import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.exception.DuplicateRecordExceptionUser;
 import com.arpangroup.user_service.exception.InvalidRequestException;
 import jakarta.validation.ValidationException;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 public abstract class UserValidatorTemplate {
 
     public final void validateRegistrationRequest(RegistrationRequest request) throws InvalidRequestException {
+        log.info("Validating RegistrationRequest.........");
         //verifyCaptcha();
         validateDuplicateUsername(request.getUsername());
         if (request.getEmail() != null) {
