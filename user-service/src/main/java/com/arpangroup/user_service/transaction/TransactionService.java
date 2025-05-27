@@ -25,7 +25,7 @@ public class TransactionService {
     }
 
     public Boolean hasDepositTransaction(Long userId) {
-        return transactionRepository.existsDepositTransaction(userId, TransactionType.DEPOSIT);
+        return transactionRepository.existsByUserIdAndTxnType(userId, TransactionType.DEPOSIT);
     }
 
     public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {

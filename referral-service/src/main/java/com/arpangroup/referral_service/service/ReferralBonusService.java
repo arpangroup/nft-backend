@@ -7,6 +7,7 @@ import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
 import com.arpangroup.referral_service.dto.UserInfo;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
 import com.arpangroup.referral_service.service.strategy.ReferralBonusStrategy;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class ReferralBonusService {
     private final UserClient userClient;
     private final Map<String, ReferralBonusStrategy> strategies;
@@ -56,6 +58,7 @@ public class ReferralBonusService {
     }
 
     public void evaluateAllPendingBonuses() {
+        log.info("evaluateAllPendingBonuses........");
         List<ReferralBonus> referralBonuses = bonusRepository.findByStatus(BonusStatus.PENDING);
 
         for (ReferralBonus bonus : referralBonuses) {

@@ -748,7 +748,7 @@
 
     async function scheduleIncome() {
       try {
-        const response = await fetch('/api/v1/schedule');
+        const response = await fetch('/api/v1/bonus/referral/schedule');
         const responseData = await response.json();
         console.log("RESPONSE: ", responseData);
         alert(JSON.stringify(responseData));
