@@ -28,7 +28,7 @@ public class RemoteUserClient implements UserClient {
     public UserInfo getUserInfo(long userId) {
         log.info("getUserById: {}", userId);
         return restClient.get()
-                .uri("/api/v1/provider/users/{id}", userId)
+                .uri("/users/{id}", userId)
                 .retrieve()
                 .body(UserInfo.class);
     }
@@ -37,7 +37,7 @@ public class RemoteUserClient implements UserClient {
     public List<UserInfo> getUserInfoByIds(@NotNull List<Long> userIds) {
         log.info("getUserByIds: {}", userIds);
         return restClient.post()
-                .uri("/api/v1/users/batch")
+                .uri("/users/batch")
                 .body(userIds)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {});
