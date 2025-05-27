@@ -26,7 +26,7 @@ public class RegistrationController {
     private final UserMapper mapper;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody RegistrationRequest request) throws InvalidRequestException {
+    public ResponseEntity<User> registerUser(@Valid @RequestBody RegistrationRequest request) throws InvalidRequestException {
         User userResponse = registrationService.registerUser(request);
         return ResponseEntity.ok(userResponse);
     }

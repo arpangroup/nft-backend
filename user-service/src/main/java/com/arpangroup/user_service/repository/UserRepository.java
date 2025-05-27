@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByReferralCode(String referralCode);
     List<User> findByIdIn(List<Long> ids);
+    boolean existsByUsername(String username);
 }

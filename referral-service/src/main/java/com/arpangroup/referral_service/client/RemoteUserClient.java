@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
 
 import java.util.List;
@@ -53,10 +55,16 @@ public class RemoteUserClient implements UserClient {
     @Override
     public UserInfo getUserByReferralCode(String referralCode) {
         log.info("getUserByReferralCode: {}", referralCode);
-        return restClient.get()
-                .uri("/users/{id}", referralCode)
-                .retrieve()
-                .body(UserInfo.class);
+        try {
+            return restClient.get()
+                    .uri("/users/referralCode/{referralCode}", referralCode)
+                    .retrieve()
+                    .body(UserInfo.class);
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            log.error("Downstream error: status={}, body={}", ex.getStatusCode(), ex.getResponseBodyAsString());
+            ex.printStackTrace();
+            throw ex; // or handle differently
+        }
     }
 
     @Override

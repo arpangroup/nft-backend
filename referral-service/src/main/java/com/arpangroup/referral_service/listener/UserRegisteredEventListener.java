@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Slf4j
 public class UserRegisteredEventListener {
-    private UserClient userClient;
-    private ReferralBonusService bonusService;
+    private final UserClient userClient;
+    private final ReferralBonusService bonusService;
 
     @EventListener
     public void handleUserRegistered(UserRegisteredEvent event) {

@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         User referrer = userRepository.findByReferralCode(referralCode).orElse(null);
         if (referrer != null) {
             log.info("Referrer with ID: {} ====> updating the closure table....", referrer.getId());
+            user.setReferrer(referrer);
             userHierarchyService.updateHierarchy(referrer.getId(), user.getId());
         }
         return user;

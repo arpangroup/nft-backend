@@ -11,6 +11,7 @@ import com.arpangroup.user_service.mapper.UserMapper;
 import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.transaction.TransactionRepository;
 import com.arpangroup.user_service.validation.UserValidatorTemplate;
+import io.micrometer.common.util.StringUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

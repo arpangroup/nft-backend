@@ -1,37 +1,37 @@
 package com.arpangroup.user_service.validation.impl;
 
-import com.arpangroup.user_service.repository.UserRepository;
+import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.validation.UserValidatorTemplate;
-import com.arpangroup.user_service.exception.DuplicateRecordExceptionUser;
+import com.arpangroup.user_service.exception.DuplicateRecordException;
 import jakarta.validation.ValidationException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserRegistrationRequestValidator extends UserValidatorTemplate {
 
     @Override
-    protected void validateDuplicateUsername(String username) throws DuplicateRecordExceptionUser {
+    protected void validateDuplicateUsername(String username) throws DuplicateRecordException {
+        boolean isExist = userRepository.existsByUsername(username);
+        if (isExist) throw new DuplicateRecordException("username already exist");
+    }
+
+    @Override
+    protected void validateValidEmailFormat(String email) throws DuplicateRecordException {
 
     }
 
     @Override
-    protected void validateValidEmailFormat(String email) throws DuplicateRecordExceptionUser {
+    protected void validateDuplicateEmail(String email) throws DuplicateRecordException {
 
     }
 
     @Override
-    protected void validateDuplicateEmail(String email) throws DuplicateRecordExceptionUser {
+    protected void validateMobileFormat(String mobile) throws DuplicateRecordException {
 
     }
 
     @Override
-    protected void validateMobileFormat(String mobile) throws DuplicateRecordExceptionUser {
-
-    }
-
-    @Override
-    protected void validateDuplicateMobile(String mobile) throws DuplicateRecordExceptionUser {
+    protected void validateDuplicateMobile(String mobile) throws DuplicateRecordException {
 
     }
 
@@ -41,7 +41,7 @@ public class UserRegistrationRequestValidator extends UserValidatorTemplate {
     }
 
     @Override
-    protected void validateReferralCode(String referralCode) throws DuplicateRecordExceptionUser {
-
+    protected void validateReferralCode(String referralCode) throws DuplicateRecordException {
+        userRepository.findByReferralCode(referralCode).orElseThrow(() -> new IdNotFoundException("invalid referralCode"));
     }
 }
