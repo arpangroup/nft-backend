@@ -1,5 +1,6 @@
 package com.arpangroup.user_service.controller;
 
+import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.service.UserProviderService;
 import com.arpangroup.user_service.service.UserServiceImpl;
@@ -16,6 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserProviderController {
     private final UserProviderService userService;
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getUserInfo(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getUserById(userId));
+    }
 
     @PostMapping("/batch")
     public ResponseEntity<List<User>> getUserInfoByIds(@RequestBody List<Long> userIds) {

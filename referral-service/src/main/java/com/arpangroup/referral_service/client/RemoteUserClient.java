@@ -27,10 +27,17 @@ public class RemoteUserClient implements UserClient {
     @Override
     public UserInfo getUserInfo(long userId) {
         log.info("getUserById: {}", userId);
-        return restClient.get()
-                .uri("/users/{id}", userId)
-                .retrieve()
-                .body(UserInfo.class);
+        try {
+            return restClient.get()
+                    .uri("/users/{id}", userId)
+                    .retrieve()
+                    .body(UserInfo.class);
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            log.error("Downstream error: status={}, body={}", ex.getStatusCode(), ex.getResponseBodyAsString());
+            ex.printStackTrace();
+            throw ex; // or handle differently
+        }
+
     }
 
     @Override
@@ -69,11 +76,20 @@ public class RemoteUserClient implements UserClient {
 
     @Override
     public Boolean hasDeposit(Long userId) {
-        return restClient.get()
-                .uri("/users/{userId}/has-deposit", userId)
-                .retrieve()
-                .onStatus(HttpStatusCode::is5xxServerError, (request, response) -> {throw new IllegalStateException("user-service error");})
-                .body(Boolean.class);
+        log.info("hasDeposit for userId: {}", userId);
+        try {
+            return restClient.get()
+                    .uri("/users/{userId}/has-deposit", userId)
+                    .retrieve()
+                    .onStatus(HttpStatusCode::is5xxServerError, (request, response) -> {
+                        throw new IllegalStateException("user-service error");
+                    })
+                    .body(Boolean.class);
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            log.error("Downstream error: status={}, body={}", ex.getStatusCode(), ex.getResponseBodyAsString());
+            ex.printStackTrace();
+            throw ex; // or handle differently
+        }
 
     }
 }

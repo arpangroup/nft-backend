@@ -1,6 +1,7 @@
 package com.arpangroup.referral_service.service;
 
 import com.arpangroup.referral_service.client.UserClient;
+import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
 import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
@@ -42,6 +43,7 @@ public class ReferralBonusService {
     }
 
     public void evaluateBonus(Long refereeId) {
+        log.info("evaluateBonus for refereeId: {}", refereeId);
         // Find the bonus for this user & trigger type
         Optional<ReferralBonus> optional = bonusRepository.findByRefereeIdAndStatus(refereeId, BonusStatus.PENDING);
 
@@ -60,16 +62,20 @@ public class ReferralBonusService {
     public void evaluateAllPendingBonuses() {
         log.info("evaluateAllPendingBonuses........");
         List<ReferralBonus> referralBonuses = bonusRepository.findByStatus(BonusStatus.PENDING);
+        log.info("Total PENDING users: {}", referralBonuses.size());
 
         for (ReferralBonus bonus : referralBonuses) {
+            log.info("Evaluating ReferralBonus for referrer: {}", bonus.getReferrerId());
             String strategyKey = bonus.getTriggerType().getLabel();
             ReferralBonusStrategy strategy = strategies.get(strategyKey);
+            log.info("Evaluating ReferralBonus using strategy: {}", strategy);
 
             if (strategy != null) {
                 boolean processed = strategy.processPendingBonus(bonus);
                 if (processed) {
                     bonus.setStatus(BonusStatus.APPROVED);
-                    bonus.setRemarks("Bonus awarded via " + strategyKey);
+                    bonus.setRemarks(Remarks.REFERRAL_BONUS);
+                    log.info("Updating ReferralBonus to DB with status as: {}......", bonus.getStatus());
                     bonusRepository.save(bonus);
                 }
             }
@@ -77,6 +83,7 @@ public class ReferralBonusService {
     }
 
     public void createPendingBonus(Long referrerId, Long refereeId, ReferralBonusTriggerType triggerType) {
+        log.info("creatingPendingBonus for referrerId: {}, refereeId: {}, triggerType: {}........", referrerId, refereeId, triggerType);
         ReferralBonus bonus = new ReferralBonus();
         bonus.setReferrerId(referrerId);
         bonus.setRefereeId(refereeId);
@@ -85,6 +92,7 @@ public class ReferralBonusService {
         bonus.setStatus(BonusStatus.PENDING);
         bonus.setCreatedAt(LocalDateTime.now());
 
+        log.info("Creating ReferralBonus to DB for referrerId: {}, refereeId: {} with status as: {}....", referrerId, refereeId, bonus.getStatus());
         bonusRepository.save(bonus);
     }
 }

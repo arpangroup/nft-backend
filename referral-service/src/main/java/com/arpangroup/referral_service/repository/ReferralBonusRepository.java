@@ -15,6 +15,8 @@ public interface ReferralBonusRepository extends JpaRepository<ReferralBonus, Lo
 //    List<ReferralBonus> findByRefereeIdAndTriggerTypeAndEvaluatedFalse(Long refereeId, ReferralBonusTriggerType referralBonusTriggerType);
     List<ReferralBonus> findByStatus(BonusStatus status);
 
+    Optional<ReferralBonus> findByReferrerIdAndRefereeIdAndStatus(Long referrerId, Long refereeId, BonusStatus bonusStatus);
+
     // Optional alias:
     @Query("SELECT rb FROM ReferralBonus rb WHERE rb.status = 'PENDING'")
     List<ReferralBonus> findAllPending();

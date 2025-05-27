@@ -1,6 +1,7 @@
 package com.arpangroup.referral_service.service.strategy;
 
 import com.arpangroup.referral_service.client.UserClient;
+import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
 import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
@@ -29,16 +30,19 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
         log.info("applyBonus for referrer: {}, referee: {}......", referrer.getId(), referrer.getId());
         BigDecimal bonusAmount = getBonusAmount(referrer, referee);
 
-        referrer.setBalance(referrer.getBalance().add(bonusAmount));
-        userClient.updateUserInfo(referrer);
+        referrer.setWalletBalance(referrer.getWalletBalance().add(bonusAmount));
+        //userClient.updateUserInfo(referrer);
 
-        ReferralBonus bonus = new ReferralBonus();
-        bonus.setReferrerId(referrer.getId());
-        bonus.setRefereeId(referee.getId());
-        bonus.setBonusAmount(bonusAmount);
+        ReferralBonus bonus = bonusRepository.findByReferrerIdAndRefereeIdAndStatus(referrer.getId(), referee.getId(), BonusStatus.PENDING).orElse(null);
+        if (bonus == null) { // DIRECT APPROVE
+            bonus = new ReferralBonus();
+            bonus.setReferrerId(referrer.getId());
+            bonus.setRefereeId(referee.getId());
+            bonus.setBonusAmount(bonusAmount);
+            bonus.setTriggerType(getTriggerType());
+        }
         bonus.setStatus(BonusStatus.APPROVED);
-        bonus.setTriggerType(getTriggerType());
-        bonus.setRemarks("Bonus awarded via " + getTriggerType());
+        bonus.setRemarks(Remarks.REFERRAL_BONUS);
         bonusRepository.save(bonus);
     }
 
@@ -48,7 +52,9 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
         UserInfo referee = userClient.getUserInfo(refereeId);
         UserInfo referrer = userClient.getUserInfo(bonus.getReferrerId());
 
-        if (!isEligible(referee)) return false;
+        if (!isEligible(referee)) {
+            return false;
+        }
 
         applyBonus(referrer, referee);
         return true;
