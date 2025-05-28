@@ -50,6 +50,7 @@ public class Transaction {
     private Double txnFee;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TransactionType txnType;
 
     public Transaction(long userId, BigDecimal amount, @NotNull TransactionType transactionType, BigDecimal balance) {

@@ -41,6 +41,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.arpangroup</groupId>
+			<artifactId>product-catalog</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.arpangroup</groupId>
 			<artifactId>user-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
