@@ -1,15 +1,15 @@
-package com.arpangroup.product_service.service;
+package com.arpangroup.product_catalog.service;
 
-import com.arpangroup.product_service.dto.ProductCreateRequest;
-import com.arpangroup.product_service.entity.Category;
-import com.arpangroup.product_service.entity.Product;
-import com.arpangroup.product_service.entity.UserCollection;
-import com.arpangroup.product_service.enums.TransactionStatus;
-import com.arpangroup.product_service.exception.PurchaseException;
-import com.arpangroup.product_service.mapper.ProductMapper;
-import com.arpangroup.product_service.repository.CategoryRepository;
-import com.arpangroup.product_service.repository.ProductRepository;
-import com.arpangroup.product_service.repository.UserCollectionRepository;
+import com.arpangroup.product_catalog.dto.ProductCreateRequest;
+import com.arpangroup.product_catalog.entity.Category;
+import com.arpangroup.product_catalog.entity.Product;
+import com.arpangroup.product_catalog.entity.UserCollection;
+import com.arpangroup.product_catalog.enums.TransactionStatus;
+import com.arpangroup.product_catalog.exception.PurchaseException;
+import com.arpangroup.product_catalog.mapper.ProductMapper;
+import com.arpangroup.product_catalog.repository.CategoryRepository;
+import com.arpangroup.product_catalog.repository.ProductRepository;
+import com.arpangroup.product_catalog.repository.UserCollectionRepository;
 import com.arpangroup.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

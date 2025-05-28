@@ -1,9 +1,9 @@
-package com.arpangroup.product_service.controller;
+package com.arpangroup.product_catalog.controller;
 
 
-import com.arpangroup.product_service.dto.ProductCreateRequest;
-import com.arpangroup.product_service.entity.Product;
-import com.arpangroup.product_service.service.ProductService;
+import com.arpangroup.product_catalog.dto.ProductCreateRequest;
+import com.arpangroup.product_catalog.entity.Product;
+import com.arpangroup.product_catalog.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

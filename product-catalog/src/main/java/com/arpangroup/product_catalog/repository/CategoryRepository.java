@@ -1,6 +1,6 @@
-package com.arpangroup.product_service.repository;
+package com.arpangroup.product_catalog.repository;
 
-import com.arpangroup.product_service.entity.Category;
+import com.arpangroup.product_catalog.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

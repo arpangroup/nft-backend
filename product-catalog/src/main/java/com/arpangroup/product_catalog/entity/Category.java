@@ -1,4 +1,4 @@
-package com.arpangroup.product_service.entity;
+package com.arpangroup.product_catalog.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

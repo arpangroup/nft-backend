@@ -1,4 +1,4 @@
-package com.arpangroup.product_service.exception;
+package com.arpangroup.product_catalog.exception;
 
 public class PurchaseException extends RuntimeException {
     public PurchaseException() {

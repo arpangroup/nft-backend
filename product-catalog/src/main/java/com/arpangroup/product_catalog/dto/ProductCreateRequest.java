@@ -1,11 +1,7 @@
-package com.arpangroup.product_service.dto;
+package com.arpangroup.product_catalog.dto;
 
-import com.arpangroup.product_service.entity.Category;
-import com.arpangroup.product_service.enums.CurrencyType;
+import com.arpangroup.product_catalog.enums.CurrencyType;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

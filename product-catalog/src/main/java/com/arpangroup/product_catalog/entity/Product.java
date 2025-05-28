@@ -1,7 +1,7 @@
-package com.arpangroup.product_service.entity;
+package com.arpangroup.product_catalog.entity;
 
-import com.arpangroup.product_service.enums.CurrencyType;
-import com.arpangroup.product_service.enums.TransactionStatus;
+import com.arpangroup.product_catalog.enums.CurrencyType;
+import com.arpangroup.product_catalog.enums.TransactionStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

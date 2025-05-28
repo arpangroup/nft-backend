@@ -1,10 +1,10 @@
-package com.arpangroup.product_service.controller;
+package com.arpangroup.product_catalog.controller;
 
-import com.arpangroup.product_service.dto.ProductPurchaseOrSellRequest;
-import com.arpangroup.product_service.entity.Product;
-import com.arpangroup.product_service.service.ProductSellService;
-import com.arpangroup.product_service.service.ProductService;
-import com.arpangroup.product_service.service.ProductPurchaseService;
+import com.arpangroup.product_catalog.dto.ProductPurchaseOrSellRequest;
+import com.arpangroup.product_catalog.entity.Product;
+import com.arpangroup.product_catalog.service.ProductSellService;
+import com.arpangroup.product_catalog.service.ProductService;
+import com.arpangroup.product_catalog.service.ProductPurchaseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

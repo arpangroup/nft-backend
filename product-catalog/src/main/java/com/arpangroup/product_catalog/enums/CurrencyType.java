@@ -1,4 +1,4 @@
-package com.arpangroup.product_service.enums;
+package com.arpangroup.product_catalog.enums;
 
 public enum CurrencyType {
     BTC,  // Bitcoin

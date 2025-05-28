@@ -1,4 +1,4 @@
-package com.arpangroup.product_service.dto;
+package com.arpangroup.product_catalog.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

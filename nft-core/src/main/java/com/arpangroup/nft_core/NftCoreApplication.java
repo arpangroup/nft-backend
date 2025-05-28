@@ -1,8 +1,8 @@
 package com.arpangroup.nft_core;
 
-import com.arpangroup.product_service.entity.Category;
-import com.arpangroup.product_service.entity.Product;
-import com.arpangroup.product_service.repository.CategoryRepository;
+import com.arpangroup.product_catalog.entity.Category;
+import com.arpangroup.product_catalog.entity.Product;
+import com.arpangroup.product_catalog.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +14,7 @@ import java.util.List;
 @SpringBootApplication(scanBasePackages = {
 		"com.arpangroup.nft_core",
 		"com.arpangroup.nft_common",
-		"com.arpangroup.product_service",
+		"com.arpangroup.product_catalog",
 		"com.arpangroup.user_service",
 		"com.arpangroup.referral_service"
 })

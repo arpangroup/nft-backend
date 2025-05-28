@@ -1,6 +1,6 @@
-package com.arpangroup.product_service.entity;
+package com.arpangroup.product_catalog.entity;
 
-import com.arpangroup.product_service.enums.TransactionStatus;
+import com.arpangroup.product_catalog.enums.TransactionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

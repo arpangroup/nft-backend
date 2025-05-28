@@ -1,12 +1,12 @@
-package com.arpangroup.product_service.service;
+package com.arpangroup.product_catalog.service;
 
-import com.arpangroup.product_service.dto.ProductPurchaseOrSellRequest;
-import com.arpangroup.product_service.entity.Product;
-import com.arpangroup.product_service.entity.UserCollection;
-import com.arpangroup.product_service.enums.TransactionStatus;
-import com.arpangroup.product_service.exception.PurchaseException;
-import com.arpangroup.product_service.repository.ProductRepository;
-import com.arpangroup.product_service.repository.UserCollectionRepository;
+import com.arpangroup.product_catalog.dto.ProductPurchaseOrSellRequest;
+import com.arpangroup.product_catalog.entity.Product;
+import com.arpangroup.product_catalog.entity.UserCollection;
+import com.arpangroup.product_catalog.enums.TransactionStatus;
+import com.arpangroup.product_catalog.exception.PurchaseException;
+import com.arpangroup.product_catalog.repository.ProductRepository;
+import com.arpangroup.product_catalog.repository.UserCollectionRepository;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
-package com.arpangroup.product_service.validator;
+package com.arpangroup.product_catalog.validator;
 
-import com.arpangroup.product_service.dto.ProductPurchaseOrSellRequest;
+import com.arpangroup.product_catalog.dto.ProductPurchaseOrSellRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

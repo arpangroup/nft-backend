@@ -1,8 +1,8 @@
-package com.arpangroup.product_service.mapper;
+package com.arpangroup.product_catalog.mapper;
 
-import com.arpangroup.product_service.dto.ProductCreateRequest;
-import com.arpangroup.product_service.entity.Category;
-import com.arpangroup.product_service.entity.Product;
+import com.arpangroup.product_catalog.dto.ProductCreateRequest;
+import com.arpangroup.product_catalog.entity.Category;
+import com.arpangroup.product_catalog.entity.Product;
 import org.springframework.stereotype.Component;
 
 @Component
