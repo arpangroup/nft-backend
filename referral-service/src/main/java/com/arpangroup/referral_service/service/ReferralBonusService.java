@@ -1,11 +1,11 @@
 package com.arpangroup.referral_service.service;
 
+import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.referral_service.client.UserClient;
 import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
 import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
-import com.arpangroup.referral_service.dto.UserInfo;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
 import com.arpangroup.referral_service.service.strategy.ReferralBonusStrategy;
 import lombok.extern.slf4j.Slf4j;

@@ -35,6 +35,11 @@
 			<artifactId>nft-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.arpangroup</groupId>
+			<artifactId>user-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

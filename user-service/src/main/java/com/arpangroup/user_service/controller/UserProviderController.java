@@ -1,11 +1,8 @@
 package com.arpangroup.user_service.controller;
 
-import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.service.UserProviderService;
-import com.arpangroup.user_service.service.UserServiceImpl;
+import com.arpangroup.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/provider/users")
 @RequiredArgsConstructor
 public class UserProviderController {
-    private final UserProviderService userService;
+    private final UserService userService;
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserInfo(@PathVariable Long userId) {

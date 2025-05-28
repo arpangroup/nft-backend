@@ -1,6 +1,6 @@
 package com.arpangroup.referral_service.client;
 
-import com.arpangroup.referral_service.dto.UserInfo;
+import com.arpangroup.nft_common.dto.UserInfo;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +13,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @ConditionalOnProperty(name = "user.provider.type", havingValue = "remote")
@@ -48,15 +49,6 @@ public class RemoteUserClient implements UserClient {
                 .body(userIds)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {});
-    }
-
-    @Override
-    public UserInfo updateUserInfo(@NotNull UserInfo userInfo) {
-        return restClient.put()
-                .uri("/users/{id}", userInfo.getId())
-                .body(userInfo) // sets the request body
-                .retrieve()
-                .body(UserInfo.class);
     }
 
     @Override

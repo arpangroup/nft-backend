@@ -1,8 +1,10 @@
 package com.arpangroup.user_service.service;
 
+import com.arpangroup.user_service.entity.Transaction;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.repository.UserRepository;
+import com.arpangroup.user_service.transaction.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +29,7 @@ When a new user registers, bonuses can be propagated upwards through the referra
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserHierarchyService userHierarchyService;
+    private final TransactionService transactionService;
 
     @Override
     public User createUser(User user, String referralCode) {
@@ -84,5 +88,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByReferralCode(String referralCode) {
         return userRepository.findByReferralCode(referralCode).orElseThrow(() -> new IdNotFoundException("invalid referralCode"));
+    }
+
+    @Override
+    public Transaction deposit(long userId, BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
+        return transactionService.deposit(userId, amount, remarks);
+    }
+
+    @Override
+    public boolean hasDeposit(Long userId) {
+        return transactionService.hasDepositTransaction(userId);
     }
 }

@@ -1,8 +1,8 @@
 package com.arpangroup.referral_service.listener;
 
+import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
 import com.arpangroup.referral_service.client.UserClient;
-import com.arpangroup.referral_service.dto.UserInfo;
 import com.arpangroup.referral_service.service.ReferralBonusService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,11 @@
 package com.arpangroup.user_service.service;
 
 import com.arpangroup.user_service.dto.RegistrationRequest;
+import com.arpangroup.user_service.entity.Transaction;
 import com.arpangroup.user_service.entity.User;
 import org.springframework.lang.NonNull;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +19,22 @@ public interface UserService {
     User getUserById(Long userId);
     User getUserByReferralCode(String referralCode);
 
-//    boolean hasDeposit(Long userId);
+    /**
+     * This method is required for bonus-service to apply various bonus
+     */
+    Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status);
+
+    /**
+     * This method is require for BonusService to check whether
+     * user has done his first deposit transaction or not.
+     *  - if any deposit Txn exist, then apply the referral bonus
+     *  - Otherwise any fake user can register and the referrer wil receive the referral-bonus
+     *  - In order to receive the referral bonus user have to done at-least one deposit
+     *  - Details logic is implemented in bonus-service
+     */
+    boolean hasDeposit(Long userId);
+
+
 //    boolean iasActive(Long userId);
 //    void handleDeposit(Long userId, double amount);
 //    void activateAccount(Long userId);
