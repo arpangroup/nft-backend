@@ -11,10 +11,10 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class DepositBalanceRequest {
+public class WithdrawRequest {
     @NotNull(message = "User ID cannot be null")
     @Min(value = 1, message = "User ID must be greater than 0")
-    private long userId;
+    private Long userId;
     @Min(value = 1, message = "Amount must be greater than 0")
     private BigDecimal amount;
     @NotNull(message = "Transaction type is required")

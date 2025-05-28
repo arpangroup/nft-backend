@@ -1,9 +1,10 @@
 package com.arpangroup.user_service.transaction;
 
 import com.arpangroup.user_service.entity.Transaction;
-import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +15,28 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TransactionService {
     private final TransactionRepository transactionRepository;
-    private final UserRepository userRepository;
 
     public List<Transaction> getTransactions() {
         return transactionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
+    public Page<Transaction> getTransactions(Pageable pageable) {
+        return transactionRepository.findAll(pageable);
+    }
+
     public List<Transaction> getTransactionsByUserId(Long userId) {
-        return transactionRepository.findAllByUserId(userId);
+        return transactionRepository.findByUserIdOrderByTxnDateDesc(userId);
+    }
+
+    public Page<Transaction> getTransactionsByUserId(Long userId, Pageable pageable) {
+        return transactionRepository.findByUserIdOrderByTxnDateDesc(userId, pageable);
     }
 
     public Boolean hasDepositTransaction(Long userId) {
         return transactionRepository.existsByUserIdAndTxnType(userId, TransactionType.DEPOSIT);
     }
 
+    @Transactional
     public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
         validateUniqueTxnRefId(txnRefId);
         Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
@@ -41,13 +50,14 @@ public class TransactionService {
         transaction.setTxnFee(txnFee);
 
         transaction = transactionRepository.save(transaction);
-        User user = userRepository.findById(userId).get();
+        /*User user = userRepository.findById(userId).get();
         user.setWalletBalance(user.getWalletBalance().add(amount));
-        userRepository.save(user);
+        userRepository.save(user);*/
 
         return transaction;
     }
 
+    @Transactional
     public Transaction deposit(final long userId, final BigDecimal amount, String remarks) {
         return this.deposit(userId, amount, remarks, null, null, null);
     }
@@ -65,9 +75,9 @@ public class TransactionService {
         transaction.setTxnFee(txnFee);
 
         transaction = transactionRepository.save(transaction);
-        User user = userRepository.findById(userId).get();
+        /*User user = userRepository.findById(userId).get();
         user.setWalletBalance(user.getWalletBalance().subtract(amount));
-        userRepository.save(user);
+        userRepository.save(user);*/
 
         return transaction;
     }

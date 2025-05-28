@@ -12,6 +12,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClient;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -83,5 +84,10 @@ public class RemoteUserClient implements UserClient {
             throw ex; // or handle differently
         }
 
+    }
+
+    @Override
+    public UserInfo deposit(long userId, BigDecimal amount, String remarks) {
+        return null;
     }
 }

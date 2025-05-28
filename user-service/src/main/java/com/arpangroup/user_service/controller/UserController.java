@@ -1,5 +1,6 @@
 package com.arpangroup.user_service.controller;
 
+import com.arpangroup.user_service.dto.DepositRequest;
 import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.entity.UserHierarchy;
@@ -8,6 +9,7 @@ import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.service.UserHierarchyService;
 import com.arpangroup.user_service.service.UserServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,11 @@ public class UserController {
     @PatchMapping("/{userId}")
     public ResponseEntity<User> updateUserInfo(@PathVariable Long userId, @RequestBody Map<String, Object> fieldsToUpdate) {
         return ResponseEntity.ok(userService.updateUser(userId, fieldsToUpdate));
+    }
+
+    @PostMapping("/deposit")
+    public ResponseEntity<User> deposit(@Valid @RequestBody DepositRequest request) {
+        return ResponseEntity.ok(userService.deposit(request.getUserId(), request.getAmount(), request.getRemarks()));
     }
 
 

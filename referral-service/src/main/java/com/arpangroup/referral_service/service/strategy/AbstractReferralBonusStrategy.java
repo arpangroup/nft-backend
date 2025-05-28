@@ -29,9 +29,7 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
     public void applyBonus(UserInfo referrer, UserInfo referee) {
         log.info("applyBonus for referrer: {}, referee: {}......", referrer.getId(), referrer.getId());
         BigDecimal bonusAmount = getBonusAmount(referrer, referee);
-
-        referrer.setWalletBalance(referrer.getWalletBalance().add(bonusAmount));
-        //userClient.updateUserInfo(referrer);
+        depositReferralBonus(referrer.getId(), bonusAmount);
 
         ReferralBonus bonus = bonusRepository.findByReferrerIdAndRefereeIdAndStatus(referrer.getId(), referee.getId(), BonusStatus.PENDING).orElse(null);
         if (bonus == null) { // DIRECT APPROVE
@@ -50,14 +48,18 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
     public boolean processPendingBonus(ReferralBonus bonus) {
         Long refereeId = bonus.getRefereeId();
         UserInfo referee = userClient.getUserInfo(refereeId);
-        UserInfo referrer = userClient.getUserInfo(bonus.getReferrerId());
+        //UserInfo referrer = userClient.getUserInfo(bonus.getReferrerId());
 
         if (!isEligible(referee)) {
             return false;
         }
 
-        applyBonus(referrer, referee);
+        depositReferralBonus(bonus.getReferrerId(), bonus.getBonusAmount());
         return true;
+    }
+
+    private void depositReferralBonus(long userId, BigDecimal bonusAmount) {
+        userClient.deposit(userId, bonusAmount, Remarks.REFERRAL_BONUS);
     }
 
     // Allow strategy to provide custom amount and trigger type

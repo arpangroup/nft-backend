@@ -6,6 +6,7 @@ import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.repository.UserRepository;
 import com.arpangroup.user_service.transaction.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -91,8 +92,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Transaction deposit(long userId, BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
-        return transactionService.deposit(userId, amount, remarks);
+    @Transactional
+    public User deposit(long userId, BigDecimal amount, String remarks) {
+        log.info("Deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
+
+        // add the record to transaction
+        transactionService.deposit(userId, amount, remarks);
+
+        // update user's wallet balance
+        User user = userRepository.findById(userId).orElseThrow(() -> new IdNotFoundException("invalid userId: " + userId));
+        user.setWalletBalance(user.getWalletBalance().add(amount));
+        userRepository.save(user);
+        return user;
     }
 
     @Override

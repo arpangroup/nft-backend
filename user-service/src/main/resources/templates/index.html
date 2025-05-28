@@ -283,7 +283,7 @@
                 const tbody = document.querySelector('#transactionsTable tbody');
                 tbody.innerHTML = ''; // Clear previous rows
 
-                data.forEach(txn => {
+                data.content.forEach(txn => {
                   const tr = document.createElement('tr');
 
                   tr.innerHTML = `
@@ -725,7 +725,7 @@
         remarks: document.getElementById('remarks').value
       };
 
-      fetch("/api/v1/transactions/deposit", {
+      fetch("/api/v1/users/deposit", {
           method: "POST",
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)

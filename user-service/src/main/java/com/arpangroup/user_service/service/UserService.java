@@ -1,9 +1,6 @@
 package com.arpangroup.user_service.service;
 
-import com.arpangroup.user_service.dto.RegistrationRequest;
-import com.arpangroup.user_service.entity.Transaction;
 import com.arpangroup.user_service.entity.User;
-import org.springframework.lang.NonNull;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,7 +19,7 @@ public interface UserService {
     /**
      * This method is required for bonus-service to apply various bonus
      */
-    Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status);
+    User deposit(final long userId, final BigDecimal amount, String remarks);
 
     /**
      * This method is require for BonusService to check whether
@@ -33,7 +30,6 @@ public interface UserService {
      *  - Details logic is implemented in bonus-service
      */
     boolean hasDeposit(Long userId);
-
 
 //    boolean iasActive(Long userId);
 //    void handleDeposit(Long userId, double amount);

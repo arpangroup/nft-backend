@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -41,5 +42,11 @@ public class LocalUserClient implements UserClient {
     public Boolean hasDeposit(Long userId) {
         log.info("hasDeposit for userId: {}", userId);
         return userService.hasDeposit(userId);
+    }
+
+    @Override
+    public UserInfo deposit(long userId, BigDecimal amount, String remarks) {
+        log.info("deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
+        return mapper.mapTo(userService.deposit(userId, amount, remarks));
     }
 }
