@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: referral-service
+  config:
+    import:
+      - classpath:application-common.yml
+
+#user:
+#  provider:
+#    type: remote  # ['local', 'remote']
+#  service:
+#    baseUrl: http://localhost:8080/api/v1

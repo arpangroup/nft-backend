@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,10 +25,10 @@ public class Transaction {
     private Long senderId;
 
     @Column(nullable = false)
-    private Double amount;
+    private BigDecimal amount = BigDecimal.ZERO;
 
     @Column(nullable = false)
-    private Double balance = 0.0;
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @Column(nullable = true)
     @Setter
@@ -51,7 +52,7 @@ public class Transaction {
     @Column(nullable = false)
     private TransactionType txnType;
 
-    public Transaction(long userId, double amount, @NotNull TransactionType transactionType, double balance) {
+    public Transaction(long userId, BigDecimal amount, @NotNull TransactionType transactionType, BigDecimal balance) {
         this.userId = userId;
         this.amount = amount;
         this.txnType = transactionType;

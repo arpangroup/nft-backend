@@ -5,6 +5,21 @@ INSERT INTO countries (id, name) VALUES (4, 'Italy');
 INSERT INTO countries (id, name) VALUES (5, 'Canada');
 
 
+INSERT INTO config_team_income_rate (upline_level, downline_tier, percentage) VALUES
+('Level2', 'LvA', 0.12),
+('Level2', 'LvB', 0.05),
+('Level2', 'LvC', 0.02),
+('Level3', 'LvA', 0.13),
+('Level3', 'LvB', 0.06),
+('Level3', 'LvC', 0.03),
+('Level4', 'LvA', 0.15),
+('Level4', 'LvB', 0.07),
+('Level4', 'LvC', 0.03),
+('Level5', 'LvA', 0.16),
+('Level5', 'LvB', 0.08),
+('Level5', 'LvC', 0.07);
+
+
 INSERT INTO nft.config_individual_income
 (id, `level`, min_reserv_amt, max_reserv_amt, profit, calculation_type, profit_frequency, txn_per_day, annualized_returns, lv_a_require, lv_b_require, lv_c_require)
 values
@@ -13,6 +28,8 @@ values
 (3, 'Level-3', 2000.0, 5000.0, 2.6, 'PERCENTAGE', 'PER_DAY', 1, 949.0, 6, 19, 1),
 (4, 'Level-4', 5000.0, 10000.0, 3.1, 'PERCENTAGE', 'PER_DAY', 1, 1131.5, 15, 34, 1),
 (5, 'Level-5', 10000.0, 30000.0, 3.7, 'PERCENTAGE', 'PER_DAY', 1, 1350.5, 25, 69, 1)
+
+
 
 
 SELECT

@@ -2,7 +2,6 @@ package com.arpangroup.user_service;
 
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.repository.UserRepository;
-import com.arpangroup.user_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +18,7 @@ public class UserServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User rootUser = new User("root", 1000);
+		User rootUser = new User("root");
 		userRepository.save(rootUser);
 	}
 }

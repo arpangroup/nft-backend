@@ -12,7 +12,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("OpenAPI definition")
+                        .title("NFT APP API Definition")
                         .version("1.0")
                         .description("API documentation for UserServiceApplication"));
     }

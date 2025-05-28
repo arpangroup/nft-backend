@@ -1,6 +1,26 @@
 const queryData = [
   {
-    "title": "1. To get all Level A, B, C downlines of a user:",
+    "title": "1. countDownlineGroupedByDepth:",
+    "description": "Counts the number of downline users at each specified depth",
+    "query": "SELECT depth, COUNT(*) AS user_count\nFROM user_hierarchy\nWHERE ancestor = 1 AND depth in (1,2,3)\nGROUP BY depth\nORDER BY depth;"
+  },
+  {
+    "title": "2. findDownlineUserIdsGrouped:",
+    "description": "Retrieves downline user IDs grouped by their depth levels relative to the given user",
+    "query": "SELECT depth, GROUP_CONCAT(descendant) AS user_ids\nFROM user_hierarchy\nWHERE ancestor = 1 AND depth in (1,2,3)\nGROUP BY depth\nORDER BY depth;"
+  },
+  {
+    "title": "3. findUplineUserIds:",
+    "description": "Retrieves all upline ancestor user IDs of the specified user,\nordered from the closest ancestor (direct upline) to the farthest (root).",
+    "query": "SELECT ancestor\nFROM user_hierarchy\nWHERE descendant = 1 AND AND depth > 0\nORDER BY depth DESC;"
+  },
+  {
+    "title": "4. findUplineDepthAndAncestors:",
+    "description": "Retrieves all upline ancestors of a given user along with their depth levels,\nordered from the closest ancestor (depth = 1) up to the root ancestor.",
+    "query": "SELECT depth, ancestor\nFROM user_hierarchy\nWHERE descendant = 10 AND depth depth > 0\nORDER BY depth ASC;"
+  },
+  {
+    "title": "5. To get all Level A, B, C downlines of a user:",
     "description": "Using inner subquery",
     "query": "SELECT descendant, depth FROM user_hierarchy\nWHERE ancestor = 1 AND depth IN (1,2,3)\nORDER BY depth;"
   },
@@ -10,12 +30,12 @@ const queryData = [
     "query": "SELECT u.id, u.username, uh.depth FROM user_hierarchy uh\nJOIN users u ON u.id = uh.descendant\nWHERE uh.ancestor = 1 AND uh.depth IN (1,2,3)\nORDER BY uh.depth;"
   },
   {
-    "title": "2. SQL Query for Level-A Users:",
+    "title": "6. SQL Query for Level-A Users:",
     "description": "2. To get direct referrals (Level A only):",
     "query": "SELECT u.id, u.username FROM users u WHERE u.id IN (\n    SELECT descendant FROM user_hierarchy\n    WHERE ancestor = 1 AND `depth` = 1\n);"
   },
   {
-    "title": "3. SQL Query for Level-B Users:",
+    "title": "7. SQL Query for Level-B Users:",
     "description": "To select all Level-B users (i.e., users at depth = 2)",
     "query": "SELECT u.id, u.username FROM users u WHERE u.id IN (\n    SELECT descendant FROM user_hierarchy uh\n  WHERE uh.ancestor = 1 AND uh.depth = 2\n);"
   },
@@ -25,7 +45,7 @@ const queryData = [
     "query": "SELECT u.id, u.username FROM users u\nJOIN user_hierarchy uh ON u.id = uh.descendant\nWHERE uh.ancestor = 1 AND uh.depth = 2"
   },
   {
-    "title": "4. SQL Query for Level-C Users:",
+    "title": "8. SQL Query for Level-C Users:",
     "description": "To select all Level-C users (i.e., users at depth = 3)",
     "query": "SELECT u.id, u.username from users u\nJOIN user_hierarchy uh ON u.id = uh.descendant\nWHERE uh.ancestor = 1 AND uh.depth = 3;"
   },
@@ -34,7 +54,7 @@ const queryData = [
     "query": "select id, username, referral_code, reserve_balance, `level` from users;"
   },
   {
-    "title": "SHow user_hierarchy table:",
+    "title": "Show user_hierarchy table:",
     "query": "select id, ancestor, descendant,`depth` from user_hierarchy uh ;"
   },
   {

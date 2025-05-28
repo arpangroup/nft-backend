@@ -1,24 +1,14 @@
 package com.arpangroup.user_service.controller;
 
-import com.arpangroup.user_service.dto.UserTreeNode;
-import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.entity.UserHierarchy;
-import com.arpangroup.user_service.service.HierarchyHelper;
-import com.arpangroup.user_service.service.UserService;
+import com.arpangroup.user_service.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class UiController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @GetMapping("/register")
     public String register() {

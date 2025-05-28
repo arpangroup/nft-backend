@@ -1,6 +1,8 @@
 package com.arpangroup.user_service.transaction;
 
 import com.arpangroup.user_service.entity.Transaction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,10 +15,27 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     List<Transaction> findAllByUserId(Long userId);
 
+
+    List<Transaction> findByUserIdOrderByTxnDateAsc(Long userId);  // oldest to newest
+    List<Transaction> findByUserIdOrderByTxnDateDesc(Long userId); // newest to oldest
+    Page<Transaction> findByUserIdOrderByTxnDateDesc(Long userId, Pageable pageable); // newest to oldest
+
     //@Query("SELECT t FROM Transaction t WHERE t.senderId = :userId OR t.userId = :userId ORDER BY t.txnDate DESC")
     //Transaction findLastTransactionByUserId(@Param("userId") Long userId);
 
     Transaction findFirstBySenderIdOrderByTxnDateDesc(Long senderId);
 
     Transaction findFirstByUserIdOrderByTxnDateDesc(Long userId);
+
+
+    /*@Query(value = """
+        SELECT EXISTS (
+            SELECT 1 FROM transactions
+            WHERE user_id = :userId AND txn_type = :txnType
+            LIMIT 1
+        )
+    """, nativeQuery = true)
+    boolean existsDepositTransaction(@Param("userId") Long userId, @Param("txnType") TransactionType txnType);*/
+
+    boolean existsByUserIdAndTxnType(Long userId, TransactionType txnType);
 }

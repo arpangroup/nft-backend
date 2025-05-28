@@ -4,354 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Dynamic MLM Tree</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    .controls {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-    }
-
-    .controls button {
-      margin-right: 5px;
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-
-    .controls button.selected {
-      background-color: #2196f3;
-      color: white;
-      font-weight: bold;
-    }
-
-    .controls-highlight {
-      position: fixed;
-      top: 50px;
-      left: 0px;
-      z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .controls-highlight button {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-
-    .controls-highlight button.selected {
-      background-color: #444;
-      color: white;
-      font-weight: bold;
-    }
-
-    .sidebar-toggle {
-      position: fixed;
-      top: 10px;
-      right: 0px;
-      z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .sidebar-toggle button {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-
-    .canvas {
-      width: 100vw;
-      height: 100vh;
-      overflow: auto;
-      background: #f5f5f5;
-    }
-
-    .tree-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform-origin: top center;
-      transition: transform 0.3s ease;
-      padding: 50px 0;
-      min-width: 1200px;
-    }
-
-    .tree ul {
-      position: relative;
-      padding-top: 20px;
-      display: table;
-      margin: 0 auto;
-    }
-
-    .tree li {
-      display: table-cell;
-      text-align: center;
-      position: relative;
-      padding: 20px 5px 0 5px;
-      vertical-align: top;
-    }
-
-    .tree li::before,
-    .tree li::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 20px;
-      border-top: 2px solid #333;
-    }
-
-    .tree li::before {
-      left: 0;
-      border-right: 2px solid #333;
-    }
-
-    .tree li::after {
-      right: 0;
-      border-left: 2px solid #333;
-    }
-
-    .tree li:only-child::before,
-    .tree li:only-child::after {
-      content: none;
-    }
-
-    .tree li:only-child {
-      padding-top: 0;
-    }
-
-    .tree ul::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      border-left: 2px solid #333;
-      height: 20px;
-    }
-
-    .node {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #fff;
-      border: 1px solid #333;
-      border-radius: 6px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .node.selected {
-      background-color: #ff9800;
-      color: white;
-      font-weight: bold;
-      border-color: #d17d00;
-    }
-
-    .node.level-highlight {
-      background-color: #2196f3;
-      color: white;
-      border-color: #1976d2;
-    }
-
-    /* Common Sidebar Styles */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -900px;
-      width: 800px;
-      height: 100%;
-      background: #ffffff;
-      border-left: 1px solid #ccc;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-      transition: right 0.3s ease;
-      z-index: 1002;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .sidebar.open {
-      right: 0;
-    }
-
-    #query-container{
-      padding-bottom: 30px;
-    }
-
-    /* Backdrop */
-    .backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1001;
-      display: none;
-    }
-
-    .backdrop.active {
-      display: block;
-    }
-
-    /* SQL Panel Content */
-    textarea {
-      width: 100%;
-      height: 100px;
-      margin-bottom: 10px;
-    }
-
-    button.execute-btn {
-      display: block;
-      margin-bottom: 15px;
-      padding: 8px 16px;
-    }
-
-    #error {
-      color: red;
-      margin-top: 10px;
-    }
-
-    #result {
-      margin-top: 10px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th,
-    td {
-      padding: 8px;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f0f0f0;
-    }
-
-    /* Info Sidebar */
-    .sidebar.info {
-      background-color: #fdfdfd;
-      z-index: 1003;
-    }
-
-    /* Copy Section */
-    .copy-section {
-      position: relative;
-      margin-top: 20px;
-    }
-
-    .copy-section pre {
-      background-color: #eee;
-      padding: 10px;
-      border-radius: 5px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      position: relative;
-    }
-
-    .copy-icon {
-      width: 20px;
-      height: 20px;
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-
-    .exec-btn {
-      background-color: #e0e0e0;
-      border: none;
-      padding: 4px 8px;
-      margin-left: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-      border-radius: 4px;
-    }
-
-    .exec-btn:hover {
-      background-color: #ccc;
-    }
-
-    .copy-icon:hover {
-      opacity: 1;
-    }
-
-    .copy-status {
-      color: green;
-      margin-top: 10px;
-      display: none;
-      font-size: 14px;
-    }
-
-    #registerForm {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-    }
-
-    #registerForm label {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    #registerForm input,
-    #registerForm select {
-      padding: 8px 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    #registerForm button[type="submit"] {
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    #registerForm button[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-
-    #registerStatus {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .success {
-      background-color: #d4edda;  /* light green */
-      color: #155724;             /* dark green text */
-      border: 1px solid #c3e6cb;
-      border-radius: 4px;
-    }
-
-    .error {
-      background-color: #f8d7da;  /* light red */
-      color: #721c24;             /* dark red text */
-      border: 1px solid #f5c6cb;
-      border-radius: 4px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -373,12 +26,18 @@
     <button data-level="2" onclick="highlightLevel(2)">Highlight Level-B</button>
     <button data-level="3" onclick="highlightLevel(3)">Highlight Level-C</button>
     <button onclick="clearHighlights()">Clear Highlights</button>
+    <button onclick="scheduleIncome()">Schedule Income</button>
   </div>
 
   <div class="sidebar-toggle">
     <button onclick="toggleSidebar('sidebar-sql')"> ☰ Execute</button>
     <button onclick="toggleSidebar('sidebar-info')">ℹ️ Show Info</button>
     <button onclick="toggleSidebar('sidebar-register')">📝 Register User</button>
+    <button onclick="toggleSidebar('sidebar-deposit')">💰 Deposit</button>
+    <button onclick="toggleSidebar('sidebar-transactions')">📄 Transactions</button>
+    <button onclick="toggleSidebar('sidebar-config')">⚙️ Income Config</button>
+    <button onclick="toggleSidebar('sidebar-teams')">📄 Team</button>
+    <button onclick="toggleSidebar('sidebar-incomes')">📄 Incomes</button>
   </div>
 
 
@@ -404,7 +63,7 @@
   <!-- Register Sidebar -->
   <div id="sidebar-register" class="sidebar register">
     <h2>Register New User</h2>
-    <form id="registerForm">
+    <form id="registerForm" class="formcontrol">
       <label>Username:</label>
       <input type="text" id="username" name="username" required>
 
@@ -421,6 +80,88 @@
     <div id="registerStatus" style="margin-top: 10px; padding: 8px; display: none;"></div>
   </div>
 
+
+  <!-- Deposit Sidebar -->
+  <div id="sidebar-deposit" class="sidebar deposit">
+    <h2>Register New User</h2>
+    <form id="depositForm">
+      <label>Username:</label>
+      <select name="userId" id="userSelect" required>
+        <option value="" disabled selected>-- Select User --</option>
+      </select>
+
+      <label>Amount:</label>
+      <input type="number" id="amount" required />
+
+      <label>Transaction Type:</label>
+      <select id="transactionType" required>
+        <option value="DEPOSIT">DEPOSIT</option>
+        <option value="WITHDRAWAL">WITHDRAWAL</option>
+      </select>
+
+      <label>Remarks:</label>
+      <input type="text" id="remarks" value="Deposit By Admin"/>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div class="status" id="depositStatus" style="margin-top: 10px; padding: 8px; display: none;"></div>
+  </div>
+
+  <!-- Transactions Sidebar -->
+  <div id="sidebar-transactions" class="sidebar transactions">
+    <h2>Transactions</h2>
+    <table id="transactionsTable" border="1" cellpadding="8" cellspacing="0">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Balance</th>
+        <th>Remarks</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Config Sidebar -->
+  <div id="sidebar-config" class="sidebar config">
+    <h2>Team Income Configs</h2>
+    <!--<table id="teamIncomeConfig" border="1" cellpadding="8" cellspacing="0">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Upline Level</th>
+        <th>Downline Tier</th>
+        <th>Percentage</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>-->
+
+    <table id="pivotTable" border="1" cellpadding="8" cellspacing="0">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+
+    <hr/>
+
+  </div>
+
+
+
+  <!-- Team Sidebar -->
+  <div id="sidebar-teams" class="sidebar teams">
+    <h2>Teams</h2>
+
+  </div>
+
+  <!-- Income Sidebar -->
+  <div id="sidebar-incomes" class="sidebar incomes">
+    <h2>Incomes</h2>
+
+  </div>
+
+
   <div class="canvas">
       <div class="tree-wrapper" id="treeWrapper">
           <div class="tree" id="mlmTree"></div>
@@ -429,6 +170,8 @@
 
   <script src="queries.js"></script>
   <script>
+      let allUsers = [];
+      let selectedUserId = null;
       function loadQueries() {
         const container = document.getElementById("query-container");
         container.innerHTML = "";
@@ -455,7 +198,7 @@
 
 
         function buildTree(node, level = 0) {
-          let html = `<li><div class="node" data-level="${level}" onclick="showUserInfo('${node.userId}', '${node.username}', event)">${node.username}</div>`;
+          let html = `<li><div class="node" data-level="${level}" onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', event)">${node.username}</div>`;
           if (node.children && node.children.length > 0) {
             html += `<ul>`;
             node.children.forEach(child => {
@@ -485,8 +228,12 @@
         loadTree();
 
         function loadUsers() {
-          const select = document.getElementById('referralSelect');
-          select.innerHTML = '<option value="">-- Select Referrer --</option>'; // Reset
+          const referralSelect = document.getElementById('referralSelect');
+          const userSelect = document.getElementById('userSelect');
+
+          // Reset dropdowns
+          referralSelect.innerHTML = '<option value="">-- Select Referrer --</option>';
+          userSelect.innerHTML = '<option value="">-- Select User --</option>';
 
           // Simulated user fetch (replace with actual fetch from backend if needed)
           /*const users = [
@@ -501,18 +248,122 @@
             .then(data => {
               console.log("USERS: ", data);
               const users = data;
+              allUsers = users;
 
               users.forEach(user => {
-                const option = document.createElement("option");
-                option.text = user.username;
-                option.value = user.referralCode;
-                select.add(option);
+                // Add to referralSelect: value = referralCode, text = username
+                const referralOption  = document.createElement("option");
+                referralOption.text = user.username;
+                referralOption.value = user.referralCode;
+                referralSelect.add(referralOption);
+
+
+                // Add to userSelect: value = id, text = username
+                const userOption = document.createElement("option");
+                userOption.value = user.id;
+                userOption.text = user.username;
+                if (user.id == selectedUserId) {
+                  userOption.selected = true;
+                }
+                userSelect.add(userOption);
               });
           })
           .catch(error => console.error('Error:', error));
-
-
         }
+
+
+        function loadTransaction() {
+          const baseUrl = '/api/v1/transactions';
+          const url = (selectedUserId && selectedUserId !== 1) ? `${baseUrl}/${selectedUserId}` : baseUrl;
+
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              console.log("TRANSACTIONS: ", data);
+                const tbody = document.querySelector('#transactionsTable tbody');
+                tbody.innerHTML = ''; // Clear previous rows
+
+                data.content.forEach(txn => {
+                  const tr = document.createElement('tr');
+
+                  tr.innerHTML = `
+                    <td>${txn.id}</td>
+                    <td style="color: ${txn.amount >= 0 ? 'green' : 'red'};">${txn.amount.toFixed(2)}</td>
+                    <td>${txn.balance.toFixed(2)}</td>
+                    <td>${txn.remarks}</td>
+                  `;
+
+                  tbody.appendChild(tr);
+                });
+          })
+          .catch(error => console.error('Error:', error));
+      }
+
+      function loadIncomeConfigs() {
+        /*fetch("/api/v1/configs/income/team")
+          .then(res => res.json())
+          .then(data => {
+            const tbody = document.querySelector("#teamIncomeConfig tbody");
+            tbody.innerHTML = ""; // Clear existing rows
+
+            data.forEach(config => {
+              const row = document.createElement("tr");
+
+              row.innerHTML = `
+                <td>${config.id}</td>
+                <td>${config.uplineLevel}</td>
+                <td>${config.downlineTier}</td>
+                <td>${(config.percentage * 100).toFixed(2)}%</td>
+              `;
+
+              tbody.appendChild(row);
+            });
+          })
+          .catch(error => {
+            console.error("Error fetching config:", error);
+          });*/
+      }
+
+      function loadPivotedConfig() {
+        fetch("/api/v1/configs/income/team")
+          .then(res => res.json())
+          .then(data => {
+            const tiers = new Set();
+            const levels = new Set();
+
+            // Organize data in map[tier][level] = percentage
+            const map = {};
+            data.forEach(item => {
+              tiers.add(item.downlineTier);
+              levels.add(item.uplineLevel);
+              if (!map[item.downlineTier]) map[item.downlineTier] = {};
+              map[item.downlineTier][item.uplineLevel] = (item.percentage * 100).toFixed(0) + "%";
+            });
+
+            const sortedLevels = Array.from(levels).sort(); // Ensure consistent column order
+            const sortedTiers = Array.from(tiers).sort();
+
+            // Build header
+            const thead = document.querySelector("#pivotTable thead");
+            thead.innerHTML = `<tr><th>Level</th>${sortedLevels.map(l => `<th>${l}</th>`).join("")}</tr>`;
+
+            // Build rows
+            const tbody = document.querySelector("#pivotTable tbody");
+            tbody.innerHTML = "";
+
+            sortedTiers.forEach(tier => {
+              const row = document.createElement("tr");
+              const cells = sortedLevels.map(level => map[tier][level] || "0%");
+              row.innerHTML = `<td>${tier}</td>${cells.map(p => `<td>${p}</td>`).join("")}`;
+              tbody.appendChild(row);
+            });
+          })
+          .catch(error => {
+            console.error("Error loading pivoted config:", error);
+          });
+      }
+
+
 
         // Zoom
         let scale = 1;
@@ -544,7 +395,7 @@
             .catch(error => console.error('Error:', error));
         }
 
-        /*function showUserInfo(userId, username, event) {
+        /*function showUserInfo(userId, username, walletBalance, event) {
           const label = document.getElementById('userLabel');
           label.textContent = `Selected User: ${username} (ID: ${userId})`;
 
@@ -560,10 +411,10 @@
 
 
         let selectedNodeElement = null;
-        let selectedUserId = null;
-        function showUserInfo(userId, username, event) {
+        function showUserInfo(userId, username, walletBalance, event) {
           selectedUserId = userId;
           clearHighlights(true);
+          console.log("SELECTED_USER_ID: ", selectedUserId);
 
           // Remove previous selection
           if (selectedNodeElement) {
@@ -575,7 +426,7 @@
           selectedNodeElement.classList.add("selected");
 
           // Show label (you can customize where to show)
-          const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId})`;
+          const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId}) ℹ️ Balance: ${walletBalance}`;
         }
 
 
@@ -616,8 +467,17 @@
             document.getElementById('backdrop').classList.add('active');
 
             // Load referral users if opening register sidebar
-            if (id === 'sidebar-register') {
+            if (id === 'sidebar-register' || id === 'sidebar-deposit') {
               loadUsers();
+            }
+
+            // Load transactions if opening transactions sidebar
+            if (id === 'sidebar-transactions') {
+              loadTransaction();
+            }
+            if (id === 'sidebar-config') {
+              loadIncomeConfigs();
+              loadPivotedConfig();
             }
           }
         }
@@ -626,6 +486,11 @@
           document.getElementById('sidebar-sql').classList.remove('open');
           document.getElementById('sidebar-info').classList.remove('open');
           document.getElementById('sidebar-register').classList.remove('open');
+          document.getElementById('sidebar-deposit').classList.remove('open');
+          document.getElementById('sidebar-transactions').classList.remove('open');
+          document.getElementById('sidebar-config').classList.remove('open');
+          document.getElementById('sidebar-teams').classList.remove('open');
+          document.getElementById('sidebar-incomes').classList.remove('open');
           document.getElementById('backdrop').classList.remove('active');
         }
 
@@ -783,11 +648,15 @@
       // Set description
       document.querySelector('.sql-description').textContent = title;
 
-      toggleSidebar('sql');
-      toggleSidebar('info');
+      //toggleSidebar('sql');
+      //toggleSidebar('info');
+
+      toggleSidebar('sidebar-info');
+      toggleSidebar('sidebar-sql');
+      //toggleSidebar('sidebar-register');
     }
 
-    function showRegistrationStatusMessage(text, isSuccess) {
+    /*function showRegistrationStatusMessage(text, isSuccess) {
       const registerStatusDiv = document.getElementById('registerStatus');
       registerStatusDiv.textContent = text;
       registerStatusDiv.style.display = 'block';
@@ -799,6 +668,16 @@
         registerStatusDiv.classList.add('error');
         registerStatusDiv.classList.remove('success');
       }
+    }*/
+
+    function showStatusMessage(elementId, text, isSuccess) {
+      const statusDiv = document.getElementById(elementId);
+      if (!statusDiv) return;
+
+      statusDiv.textContent = text;
+      statusDiv.style.display = 'block';
+      statusDiv.classList.toggle('success', isSuccess);
+      statusDiv.classList.toggle('error', !isSuccess);
     }
 
     document.getElementById('registerForm').addEventListener('submit', function(e) {
@@ -825,14 +704,59 @@
         .then(data => {
             //alert("Registration successful");
             console.log(data); // Optional: show success data
-            showRegistrationStatusMessage("Registration successful!", true);
+            //showRegistrationStatusMessage("Registration successful!", true);
+            showStatusMessage("registerStatus", "Registration successful!", true);
             loadTree();
         })
         .catch(error => {
-          showRegistrationStatusMessage(error.message, false);
+          //showRegistrationStatusMessage(error.message, false);
+          showStatusMessage("registerStatus", error.message, false);
           console.log("Error: ", error);
         });
     });
+
+
+    document.getElementById('depositForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const body = {
+        userId: document.getElementById('userSelect').value,
+        amount: parseFloat(document.getElementById('amount').value),
+        transactionType: document.getElementById('transactionType').value,
+        remarks: document.getElementById('remarks').value
+      };
+
+      fetch("/api/v1/users/deposit", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+        .then(async response => {
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.message || "Registration failed");
+          return data;
+        })
+        .then(data => {
+            //alert("Registration successful");
+            console.log(data); // Optional: show success data
+            showStatusMessage("depositStatus", "Deposit successful!", true);
+        })
+        .catch(error => {
+          showStatusMessage("depositStatus", error.message, false);
+          console.log("Error: ", error);
+        });
+    });
+
+    async function scheduleIncome() {
+      try {
+        const response = await fetch('/api/v1/bonus/referral/schedule');
+        const responseData = await response.json();
+        console.log("RESPONSE: ", responseData);
+        alert(JSON.stringify(responseData));
+      } catch (error) {
+        console.error("Error scheduling income:", error);
+        alert("Failed to schedule income.");
+      }
+    }
 
   </script>
 

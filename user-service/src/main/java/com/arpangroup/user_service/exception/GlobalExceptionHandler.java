@@ -2,6 +2,7 @@ package com.arpangroup.user_service.exception;
 
 import com.arpangroup.user_service.exception.base.UserValidationException;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     // Handle validation errors for @Valid annotated parameters
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-
+        log.error(ex.getMessage());
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -50,6 +52,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // Handle malformed or missing request body
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        log.error(ex.getMessage());
 
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
@@ -63,6 +66,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+
         String message = "Data integrity violation";
         Throwable rootCause = ex.getRootCause();
 
@@ -93,6 +98,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UserValidationException.class)
     public ResponseEntity<ErrorResponse> handleAllExceptions(UserValidationException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "Validation Exception",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(UserCreateException.class)
+    public ResponseEntity<ErrorResponse> handleUserCreateException(UserCreateException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Validation Exception",

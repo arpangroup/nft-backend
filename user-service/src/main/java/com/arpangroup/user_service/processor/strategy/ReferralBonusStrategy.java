@@ -1,9 +1,0 @@
-package com.arpangroup.user_service.processor.strategy;
-
-import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.entity.config.CalculationType;
-
-public interface ReferralBonusStrategy {
-    double calculateBonus(User user);
-    CalculationType getSupportedType();
-}

@@ -5,12 +5,14 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 @ConfigurationProperties(prefix = "bonus.referral")
 @Data
 public class ReferralBonusConfig {
     private boolean enable;
     private CalculationType calculationType;
-    private double percentageRate;
-    private double flatAmount;
+    private BigDecimal percentageRate;
+    private BigDecimal flatAmount;
 }
