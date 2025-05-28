@@ -34,7 +34,7 @@ public class Transaction {
     @Setter
     private String txnRefId; // should be unique
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime txnDate;
 
     @Column(length = 255, nullable = true)
