@@ -13,6 +13,6 @@ public class ProductSoldListener {
 
     @EventListener
     public void handleUserRegistered(ProductSoldEvent event) {
-        log.info("Listening :: handleUserRegistered for userId: {}, productId: {}.....", event.getUserId(), event.getProductId());
+        log.info("Listening :: ProductSoldEvent for userId: {}, productId: {}.....", event.getUserId(), event.getProductId());
     }
 }

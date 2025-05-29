@@ -29,6 +29,7 @@ When a new user registers, bonuses can be propagated upwards through the referra
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final TransactionService transactionService;
+    private final DepositService depositService;
 
     @Override
     public User createUser(User user, String referralCode) {
@@ -92,19 +93,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User deposit(long userId, BigDecimal amount, String remarks) {
         log.info("Deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
-
-        // add the record to transaction
-        transactionService.deposit(userId, amount, remarks);
-
-        // update user's wallet balance
-        User user = userRepository.findById(userId).orElseThrow(() -> new IdNotFoundException("invalid userId: " + userId));
-        user.setWalletBalance(user.getWalletBalance().add(amount));
-        userRepository.save(user);
-        return user;
+        return depositService.deposit(userId, amount, remarks);
     }
 
     @Override
     public boolean hasDeposit(Long userId) {
-        return transactionService.hasDepositTransaction(userId);
+        return depositService.hasDeposit(userId);
     }
 }

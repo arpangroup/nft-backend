@@ -17,10 +17,12 @@ public class UserHierarchy {
     private Long ancestor;
     private Long descendant;
     private int depth;
+    private boolean active;
 
     public UserHierarchy(Long ancestor, Long descendant, int depth) {
         this.ancestor = ancestor;
         this.descendant = descendant;
         this.depth = depth;
+        this.active = false;
     }
 }

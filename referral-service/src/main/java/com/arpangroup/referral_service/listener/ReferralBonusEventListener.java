@@ -33,7 +33,7 @@ public class ReferralBonusEventListener {
     @EventListener
     //@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleUserRegistered(UserRegisteredEvent event) {
-        log.info("Listening :: handleUserRegistered for userId: {}", event.getRefereeId());
+        log.info("Listening :: UserRegisteredEvent for userId: {}", event.getRefereeId());
         referralBonusService.createPendingBonus(event.getReferrerId(), event.getRefereeId(), event.getTriggerType());
     }
 
@@ -51,7 +51,7 @@ public class ReferralBonusEventListener {
      */
     @EventListener
     public void handleReferralTrigger(ReferralTriggerEvent event) {
-        log.info("Listening :: handleUserRegistered for userId: {}.....", event.getUserId());
+        log.info("Listening :: ReferralTriggerEvent for userId: {}.....", event.getUserId());
         referralBonusService.evaluateBonus(event.getUserId());
     }
 }
