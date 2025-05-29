@@ -50,8 +50,8 @@ public class ReferralBonus {
     @Enumerated(EnumType.STRING)
     private ReferralBonusTriggerType triggerType; // Enum indicating what action should trigger this bonus (e.g., FIRST_DEPOSIT, ACCOUNT_ACTIVATION).
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private BonusStatus status = BonusStatus.PENDING;
 
     private String remarks; // Optional explanation for rejection or approval reason.
