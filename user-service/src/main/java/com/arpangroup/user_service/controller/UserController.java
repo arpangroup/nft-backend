@@ -1,13 +1,9 @@
 package com.arpangroup.user_service.controller;
 
 import com.arpangroup.user_service.dto.DepositRequest;
-import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
-import com.arpangroup.user_service.entity.UserHierarchy;
 import com.arpangroup.user_service.mapper.UserMapper;
-import com.arpangroup.user_service.repository.UserHierarchyRepository;
 import com.arpangroup.user_service.repository.UserRepository;
-import com.arpangroup.user_service.service.UserHierarchyService;
 import com.arpangroup.user_service.service.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserController {
     private final UserServiceImpl userService;
-    private final UserHierarchyService userHierarchyService;
     private final UserMapper mapper;
-    private final UserHierarchyRepository userHierarchyRepository;
     private final UserRepository userRepository;
 
     @GetMapping
@@ -46,21 +40,5 @@ public class UserController {
     @PostMapping("/deposit")
     public ResponseEntity<User> deposit(@Valid @RequestBody DepositRequest request) {
         return ResponseEntity.ok(userService.deposit(request.getUserId(), request.getAmount(), request.getRemarks()));
-    }
-
-
-    // #############################################################################//
-    // #############################################################################//
-
-
-    @GetMapping("/hierarchy")
-    public ResponseEntity<List<UserHierarchy>> userHierarch() {
-        return ResponseEntity.ok(userHierarchyRepository.findAll());
-    }
-
-    @GetMapping("/downline-tree/{userId}")
-    public ResponseEntity<UserTreeNode> getDownlineTree(@PathVariable Long userId, @RequestParam(name = "maxLevel", defaultValue = "3") int maxLevel) {
-        UserTreeNode tree = userHierarchyService.getDownlineTree(userId, maxLevel);
-        return ResponseEntity.ok(tree);
     }
 }

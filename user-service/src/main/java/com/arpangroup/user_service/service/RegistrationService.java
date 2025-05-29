@@ -5,8 +5,6 @@ import com.arpangroup.nft_common.event.UserRegisteredEvent;
 import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.mapper.UserMapper;
-import com.arpangroup.user_service.repository.UserRepository;
-import com.arpangroup.user_service.transaction.TransactionRepository;
 import com.arpangroup.user_service.validation.UserValidatorTemplate;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +18,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RegistrationService {
     private final UserServiceImpl userService;
-
     private final UserValidatorTemplate userValidator;
     private final UserMapper userMapper;
-    private final UserRepository userRepository;
-    private final TransactionRepository transactionRepository;
     private final ApplicationEventPublisher publisher;
 
     @Transactional

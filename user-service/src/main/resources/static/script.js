@@ -44,7 +44,7 @@ async function loadTree() {
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('id') || 1;
     const maxLevel = urlParams.get('level') || 3;
-    const response = await fetch(`/api/v1/users/downline-tree/${userId}?maxLevel=${maxLevel}`);
+    const response = await fetch(`/api/v1/downline-tree/${userId}?maxLevel=${maxLevel}`);
     const treeData = await response.json();
     console.log("TREE_DATA: ", treeData);
     document.getElementById('mlmTree').innerHTML = `<ul>${buildTree(treeData)}</ul>`;
