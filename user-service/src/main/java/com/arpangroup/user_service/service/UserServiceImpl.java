@@ -1,6 +1,5 @@
 package com.arpangroup.user_service.service;
 
-import com.arpangroup.user_service.entity.Transaction;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.exception.IdNotFoundException;
 import com.arpangroup.user_service.repository.UserRepository;
@@ -29,7 +28,6 @@ When a new user registers, bonuses can be propagated upwards through the referra
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final UserHierarchyService userHierarchyService;
     private final TransactionService transactionService;
 
     @Override
@@ -43,7 +41,6 @@ public class UserServiceImpl implements UserService {
         if (referrer != null) {
             log.info("Referrer with ID: {} ====> updating the closure table....", referrer.getId());
             user.setReferrer(referrer);
-            userHierarchyService.updateHierarchy(referrer.getId(), user.getId());
         }
         return user;
     }

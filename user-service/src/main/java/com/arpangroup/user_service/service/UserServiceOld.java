@@ -1,7 +1,7 @@
 //package com.arpangroup.user_service.service;
 //
 //import com.arpangroup.user_service.entity.User;
-//import com.arpangroup.user_service.entity.UserHierarchy;
+//import com.arpangroup.referral_service.domain.UserHierarchy;
 //import com.arpangroup.user_service.exception.InvalidRequestException;
 //
 //import java.util.List;
