@@ -1,7 +1,7 @@
 package com.arpangroup.referral_service.domain.entity;
 
+import com.arpangroup.nft_common.enums.TriggerType;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
-import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,7 +48,7 @@ public class ReferralBonus {
     private BigDecimal bonusAmount; // How much bonus is to be given if approved.
 
     @Enumerated(EnumType.STRING)
-    private ReferralBonusTriggerType triggerType; // Enum indicating what action should trigger this bonus (e.g., FIRST_DEPOSIT, ACCOUNT_ACTIVATION).
+    private TriggerType triggerType; // Enum indicating what action should trigger this bonus (e.g., FIRST_DEPOSIT, ACCOUNT_ACTIVATION).
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

@@ -39,6 +39,20 @@ In a Multi-Level Marketing (MLM) system, updating a user's level or rank depends
 - **Immediate Update:** Update a user's rank immediately after a downline member makes their first deposit.
 - **Scheduled Evaluation:** Perform a daily or weekly evaluation to adjust ranks based on overall activity, including new recruits, deposit and sale.
 
+---
+
+## ✅ Recommended Event Name:
+UserRankUpdateEvent
+
+| Name                                   | Use Case                                             |
+| -------------------------------------- | ---------------------------------------------------- |
+| `UserActivityTriggeredRankUpdateEvent` | When triggered by actions like deposit, registration |
+| `ScheduledRankEvaluationEvent`         | For scheduled/daily batch processing                 |
+| `ReferralBasedRankUpdateEvent`         | Triggered by new downline registrations              |
+| `BusinessVolumeRankUpdateEvent`        | When based on sales or deposits (BV)                 |
+| `RankRecalculationEvent`               | Generic, reusable for any rank recalculation trigger |
+
+
 
 
 

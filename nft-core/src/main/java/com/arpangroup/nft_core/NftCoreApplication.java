@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 		"com.arpangroup.user_service",
 		"com.arpangroup.referral_service"
 })
+@EnableAspectJAutoProxy
 public class NftCoreApplication implements CommandLineRunner {
 	@Autowired
 	public CategoryRepository categoryRepository;

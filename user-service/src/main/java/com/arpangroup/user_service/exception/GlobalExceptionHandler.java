@@ -27,6 +27,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         log.error(ex.getMessage());
+        ex.printStackTrace();
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -53,6 +54,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         log.error(ex.getMessage());
+        ex.printStackTrace();
 
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
@@ -67,6 +69,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex, HttpServletRequest request) {
         log.error(ex.getMessage());
+        ex.printStackTrace();
 
         String message = "Data integrity violation";
         Throwable rootCause = ex.getRootCause();
@@ -99,6 +102,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserValidationException.class)
     public ResponseEntity<ErrorResponse> handleAllExceptions(UserValidationException ex, HttpServletRequest request) {
         log.error(ex.getMessage());
+        ex.printStackTrace();
 
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
@@ -112,6 +116,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserCreateException.class)
     public ResponseEntity<ErrorResponse> handleUserCreateException(UserCreateException ex, HttpServletRequest request) {
         log.error(ex.getMessage());
+        ex.printStackTrace();
 
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
@@ -125,6 +130,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // Handle other unexpected exceptions
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleAllExceptions(Exception ex, HttpServletRequest request) {
+        ex.printStackTrace();
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Internal Server Error",

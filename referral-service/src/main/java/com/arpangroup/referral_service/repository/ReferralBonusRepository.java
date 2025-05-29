@@ -2,7 +2,6 @@ package com.arpangroup.referral_service.repository;
 
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
-import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

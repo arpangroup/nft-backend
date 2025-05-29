@@ -1,8 +1,8 @@
-package com.arpangroup.referral_service.service.strategy.impl;
+package com.arpangroup.referral_service.strategy.referral.impl;
 
 import com.arpangroup.nft_common.dto.UserInfo;
-import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
-import com.arpangroup.referral_service.service.strategy.AbstractReferralBonusStrategy;
+import com.arpangroup.nft_common.enums.TriggerType;
+import com.arpangroup.referral_service.strategy.referral.AbstractReferralBonusStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,7 @@ public class FirstDepositBonusStrategy extends AbstractReferralBonusStrategy {
     }
 
     @Override
-    protected ReferralBonusTriggerType getTriggerType() {
-        return ReferralBonusTriggerType.FIRST_DEPOSIT;
+    protected TriggerType getTriggerType() {
+        return TriggerType.FIRST_DEPOSIT;
     }
 }
