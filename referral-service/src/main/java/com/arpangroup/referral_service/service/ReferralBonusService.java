@@ -1,13 +1,14 @@
 package com.arpangroup.referral_service.service;
 
 import com.arpangroup.nft_common.dto.UserInfo;
+import com.arpangroup.referral_service.annotation.Audit;
 import com.arpangroup.referral_service.client.UserClient;
 import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
-import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
+import com.arpangroup.nft_common.enums.TriggerType;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
-import com.arpangroup.referral_service.service.strategy.ReferralBonusStrategy;
+import com.arpangroup.referral_service.strategy.referral.ReferralBonusStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,6 +43,7 @@ public class ReferralBonusService {
         }
     }
 
+    @Audit(action = "EVALUATE_BONUS")
     public void evaluateBonus(Long refereeId) {
         log.info("evaluateBonus for refereeId: {}", refereeId);
         // Find the bonus for this user & trigger type
@@ -59,6 +61,7 @@ public class ReferralBonusService {
         }
     }
 
+    @Audit(action = "EVALUATE_ALL_PENDING_BONUS")
     public void evaluateAllPendingBonuses() {
         log.info("evaluateAllPendingBonuses........");
         List<ReferralBonus> referralBonuses = bonusRepository.findByStatus(BonusStatus.PENDING);
@@ -82,7 +85,8 @@ public class ReferralBonusService {
         }
     }
 
-    public void createPendingBonus(Long referrerId, Long refereeId, ReferralBonusTriggerType triggerType) {
+    @Audit(action = "CREATE_PENDING_BONUS")
+    public void createPendingBonus(Long referrerId, Long refereeId, TriggerType triggerType) {
         log.info("creatingPendingBonus for referrerId: {}, refereeId: {}, triggerType: {}........", referrerId, refereeId, triggerType);
         ReferralBonus bonus = new ReferralBonus();
         bonus.setReferrerId(referrerId);

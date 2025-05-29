@@ -1,11 +1,11 @@
-package com.arpangroup.referral_service.service.strategy;
+package com.arpangroup.referral_service.strategy.referral;
 
 import com.arpangroup.nft_common.dto.UserInfo;
+import com.arpangroup.nft_common.enums.TriggerType;
 import com.arpangroup.referral_service.client.UserClient;
 import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;
 import com.arpangroup.referral_service.domain.enums.BonusStatus;
-import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +64,5 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
 
     // Allow strategy to provide custom amount and trigger type
     protected abstract BigDecimal getBonusAmount(UserInfo referrer, UserInfo referee);
-    protected abstract ReferralBonusTriggerType getTriggerType();
+    protected abstract TriggerType getTriggerType();
 }

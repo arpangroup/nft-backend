@@ -10,7 +10,7 @@
 | `referrerId`               | ID of the user who should receive the bonus.                                                       |
 | `refereeId`                | ID of the newly referred user (the one who triggers the bonus).                                    |
 | `bonusAmount`              | How much bonus is to be given if approved.                                                         |
-| `referralBonusTriggerType`              | Enum indicating what action should trigger this bonus (e.g., FIRST\_DEPOSIT, ACCOUNT\_ACTIVATION). |
+| `triggerType`              | Enum indicating what action should trigger this bonus (e.g., FIRST\_DEPOSIT, ACCOUNT\_ACTIVATION). |
 | `evaluated`                | Indicates whether this bonus has been checked/processed.                                           |
 | `approved`                 | Marks whether the bonus was successfully granted.                                                  |
 | `remarks`                  | Optional explanation for rejection or approval reason.                                             |
@@ -37,7 +37,7 @@ public class PendingBonus {
     private double bonusAmount; // How much bonus is to be given if approved.
 
     @Enumerated(EnumType.STRING)
-    private TriggerType referralBonusTriggerType; // Enum indicating what action should trigger this bonus (e.g., FIRST_DEPOSIT, ACCOUNT_ACTIVATION).
+    private TriggerType triggerType; // Enum indicating what action should trigger this bonus (e.g., FIRST_DEPOSIT, ACCOUNT_ACTIVATION).
 
     private boolean evaluated; // If the bonus has been evaluated/processed
 
@@ -59,14 +59,14 @@ public class PendingBonus {
 ## 1. Creation When User Is Referred
 When a new user registers using a referral code:
 - The system does not grant the bonus immediately.
-- Instead, it creates a `PendingBonus` record with the expected `bonusAmount`, `referrerId`, `refereeId`, and `referralBonusTriggerType`.
+- Instead, it creates a `PendingBonus` record with the expected `bonusAmount`, `referrerId`, `refereeId`, and `triggerType`.
 ````java
 // Example: inside Registration or ReferralService
 pendingBonusRepository.save(PendingBonus.builder()
     .referrerId(referrer.getId())
     .refereeId(newUser.getId())
     .bonusAmount(50.0)
-    .referralBonusTriggerType(TriggerType.FIRST_DEPOSIT)
+    .triggerType(TriggerType.FIRST_DEPOSIT)
     .evaluated(false)
     .approved(false)
     .build());
@@ -76,11 +76,11 @@ pendingBonusRepository.save(PendingBonus.builder()
 ## 2. Evaluation Based on Events or Conditions
 Later, when the referee performs an action (like deposit, activation, etc.), the system checks for matching `PendingBonus` records.
 ````java
-public void evaluateAllPendingBonuses(Long userId, TriggerType referralBonusTriggerType) {
-    List<PendingBonus> bonuses = pendingBonusRepository.findByRefereeIdAndTriggerTypeAndEvaluatedFalse(userId, referralBonusTriggerType);
+public void evaluateAllPendingBonuses(Long userId, TriggerType triggerType) {
+    List<PendingBonus> bonuses = pendingBonusRepository.findByRefereeIdAndTriggerTypeAndEvaluatedFalse(userId, triggerType);
     
     for (PendingBonus bonus : bonuses) {
-        boolean isEligible = checkEligibility(userId, referralBonusTriggerType);
+        boolean isEligible = checkEligibility(userId, triggerType);
         if (isEligible) {
             awardBonus(bonus);
         } else {

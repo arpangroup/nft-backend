@@ -1,4 +1,4 @@
-package com.arpangroup.referral_service.service.strategy;
+package com.arpangroup.referral_service.strategy.referral;
 
 import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.referral_service.domain.entity.ReferralBonus;

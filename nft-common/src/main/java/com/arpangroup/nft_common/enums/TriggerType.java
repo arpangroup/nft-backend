@@ -1,6 +1,7 @@
 package com.arpangroup.nft_common.enums;
 
-public enum ReferralBonusTriggerType {
+public enum TriggerType {
+    REGISTRATION("REGISTRATION"),                   // Bonus triggered on downline user's registration
     FIRST_DEPOSIT("FIRST_DEPOSIT"),                 // Bonus triggered on user's first deposit
     ACCOUNT_ACTIVATION("ACCOUNT_ACTIVATION"),       // Bonus triggered when account is activated (e.g., payment or KYC)
     MINIMUM_REQUIREMENT("MINIMUM_REQUIREMENT"),     // Bonus triggered after meeting a custom condition (e.g., invite 3 users)
@@ -9,7 +10,7 @@ public enum ReferralBonusTriggerType {
 
     private final String label;
 
-    ReferralBonusTriggerType(String label) {
+    TriggerType(String label) {
         this.label = label;
     }
 
@@ -17,8 +18,8 @@ public enum ReferralBonusTriggerType {
         return label;
     }
 
-    public static ReferralBonusTriggerType fromLabel(String label) {
-        for (ReferralBonusTriggerType type : ReferralBonusTriggerType.values()) {
+    public static TriggerType fromLabel(String label) {
+        for (TriggerType type : TriggerType.values()) {
             if (type.getLabel().equalsIgnoreCase(label)) {
                 return type;
             }

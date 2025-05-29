@@ -1,8 +1,8 @@
-package com.arpangroup.referral_service.service.strategy.impl;
+package com.arpangroup.referral_service.strategy.referral.impl;
 
 import com.arpangroup.nft_common.dto.UserInfo;
-import com.arpangroup.nft_common.enums.ReferralBonusTriggerType;
-import com.arpangroup.referral_service.service.strategy.AbstractReferralBonusStrategy;
+import com.arpangroup.nft_common.enums.TriggerType;
+import com.arpangroup.referral_service.strategy.referral.AbstractReferralBonusStrategy;
 
 import java.math.BigDecimal;
 
@@ -19,8 +19,8 @@ public class ManualApprovalBonusStrategy extends AbstractReferralBonusStrategy {
     }
 
     @Override
-    protected ReferralBonusTriggerType getTriggerType() {
-        return ReferralBonusTriggerType.MANUAL_APPROVAL;
+    protected TriggerType getTriggerType() {
+        return TriggerType.MANUAL_APPROVAL;
     }
 
 }
