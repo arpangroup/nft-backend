@@ -1,6 +1,6 @@
 package com.arpangroup.referral_service.scheduler;
 
-import com.arpangroup.referral_service.service.ReferralBonusService;
+import com.arpangroup.referral_service.referral.ReferralBonusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 

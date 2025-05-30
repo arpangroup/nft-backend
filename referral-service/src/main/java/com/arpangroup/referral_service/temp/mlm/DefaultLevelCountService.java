@@ -1,7 +1,7 @@
 package com.arpangroup.referral_service.temp.mlm;
 
-import com.arpangroup.referral_service.domain.entity.UserHierarchy;
-import com.arpangroup.referral_service.repository.UserHierarchyRepository;
+import com.arpangroup.referral_service.hierarchy.UserHierarchy;
+import com.arpangroup.referral_service.hierarchy.UserHierarchyRepository;
 import com.arpangroup.referral_service.temp.mlm.context.LevelCalculationContext;
 import com.arpangroup.referral_service.temp.mlm.templates.LevelCountTemplate;
 import lombok.RequiredArgsConstructor;

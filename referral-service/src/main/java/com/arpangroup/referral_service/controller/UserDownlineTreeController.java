@@ -1,12 +1,10 @@
 package com.arpangroup.referral_service.controller;
 
-import com.arpangroup.referral_service.service.UserHierarchyService;
+import com.arpangroup.referral_service.hierarchy.UserHierarchyService;
 import com.arpangroup.user_service.dto.UserTreeNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @CrossOrigin(origins = "http://localhost:3000")

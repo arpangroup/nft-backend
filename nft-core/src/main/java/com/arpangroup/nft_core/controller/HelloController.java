@@ -1,13 +1,11 @@
 package com.arpangroup.nft_core.controller;
 
-import com.arpangroup.referral_service.service.ReferralPingService;
+import com.arpangroup.referral_service.ReferralPingService;
 import com.arpangroup.user_service.dto.RegistrationRequest;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.service.RegistrationService;
 import com.arpangroup.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
