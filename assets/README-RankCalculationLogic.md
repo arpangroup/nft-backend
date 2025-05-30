@@ -101,101 +101,94 @@ What would be the most appropriate design pattern to implement this kind of rank
 
 
 ## ✅ Recommended Design Pattern: Strategy Pattern
-**1. RankEvaluationContext**
+
+**1. Rank.java (Enum)**
 ````java
+public enum Rank {
+    RANK_1, RANK_2, RANK_3, RANK_4, RANK_5
+}
+````
+
+**2. RankConfig.java**
+````java
+@Entity
+@Table(name = "rank_config")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
-public class RankEvaluationContext {
-    private final Long userId;
-    private final BigDecimal walletBalance;
+@Setter
+public class RankConfig {
 
-    // Cache to avoid duplicate DB queries
-    private final Map<RankLevel, Set<Long>> rankUserMap = new EnumMap<>(RankLevel.class);
+    @Id
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rank_type") // Avoid reserved keyword
+    private Rank rank;
+
+    private int minWalletBalance;
+    private int maxWalletBalance;
+    private String reservationRange;
+    private double profitPerDay;
+    private double annualizedReturns;
+
+    @ElementCollection
+    @CollectionTable(name = "rank_required_downlines", joinColumns = @JoinColumn(name = "rank"))
+    @MapKeyColumn(name = "depth")
+    @Column(name = "required_count")
+    private Map<Integer, Integer> requiredLevelCounts = new HashMap<>();
 }
 ````
 
-**2. UserHierarchyService:**
+**3. RankEvaluationContext.java**
 ````java
-@Service
-@RequiredArgsConstructor
-public class UserHierarchyService {
-  private final UserHierarchyRepository hierarchyRepo;
-    
-  public Set<Long> getDirectReferrals(Long userId, int depth) {
-    return hierarchyRepo.findByAncestorAndDepth(userId, depth).stream()
-            .map(UserHierarchy::getDescendant)
-            .collect(Collectors.toSet());
-  }
-
-  public Set<Long> calculateRankUsers(Long baseUserId, RankLevel level, RankEvaluationContext context) {
-    if (level == RankLevel.LEVEL_1) {
-      return getDirectReferrals(baseUserId, 1);
-    }
-
-    // Use cached data to build higher-level ranks
-    RankLevel prevLevel = level.previous();
-    Set<Long> previousRankUsers = context.getUsersForLevel(prevLevel);
-    Set<Long> currentRankUsers = new HashSet<>();
-
-    for (Long userId : previousRankUsers) {
-      currentRankUsers.addAll(getDirectReferrals(userId, 1));
-    }
-
-    return currentRankUsers;
-  }
+@Data
+@AllArgsConstructor
+public class RankEvaluationContext {
+    private Long userId;
+    private int walletBalance;
+    private Map<Integer, List<Long>> downlineMapByLevel; // Level -> List of userIds
 }
 ````
 
-**3. RankEvaluationStrategy:**
+
+**4. RankEvaluationStrategy.java**
 ````java
 public interface RankEvaluationStrategy {
-    //boolean isEligible(User user, UserHierarchy hierarchy, BigDecimal walletBalance);
-    boolean isEligible(RankEvaluationContext context, UserHierarchyService hierarchyService);
-    Rank getRank();  // e.g., RANK_1, RANK_2...
+    boolean isEligible(RankEvaluationContext context);
+    Rank getRank();
 }
 ````
 
-**4. Example Rank2 Strategy:**
+**5. Rank2Evaluation.java (example implementation)**
 ````java
 @Component
+@RequiredArgsConstructor
 public class Rank2Evaluation implements RankEvaluationStrategy {
 
-    @Value("${rank2.min-balance}")
-    private BigDecimal minBalance;
+    private final RankConfigRepository configRepository;
 
-    @Value("${rank2.max-balance}")
-    private BigDecimal maxBalance;
-
-    /*@Override
-    public boolean isEligible(User user, UserHierarchy hierarchy, BigDecimal walletBalance) {
-        return walletBalance.compareTo(minBalance) >= 0 &&
-               walletBalance.compareTo(maxBalance) <= 0 &&
-               hierarchy.from user hierarchy, but () >= 3 &&
-               hierarchy.getLevelBCount() >= 4 &&
-               hierarchy.getLevelCCount() >= 1;
-    }*/
-  
     @Override
-    public boolean isEligible(RankEvaluationContext context, UserHierarchyService hierarchyService) {
-      if (context.getWalletBalance().compareTo(new BigDecimal("500")) < 0 ||
-              context.getWalletBalance().compareTo(new BigDecimal("2000")) > 0) {
-        return false;
-      }
+    public boolean isEligible(RankEvaluationContext context) {
+        RankConfig config = configRepository.findById(Rank.RANK_2).orElse(null);
+        if (config == null) return false;
 
-      // Get Rank1 users (level A)
-      Set<Long> levelAUsers = context.hasCachedUsers(RankLevel.LEVEL_1)
-              ? context.getUsersForLevel(RankLevel.LEVEL_1)
-              : hierarchyService.calculateRankUsers(context.getUserId(), RankLevel.LEVEL_1, context);
+        if (context.getWalletBalance() < config.getMinWalletBalance() || 
+            context.getWalletBalance() > config.getMaxWalletBalance()) {
+            return false;
+        }
 
-      context.cacheUsers(RankLevel.LEVEL_1, levelAUsers);
+        Map<Integer, Integer> required = config.getRequiredLevelCounts();
 
-      // Get Rank2 users (level B)
-      Set<Long> levelBUsers = context.hasCachedUsers(RankLevel.LEVEL_2)
-              ? context.getUsersForLevel(RankLevel.LEVEL_2)
-              : hierarchyService.calculateRankUsers(context.getUserId(), RankLevel.LEVEL_2, context);
+        for (Map.Entry<Integer, Integer> entry : required.entrySet()) {
+            int level = entry.getKey();
+            int requiredCount = entry.getValue();
 
-      context.cacheUsers(RankLevel.LEVEL_2, levelBUsers);
+            List<Long> usersAtLevel = context.getDownlineMapByLevel().getOrDefault(level, Collections.emptyList());
+            if (usersAtLevel.size() < requiredCount) {
+                return false;
+            }
+        }
 
-      return levelAUsers.size() >= 3 && levelBUsers.size() >= 4;
+        return true;
     }
 
     @Override
@@ -204,24 +197,49 @@ public class Rank2Evaluation implements RankEvaluationStrategy {
     }
 }
 ````
-💡 RankEvaluatorEngine
+
+**6. RankEvaluationService.java**
 ````java
 @Service
 @RequiredArgsConstructor
-public class RankEvaluatorEngine {
+public class RankEvaluationService {
 
     private final List<RankEvaluationStrategy> strategies;
+    private final UserHierarchyService hierarchyService;
 
-    public Rank evaluate(User user, UserHierarchy hierarchy, BigDecimal walletBalance) {
+    public Rank evaluateUserRank(Long userId, int walletBalance) {
+        Map<Integer, List<Long>> downlineByLevel = hierarchyService.getDownlinesGroupedByLevel(userId);
+        RankEvaluationContext context = new RankEvaluationContext(userId, walletBalance, downlineByLevel);
+
         return strategies.stream()
-            .filter(s -> s.isEligible(user, hierarchy, walletBalance))
-            .map(RankEvaluationStrategy::getRank)
-            .max(Comparator.comparing(Rank::getLevel))  // assumes Rank enum has getLevel()
-            .orElse(Rank.NONE);
+                .filter(strategy -> strategy.isEligible(context))
+                .map(RankEvaluationStrategy::getRank)
+                .max(Comparator.comparing(Enum::ordinal)) // Choose highest eligible rank
+                .orElse(Rank.RANK_1); // Default rank
     }
 }
 ````
 
+**7. UserHierarchyService.java**
+````java
+@Service
+@RequiredArgsConstructor
+public class UserHierarchyService {
+
+    private final UserHierarchyRepository repository;
+
+    public Map<Integer, List<Long>> getDownlinesGroupedByLevel(Long userId) {
+        List<UserHierarchy> hierarchy = repository.findAllByAncestor(userId);
+
+        return hierarchy.stream()
+                .filter(h -> h.isActive() && h.getDepth() >= 1 && h.getDepth() <= 3)
+                .collect(Collectors.groupingBy(
+                        UserHierarchy::getDepth,
+                        Collectors.mapping(UserHierarchy::getDescendant, Collectors.toList())
+                ));
+    }
+}
+````
 
 
 
