@@ -10,6 +10,7 @@ public interface UserService {
     User createUser(User user, String referralCode);
     User updateUser(Long userId, Map<String, Object> fieldsToUpdate);
     User updateUser(User user);
+    User updateUserRank(Long userId, int newRank);
 
     List<User> getUsers();
     List<User> getUserByIds(List<Long> userIds);

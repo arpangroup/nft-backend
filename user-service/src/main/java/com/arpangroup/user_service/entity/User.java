@@ -27,8 +27,8 @@ public class User {
     @JoinColumn(name = "referrer_id", referencedColumnName = "id")
     private User referrer;
 
-    @Column(name = "level")
-    private int level;
+    @Column(name = "rank_level")
+    private int rank;
 
 
     @Column(nullable = false, updatable = false)

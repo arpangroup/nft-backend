@@ -11,4 +11,5 @@ public interface UserClient {
     UserInfo getUserByReferralCode(String referralCode);
     Boolean hasDeposit(Long userId);
     UserInfo deposit(long userId, BigDecimal amount, String remarks);
+    UserInfo updateUserRank(long userId, int newRank);
 }

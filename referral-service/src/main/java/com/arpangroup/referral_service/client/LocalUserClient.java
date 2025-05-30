@@ -49,4 +49,10 @@ public class LocalUserClient implements UserClient {
         log.info("deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
         return mapper.mapTo(userService.deposit(userId, amount, remarks));
     }
+
+    @Override
+    public UserInfo updateUserRank(long userId, int newRank) {
+        log.info("updateUserRank for userId: {}, newRank: {}", userId, newRank);
+        return mapper.mapTo(userService.updateUserRank(userId, newRank));
+    }
 }
