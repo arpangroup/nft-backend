@@ -21,6 +21,8 @@ public class RankConfig {
 
     private int minWalletBalance;
     private int maxWalletBalance;
+    private double profitPerDay;
+    private double annualizedReturns;
 
     // Required downline users per level (depth = 1 = level A, etc.)
     @ElementCollection //  Tells JPA this is a collection of simple values (not entities).

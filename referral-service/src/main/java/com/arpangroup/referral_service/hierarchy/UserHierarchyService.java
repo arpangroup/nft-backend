@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,14 +39,26 @@ public class UserHierarchyService {
         hierarchyRepo.saveAll(pathToSave);
     }
 
-    public Set<Long> getDirectReferrals(Long userId, int depth) {
-        return hierarchyRepo.findByAncestorAndDepth(userId, depth).stream()
-                .map(UserHierarchy::getDescendant)
-                .collect(Collectors.toSet());
+    public Map<Integer, List<Long>> getDownlinesGroupedByLevel(Long userId) {
+        List<UserHierarchy> hierarchy = hierarchyRepo.findByAncestor(userId);
+
+        return hierarchy.stream()
+                .filter(h -> h.isActive() && h.getDepth() >= 1 && h.getDepth() <= 3)
+                .collect(Collectors.groupingBy(
+                        UserHierarchy::getDepth,
+                        Collectors.mapping(UserHierarchy::getDescendant, Collectors.toList())
+                ));
     }
 
 
-    public Set<Long> calculateRankUsers(Long baseUserId, RankLevel level, RankEvaluationContext context) {
+    /*public Set<Long> getDirectReferrals(Long userId, int depth) {
+        return hierarchyRepo.findByAncestorAndDepth(userId, depth).stream()
+                .map(UserHierarchy::getDescendant)
+                .collect(Collectors.toSet());
+    }*/
+
+
+    /*public Set<Long> calculateRankUsers(Long baseUserId, RankLevel level, RankEvaluationContext context) {
         if (level == RankLevel.LEVEL_1) {
             return getDirectReferrals(baseUserId, 1);
         }
@@ -64,7 +73,7 @@ public class UserHierarchyService {
         }
 
         return currentRankUsers;
-    }
+    }*/
 
 
     /*public List<UserHierarchy> getDownline(Long userId) {

@@ -23,6 +23,6 @@ public class UserHierarchy {
         this.ancestor = ancestor;
         this.descendant = descendant;
         this.depth = depth;
-        this.active = false;
+        this.active = true;
     }
 }
