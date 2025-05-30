@@ -1,4 +1,4 @@
-package com.arpangroup.referral_service.temp.mlm.model;
+package com.arpangroup.referral_service.hierarchy.model;
 
 public interface DownlineUserIds {
     Integer getDepth();
