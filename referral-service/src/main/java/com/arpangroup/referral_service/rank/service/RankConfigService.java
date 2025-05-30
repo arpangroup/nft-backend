@@ -32,10 +32,11 @@ public class RankConfigService {
         for (RankConfigDto dto : dtos) {
             Rank rankEnum = Rank.valueOf(dto.getRank());
             RankConfig existing = rankConfigRepository.findById(rankEnum)
-                    .orElse(new RankConfig(rankEnum, 0, 0)); // Create if not exists
+                    .orElse(new RankConfig(rankEnum, 0, 0, 0)); // Create if not exists
 
             existing.setMinWalletBalance(dto.getMinWalletBalance());
             existing.setMaxWalletBalance(dto.getMaxWalletBalance());
+            existing.setCommissionRate(dto.getCommissionRate());
             existing.setRequiredLevelCounts(new HashMap<>(dto.getRequiredLevelCounts()));
 
             rankConfigRepository.save(existing);
@@ -48,6 +49,7 @@ public class RankConfigService {
         dto.setRank(config.getRank().name());
         dto.setMinWalletBalance(config.getMinWalletBalance());
         dto.setMaxWalletBalance(config.getMaxWalletBalance());
+        dto.setCommissionRate(config.getCommissionRate());
         dto.setRequiredLevelCounts(new HashMap<>(config.getRequiredLevelCounts()));
         return dto;
     }

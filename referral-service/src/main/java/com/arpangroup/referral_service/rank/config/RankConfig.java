@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,10 +30,17 @@ public class RankConfig {
     private Map<Integer, Integer> requiredLevelCounts = new HashMap<>();
 
     // Optional fields like commission rate, etc. can go here
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal commissionRate = BigDecimal.ZERO;
 
     public RankConfig(Rank rank, int minWalletBalance, int maxWalletBalance) {
         this.rank = rank;
         this.minWalletBalance = minWalletBalance;
         this.maxWalletBalance = maxWalletBalance;
+    }
+
+    public RankConfig(Rank rank, int minWalletBalance, int maxWalletBalance, double commissionRate) {
+       this(rank, minWalletBalance, maxWalletBalance);
+       this.commissionRate = BigDecimal.valueOf(commissionRate);
     }
 }

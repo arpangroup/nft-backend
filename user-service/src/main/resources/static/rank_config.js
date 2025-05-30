@@ -48,6 +48,17 @@
           tr.appendChild(tdLevel);
         }
 
+        const tdProfit = document.createElement('td');
+        const inputProfit = document.createElement('input');
+        inputProfit.type = 'number';
+        inputProfit.value = rankConfig.commissionRate;
+        inputProfit.dataset.rank = rankConfig.rank;
+        inputProfit.dataset.field = 'commissionRate';
+        inputProfit.addEventListener('input', onInputChange);
+        tdProfit.appendChild(inputProfit);
+        tr.appendChild(tdProfit);
+
+
         tbody.appendChild(tr);
       });
     }
@@ -79,6 +90,9 @@
     } else if (field === 'maxWalletBalance') {
       isChanged = rankConfig.maxWalletBalance  !== value;
       rankConfig.maxWalletBalance = value;
+    } else if(field === 'commissionRate') {
+      isChanged = rankConfig.commissionRate !== value;
+      rankConfig.commissionRate = value;
     } else if (field.startsWith('requiredLevelCounts.')) {
       const level = parseInt(field.split('.')[1]);
       if (!rankConfig.requiredLevelCounts) rankConfig.requiredLevelCounts = {};
@@ -143,6 +157,7 @@
         rank: newRankName,
         minWalletBalance: 0,
         maxWalletBalance: 0,
+        commissionRate: 0,
         requiredLevelCounts: {
           1: 0,
           2: 0,
