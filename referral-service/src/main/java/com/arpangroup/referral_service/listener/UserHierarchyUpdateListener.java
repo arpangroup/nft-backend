@@ -2,7 +2,7 @@ package com.arpangroup.referral_service.listener;
 
 import com.arpangroup.nft_common.event.FirstDepositEvent;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
-import com.arpangroup.referral_service.service.UserHierarchyService;
+import com.arpangroup.referral_service.hierarchy.UserHierarchyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

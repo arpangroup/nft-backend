@@ -18,6 +18,9 @@
       style="position: fixed; bottom: 10px; left: 10px; background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px;">
       Click a user to see info here.
     </div>
+    <div id="donlineUserLevel"
+         style="position: fixed; bottom: 50px; left: 10px; background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px;">
+    </div>
   </div>
 
   <div class="controls-highlight">
@@ -36,6 +39,7 @@
     <button onclick="toggleSidebar('sidebar-deposit')">💰 Deposit</button>
     <button onclick="toggleSidebar('sidebar-transactions')">📄 Transactions</button>
     <button onclick="toggleSidebar('sidebar-config')">⚙️ Income Config</button>
+    <button onclick="toggleSidebar('sidebar-rankConfig')">⚙️ Rank Config</button>
     <button onclick="toggleSidebar('sidebar-teams')">📄 Team</button>
     <button onclick="toggleSidebar('sidebar-incomes')">📄 Incomes</button>
     <button onclick="toggleSidebar('sidebar-products')">📄 Products</button>
@@ -84,7 +88,7 @@
 
   <!-- Deposit Sidebar -->
   <div id="sidebar-deposit" class="sidebar deposit">
-    <h2>Register New User</h2>
+    <h2>Deposit Amount</h2>
     <form id="depositForm">
       <label>Username:</label>
       <select name="userId" id="userSelect" required>
@@ -148,6 +152,35 @@
 
   </div>
 
+  <!-- Rank Config -->
+  <div id="sidebar-rankConfig" class="sidebar rankConfig">
+
+    <div class="rank-header">
+      <h2>Rank Config Editor</h2>
+      <div class="button-container">
+        <button id="addRankBtn" class="add-button">➕ Add New Rank</button>
+      </div>
+    </div>
+    <table id="rankTable">
+      <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Min Wallet Balance</th>
+        <th>Max Wallet Balance</th>
+        <th>Level-A Required</th>
+        <th>Level-B Required</th>
+        <th>Level-C Required</th>
+        <th>Commission Percentage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Rows inserted by JS -->
+      </tbody>
+    </table>
+    <div class="alert hidden"></div>
+    <button id="updateBtn" class="update-button" disabled>Update</button>
+  </div>
+
 
 
   <!-- Team Sidebar -->
@@ -161,6 +194,7 @@
     <h2>Incomes</h2>
 
   </div>
+
 
   <!-- Products Sidebar -->
   <div id="sidebar-products" class="sidebar products">
@@ -188,6 +222,7 @@
 
   <script src="queries.js"></script>
   <script src="script.js"></script>
+  <script src="rank_config.js"></script>
 </body>
 
 </html>

@@ -84,6 +84,11 @@ public class RegistrationController {
     }
 
     private User registerUser(User user, final String referralCode) throws InvalidRequestException {
-        return userService.createUser(user, referralCode);
+        //return userService.createUser(user, referralCode);
+
+        RegistrationRequest request = new RegistrationRequest();
+        request.setUsername(user.getUsername());
+        request.setReferralCode(referralCode);
+        return registrationService.registerUser(request);
     }
 }

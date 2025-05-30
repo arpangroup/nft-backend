@@ -42,7 +42,7 @@ function buildTree(node, level = 0) {
 async function loadTree() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('id') || 1;
+    const userId = urlParams.get('userId') || 1;
     const maxLevel = urlParams.get('level') || 3;
     const response = await fetch(`/api/v1/downline-tree/${userId}?maxLevel=${maxLevel}`);
     const treeData = await response.json();
@@ -91,6 +91,9 @@ function loadUsers() {
         const userOption = document.createElement("option");
         userOption.value = user.id;
         userOption.text = user.username;
+        if (user.id == 1) { // if root user, not able to deposit to his own account
+          userOption.disabled = true;
+        }
         if (user.id == selectedUserId) {
           userOption.selected = true;
         }
@@ -293,6 +296,31 @@ function showUserInfo(userId, username, walletBalance, event) {
 
   // Show label (you can customize where to show)
   const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId}) ℹ️ Balance: ${walletBalance}`;
+  getUserRank(userId);
+
+  // 🔄 Update or append `id` query param in the URL without reloading
+  const url = new URL(window.location);
+  url.searchParams.set("userId", userId); // adds or updates the `id` param
+  window.history.replaceState({}, "", url); // updates the URL in the browser without reload
+}
+
+async function getUserRank(userId) {
+    const response = await fetch(`/api/v1/hierarchy/${userId}/statistics`);
+    //const rank  = (await response.text()).replace(/^"|"$/g, ''); // Assuming it's text/string not JSON
+    const data  = await response.json();
+    console.log("HIERARCHY_STATISTICS: ", data);
+
+    const label = document.getElementById('selectedUserLabel');
+    label.textContent += ` ℹ️ Rank: ${data.rank}`;
+
+    const downlines = data.downlines;
+    let htmlContent = "";
+    for (const [level, users] of Object.entries(downlines)) {
+        const count = users.length;
+        htmlContent += `<div><strong>Level ${level} (${count} users):</strong> ${users.join(", ")}</div>`;
+    }
+    document.getElementById('donlineUserLevel').innerHTML = htmlContent;
+
 }
 
 

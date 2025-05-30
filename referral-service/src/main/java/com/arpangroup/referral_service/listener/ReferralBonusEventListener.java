@@ -2,13 +2,11 @@ package com.arpangroup.referral_service.listener;
 
 import com.arpangroup.nft_common.event.ReferralTriggerEvent;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
-import com.arpangroup.referral_service.service.ReferralBonusService;
+import com.arpangroup.referral_service.referral.ReferralBonusService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.event.TransactionPhase;
-import org.springframework.transaction.event.TransactionalEventListener;
 
 @Component
 @RequiredArgsConstructor

@@ -1,7 +1,7 @@
 package com.arpangroup.referral_service.repository;
 
-import com.arpangroup.referral_service.domain.entity.ReferralBonus;
-import com.arpangroup.referral_service.domain.enums.BonusStatus;
+import com.arpangroup.referral_service.referral.entity.ReferralBonus;
+import com.arpangroup.referral_service.referral.entity.BonusStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
