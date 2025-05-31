@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Dynamic MLM Tree</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -43,6 +44,8 @@
     <button onclick="toggleSidebar('sidebar-teams')">📄 Team</button>
     <button onclick="toggleSidebar('sidebar-income')">📄 Incomes</button>
     <button onclick="toggleSidebar('sidebar-products')">📄 Products</button>
+
+    <button onclick="toggleSidebar('sidebar-bids')">📄 Bid</button>
   </div>
 
 
@@ -95,7 +98,7 @@
         <option value="" disabled selected>-- Select User --</option>
       </select>
 
-      <label>Amount:</label>
+      <label>Amount:</label> Dollar
       <input type="number" id="amount" required />
 
       <label>Transaction Type:</label>
@@ -154,7 +157,6 @@
 
   <!-- Rank Config -->
   <div id="sidebar-rankConfig" class="sidebar rankConfig">
-
     <div class="rank-header">
       <h2>Rank Config Editor</h2>
       <div class="button-container">
@@ -179,6 +181,32 @@
     </table>
     <div class="alert hidden"></div>
     <button id="updateBtn" class="update-button" disabled>Update</button>
+
+    <hr/>
+
+    <div class="rank-header">
+      <h2>Team Income Config Editor</h2>
+      <div class="button-container">
+        <button id="addTeamIncomeBtn" class="add-button">➕ Add Team Rebate</button>
+      </div>
+    </div>
+    <table id="teamIncomeTable">
+      <thead>
+      <tr>
+        <th>Level</th>
+        <th>Level-2</th>
+        <th>Level-3</th>
+        <th>Level-4</th>
+        <th>Level-5</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Rows inserted by JS -->
+      </tbody>
+    </table>
+    <div class="alert hidden"></div>
+    <button id="updateTeamBtn" class="update-button" style="margin-bottom: 60px;" disabled>Update</button>
+
   </div>
 
 
@@ -225,6 +253,13 @@
       </div>
     </div>
 
+    <!-- Team Sidebar -->
+    <div id="sidebar-bids" class="sidebar bids">
+      <h2>Coming Soon....</h2>
+      <img src="https://st4.depositphotos.com/20689124/23704/i/450/depositphotos_237042906-stock-photo-stock-market-forex-trading-graph.jpg"/>
+
+    </div>
+
 
     <hr/>
     <h2>Products</h2>
@@ -251,7 +286,7 @@
 
   <script src="queries.js"></script>
   <script src="script.js"></script>
-  <script src="rank_config.js"></script>
+  <script src="income_config.js"></script>
   <script src="product.js"></script>
   <script src="income.js"></script>
 </body>

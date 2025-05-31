@@ -4,7 +4,7 @@ import com.arpangroup.referral_service.hierarchy.UserHierarchy;
 import com.arpangroup.referral_service.hierarchy.UserHierarchyRepository;
 import com.arpangroup.referral_service.income.entity.IncomeHistory;
 import com.arpangroup.referral_service.income.repository.IncomeHistoryRepository;
-import com.arpangroup.referral_service.income.repository.TeamIncomeConfigRepository;
+import com.arpangroup.referral_service.income.repository.TeamRebateConfigRepository;
 import com.arpangroup.referral_service.income.strategy.TeamIncomeStrategy;
 import com.arpangroup.referral_service.rank.config.RankConfig;
 import com.arpangroup.referral_service.rank.model.Rank;
@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ import java.util.stream.Collectors;
 public class IncomeDistributionService {
     private final UserRepository userRepository;
     private final RankConfigRepository rankConfigRepo;
-    private final TeamIncomeConfigRepository teamIncomeRepo;
+    private final TeamRebateConfigRepository teamIncomeRepo;
     private final UserHierarchyRepository hierarchyRepo;
     private final IncomeHistoryRepository incomeRepo;
     private final TeamIncomeStrategy teamIncomeStrategy;

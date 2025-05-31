@@ -13,7 +13,7 @@ import java.util.Map;
 @Table(name = "config_team_income")
 @Data
 @NoArgsConstructor
-public class TeamIncomeConfig {
+public class TeamRebateConfig {
     @Id
     @Enumerated(EnumType.STRING)
     @Column(name = "rank_type")

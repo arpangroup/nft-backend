@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 public class IncomeConfigController {
     private final TeamIncomeRebateConfigRepository repository;
 
-    @GetMapping("/income/team")
-    public ResponseEntity<List<TeamIncomeRebateConfig>> getTeamIncomeConfig() {
-        return ResponseEntity.ok(repository.findAll());
-    }
+//    @GetMapping("/income/team")
+//    public ResponseEntity<List<TeamIncomeRebateConfig>> getTeamIncomeConfig() {
+//        return ResponseEntity.ok(repository.findAll());
+//    }
 
 
-    @GetMapping("/income/team/pivot")
+    /*@GetMapping("/income/team/pivot")
     public ResponseEntity<List<Map<String, Object>>> getPivotedTeamIncomeConfig() {
         List<TeamIncomeRebateConfig> configs = repository.findAll();
 
@@ -59,6 +59,6 @@ public class IncomeConfigController {
         }
 
         return ResponseEntity.ok(result);
-    }
+    }*/
 
 }

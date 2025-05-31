@@ -1,6 +1,6 @@
 package com.arpangroup.referral_service.income.service;
 
-import com.arpangroup.referral_service.income.repository.TeamIncomeConfigRepository;
+import com.arpangroup.referral_service.income.repository.TeamRebateConfigRepository;
 import com.arpangroup.referral_service.rank.model.Rank;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 @Slf4j
 public class TeamCommissionService {
-    private final TeamIncomeConfigRepository teamIncomeConfigRepository;
+    private final TeamRebateConfigRepository teamRebateConfigRepository;
 
     public BigDecimal getTeamCommissionPercentage(Rank rank, int depth) {
         log.info("getTeamCommissionPercentage for Rank: {}, depth: {}", rank,depth);
@@ -24,7 +24,7 @@ public class TeamCommissionService {
         return BigDecimal.ZERO;
         */
 
-        return teamIncomeConfigRepository.findByRank(rank)
+        return teamRebateConfigRepository.findByRank(rank)
                 .map(config -> config.getIncomePercentages().getOrDefault(depth, BigDecimal.ZERO))
                 .orElse(BigDecimal.ZERO);
     }
