@@ -40,12 +40,8 @@
     <button onclick="toggleSidebar('sidebar-deposit')">💰 Deposit</button>
     <button onclick="toggleSidebar('sidebar-transactions')">📄 Transactions</button>
     <button onclick="toggleSidebar('sidebar-config')">⚙️ Income Config</button>
-    <button onclick="toggleSidebar('sidebar-rankConfig')">⚙️ Rank Config</button>
-    <button onclick="toggleSidebar('sidebar-teams')">📄 Team</button>
     <button onclick="toggleSidebar('sidebar-income')">📄 Incomes</button>
     <button onclick="toggleSidebar('sidebar-products')">📄 Products</button>
-
-    <button onclick="toggleSidebar('sidebar-bids')">📄 Bid</button>
   </div>
 
 
@@ -133,89 +129,62 @@
 
   <!-- Config Sidebar -->
   <div id="sidebar-config" class="sidebar config">
-    <h2>Team Income Configs</h2>
-    <!--<table id="teamIncomeConfig" border="1" cellpadding="8" cellspacing="0">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Upline Level</th>
-        <th>Downline Tier</th>
-        <th>Percentage</th>
-      </tr>
-      </thead>
-      <tbody></tbody>
-    </table>-->
-
-    <table id="pivotTable" border="1" cellpadding="8" cellspacing="0">
-      <thead></thead>
-      <tbody></tbody>
-    </table>
-
-    <hr/>
-
-  </div>
-
-  <!-- Rank Config -->
-  <div id="sidebar-rankConfig" class="sidebar rankConfig">
-    <div class="rank-header">
-      <h2>Rank Config Editor</h2>
-      <div class="button-container">
-        <button id="addRankBtn" class="add-button">➕ Add New Rank</button>
+    <section>
+      <div class="rank-header">
+        <h2>Rank Config Editor</h2>
+        <div class="button-container">
+          <button id="addRankBtn" class="add-button">➕ Add New Rank</button>
+        </div>
       </div>
-    </div>
-    <table id="rankTable">
-      <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Min Wallet Balance</th>
-        <th>Max Wallet Balance</th>
-        <th>Level-A Required</th>
-        <th>Level-B Required</th>
-        <th>Level-C Required</th>
-        <th>Commission Percentage</th>
-      </tr>
-      </thead>
-      <tbody>
-      <!-- Rows inserted by JS -->
-      </tbody>
-    </table>
-    <div class="alert hidden"></div>
-    <button id="updateBtn" class="update-button" disabled>Update</button>
+      <table id="rankTable">
+        <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Min Wallet Balance</th>
+          <th>Max Wallet Balance</th>
+          <th>Level-A Required</th>
+          <th>Level-B Required</th>
+          <th>Level-C Required</th>
+          <th>Commission Percentage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Rows inserted by JS -->
+        </tbody>
+      </table>
+      <div class="alert hidden"></div>
+      <button id="updateBtn" class="update-button" disabled>Update</button>
 
-    <hr/>
+      <hr/>
 
-    <div class="rank-header">
-      <h2>Team Income Config Editor</h2>
-      <div class="button-container">
-        <button id="addTeamIncomeBtn" class="add-button">➕ Add Team Rebate</button>
+      <div class="rank-header">
+        <h2>Team Income Config Editor</h2>
+        <div class="button-container">
+          <button id="addTeamIncomeBtn" class="add-button">➕ Add Team Rebate</button>
+        </div>
       </div>
-    </div>
-    <table id="teamIncomeTable">
-      <thead>
-      <tr>
-        <th>Level</th>
-        <th>Level-2</th>
-        <th>Level-3</th>
-        <th>Level-4</th>
-        <th>Level-5</th>
-      </tr>
-      </thead>
-      <tbody>
-      <!-- Rows inserted by JS -->
-      </tbody>
-    </table>
-    <div class="alert hidden"></div>
-    <button id="updateTeamBtn" class="update-button" style="margin-bottom: 60px;" disabled>Update</button>
-
+      <table id="teamIncomeTable">
+        <thead>
+        <tr>
+          <th>Level</th>
+          <th>Level-2</th>
+          <th>Level-3</th>
+          <th>Level-4</th>
+          <th>Level-5</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Rows inserted by JS -->
+        </tbody>
+      </table>
+      <div class="alert hidden"></div>
+      <button id="updateTeamBtn" class="update-button" style="margin-bottom: 60px;" disabled>Update</button>
+    </section>
   </div>
+  <!-- ./Config Sidebar  -->
 
 
 
-  <!-- Team Sidebar -->
-  <div id="sidebar-teams" class="sidebar teams">
-    <h2>Teams</h2>
-
-  </div>
 
   <!-- Income Sidebar -->
   <div id="sidebar-income" class="sidebar income">
@@ -251,13 +220,6 @@
 
         <button type="submit" id="confirmReserve" class="button">Confirm Reserve</button>
       </div>
-    </div>
-
-    <!-- Team Sidebar -->
-    <div id="sidebar-bids" class="sidebar bids">
-      <h2>Coming Soon....</h2>
-      <img src="https://st4.depositphotos.com/20689124/23704/i/450/depositphotos_237042906-stock-photo-stock-market-forex-trading-graph.jpg"/>
-
     </div>
 
 

@@ -1,7 +1,44 @@
 let rankData = [];
 
+function loadProducts() {
+  const baseUrl = '/api/v1/products';
+  const url = (selectedUserId && selectedUserId !== 1) ? `${baseUrl}?userId=${selectedUserId}` : baseUrl;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log("PRODUCTS: ", data);
+      const tbody = document.querySelector('#productsTable tbody');
+      tbody.innerHTML = ''; // Clear previous rows
+
+      data.content.forEach(product => {
+      const tr = document.createElement('tr');
+
+      let actionButtons = '';
+      const { purchased, transactionStatus, id } = product;
+
+      if (purchased) {
+        actionButtons = `<button data-id="${id}" onClick="sellProduct(this, event)">Sell</button>`;
+      } else {
+        actionButtons = `<button data-id="${id}" onClick="purchaseProduct(this, event)">Purchase</button>`;
+      }
+
+      tr.innerHTML = `
+        <td>${product.id}</td>
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td>${actionButtons}</td>
+      `;
+
+      tbody.appendChild(tr);
+      });
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
 async function loadRanks() {//selectedUserRank
-    const res = await fetch('/api/v1/config/rank');
+    const res = await fetch('/api/v1/config/income/rank');
     rankData = await res.json();
 
     const rankSelect = document.getElementById('rankSelect');
