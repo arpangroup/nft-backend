@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name = "rank_config")
+@Table(name = "config_rank")
 @NoArgsConstructor
 @Data
 public class RankConfig {

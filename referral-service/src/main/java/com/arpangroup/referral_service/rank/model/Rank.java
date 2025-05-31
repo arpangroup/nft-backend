@@ -1,5 +1,7 @@
 package com.arpangroup.referral_service.rank.model;
 
+import java.util.Arrays;
+
 public enum Rank {
     RANK_1(1, "Rank 1"),
     RANK_2(2, "Rank 2"),
@@ -21,5 +23,12 @@ public enum Rank {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public static Rank fromValue(int value) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.getValue() == value)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid rank value: " + value));
     }
 }
