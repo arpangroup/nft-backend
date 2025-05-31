@@ -43,6 +43,16 @@ function renderRankConfigTable() {
     tdMax.appendChild(inputMax);
     tr.appendChild(tdMax);
 
+    const tdTxn = document.createElement('td');
+    const inputTxn = document.createElement('input');
+    inputTxn.type = 'number';
+    inputTxn.value = rankConfig.txnPerDay;
+    inputTxn.dataset.rank = rankConfig.rank;
+    inputTxn.dataset.field = 'txnPerDay';
+    inputTxn.addEventListener('input', onRankInputChange);
+    tdTxn.appendChild(inputTxn);
+    tr.appendChild(tdTxn);
+
     for (let level = 1; level <= 3; level++) {
       const tdLevel = document.createElement('td');
       const inputLevel = document.createElement('input');

@@ -21,7 +21,8 @@ public class RankConfig {
 
     private int minWalletBalance;
     private int maxWalletBalance;
-    private double profitPerDay;
+    private int txnPerDay = 1;
+    //private double profitPerDay;
     private double annualizedReturns;
 
     // Required downline users per level (depth = 1 = level A, etc.)
@@ -44,5 +45,6 @@ public class RankConfig {
     public RankConfig(Rank rank, int minWalletBalance, int maxWalletBalance, double commissionRate) {
        this(rank, minWalletBalance, maxWalletBalance);
        this.commissionRate = BigDecimal.valueOf(commissionRate);
+       this.txnPerDay = 1;
     }
 }

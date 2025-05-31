@@ -36,6 +36,7 @@ public class RankConfigService {
 
             existing.setMinWalletBalance(dto.getMinWalletBalance());
             existing.setMaxWalletBalance(dto.getMaxWalletBalance());
+            existing.setTxnPerDay(dto.getTxnPerDay());
             existing.setCommissionRate(dto.getCommissionRate());
             existing.setRequiredLevelCounts(new HashMap<>(dto.getRequiredLevelCounts()));
 
@@ -49,6 +50,7 @@ public class RankConfigService {
         dto.setRank(config.getRank().name());
         dto.setMinWalletBalance(config.getMinWalletBalance());
         dto.setMaxWalletBalance(config.getMaxWalletBalance());
+        dto.setTxnPerDay(config.getTxnPerDay());
         dto.setCommissionRate(config.getCommissionRate());
         dto.setRequiredLevelCounts(new HashMap<>(config.getRequiredLevelCounts()));
         return dto;

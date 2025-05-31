@@ -12,6 +12,7 @@ public class RankConfigDto {
     private String rank;
     private int minWalletBalance;
     private int maxWalletBalance;
+    private int txnPerDay;
     private BigDecimal commissionRate = BigDecimal.ZERO;
     private Map<Integer, Integer> requiredLevelCounts;
 }
