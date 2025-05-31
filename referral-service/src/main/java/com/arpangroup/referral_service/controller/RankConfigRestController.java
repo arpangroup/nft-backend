@@ -1,4 +1,4 @@
-package com.arpangroup.nft_core.controller;
+package com.arpangroup.referral_service.controller;
 
 import com.arpangroup.referral_service.rank.dto.RankConfigDto;
 import com.arpangroup.referral_service.rank.service.RankConfigService;

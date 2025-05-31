@@ -1,6 +1,7 @@
 
 let allUsers = [];
 let selectedUserId = null;
+let selectedUserRank = null;
 function loadQueries() {
   const container = document.getElementById("query-container");
   container.innerHTML = "";
@@ -309,6 +310,7 @@ async function getUserRank(userId) {
     //const rank  = (await response.text()).replace(/^"|"$/g, ''); // Assuming it's text/string not JSON
     const data  = await response.json();
     console.log("HIERARCHY_STATISTICS: ", data);
+    selectedUserRank = data.rank;
 
     const label = document.getElementById('selectedUserLabel');
     label.textContent += ` ℹ️ Rank: ${data.rank}`;
@@ -375,6 +377,7 @@ function toggleSidebar(id) {
     }
     if (id === 'sidebar-products') {
       loadProducts();
+      loadRanks();
     }
   }
 }

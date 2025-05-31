@@ -198,6 +198,24 @@
 
   <!-- Products Sidebar -->
   <div id="sidebar-products" class="sidebar products">
+
+    <div id="productSelection">
+      <div class="label-header">Reservation</div>
+      <div class="container">
+        <select id="rankSelect" onchange="updateRangeDropdown()">
+          <option value="">Level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Income%</option>
+        </select>
+
+        <select id="rangeSelect" disabled>
+          <!--<option>Select Wallet Range</option>-->
+        </select>
+
+        <button type="submit" id="confirmReserve" class="button">Confirm Reserve</button>
+      </div>
+    </div>
+
+
+    <hr/>
     <h2>Products</h2>
     <table id="productsTable" border="1" cellpadding="8" cellspacing="0">
       <thead>
@@ -223,6 +241,7 @@
   <script src="queries.js"></script>
   <script src="script.js"></script>
   <script src="rank_config.js"></script>
+  <script src="product.js"></script>
 </body>
 
 </html>
