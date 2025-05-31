@@ -28,7 +28,12 @@ window.addEventListener("DOMContentLoaded", loadQueries);
 
 
 function buildTree(node, level = 0) {
-  let html = `<li><div class="node" data-level="${level}" onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', event)">${node.username}</div>`;
+  let html = `<li><div class="node"
+    data-level="${level}"
+    title="User ID: ${node.userId}"
+    onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', event)">
+    ${node.username}
+    </div>`;
   if (node.children && node.children.length > 0) {
     html += `<ul>`;
     node.children.forEach(child => {
