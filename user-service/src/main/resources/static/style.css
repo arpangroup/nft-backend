@@ -169,7 +169,7 @@ body {
   overflow-y: auto;
 }
 
-.sidebar.rankConfig {
+.sidebar.config {
   right: -1100px;
   width: 1000px;
 }
@@ -317,7 +317,7 @@ form select {
   font-size: 14px;
 }
 
-form button[type="submit"] {
+form button[type="submit"], .button {
   padding: 10px;
   background-color: #007bff;
   color: white;
@@ -495,3 +495,62 @@ form button[type="submit"]:hover {
   background-color: #0056b3;
 }
 /*############################# Rank Config End ############################*/
+
+
+
+/*############################# Product Selection Dropdown Start ############################*/
+.label-header {
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .container {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    select {
+        padding: 10px 14px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #fff;
+        min-width: 200px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    select:focus {
+        border-color: #007BFF;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+        outline: none;
+    }
+
+    option {
+        padding: 10px;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        select {
+            width: 100%;
+        }
+    }
+/*############################# Product Selection Dropdown End ############################*/
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #ccc, #888, #ccc);
+    background: #e1e1e1;
+    height: 8px;
+    margin: 30px 0;
+    border-radius: 50px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+}

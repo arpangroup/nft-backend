@@ -1,19 +1,34 @@
 package com.arpangroup.referral_service.rank.model;
 
-public enum Rank {
-    RANK_1("Rank 1"),
-    RANK_2("Rank 2"),
-    RANK_3("Rank 3"),
-    RANK_4("Rank 4"),
-    RANK_5("Rank 5");
+import java.util.Arrays;
 
+public enum Rank {
+    RANK_1(1, "Rank 1"),
+    RANK_2(2, "Rank 2"),
+    RANK_3(3, "Rank 3"),
+    RANK_4(4, "Rank 4"),
+    RANK_5(5, "Rank 5");
+
+    private final int value;
     private final String displayName;
 
-    Rank(String displayName) {
+    Rank(int value, String displayName) {
+        this.value = value;
         this.displayName = displayName;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public static Rank fromValue(int value) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.getValue() == value)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid rank value: " + value));
     }
 }

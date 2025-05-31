@@ -13,7 +13,7 @@ public class UserMapper {
                 .referralCode(user.getReferralCode())
                 .walletBalance(user.getWalletBalance())
                 .username(user.getUsername())
-                .level(user.getLevel())
+                .level(user.getRank())
 //                .firstname(user.getFirstname())
 //                .lastname(user.getLastname())
 //                .email(user.getEmail())

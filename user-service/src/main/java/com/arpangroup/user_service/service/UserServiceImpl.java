@@ -70,6 +70,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User updateUserRank(Long userId, int newRank) {
+        User user = userRepository.findById(userId).orElseThrow(()-> new IdNotFoundException("userId: " + userId + " not found"));
+        user.setRank(newRank);
+        return user;
+    }
+
+    @Override
     public List<User> getUsers() {
         return userRepository.findAll();
     }

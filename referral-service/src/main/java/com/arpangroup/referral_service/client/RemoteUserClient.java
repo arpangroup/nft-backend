@@ -90,4 +90,9 @@ public class RemoteUserClient implements UserClient {
     public UserInfo deposit(long userId, BigDecimal amount, String remarks) {
         return null;
     }
+
+    @Override
+    public UserInfo updateUserRank(long userId, int newRank) {
+        return null;
+    }
 }

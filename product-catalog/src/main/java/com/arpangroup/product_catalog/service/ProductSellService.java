@@ -39,10 +39,8 @@ public class ProductSellService {
 
         // Publish the event
         log.info("publishing ProductSoldEvent.....");
-        publisher.publishEvent(new ProductSoldEvent(user.getId(), product.getId()));
+        publisher.publishEvent(new ProductSoldEvent(user.getId(), product.getId(), product.getPrice()));
 
         return userCollection;
     }
-
-
 }

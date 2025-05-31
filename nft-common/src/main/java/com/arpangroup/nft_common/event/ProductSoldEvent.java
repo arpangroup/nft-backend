@@ -1,23 +1,20 @@
 package com.arpangroup.nft_common.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ProductSoldEvent {
-    private Long userId;
+    private Long sellerId;
     private Long productId;
-    private LocalDateTime soldAt;
+    private BigDecimal productValue;
 
-    public ProductSoldEvent(Long userId, Long productId) {
-        this.userId = userId;
+    public ProductSoldEvent(Long sellerId, Long productId, BigDecimal productValue) {
+        this.sellerId = sellerId;
         this.productId = productId;
-        this.soldAt = LocalDateTime.now();
+        this.productValue = productValue;
     }
 }

@@ -46,4 +46,10 @@ public class ProductController {
         return ResponseEntity.ok(productService.createProduct(request));
     }
 
+    @PostMapping("/reserve/{userId}")
+    public ResponseEntity<Product> reserveProduct(@PathVariable Long userId) {
+        log.info("ReserveProduct for userId: {}", userId);
+        return ResponseEntity.ok(productService.reserveProduct(userId));
+    }
+
 }

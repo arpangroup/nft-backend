@@ -79,4 +79,8 @@ public class ProductService {
         return product;
     }
 
+    public Product reserveProduct(Long userId) {
+        return null;
+    }
+
 }

@@ -1,6 +1,7 @@
 
 let allUsers = [];
 let selectedUserId = null;
+let selectedUserRank = null;
 function loadQueries() {
   const container = document.getElementById("query-container");
   container.innerHTML = "";
@@ -27,7 +28,12 @@ window.addEventListener("DOMContentLoaded", loadQueries);
 
 
 function buildTree(node, level = 0) {
-  let html = `<li><div class="node" data-level="${level}" onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', event)">${node.username}</div>`;
+  let html = `<li><div class="node"
+    data-level="${level}"
+    title="User ID: ${node.userId}"
+    onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', event)">
+    ${node.username}
+    </div>`;
   if (node.children && node.children.length > 0) {
     html += `<ul>`;
     node.children.forEach(child => {
@@ -131,106 +137,6 @@ function loadTransaction() {
     .catch(error => console.error('Error:', error));
 }
 
-function loadIncomeConfigs() {
-  /*fetch("/api/v1/configs/income/team")
-    .then(res => res.json())
-    .then(data => {
-      const tbody = document.querySelector("#teamIncomeConfig tbody");
-      tbody.innerHTML = ""; // Clear existing rows
-
-      data.forEach(config => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-          <td>${config.id}</td>
-          <td>${config.uplineLevel}</td>
-          <td>${config.downlineTier}</td>
-          <td>${(config.percentage * 100).toFixed(2)}%</td>
-        `;
-
-        tbody.appendChild(row);
-      });
-    })
-    .catch(error => {
-      console.error("Error fetching config:", error);
-    });*/
-}
-
-function loadPivotedConfig() {
-  fetch("/api/v1/configs/income/team")
-    .then(res => res.json())
-    .then(data => {
-      const tiers = new Set();
-      const levels = new Set();
-
-      // Organize data in map[tier][level] = percentage
-      const map = {};
-      data.forEach(item => {
-        tiers.add(item.downlineTier);
-        levels.add(item.uplineLevel);
-        if (!map[item.downlineTier]) map[item.downlineTier] = {};
-        map[item.downlineTier][item.uplineLevel] = (item.percentage * 100).toFixed(0) + "%";
-      });
-
-      const sortedLevels = Array.from(levels).sort(); // Ensure consistent column order
-      const sortedTiers = Array.from(tiers).sort();
-
-      // Build header
-      const thead = document.querySelector("#pivotTable thead");
-      thead.innerHTML = `<tr><th>Level</th>${sortedLevels.map(l => `<th>${l}</th>`).join("")}</tr>`;
-
-      // Build rows
-      const tbody = document.querySelector("#pivotTable tbody");
-      tbody.innerHTML = "";
-
-      sortedTiers.forEach(tier => {
-        const row = document.createElement("tr");
-        const cells = sortedLevels.map(level => map[tier][level] || "0%");
-        row.innerHTML = `<td>${tier}</td>${cells.map(p => `<td>${p}</td>`).join("")}`;
-        tbody.appendChild(row);
-      });
-    })
-    .catch(error => {
-      console.error("Error loading pivoted config:", error);
-    });
-}
-
-
-function loadProducts() {
-  const baseUrl = '/api/v1/products';
-  const url = (selectedUserId && selectedUserId !== 1) ? `${baseUrl}?userId=${selectedUserId}` : baseUrl;
-
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log("PRODUCTS: ", data);
-      const tbody = document.querySelector('#productsTable tbody');
-      tbody.innerHTML = ''; // Clear previous rows
-
-      data.content.forEach(product => {
-      const tr = document.createElement('tr');
-
-      let actionButtons = '';
-      const { purchased, transactionStatus, id } = product;
-
-      if (purchased) {
-        actionButtons = `<button data-id="${id}" onClick="sellProduct(this, event)">Sell</button>`;
-      } else {
-        actionButtons = `<button data-id="${id}" onClick="purchaseProduct(this, event)">Purchase</button>`;
-      }
-
-      tr.innerHTML = `
-        <td>${product.id}</td>
-        <td>${product.name}</td>
-        <td>${product.price}</td>
-        <td>${actionButtons}</td>
-      `;
-
-      tbody.appendChild(tr);
-      });
-    })
-    .catch(error => console.error('Error:', error));
-}
 
 
 
@@ -309,6 +215,7 @@ async function getUserRank(userId) {
     //const rank  = (await response.text()).replace(/^"|"$/g, ''); // Assuming it's text/string not JSON
     const data  = await response.json();
     console.log("HIERARCHY_STATISTICS: ", data);
+    selectedUserRank = data.rank;
 
     const label = document.getElementById('selectedUserLabel');
     label.textContent += ` ℹ️ Rank: ${data.rank}`;
@@ -370,11 +277,13 @@ function toggleSidebar(id) {
       loadTransaction();
     }
     if (id === 'sidebar-config') {
-      loadIncomeConfigs();
-      loadPivotedConfig();
     }
     if (id === 'sidebar-products') {
       loadProducts();
+      loadRanks();
+    }
+    if(id === 'sidebar-income') {
+        loadIncome();
     }
   }
 }

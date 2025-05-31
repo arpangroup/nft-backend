@@ -1,19 +1,26 @@
 package com.arpangroup.referral_service.listener;
 
+import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.nft_common.event.FirstDepositEvent;
-import com.arpangroup.nft_common.event.UserRankUpdateEvent;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
+import com.arpangroup.referral_service.client.UserClient;
+import com.arpangroup.referral_service.rank.model.Rank;
+import com.arpangroup.referral_service.rank.service.RankEvaluationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 @RequiredArgsConstructor
 @Order(2)  // lower number means higher priority (executed earlier)
 @Slf4j
 public class UserRankUpdateListener {
+    private final RankEvaluationService rankEvaluationService;
+    private final UserClient userClient;
 
     /**
      * Handles updating the user's rank after a downline user registration event.
@@ -34,6 +41,15 @@ public class UserRankUpdateListener {
     @EventListener
     public void handleUpdateUserRank(UserRegisteredEvent event) {
         log.info("Listening :: UserRegisteredEvent for userId: {}", event.getRefereeId());
+
+        log.info("Evaluate Referee's Rank.........");
+        Rank refereeRank = rankEvaluationService.evaluateUserRank(event.getRefereeId(), BigDecimal.ZERO);
+        userClient.updateUserRank(event.getRefereeId(), refereeRank.getValue());
+
+        log.info("Evaluate Referrer's Rank.........");
+        UserInfo referrer = userClient.getUserInfo(event.getReferrerId());
+        Rank referrerRank = rankEvaluationService.evaluateUserRank(referrer.getId(), referrer.getWalletBalance());
+        userClient.updateUserRank(referrer.getId(), referrerRank.getValue());
     }
 
 
@@ -56,5 +72,7 @@ public class UserRankUpdateListener {
     @EventListener
     public void handleUpdateUserRank(FirstDepositEvent event) {
         log.info("Listening :: FirstDepositEvent for userId: {}", event.getUserId());
+        Rank rank = rankEvaluationService.evaluateUserRank(event.getUserId(), event.getAmount());
+        userClient.updateUserRank(event.getUserId(), rank.getValue());
     }
 }
