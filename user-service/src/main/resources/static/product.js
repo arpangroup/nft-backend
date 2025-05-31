@@ -28,6 +28,8 @@ async function loadRanks() {//selectedUserRank
 
         if (rank.rank == selectedUserRank) {
             option.selected = true;
+        } else {
+            //option.disabled = true;
         }
 
         //rankSelect.appendChild(option);
@@ -75,6 +77,15 @@ document.getElementById('confirmReserve').addEventListener('click', async  () =>
         alert("Please select a user first");
         return;
     }
+
+    /*const rankSelect = document.getElementById('rankSelect');
+    const selectedRank = rankSelect.value;
+    if (!selectedRank) {
+        alert("Please select a rank before confirming reservation.");
+        rankSelect.focus();
+        return;
+    }*/
+
 
     try {
         const resp = await fetch(`/api/v1/products/reserve/${selectedUserId}`, {
