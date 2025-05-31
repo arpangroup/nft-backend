@@ -43,7 +43,6 @@ public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
                         .sourceUserId(sourceUserId)
                         .sourceUserRank(sourceUserRank)
                         .note("Team income")
-                        .date(LocalDate.now())
                         .build());
                 log.info("Saved team income of {} for user {}", teamIncome, upline.getId());
             }

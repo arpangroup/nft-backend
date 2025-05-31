@@ -384,6 +384,9 @@ function toggleSidebar(id) {
       loadProducts();
       loadRanks();
     }
+    if(id === 'sidebar-income') {
+        loadIncome();
+    }
   }
 }
 

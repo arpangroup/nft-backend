@@ -54,7 +54,6 @@ public class IncomeDistributionService {
                 .sourceUserId(sellerId)
                 .sourceUserRank(sellerRank)
                 .note("Self income")
-                .date(LocalDate.now())
                 .build());
         log.info("Saved direct income of {} for user {}", dailyIncome, seller.getId());
 

@@ -41,7 +41,7 @@
     <button onclick="toggleSidebar('sidebar-config')">⚙️ Income Config</button>
     <button onclick="toggleSidebar('sidebar-rankConfig')">⚙️ Rank Config</button>
     <button onclick="toggleSidebar('sidebar-teams')">📄 Team</button>
-    <button onclick="toggleSidebar('sidebar-incomes')">📄 Incomes</button>
+    <button onclick="toggleSidebar('sidebar-income')">📄 Incomes</button>
     <button onclick="toggleSidebar('sidebar-products')">📄 Products</button>
   </div>
 
@@ -190,9 +190,20 @@
   </div>
 
   <!-- Income Sidebar -->
-  <div id="sidebar-incomes" class="sidebar incomes">
-    <h2>Incomes</h2>
-
+  <div id="sidebar-income" class="sidebar income">
+    <h2>Income Summary</h2>
+    <table id="incomeTable">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Daily Income</th>
+        <th>Total Income</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- JS will populate rows here -->
+      </tbody>
+    </table>
   </div>
 
 
@@ -242,6 +253,7 @@
   <script src="script.js"></script>
   <script src="rank_config.js"></script>
   <script src="product.js"></script>
+  <script src="income.js"></script>
 </body>
 
 </html>
