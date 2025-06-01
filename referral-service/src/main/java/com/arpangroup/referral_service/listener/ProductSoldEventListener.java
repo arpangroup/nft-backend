@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ProductSoldListener {
+public class ProductSoldEventListener {
     private final IncomeDistributionService incomeService;
 
     @EventListener

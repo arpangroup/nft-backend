@@ -10,3 +10,11 @@ spring:
     hibernate:
       ddl-auto: create # [none, validate, update, create, create-drop]
     show-sql: false
+
+
+
+
+
+feature:
+  deprecated-rank-listener:
+    enabled: false
