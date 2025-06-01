@@ -9,6 +9,7 @@ import com.arpangroup.referral_service.referral.entity.ReferralBonus;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
 
@@ -19,15 +20,19 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
     @Autowired
     protected UserClient userClient;
 
+    @Value("${bonus.referral.flat-amount}")
+    public int flatReferralBonus;
+
 
     protected BigDecimal getFixedBonusAmount() {
-        return BigDecimal.valueOf(100); // Example amount
+        log.info("flatReferralBonus: {}", flatReferralBonus);
+        return BigDecimal.valueOf(flatReferralBonus);
     }
 
 
     @Override
     public void applyBonus(UserInfo referrer, UserInfo referee) {
-        log.info("applyBonus for referrer: {}, referee: {}......", referrer.getId(), referrer.getId());
+        log.info("Apply Bonus for referrer: {}, referee: {}......", referrer.getId(), referrer.getId());
         BigDecimal bonusAmount = getBonusAmount(referrer, referee);
         depositReferralBonus(referrer.getId(), bonusAmount);
 

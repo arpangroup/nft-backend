@@ -99,7 +99,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User deposit(long userId, BigDecimal amount, String remarks) {
-        log.info("Deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
         return depositService.deposit(userId, amount, remarks);
     }
 

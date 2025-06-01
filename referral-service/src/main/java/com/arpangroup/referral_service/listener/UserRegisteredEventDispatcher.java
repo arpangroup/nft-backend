@@ -3,7 +3,7 @@ package com.arpangroup.referral_service.listener;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
 import com.arpangroup.referral_service.hierarchy.service.UserHierarchyService;
 import com.arpangroup.referral_service.rank.service.RankEvaluationService;
-import com.arpangroup.referral_service.referral.impl.ReferralBonusService;
+import com.arpangroup.referral_service.referral.service.ReferralBonusService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

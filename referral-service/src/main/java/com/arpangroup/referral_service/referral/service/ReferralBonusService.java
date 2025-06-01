@@ -1,4 +1,4 @@
-package com.arpangroup.referral_service.referral.impl;
+package com.arpangroup.referral_service.referral.service;
 
 import com.arpangroup.nft_common.enums.TriggerType;
 

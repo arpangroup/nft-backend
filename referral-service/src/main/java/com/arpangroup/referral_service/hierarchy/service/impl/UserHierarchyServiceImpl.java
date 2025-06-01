@@ -46,6 +46,7 @@ public class UserHierarchyServiceImpl implements UserHierarchyService {
         hierarchyRepo.saveAll(pathToSave);
     }
 
+    @Audit(action = "DOWNLINE_TREE")
     public UserTreeNode getDownlineTree(Long rootUserId, int maxLevel) {
         log.info("getDownlineTree for root userId: {}, maxLevel: {}.....", rootUserId, maxLevel);
         User root = userRepository.findById(rootUserId).orElse(null);
@@ -56,6 +57,7 @@ public class UserHierarchyServiceImpl implements UserHierarchyService {
         return rootNode;
     }
 
+    @Audit(action = "DOWNLINES_GROUPED_BY_LEVEL")
     public Map<Integer, List<Long>> getDownlinesGroupedByLevel(Long userId) {
         log.info("getDownlinesGroupedByLevel for userId: {}.....", userId);
         List<UserHierarchy> hierarchy = hierarchyRepo.findByAncestor(userId);

@@ -111,8 +111,9 @@ function loadUsers() {
 
 
 function loadTransaction() {
+  console.log("loadTransaction for selectedUserId: ", selectedUserId);
   const baseUrl = '/api/v1/transactions';
-  const url = (selectedUserId && selectedUserId !== 1) ? `${baseUrl}/${selectedUserId}` : baseUrl;
+  const url = (selectedUserId && selectedUserId !== '1') ? `${baseUrl}/${selectedUserId}` : baseUrl;
 
   fetch(url)
     .then(response => response.json())

@@ -3,6 +3,8 @@ package com.arpangroup.user_service.transaction;
 import com.arpangroup.user_service.entity.Transaction;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,6 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
+    private static final Logger log = LoggerFactory.getLogger(TransactionService.class);
     private final TransactionRepository transactionRepository;
 
     public List<Transaction> getTransactions() {
@@ -38,6 +41,7 @@ public class TransactionService {
 
     @Transactional
     public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
+        log.info("Depositing Amount: {} for User ID: {}", amount, userId);
         validateUniqueTxnRefId(txnRefId);
         Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
         BigDecimal currentBalance = lastTxn != null ? lastTxn.getBalance() : BigDecimal.ZERO;
@@ -49,6 +53,7 @@ public class TransactionService {
         transaction.setStatus(status);
         transaction.setTxnFee(txnFee);
 
+        log.info("Saving new Transaction record to DB: {}", transaction);
         transaction = transactionRepository.save(transaction);
         /*User user = userRepository.findById(userId).get();
         user.setWalletBalance(user.getWalletBalance().add(amount));

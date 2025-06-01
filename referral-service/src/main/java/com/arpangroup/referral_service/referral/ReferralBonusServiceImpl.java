@@ -7,7 +7,7 @@ import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.nft_common.enums.TriggerType;
 import com.arpangroup.referral_service.referral.entity.BonusStatus;
 import com.arpangroup.referral_service.referral.entity.ReferralBonus;
-import com.arpangroup.referral_service.referral.impl.ReferralBonusService;
+import com.arpangroup.referral_service.referral.service.ReferralBonusService;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,10 @@ public class ReferralBonusServiceImpl implements ReferralBonusService {
     }
 
     private void evaluateBonus(UserInfo referrer, UserInfo referee, String strategyKey) {
+        log.info("evaluateBonus for Referrer ID: {}, Referee ID: {}, Strategy: {}", referrer.getId(), referee.getId(), strategyKey);
         ReferralBonusStrategy strategy = strategies.get(strategyKey);
         if (strategy != null && strategy.isEligible(referee)) {
+            log.info("Apply Referral Bonus........");
             strategy.applyBonus(referrer, referee);
         }
     }
@@ -50,10 +52,12 @@ public class ReferralBonusServiceImpl implements ReferralBonusService {
         Optional<ReferralBonus> optional = bonusRepository.findByRefereeIdAndStatus(refereeId, BonusStatus.PENDING);
 
         if (optional.isPresent()) {
+            log.info("PENDING record found for Referee ID: {}", refereeId);
             ReferralBonus bonus = optional.get();
             String strategy = bonus.getTriggerType().getLabel();
 
             // Load referrer and referee data (via API or shared module)
+            log.info("Calling userClient to get userInfo for Referee ID: {} and Referrer ID: {}", refereeId, bonus.getReferrerId());
             UserInfo referee = userClient.getUserInfo(refereeId);
             UserInfo referrer = userClient.getUserInfo(bonus.getReferrerId());
 
