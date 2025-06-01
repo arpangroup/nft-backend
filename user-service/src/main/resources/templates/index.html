@@ -6,6 +6,7 @@
   <title>Dynamic MLM Tree</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="config.css">
 </head>
 
 <body>
@@ -34,7 +35,8 @@
   </div>
 
   <div class="sidebar-toggle">
-    <button onclick="toggleSidebar('sidebar-config')">⚙️ Income Config</button>
+    <button onclick="toggleSidebar('sidebar-config')">🛠️ App Config</button>
+    <button onclick="toggleSidebar('sidebar-income-config')">⚙️ Income Config</button>
     <button onclick="toggleSidebar('sidebar-register')">📝 Register User</button>
     <button onclick="toggleSidebar('sidebar-deposit')">💰 Deposit</button>
     <button onclick="toggleSidebar('sidebar-transactions')">📄 Transactions</button>
@@ -48,7 +50,23 @@
 
 
   <!-- Config Sidebar -->
-  <div id="sidebar-config" class="sidebar config">
+  <div id="sidebar-config" class="sidebar">
+    <section>
+    <div class="rank-header">
+      <h2>App Configuration Editor</h2>
+      <div class="button-container">
+        <button id="reloadConfig" class="add-button">🔄 Reload Config</button>
+      </div>
+    </div>
+      <div id="configContainer"></div>
+      <button onclick="updateConfigs()" class="update-button">Update Configs</button>
+    </section>
+  </div>
+  <!-- ./Config Sidebar -->
+
+
+  <!-- Income Config Sidebar -->
+  <div id="sidebar-income-config" class="sidebar income config">
     <section>
       <div class="rank-header">
         <h2>Rank Config Editor</h2>
@@ -102,7 +120,7 @@
       <button id="updateTeamBtn" class="update-button" style="margin-bottom: 60px;" disabled>Update</button>
     </section>
   </div>
-  <!-- ./Config Sidebar  -->
+  <!-- ./Income Config Sidebar  -->
 
 
   <!-- Register Sidebar -->
@@ -265,6 +283,7 @@
   <script src="income_config.js"></script>
   <script src="product.js"></script>
   <script src="income.js"></script>
+  <script src="config.js"></script>
 </body>
 
 </html>
