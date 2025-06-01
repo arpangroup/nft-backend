@@ -2,15 +2,26 @@ package com.arpangroup.referral_service.hierarchy.listener;
 
 import com.arpangroup.nft_common.event.FirstDepositEvent;
 import com.arpangroup.nft_common.event.UserRegisteredEvent;
-import com.arpangroup.referral_service.audit.Audit;
 import com.arpangroup.referral_service.hierarchy.service.UserHierarchyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * [DEPRECATED] This class is now obsolete.
+ *
+ * Rank update responsibilities are now handled by centralized event dispatchers:
+ * - {@link com.arpangroup.referral_service.listener.UserRegisteredEventDispatcher}
+ * - {@link com.arpangroup.referral_service.listener.FirstDepositEventDispatcher}
+ *
+ * This class remains only for reference and backward compatibility (if needed).
+ */
+@Deprecated
 @Component
+@ConditionalOnProperty(name = "feature.deprecated-hierarchy-listener.enabled", havingValue = "true", matchIfMissing = false)
 @RequiredArgsConstructor
 @Order(1)  // lower number means higher priority (executed earlier)
 @Slf4j

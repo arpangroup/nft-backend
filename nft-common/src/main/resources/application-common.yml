@@ -18,3 +18,5 @@ spring:
 feature:
   deprecated-rank-listener:
     enabled: false
+  deprecated-hierarchy-listener:
+    enabled: false

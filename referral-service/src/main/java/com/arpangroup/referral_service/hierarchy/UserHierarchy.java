@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user_hierarchy")
+@Table(name = "user_hierarchy", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"ancestor", "descendant", "depth"})
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

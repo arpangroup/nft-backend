@@ -22,6 +22,7 @@ import java.math.BigDecimal;
  *
  * This class remains only for reference and backward compatibility (if needed).
  */
+@Deprecated
 @Component
 @ConditionalOnProperty(name = "feature.deprecated-rank-listener.enabled", havingValue = "true", matchIfMissing = false)
 @RequiredArgsConstructor
@@ -52,8 +53,8 @@ public class UserRankUpdateListener {
      */
     @EventListener
     public void handleUpdateUserRank(UserRegisteredEvent event) {
-        log.info("DISPATCH :: evaluateAndUpdateUserWithReferrerRank for userId: {}", event.getRefereeId());
-        rankEvaluationService.evaluateAndUpdateUserWithReferrerRank(event.getRefereeId(), BigDecimal.ZERO, event.getReferrerId());
+        //log.info("DISPATCH :: evaluateAndUpdateUserWithReferrerRank for userId: {}", event.getRefereeId());
+        //rankEvaluationService.evaluateAndUpdateUserWithReferrerRank(event.getRefereeId(), BigDecimal.ZERO, event.getReferrerId());
     }
 
 
@@ -79,7 +80,7 @@ public class UserRankUpdateListener {
      */
     @EventListener
     public void handleUpdateUserRank(FirstDepositEvent event) {
-        log.info("Listening :: FirstDepositEvent for userId: {}", event.getUserId());
-        rankEvaluationService.evaluateAndUpdateUserWithReferrerRank(event.getUserId(), event.getAmount(), event.getReferrerId());
+        //log.info("Listening :: FirstDepositEvent for userId: {}", event.getUserId());
+        //rankEvaluationService.evaluateAndUpdateUserWithReferrerRank(event.getUserId(), event.getAmount(), event.getReferrerId());
     }
 }
