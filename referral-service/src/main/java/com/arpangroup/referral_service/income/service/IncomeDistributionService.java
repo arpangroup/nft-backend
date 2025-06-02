@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,7 +42,7 @@ public class IncomeDistributionService {
 
         //BigDecimal profitRate = config.getCommissionRate().divide(BigDecimal.valueOf(100)
         BigDecimal profitRate = config.getCommissionRate();
-        BigDecimal dailyIncome = saleAmount.multiply(profitRate).setScale(4, BigDecimal.ROUND_HALF_UP);
+        BigDecimal dailyIncome = saleAmount.multiply(profitRate).setScale(4, RoundingMode.HALF_UP);
         log.info("calculated profitRate: {} saleAmount: {}, dailyIncome: {}.........", profitRate, saleAmount, dailyIncome);
 
         // 1. Save seller daily income

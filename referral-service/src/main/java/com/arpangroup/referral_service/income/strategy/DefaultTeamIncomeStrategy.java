@@ -31,7 +31,11 @@ public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
         for (User upline : uplines) {
             Rank uplineUserRank = Rank.fromValue(upline.getRank());
             //RankConfig rankConfig = rankConfigRepository.findById(uplineUserRank).orElseThrow(() -> new IllegalStateException("Rank config not found: " + uplineUserRank));
-            int depth = uplineDepthMap.get(upline.getId());
+            Integer depth = uplineDepthMap.get(upline.getId());
+            if (depth == null) {
+                log.warn("Skipping upline {} — depth not found", upline.getId());
+                continue;
+            }
 
             BigDecimal percentage = teamCommissionService.getTeamCommissionPercentage(uplineUserRank, depth);
             log.info("TeamIncome Percentage for uplineUser: {} is: {} for rank: {} and depth: {}", upline.getId(), percentage, uplineUserRank, depth);
