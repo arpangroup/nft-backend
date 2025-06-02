@@ -45,9 +45,9 @@ public class LocalUserClient implements UserClient {
     }
 
     @Override
-    public UserInfo deposit(long userId, BigDecimal amount, String remarks) {
+    public UserInfo deposit(long userId, BigDecimal amount, String remarks,  String metaInfo) {
         log.info("deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
-        return mapper.mapTo(userService.deposit(userId, amount, remarks));
+        return mapper.mapTo(userService.deposit(userId, amount, remarks, metaInfo));
     }
 
     @Override

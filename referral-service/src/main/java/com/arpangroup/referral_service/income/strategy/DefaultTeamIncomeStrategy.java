@@ -1,11 +1,15 @@
 package com.arpangroup.referral_service.income.strategy;
 
+import com.arpangroup.referral_service.client.UserClient;
+import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.income.dto.UplineIncomeLog;
 import com.arpangroup.referral_service.income.entity.IncomeHistory;
 import com.arpangroup.referral_service.income.repository.IncomeHistoryRepository;
 import com.arpangroup.referral_service.income.service.TeamCommissionService;
 import com.arpangroup.referral_service.rank.model.Rank;
 import com.arpangroup.user_service.entity.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -21,14 +25,18 @@ import java.util.Map;
 public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
     private final IncomeHistoryRepository incomeHistoryRepo;
     private final TeamCommissionService teamCommissionService;
+    private final UserClient userClient;
+    private final ObjectMapper objectMapper;
 
     @Override
     public List<UplineIncomeLog> distributeTeamIncome(Long sourceUserId, Rank sourceUserRank, BigDecimal baseIncome, List<User> uplines, Map<Long, Integer> uplineDepthMap) {
+        log.info("..................................................");
         log.info("Inside distributeTeamIncome for sourceUserId: {}, sourceUserRank: {}, baseIncome: {}..................", sourceUserId, sourceUserRank, baseIncome);
         log.info("All uplines: {}", uplineDepthMap);
         List<UplineIncomeLog> incomeLogs = new ArrayList<>();
 
         for (User upline : uplines) {
+            log.info("UPLINE UserID: {}, Rank: {} for Source UserID: {}", upline.getId(), Rank.fromValue(upline.getRank()), sourceUserId);
             Rank uplineUserRank = Rank.fromValue(upline.getRank());
             //RankConfig rankConfig = rankConfigRepository.findById(uplineUserRank).orElseThrow(() -> new IllegalStateException("Rank config not found: " + uplineUserRank));
             Integer depth = uplineDepthMap.get(upline.getId());
@@ -38,12 +46,12 @@ public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
             }
 
             BigDecimal percentage = teamCommissionService.getTeamCommissionPercentage(uplineUserRank, depth);
-            log.info("TeamIncome Percentage for uplineUser: {} is: {} for rank: {} and depth: {}", upline.getId(), percentage, uplineUserRank, depth);
+            log.info("TeamIncome Rate of {} for uplineUser: {} for rank: {} and depth: {}", percentage, upline.getId(), uplineUserRank, depth);
             if (percentage.compareTo(BigDecimal.ZERO) > 0) {
                 BigDecimal teamIncome = baseIncome.multiply(percentage);
                 //incomeHistoryRepository.save(new IncomeHistory(upline.getId(), teamIncome, IncomeHistory.IncomeType.TEAM));
                 log.info("Saving team income of {} for user {}................", teamIncome, upline.getId());
-                incomeHistoryRepo.save(IncomeHistory.builder()
+                IncomeHistory incomeHistory = incomeHistoryRepo.save(IncomeHistory.builder()
                         .userId(upline.getId())
                         .amount(teamIncome)
                         .type(IncomeHistory.IncomeType.TEAM)
@@ -53,8 +61,20 @@ public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
                         .build());
                 log.info("Saved team income of {} for user {}", teamIncome, upline.getId());
                 incomeLogs.add(new UplineIncomeLog(upline.getId(), uplineUserRank, depth, percentage, teamIncome));
+
+                log.info("Updating Wallet Balance for UserId: {} with TeamIncome: {} for SellerID: {} with his DailyIncome: {}", upline.getId(), teamIncome, sourceUserId, baseIncome);
+                userClient.deposit(upline.getId(), teamIncome, Remarks.TEAM_INCOME, getMetaInfo(incomeHistory));
             }
         }
         return incomeLogs;
+    }
+
+    private String getMetaInfo(Object object) {
+        try {
+            return objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

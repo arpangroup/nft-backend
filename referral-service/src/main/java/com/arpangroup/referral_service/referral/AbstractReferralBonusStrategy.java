@@ -64,7 +64,7 @@ public abstract class AbstractReferralBonusStrategy implements ReferralBonusStra
     }
 
     private void depositReferralBonus(long userId, BigDecimal bonusAmount) {
-        userClient.deposit(userId, bonusAmount, Remarks.REFERRAL_BONUS);
+        userClient.deposit(userId, bonusAmount, Remarks.REFERRAL_BONUS, null);
     }
 
     // Allow strategy to provide custom amount and trigger type

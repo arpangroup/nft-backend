@@ -87,7 +87,7 @@ public class RemoteUserClient implements UserClient {
     }
 
     @Override
-    public UserInfo deposit(long userId, BigDecimal amount, String remarks) {
+    public UserInfo deposit(long userId, BigDecimal amount, String remarks, String metaInfo) {
         return null;
     }
 

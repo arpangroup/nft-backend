@@ -33,9 +33,12 @@ public class ProductSellService {
         Product product = productRepository.findById(request.getProductId()).orElseThrow(() -> new PurchaseException("invalid productId"));
 
         // purchase the product now
+        log.info("FindByUserIdAndProductIdAndStatus for UserID: {}, ProductID: {}", user.getId(), product.getId());
         UserCollection userCollection = collectionRepository.findByUserIdAndProductIdAndStatus(user.getId(), product.getId(), TransactionStatus.PURCHASED).orElseThrow(() -> new PurchaseException("Invalid request"));
         userCollection.setStatus(TransactionStatus.SOLD);
+        log.info("Inserting to UserCollection for UserID: {}, ProductID: {}.......", user.getId(), product.getId());
         userCollection = collectionRepository.save(userCollection);
+        log.info("Successfully inserted to UserCollection DB for UserID: {}, ProductID: {}.......", user.getId(), product.getId());
 
         // Publish the event
         log.info("publishing ProductSoldEvent.....");

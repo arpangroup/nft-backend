@@ -46,6 +46,6 @@ public class UserController {
     @PostMapping("/deposit")
     public ResponseEntity<User> deposit(@Valid @RequestBody DepositRequest request) {
         log.info("DepositRequest: {}......", request);
-        return ResponseEntity.ok(userService.deposit(request.getUserId(), request.getAmount(), request.getRemarks()));
+        return ResponseEntity.ok(userService.deposit(request.getUserId(), request.getAmount(), request.getRemarks(), null));
     }
 }

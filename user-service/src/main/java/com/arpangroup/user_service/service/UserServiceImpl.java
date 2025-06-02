@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User deposit(long userId, BigDecimal amount, String remarks) {
-        return depositService.deposit(userId, amount, remarks);
+    public User deposit(long userId, BigDecimal amount, String remarks, String metaInfo) {
+        return depositService.deposit(userId, amount, remarks, metaInfo);
     }
 
     @Override

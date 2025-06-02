@@ -29,9 +29,11 @@ public class TeamCommissionService {
         TeamRebateConfig config = teamRebateConfigRepository.findById(rank)
                 .orElseThrow(() -> new IllegalStateException("No team config for rank: " + rank));
 
-        return config.getIncomePercentages()
-                .getOrDefault(depth, BigDecimal.ZERO)
-                .divide(BigDecimal.valueOf(100), 4, RoundingMode.HALF_UP);
+        BigDecimal teamIncomePercentage = config.getIncomePercentages().getOrDefault(depth, BigDecimal.ZERO);
+        BigDecimal teamIncomeRate = teamIncomePercentage.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+
+        log.info("Team IncomePercentage: {}% ===> Team IncomeRate: {} for Rank: {}, Depth: {}", teamIncomePercentage, teamIncomeRate, rank, depth);
+        return teamIncomeRate;
     }
 
 }

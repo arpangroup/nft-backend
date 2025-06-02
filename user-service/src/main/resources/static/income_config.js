@@ -119,7 +119,8 @@ function renderPivotTable() {
   const tbody = document.querySelector('#teamIncomeTable tbody');
   tbody.innerHTML = '';
 
-  const levelLabels = { 1: 'Lv.A', 2: 'Lv.B', 3: 'Lv.C' };
+  //const levelLabels = { 1: 'Lv.A', 2: 'Lv.B', 3: 'Lv.C' };
+  const levelLabels = { 1: 'Lv.A / Depth-1', 2: 'Lv.B / Depth-2', 3: 'Lv.C / Depth-3' };
 
   for (let level = 1; level <= 3; level++) {
     const tr = document.createElement('tr');

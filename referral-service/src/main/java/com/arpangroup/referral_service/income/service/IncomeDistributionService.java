@@ -1,5 +1,7 @@
 package com.arpangroup.referral_service.income.service;
 
+import com.arpangroup.referral_service.client.UserClient;
+import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.referral_service.hierarchy.UserHierarchy;
 import com.arpangroup.referral_service.hierarchy.UserHierarchyRepository;
 import com.arpangroup.referral_service.income.dto.UplineIncomeLog;
@@ -12,6 +14,8 @@ import com.arpangroup.referral_service.rank.model.Rank;
 import com.arpangroup.referral_service.rank.repository.RankConfigRepository;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.repository.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,6 +36,8 @@ public class IncomeDistributionService {
     private final UserHierarchyRepository hierarchyRepo;
     private final IncomeHistoryRepository incomeRepo;
     private final TeamIncomeStrategy teamIncomeStrategy;
+    private final ObjectMapper objectMapper;
+    private final UserClient userClient;
 
     public void distributeIncome(Long sellerId, BigDecimal saleAmount) {
         log.info("distributeIncome for sellerId: {}, productValue: {}.........", sellerId, saleAmount);
@@ -41,22 +47,31 @@ public class IncomeDistributionService {
         RankConfig config  = rankConfigRepo.findById(sellerRank).orElseThrow(() -> new IllegalStateException("Rank config not found: " + sellerRank));
 
         //BigDecimal profitRate = config.getCommissionRate().divide(BigDecimal.valueOf(100)
-        BigDecimal profitRate = config.getCommissionRate();
-        BigDecimal dailyIncome = saleAmount.multiply(profitRate).setScale(4, RoundingMode.HALF_UP);
-        log.info("calculated profitRate: {} saleAmount: {}, dailyIncome: {}.........", profitRate, saleAmount, dailyIncome);
+        BigDecimal profitRate = config.getCommissionRate()
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        log.info("Daily IncomePercentage: {}% ===> Daily IncomeRate: {} for SellerRank: {}", config.getCommissionRate(), profitRate, sellerRank);
+
+        BigDecimal dailyIncome = saleAmount.multiply(profitRate).setScale(2, RoundingMode.HALF_UP);
+        log.info("calculated profitRate: {} for saleAmount: {} ===> dailyIncome: {}", profitRate, saleAmount, dailyIncome);
 
         // 1. Save seller daily income
         //incomeRepo.save(new IncomeHistory(sellerId, dailyIncome, "DAILY", "SELF", LocalDate.now()));
         log.info("Saving direct income of {} for user: {}...........", dailyIncome, sellerId);
-        incomeRepo.save(IncomeHistory.builder()
+        IncomeHistory incomeHistory = IncomeHistory.builder()
                 .userId(sellerId)
                 .amount(dailyIncome)
                 .type(IncomeHistory.IncomeType.DAILY)
                 .sourceUserId(sellerId)
                 .sourceUserRank(sellerRank)
                 .note("Self income")
-                .build());
+                .build();
+        incomeRepo.save(incomeHistory);
         log.info("Saved direct income of {} for user {}", dailyIncome, seller.getId());
+
+        log.info("Updating the seller wallet for SellerID: {} with DailyIncome: {}", seller.getId(), dailyIncome);
+        String metaInfo = getMetaInfo(incomeHistory);
+        log.info("MetaInfo: {}", metaInfo);
+        userClient.deposit(sellerId, dailyIncome, Remarks.DAILY_INCOME, metaInfo);
 
         // 2. Fetch all uplines with rank info in a single query
         /*List<Object[]> uplineData = hierarchyRepo.findUplinesWithRank(sellerId, 3); // Depth ≤ 3
@@ -104,6 +119,17 @@ public class IncomeDistributionService {
         printLog(logs, sellerId, sellerRank, dailyIncome);
     }
 
+    private String getMetaInfo(Object object) {
+        try {
+            return objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "";
+    }
+
 
     /*
     🧪 Example Output
@@ -140,10 +166,10 @@ public class IncomeDistributionService {
             logs.forEach(log -> summary.append(String.format(
                     "  - Upline ID: %d | Rank: %-7s | Level: %d | %%: %5s | Income: %s\n",
                     log.uplineUserId(), log.rank(), log.depth(),
-                    log.percentage().setScale(2, RoundingMode.HALF_UP), log.income().setScale(4, RoundingMode.HALF_UP)
+                    log.percentage().setScale(2, RoundingMode.HALF_UP), log.income().setScale(2, RoundingMode.HALF_UP)
             )));
             summary.append("▶️ Total Team Members Rewarded: ").append(logs.size()).append("\n");
-            summary.append("▶️ Total Team Income Distributed: ").append(totalTeamIncome.setScale(4, RoundingMode.HALF_UP)).append("\n");
+            summary.append("▶️ Total Team Income Distributed: ").append(totalTeamIncome.setScale(2, RoundingMode.HALF_UP)).append("\n");
         }
 
         summary.append("========================================\n");

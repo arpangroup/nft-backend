@@ -23,13 +23,13 @@ public class DepositService {
     private final ApplicationEventPublisher publisher;
 
     @Transactional
-    public User deposit(long userId, BigDecimal amount, String remarks) {
+    public User deposit(long userId, BigDecimal amount, String remarks, String metaInfo) {
         log.info("Deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
         boolean hasAnyPreviousDeposit = hasDeposit(userId); // require to check if this txn is first deposit or not
 
         // add the record to transaction
         log.info("Calling transaction service to deposit Amount: {} for User ID: {}", amount, userId);
-        transactionService.deposit(userId, amount, remarks);
+        transactionService.deposit(userId, amount, remarks, metaInfo);
         log.info("Deposit Successful for User ID: {} of Amount: {}", userId, amount);
 
         // update user's wallet balance

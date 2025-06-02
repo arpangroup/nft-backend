@@ -24,16 +24,18 @@ public class PurchaseController {
     private final ProductService productService;
 
     @PostMapping("/purchase")
-    public ResponseEntity<List<Product>> purchaseProduct(@Valid @RequestBody ProductPurchaseOrSellRequest productPurchaseOrSellRequest) {
-        productPurchaseService.purchase(productPurchaseOrSellRequest);
-        List<Product> purchasedProducts = productService.getAllPurchasedProductsByUserId(productPurchaseOrSellRequest.getUserId());
+    public ResponseEntity<List<Product>> purchaseProduct(@Valid @RequestBody ProductPurchaseOrSellRequest request) {
+        log.info("purchaseProduct for ProductID: {}, UserID: {}", request.getProductId(), request.getUserId());
+        productPurchaseService.purchase(request);
+        List<Product> purchasedProducts = productService.getAllPurchasedProductsByUserId(request.getUserId());
         return ResponseEntity.ok(purchasedProducts);
     }
 
     @PostMapping("/sell")
-    public ResponseEntity<List<Product>> sellProduct(@Valid @RequestBody ProductPurchaseOrSellRequest productPurchaseOrSellRequest) {
-        productSellService.sell(productPurchaseOrSellRequest);
-        List<Product> purchasedProducts = productService.getAllPurchasedProductsByUserId(productPurchaseOrSellRequest.getUserId());
+    public ResponseEntity<List<Product>> sellProduct(@Valid @RequestBody ProductPurchaseOrSellRequest request) {
+        log.info("sellProduct for ProductID: {}, UserID: {}", request.getProductId(), request.getUserId());
+        productSellService.sell(request);
+        List<Product> purchasedProducts = productService.getAllPurchasedProductsByUserId(request.getUserId());
         return ResponseEntity.ok(purchasedProducts);
     }
 }

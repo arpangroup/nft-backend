@@ -40,7 +40,7 @@ public class TransactionService {
     }
 
     @Transactional
-    public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status) {
+    public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String txnRefId, Double txnFee, String status, String metaInfo) {
         log.info("Depositing Amount: {} for User ID: {}", amount, userId);
         validateUniqueTxnRefId(txnRefId);
         Transaction lastTxn = transactionRepository.findFirstByUserIdOrderByTxnDateDesc(userId);
@@ -52,6 +52,7 @@ public class TransactionService {
         transaction.setTxnRefId(txnRefId);
         transaction.setStatus(status);
         transaction.setTxnFee(txnFee);
+        transaction.setMetaInfo(metaInfo);
 
         log.info("Saving new Transaction record to DB: {}", transaction);
         transaction = transactionRepository.save(transaction);
@@ -64,7 +65,12 @@ public class TransactionService {
 
     @Transactional
     public Transaction deposit(final long userId, final BigDecimal amount, String remarks) {
-        return this.deposit(userId, amount, remarks, null, null, null);
+        return this.deposit(userId, amount, remarks, null, null, null, null);
+    }
+
+    @Transactional
+    public Transaction deposit(final long userId, final BigDecimal amount, String remarks, String metaInfo) {
+        return this.deposit(userId, amount, remarks, null, null, null, metaInfo);
     }
 
     public Transaction withdraw(final long userId, final BigDecimal amount, String remarks, Double txnFee, String status) {

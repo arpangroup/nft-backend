@@ -27,7 +27,7 @@ public class User {
     private User referrer;
 
     @Column(name = "rank_level")
-    private int rank;
+    private int rank = 1;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
