@@ -2,6 +2,7 @@ package com.arpangroup.referral_service.income.service;
 
 import com.arpangroup.referral_service.hierarchy.UserHierarchy;
 import com.arpangroup.referral_service.hierarchy.UserHierarchyRepository;
+import com.arpangroup.referral_service.income.dto.UplineIncomeLog;
 import com.arpangroup.referral_service.income.entity.IncomeHistory;
 import com.arpangroup.referral_service.income.repository.IncomeHistoryRepository;
 import com.arpangroup.referral_service.income.repository.TeamRebateConfigRepository;
@@ -98,6 +99,50 @@ public class IncomeDistributionService {
 
         // Distribute team income
         log.info("Distribute team income for user: {}.............", sellerId);
-        teamIncomeStrategy.distributeTeamIncome(sellerId, sellerRank, dailyIncome, uplines, uplinesWithDepth);
+        List<UplineIncomeLog> logs = teamIncomeStrategy.distributeTeamIncome(sellerId, sellerRank, dailyIncome, uplines, uplinesWithDepth);
+        printLog(logs, sellerId, sellerRank, dailyIncome);
+    }
+
+
+    /*
+    🧪 Example Output
+
+    ====== INCOME DISTRIBUTION SUMMARY ======
+    ▶️ Seller ID: 101, Rank: RANK_3, Daily Income: 30.0000
+    ▶️ Upline Team Income:
+      - Upline ID: 80  | Rank: RANK_5 | Level: 1 | %: 16.00 | Income: 4.8000
+      - Upline ID: 55  | Rank: RANK_3 | Level: 2 | %: 6.00  | Income: 1.8000
+    ▶️ Total Team Members Rewarded: 2
+    ▶️ Total Team Income Distributed: 6.6000
+    ========================================
+     */
+    private void printLog(List<UplineIncomeLog> logs, Long sellerId, Rank sellerRank, BigDecimal dailyIncome) {
+        BigDecimal totalTeamIncome = logs.stream()
+                .map(UplineIncomeLog::income)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        StringBuilder summary = new StringBuilder("\n====== INCOME DISTRIBUTION SUMMARY ======\n");
+
+        summary.append("▶️ Seller ID: ").append(sellerId)
+                .append(", Rank: ").append(sellerRank)
+                .append(", Daily Income: ").append(dailyIncome)
+                .append("\n");
+
+        summary.append("▶️ Upline Team Income:\n");
+
+        if (logs.isEmpty()) {
+            summary.append("  No upline members qualified for team income.\n");
+        } else {
+            logs.forEach(log -> summary.append(String.format(
+                    "  - Upline ID: %d | Rank: %-7s | Level: %d | %%: %5s | Income: %s\n",
+                    log.uplineUserId(), log.rank(), log.depth(),
+                    log.percentage().setScale(2), log.income().setScale(4)
+            )));
+            summary.append("▶️ Total Team Members Rewarded: ").append(logs.size()).append("\n");
+            summary.append("▶️ Total Team Income Distributed: ").append(totalTeamIncome.setScale(4)).append("\n");
+        }
+
+        summary.append("========================================\n");
+        System.out.println(summary);  // or log.info(summary.toString());
     }
 }

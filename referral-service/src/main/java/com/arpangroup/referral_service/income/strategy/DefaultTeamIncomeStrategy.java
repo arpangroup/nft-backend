@@ -1,5 +1,6 @@
 package com.arpangroup.referral_service.income.strategy;
 
+import com.arpangroup.referral_service.income.dto.UplineIncomeLog;
 import com.arpangroup.referral_service.income.entity.IncomeHistory;
 import com.arpangroup.referral_service.income.repository.IncomeHistoryRepository;
 import com.arpangroup.referral_service.income.service.TeamCommissionService;
@@ -10,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +23,11 @@ public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
     private final TeamCommissionService teamCommissionService;
 
     @Override
-    public void distributeTeamIncome(Long sourceUserId, Rank sourceUserRank, BigDecimal baseIncome, List<User> uplines, Map<Long, Integer> uplineDepthMap) {
+    public List<UplineIncomeLog> distributeTeamIncome(Long sourceUserId, Rank sourceUserRank, BigDecimal baseIncome, List<User> uplines, Map<Long, Integer> uplineDepthMap) {
         log.info("Inside distributeTeamIncome for sourceUserId: {}, sourceUserRank: {}, baseIncome: {}..................", sourceUserId, sourceUserRank, baseIncome);
         log.info("All uplines: {}", uplineDepthMap);
+        List<UplineIncomeLog> incomeLogs = new ArrayList<>();
+
         for (User upline : uplines) {
             Rank uplineUserRank = Rank.fromValue(upline.getRank());
             //RankConfig rankConfig = rankConfigRepository.findById(uplineUserRank).orElseThrow(() -> new IllegalStateException("Rank config not found: " + uplineUserRank));
@@ -45,7 +48,9 @@ public class DefaultTeamIncomeStrategy implements TeamIncomeStrategy {
                         .note("Team income")
                         .build());
                 log.info("Saved team income of {} for user {}", teamIncome, upline.getId());
+                incomeLogs.add(new UplineIncomeLog(upline.getId(), uplineUserRank, depth, percentage, teamIncome));
             }
         }
+        return incomeLogs;
     }
 }
