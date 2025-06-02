@@ -169,10 +169,17 @@ body {
   overflow-y: auto;
 }
 
-.sidebar.config {
+.sidebar.config,
+.sidebar.sql {
   right: -1100px;
   width: 1050px;
 }
+
+#sidebar-sql #result{
+    max-width: 1050px;
+    overflow-x: scroll;
+}
+
 
 .sidebar.open {
   right: 0;

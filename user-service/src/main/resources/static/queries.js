@@ -1,5 +1,39 @@
 const queryData = [
   {
+    "title": "All Customers",
+    "description": "",
+    "query": "select u.username, u.wallet_balance, u.referral_code, u.referrer_id, u.status\nfrom users u;"
+  },
+  {
+    "title": "Active Customers",
+    "description": "",
+    "query": "select u.username, u.wallet_balance, u.referral_code, u.referrer_id, u.status\nfrom users u\nwhere u.status = 'ACTIVE';"
+  },
+  {
+    "title": "Disabled Customers",
+    "description": "",
+    "query": "select u.username, u.wallet_balance, u.referral_code, u.referrer_id, u.status\nfrom users u\nwhere u.status = 'DISABLED';"
+  },
+  {
+    "title": "All KYC Logs",
+    "description": "",
+    "query": "select * from kyc_details;"
+  },
+  {
+    "title": "Pending KYC",
+    "description": "",
+    "query": "select *\nfrom kyc_details kyc\nwhere status='PENDING';"
+  },
+  {
+    "title": "Rejected KYC",
+    "description": "",
+    "query": "select *\nfrom kyc_details kyc\nwhere status='REJECTED';"
+  },
+
+]
+
+const queryDataOld = [
+  {
     "title": "1. countDownlineGroupedByDepth:",
     "description": "Counts the number of downline users at each specified depth",
     "query": "SELECT depth, COUNT(*) AS user_count\nFROM user_hierarchy\nWHERE ancestor = 1 AND depth in (1,2,3)\nGROUP BY depth\nORDER BY depth;"

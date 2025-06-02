@@ -2,7 +2,7 @@ package com.arpangroup.referral_service.controller;
 
 import com.arpangroup.nft_common.dto.UserInfo;
 import com.arpangroup.referral_service.client.UserClient;
-import com.arpangroup.referral_service.hierarchy.UserHierarchyService;
+import com.arpangroup.referral_service.hierarchy.service.UserHierarchyService;
 import com.arpangroup.referral_service.rank.model.Rank;
 import com.arpangroup.referral_service.rank.service.RankEvaluationService;
 import com.arpangroup.user_service.dto.UserTreeNode;

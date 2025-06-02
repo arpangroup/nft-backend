@@ -1,5 +1,6 @@
 package com.arpangroup.referral_service.income.service;
 
+import com.arpangroup.referral_service.income.entity.TeamRebateConfig;
 import com.arpangroup.referral_service.income.repository.TeamRebateConfigRepository;
 import com.arpangroup.referral_service.rank.model.Rank;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +26,14 @@ public class TeamCommissionService {
         return BigDecimal.ZERO;
         */
 
-        return teamRebateConfigRepository.findByRank(rank)
-                .map(config -> config.getIncomePercentages().getOrDefault(depth, BigDecimal.ZERO))
-                .orElse(BigDecimal.ZERO);
+        TeamRebateConfig config = teamRebateConfigRepository.findById(rank)
+                .orElseThrow(() -> new IllegalStateException("No team config for rank: " + rank));
+
+        BigDecimal teamIncomePercentage = config.getIncomePercentages().getOrDefault(depth, BigDecimal.ZERO);
+        BigDecimal teamIncomeRate = teamIncomePercentage.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+
+        log.info("Team IncomePercentage: {}% ===> Team IncomeRate: {} for Rank: {}, Depth: {}", teamIncomePercentage, teamIncomeRate, rank, depth);
+        return teamIncomeRate;
     }
 
 }

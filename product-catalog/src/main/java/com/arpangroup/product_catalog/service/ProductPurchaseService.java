@@ -22,18 +22,22 @@ public class ProductPurchaseService {
     private final UserCollectionRepository collectionRepository;
 
     public UserCollection purchase(ProductPurchaseOrSellRequest request) {
+        log.info("PURCHASE: ProductID: {}, UserID: {}", request.getProductId(), request.getUserId());
         // validate valid userId or not
         User user = userService.getUserById(request.getUserId());
 
         // validate valid productId or not
         Product product = productRepository.findById(request.getProductId()).orElseThrow(() -> new PurchaseException("invalid productId"));
+        log.info("Found ProductID: {}, price: {}", product.getId(), product.getPrice());
 
         boolean isEligible = isUserEligibleToPurchase(user, product);
         if (!isEligible) throw new PurchaseException("user is not eligible to purchase this product");
 
         // purchase the product now
         UserCollection userCollection = new UserCollection(user.getId(), product.getId(), TransactionStatus.PURCHASED);
+        log.info("Inserting to UserCollection for UserID: {}, ProductID: {}.......", user.getId(), product.getId());
         userCollection = collectionRepository.save(userCollection);
+        log.info("Successfully inserted to UserCollection DB for UserID: {}, ProductID: {}.......", user.getId(), product.getId());
         return userCollection;
     }
 

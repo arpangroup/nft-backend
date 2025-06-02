@@ -1,7 +1,9 @@
-package com.arpangroup.referral_service.hierarchy;
+package com.arpangroup.referral_service.hierarchy.service.impl;
 
-import com.arpangroup.referral_service.rank.evaluation.RankEvaluationContext;
-import com.arpangroup.referral_service.rank.evaluation.RankLevel;
+import com.arpangroup.referral_service.audit.Audit;
+import com.arpangroup.referral_service.hierarchy.UserHierarchy;
+import com.arpangroup.referral_service.hierarchy.UserHierarchyRepository;
+import com.arpangroup.referral_service.hierarchy.service.UserHierarchyService;
 import com.arpangroup.user_service.dto.UserTreeNode;
 import com.arpangroup.user_service.entity.User;
 import com.arpangroup.user_service.repository.UserRepository;
@@ -15,18 +17,22 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserHierarchyService {
+public class UserHierarchyServiceImpl implements UserHierarchyService {
     private final UserHierarchyRepository hierarchyRepo;
     private final UserRepository userRepository;
 
+    @Audit(action = "UPDATE_USER_HIERARCHY")
     public void updateHierarchy(Long referredId, Long newUserId) {
+        log.info("Updating user hierarchy for newUserId: {}, referredId: {}.......", newUserId, referredId);
         List<UserHierarchy> pathToSave = new ArrayList<>();
 
         // Insert direct path
+        log.info("Creating direct path.....");
         UserHierarchy directPath = new UserHierarchy(referredId, newUserId, 1);
         pathToSave.add(directPath);
 
         // Insert paths for all ancestors of the referrer, up to a maximum depth of 3
+        log.info("Creating all ancestors of the referrer.....");
         List<UserHierarchy> ancestorPaths = hierarchyRepo.findByDescendant(referredId);
         pathToSave.addAll(
                 ancestorPaths.stream()
@@ -36,10 +42,24 @@ public class UserHierarchyService {
         );
 
         // Save all paths in a single batch operation
+        log.info("Inserting all path to DBr.....");
         hierarchyRepo.saveAll(pathToSave);
     }
 
+    @Audit(action = "DOWNLINE_TREE")
+    public UserTreeNode getDownlineTree(Long rootUserId, int maxLevel) {
+        log.info("getDownlineTree for root userId: {}, maxLevel: {}.....", rootUserId, maxLevel);
+        User root = userRepository.findById(rootUserId).orElse(null);
+        if (root == null) return null;
+
+        UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername(), root.getWalletBalance(), root.getRank());
+        buildTreeRecursively(rootNode, 1, maxLevel); // max level 3
+        return rootNode;
+    }
+
+    @Audit(action = "DOWNLINES_GROUPED_BY_LEVEL")
     public Map<Integer, List<Long>> getDownlinesGroupedByLevel(Long userId) {
+        log.info("getDownlinesGroupedByLevel for userId: {}.....", userId);
         List<UserHierarchy> hierarchy = hierarchyRepo.findByAncestor(userId);
 
         return hierarchy.stream()
@@ -83,14 +103,6 @@ public class UserHierarchyService {
     }*/
 
 
-    public UserTreeNode getDownlineTree(Long rootUserId, int maxLevel) {
-        User root = userRepository.findById(rootUserId).orElse(null);
-        if (root == null) return null;
-
-        UserTreeNode rootNode = new UserTreeNode(root.getId(), root.getUsername(), root.getWalletBalance());
-        buildTreeRecursively(rootNode, 1, maxLevel); // max level 3
-        return rootNode;
-    }
 
     private void buildTreeRecursively(UserTreeNode parentNode, int currentLevel, int maxLevel) {
         if (currentLevel > maxLevel) return;
@@ -101,7 +113,7 @@ public class UserHierarchyService {
             Long childId = path.getDescendant();
             User childUser = userRepository.findById(childId).orElse(null);
             if (childUser != null) {
-                UserTreeNode childNode = new UserTreeNode(childUser.getId(), childUser.getUsername(), childUser.getWalletBalance());
+                UserTreeNode childNode = new UserTreeNode(childUser.getId(), childUser.getUsername(), childUser.getWalletBalance(), childUser.getRank());
                 parentNode.addChild(childNode);
                 buildTreeRecursively(childNode, currentLevel + 1, maxLevel);
             }

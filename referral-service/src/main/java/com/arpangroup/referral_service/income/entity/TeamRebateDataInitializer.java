@@ -16,7 +16,7 @@ public class TeamRebateDataInitializer {
     private final TeamRebateConfigRepository teamRebateConfigRepository;
 
 
-    @PostConstruct
+    /*@PostConstruct
     public void init() {
         TeamRebateConfig level2 = new TeamRebateConfig();
         level2.setRank(Rank.RANK_2);
@@ -48,6 +48,40 @@ public class TeamRebateDataInitializer {
                 1, new BigDecimal("16"),
                 2, new BigDecimal("8"),
                 3, new BigDecimal("7")
+        ));*/
+
+    @PostConstruct
+    public void init() {
+        TeamRebateConfig level2 = new TeamRebateConfig();
+        level2.setRank(Rank.RANK_2);
+        level2.setIncomePercentages(Map.of(
+                1, new BigDecimal("5"),  // Lv.A ==> 5%
+                2, new BigDecimal("4"),   // Lv.B ==> 2%
+                3, new BigDecimal("1")    // Lv.C
+        ));
+
+        TeamRebateConfig level3 = new TeamRebateConfig();
+        level3.setRank(Rank.RANK_3);
+        level3.setIncomePercentages(Map.of(
+                1, new BigDecimal("6"), // 6%
+                2, new BigDecimal("3"), // 3%
+                3, new BigDecimal("2")
+        ));
+
+        TeamRebateConfig level4 = new TeamRebateConfig();
+        level4.setRank(Rank.RANK_4);
+        level4.setIncomePercentages(Map.of(
+                1, new BigDecimal("0"),
+                2, new BigDecimal("0"),
+                3, new BigDecimal("0")
+        ));
+
+        TeamRebateConfig level5 = new TeamRebateConfig();
+        level5.setRank(Rank.RANK_5);
+        level5.setIncomePercentages(Map.of(
+                1, new BigDecimal("0"),
+                2, new BigDecimal("0"),
+                3, new BigDecimal("0")
         ));
 
         teamRebateConfigRepository.saveAll(List.of(level2, level3, level4, level5));

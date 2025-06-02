@@ -19,6 +19,7 @@ public class AuditLog {
     private String method;
     private String username;
     private String status; // SUCCESS or FAILURE
+    private String parameters;
     private String errorMessage;
 
     private LocalDateTime timestamp;

@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user_hierarchy")
+@Table(name = "user_hierarchy", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"ancestor", "descendant", "depth"})
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class UserHierarchy {
     private Long ancestor;
     private Long descendant;
     private int depth;
-    private boolean active;
+    private boolean active = true;
 
     public UserHierarchy(Long ancestor, Long descendant, int depth) {
         this.ancestor = ancestor;

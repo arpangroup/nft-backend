@@ -31,7 +31,7 @@ function buildTree(node, level = 0) {
   let html = `<li><div class="node"
     data-level="${level}"
     title="User ID: ${node.userId}"
-    onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', event)">
+    onclick="showUserInfo('${node.userId}', '${node.username}', '${node.walletBalance}', '${node.userRank}', event)">
     ${node.username}
     </div>`;
   if (node.children && node.children.length > 0) {
@@ -111,8 +111,10 @@ function loadUsers() {
 
 
 function loadTransaction() {
+  if (!selectedUserId) return alert("Please enter a user ID.");
+  console.log("loadTransaction for selectedUserId: ", selectedUserId);
   const baseUrl = '/api/v1/transactions';
-  const url = (selectedUserId && selectedUserId !== 1) ? `${baseUrl}/${selectedUserId}` : baseUrl;
+  const url = (selectedUserId && selectedUserId !== '1') ? `${baseUrl}/${selectedUserId}` : baseUrl;
 
   fetch(url)
     .then(response => response.json())
@@ -186,7 +188,7 @@ function addUsers() {
 
 
 let selectedNodeElement = null;
-function showUserInfo(userId, username, walletBalance, event) {
+function showUserInfo(userId, username, walletBalance, userRank, event) {
   selectedUserId = userId;
   clearHighlights(true);
   console.log("SELECTED_USER_ID: ", selectedUserId);
@@ -201,8 +203,8 @@ function showUserInfo(userId, username, walletBalance, event) {
   selectedNodeElement.classList.add("selected");
 
   // Show label (you can customize where to show)
-  const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId}) ℹ️ Balance: ${walletBalance}`;
-  getUserRank(userId);
+  const label = document.getElementById('selectedUserLabel').textContent = `Selected User: ${username} (ID: ${userId}) ℹ️ Balance: ${walletBalance} ℹ️ Rank: ${userRank}`;
+  //getUserRank(userId);
 
   // 🔄 Update or append `id` query param in the URL without reloading
   const url = new URL(window.location);

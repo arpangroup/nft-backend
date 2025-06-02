@@ -1,6 +1,6 @@
 package com.arpangroup.referral_service.controller;
 
-import com.arpangroup.referral_service.referral.ReferralBonusService;
+import com.arpangroup.referral_service.referral.service.ReferralBonusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

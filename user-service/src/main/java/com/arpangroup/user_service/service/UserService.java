@@ -20,7 +20,7 @@ public interface UserService {
     /**
      * This method is required for bonus-service to apply various bonus
      */
-    User deposit(final long userId, final BigDecimal amount, String remarks);
+    User deposit(final long userId, final BigDecimal amount, String remarks, String metaInfo);
 
     /**
      * This method is require for BonusService to check whether

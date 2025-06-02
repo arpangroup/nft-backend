@@ -1,6 +1,8 @@
 let rankData = [];
 
 function loadProducts() {
+    if (!selectedUserId) return alert("Please enter a user ID.");
+
   const baseUrl = '/api/v1/products';
   const url = (selectedUserId && selectedUserId !== 1) ? `${baseUrl}?userId=${selectedUserId}` : baseUrl;
 

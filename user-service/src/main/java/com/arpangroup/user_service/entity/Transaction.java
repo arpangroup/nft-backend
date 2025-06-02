@@ -53,6 +53,10 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionType txnType;
 
+    @Column(nullable = true)
+    @Setter
+    private String metaInfo;
+
     public Transaction(long userId, BigDecimal amount, @NotNull TransactionType transactionType, BigDecimal balance) {
         this.userId = userId;
         this.amount = amount;

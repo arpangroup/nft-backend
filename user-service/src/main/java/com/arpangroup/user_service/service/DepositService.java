@@ -23,19 +23,24 @@ public class DepositService {
     private final ApplicationEventPublisher publisher;
 
     @Transactional
-    public User deposit(long userId, BigDecimal amount, String remarks) {
+    public User deposit(long userId, BigDecimal amount, String remarks, String metaInfo) {
         log.info("Deposit for userId: {}, amount: {}, remarks: {}", userId, amount, remarks);
         boolean hasAnyPreviousDeposit = hasDeposit(userId); // require to check if this txn is first deposit or not
 
         // add the record to transaction
-        transactionService.deposit(userId, amount, remarks);
+        log.info("Calling transaction service to deposit Amount: {} for User ID: {}", amount, userId);
+        transactionService.deposit(userId, amount, remarks, metaInfo);
+        log.info("Deposit Successful for User ID: {} of Amount: {}", userId, amount);
 
         // update user's wallet balance
+        log.info("Updating Wallet Balance for User ID: {}", userId);
         User user = userRepository.findById(userId).orElseThrow(() -> new IdNotFoundException("invalid userId: " + userId));
+        log.info("Previous Wallet Balance for User ID: {} was: {}, Deposit Amount: {}, Final Balance: {}", userId, user.getWalletBalance(), amount, user.getWalletBalance().add(amount));
         user.setWalletBalance(user.getWalletBalance().add(amount));
         userRepository.save(user);
+        log.info("Wallet Balance update success for User ID: {}", userId);
 
-        if (!hasAnyPreviousDeposit) { // This is the first Deposit Transaction
+        if (!hasAnyPreviousDeposit && user.getReferrer() != null) { // This is the first Deposit Transaction
             log.info("publishing FirstDepositEvent.....");
             publisher.publishEvent(new FirstDepositEvent(userId, user.getReferrer().getId(), amount));
         }

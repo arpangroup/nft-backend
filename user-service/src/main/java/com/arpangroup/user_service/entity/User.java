@@ -27,11 +27,15 @@ public class User {
     private User referrer;
 
     @Column(name = "rank_level")
-    private int rank;
+    private int rank = 1;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    public UserStatus status = UserStatus.ACTIVE;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
 
 
 
@@ -78,5 +82,31 @@ public class User {
 
     public User(String username) {
         this.username = username;
+        this.setStatus(UserStatus.ACTIVE);
     }
+
+    public User(String username, int rank, BigDecimal walletBalance) {
+        this(username);
+        this.rank = rank;
+        this.walletBalance = walletBalance;
+        this.setStatus(UserStatus.ACTIVE);
+    }
+
+    public User(Long id, String username, int rank, BigDecimal walletBalance) {
+        this(username, rank, walletBalance);
+        this.id = id;
+    }
+
+
+    public enum UserStatus {
+        ACTIVE,         // User is active and allowed to use the system
+        DISABLED,       // User is deactivated (manually or due to violation)
+        PENDING,        // User registered but hasn't completed verification
+        SUSPENDED,      // Temporarily banned for a specific reason/time
+        DELETED,        // Soft-deleted user (can be restored later)
+        BANNED,         // Permanently banned
+        LOCKED,         // Account locked due to security reasons (e.g., too many login attempts)
+        INACTIVE        // User hasn’t used the service in a long time
+    }
+
 }

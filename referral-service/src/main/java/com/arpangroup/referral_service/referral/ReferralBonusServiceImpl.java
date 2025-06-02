@@ -7,6 +7,7 @@ import com.arpangroup.referral_service.constant.Remarks;
 import com.arpangroup.nft_common.enums.TriggerType;
 import com.arpangroup.referral_service.referral.entity.BonusStatus;
 import com.arpangroup.referral_service.referral.entity.ReferralBonus;
+import com.arpangroup.referral_service.referral.service.ReferralBonusService;
 import com.arpangroup.referral_service.repository.ReferralBonusRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +23,24 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class ReferralBonusService {
+public class ReferralBonusServiceImpl implements ReferralBonusService {
     private final UserClient userClient;
     private final Map<String, ReferralBonusStrategy> strategies;
     private final ReferralBonusRepository bonusRepository;
 
     @Autowired
-    public ReferralBonusService(List<ReferralBonusStrategy> strategyList, UserClient userClient, ReferralBonusRepository bonusRepository) {
+    public ReferralBonusServiceImpl(List<ReferralBonusStrategy> strategyList, UserClient userClient, ReferralBonusRepository bonusRepository) {
         this.strategies = strategyList.stream()
                 .collect(Collectors.toMap(s -> s.getClass().getAnnotation(Component.class).value(), s -> s));
         this.userClient= userClient;
         this.bonusRepository = bonusRepository;
     }
 
-    public void evaluateBonus(UserInfo referrer, UserInfo referee, String strategyKey) {
+    private void evaluateBonus(UserInfo referrer, UserInfo referee, String strategyKey) {
+        log.info("evaluateBonus for Referrer ID: {}, Referee ID: {}, Strategy: {}", referrer.getId(), referee.getId(), strategyKey);
         ReferralBonusStrategy strategy = strategies.get(strategyKey);
         if (strategy != null && strategy.isEligible(referee)) {
+            log.info("Apply Referral Bonus........");
             strategy.applyBonus(referrer, referee);
         }
     }
@@ -49,10 +52,12 @@ public class ReferralBonusService {
         Optional<ReferralBonus> optional = bonusRepository.findByRefereeIdAndStatus(refereeId, BonusStatus.PENDING);
 
         if (optional.isPresent()) {
+            log.info("PENDING record found for Referee ID: {}", refereeId);
             ReferralBonus bonus = optional.get();
             String strategy = bonus.getTriggerType().getLabel();
 
             // Load referrer and referee data (via API or shared module)
+            log.info("Calling userClient to get userInfo for Referee ID: {} and Referrer ID: {}", refereeId, bonus.getReferrerId());
             UserInfo referee = userClient.getUserInfo(refereeId);
             UserInfo referrer = userClient.getUserInfo(bonus.getReferrerId());
 
@@ -84,7 +89,7 @@ public class ReferralBonusService {
         }
     }
 
-    @Audit(action = "CREATE_PENDING_BONUS")
+//    @Audit(action = "CREATE_PENDING_BONUS")
     public void createPendingBonus(Long referrerId, Long refereeId, TriggerType triggerType) {
         log.info("creatingPendingBonus for referrerId: {}, refereeId: {}, triggerType: {}........", referrerId, refereeId, triggerType);
         ReferralBonus bonus = new ReferralBonus();
