@@ -3,6 +3,7 @@ package com.arpangroup.referral_service.income.service;
 import com.arpangroup.referral_service.income.dto.TeamRebateConfigDto;
 import com.arpangroup.referral_service.income.entity.TeamRebateConfig;
 import com.arpangroup.referral_service.income.repository.TeamRebateConfigRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class TeamRebateConfigService {
     }
 
 
+    @Transactional
     public void updateTeamConfigs(List<TeamRebateConfig> updatedConfigs) {
         for (TeamRebateConfig config : updatedConfigs) {
             Optional<TeamRebateConfig> existingOpt = teamRebateConfigRepository.findById(config.getRank());

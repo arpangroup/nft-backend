@@ -42,9 +42,9 @@ public class RankConfig {
         this.maxWalletBalance = maxWalletBalance;
     }
 
-    public RankConfig(Rank rank, int minWalletBalance, int maxWalletBalance, double commissionRate) {
+    public RankConfig(Rank rank, int minWalletBalance, int maxWalletBalance, BigDecimal commissionRate) {
        this(rank, minWalletBalance, maxWalletBalance);
-       this.commissionRate = BigDecimal.valueOf(commissionRate);
+       this.commissionRate = commissionRate;
        this.txnPerDay = 1;
     }
 }

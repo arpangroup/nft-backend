@@ -1,0 +1,18 @@
+bonus:
+  welcome:
+    enable: true
+    calculation-type: FLAT
+    flat-amount: 300
+  referral:
+    enable: true
+    calculation-type: PERCENTAGE #[FLAT, PERCENTAGE]
+    percentage-rate: 0.05  # 5%
+    flat-amount: 300 # Direct Bonus
+  community:
+    max-depth: 3
+
+
+user:
+  service:
+    base-url: http://localhost:8080
+

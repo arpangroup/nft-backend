@@ -18,7 +18,7 @@ public class UserServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User rootUser = new User("root");
+		User rootUser = new User("U1");
 		userRepository.save(rootUser);
 	}
 }

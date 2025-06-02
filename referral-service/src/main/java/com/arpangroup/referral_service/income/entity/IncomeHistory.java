@@ -24,7 +24,7 @@ public class IncomeHistory {
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
-    private IncomeType  type; // "DAILY" or "TEAM"
+    private IncomeType type; // "DAILY" or "TEAM"
 
     private String note; // e.g. "From user 42, RANK_2"
 
@@ -43,5 +43,12 @@ public class IncomeHistory {
 
     public enum IncomeType {
         DAILY, TEAM
+    }
+
+    public IncomeHistory(Long userId, BigDecimal amount, Rank sourceUserRank) {
+        this.userId = userId;
+        this.amount = amount;
+        this.type = IncomeType.TEAM;
+        this.sourceUserRank = sourceUserRank;
     }
 }

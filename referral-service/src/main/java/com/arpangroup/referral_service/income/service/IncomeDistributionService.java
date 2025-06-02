@@ -118,6 +118,9 @@ public class IncomeDistributionService {
     ========================================
      */
     private void printLog(List<UplineIncomeLog> logs, Long sellerId, Rank sellerRank, BigDecimal dailyIncome) {
+        if (logs == null) {
+            logs = List.of(); // prevent NPE
+        }
         BigDecimal totalTeamIncome = logs.stream()
                 .map(UplineIncomeLog::income)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -137,10 +140,10 @@ public class IncomeDistributionService {
             logs.forEach(log -> summary.append(String.format(
                     "  - Upline ID: %d | Rank: %-7s | Level: %d | %%: %5s | Income: %s\n",
                     log.uplineUserId(), log.rank(), log.depth(),
-                    log.percentage().setScale(2), log.income().setScale(4)
+                    log.percentage().setScale(2, RoundingMode.HALF_UP), log.income().setScale(4, RoundingMode.HALF_UP)
             )));
             summary.append("▶️ Total Team Members Rewarded: ").append(logs.size()).append("\n");
-            summary.append("▶️ Total Team Income Distributed: ").append(totalTeamIncome.setScale(4)).append("\n");
+            summary.append("▶️ Total Team Income Distributed: ").append(totalTeamIncome.setScale(4, RoundingMode.HALF_UP)).append("\n");
         }
 
         summary.append("========================================\n");

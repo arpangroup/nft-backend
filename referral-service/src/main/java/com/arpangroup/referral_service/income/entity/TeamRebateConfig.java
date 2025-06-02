@@ -19,9 +19,14 @@ public class TeamRebateConfig {
     @Column(name = "rank_type")
     private Rank rank;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "team_income_percentages", joinColumns = @JoinColumn(name = "rank_type"))
     @MapKeyColumn(name = "level") // 1 = A, 2 = B, 3 = C
     @Column(name = "percentage")
     private Map<Integer, BigDecimal> incomePercentages = new HashMap<>();
+
+    public TeamRebateConfig(Rank rank, Map<Integer, BigDecimal> incomePercentages) {
+        this.rank = rank;
+        this.incomePercentages = incomePercentages;
+    }
 }

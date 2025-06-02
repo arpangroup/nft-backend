@@ -85,6 +85,18 @@ public class User {
         this.setStatus(UserStatus.ACTIVE);
     }
 
+    public User(String username, int rank, BigDecimal walletBalance) {
+        this(username);
+        this.rank = rank;
+        this.walletBalance = walletBalance;
+        this.setStatus(UserStatus.ACTIVE);
+    }
+
+    public User(Long id, String username, int rank, BigDecimal walletBalance) {
+        this(username, rank, walletBalance);
+        this.id = id;
+    }
+
 
     public enum UserStatus {
         ACTIVE,         // User is active and allowed to use the system

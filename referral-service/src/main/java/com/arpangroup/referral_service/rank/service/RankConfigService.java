@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class RankConfigService {
         for (RankConfigDto dto : dtos) {
             Rank rankEnum = Rank.valueOf(dto.getRank());
             RankConfig existing = rankConfigRepository.findById(rankEnum)
-                    .orElse(new RankConfig(rankEnum, 0, 0, 0)); // Create if not exists
+                    .orElse(new RankConfig(rankEnum, 0, 0, new BigDecimal("0"))); // Create if not exists
 
             existing.setMinWalletBalance(dto.getMinWalletBalance());
             existing.setMaxWalletBalance(dto.getMaxWalletBalance());
