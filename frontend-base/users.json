@@ -1,0 +1,2167 @@
+{
+    "draw": 1,
+    "recordsTotal": 19,
+    "recordsFiltered": 19,
+    "data": [
+        {
+            "id": 19,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">MK<\/span>\r\n",
+            "first_name": "Monuking1000k",
+            "last_name": "King",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "Monuking1000kKing2638",
+            "email": "Anitarani3774@gamil.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "0 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge danger\">Deactivated<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge pending\">Unverified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": null,
+            "created_at": "2025-05-27T07:58:13.000000Z",
+            "updated_at": "Jun 04 2025 02:35",
+            "full_name": "Monuking1000k King",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "0",
+            "total_invest": "0",
+            "action": "<a href=\"users_edit.html\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"19\"\n          data-name=\"Monuking1000k King\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 1
+        },
+        {
+            "id": 18,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">SY<\/span>\r\n",
+            "first_name": "Sanjay yadav",
+            "last_name": "Yadav",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "Sanjay yadavYadav2284",
+            "email": "sanja@gmail.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "0 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge pending\">Unverified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": null,
+            "created_at": "2025-05-27T07:05:08.000000Z",
+            "updated_at": "May 27 2025 12:35",
+            "full_name": "Sanjay Yadav Yadav",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "0",
+            "total_invest": "0",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/18\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"18\"\n          data-name=\"Sanjay yadav Yadav\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 2
+        },
+        {
+            "id": 17,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">RN<\/span>\r\n",
+            "first_name": "Rajesh",
+            "last_name": "Naskar",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "RajeshNaskar9819",
+            "email": "rajeshnaskar996@gmail.vom",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "0 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge pending\">Unverified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": null,
+            "created_at": "2025-05-26T17:49:44.000000Z",
+            "updated_at": "May 26 2025 11:19",
+            "full_name": "Rajesh Naskar",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "0",
+            "total_invest": "0",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/17\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"17\"\n          data-name=\"Rajesh Naskar\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 3
+        },
+        {
+            "id": 16,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">RS<\/span>\r\n",
+            "first_name": "RAnveer",
+            "last_name": "Singh",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "RAnveerSingh4666",
+            "email": "singhranveer3807@gmail.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "0 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge pending\">Unverified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": null,
+            "created_at": "2025-05-26T07:09:06.000000Z",
+            "updated_at": "May 26 2025 12:39",
+            "full_name": "RAnveer Singh",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "0",
+            "total_invest": "0",
+            "action": "<a href=\"users_edit.html\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"16\"\n          data-name=\"RAnveer Singh\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 4
+        },
+        {
+            "id": 15,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">RS<\/span>\r\n",
+            "first_name": "Reenu",
+            "last_name": "Sharma",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "ReenuSharma1785",
+            "email": "admin@gmail.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "0 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge success\">Verified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": true,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": "2025-06-04T09:05:23.000000Z",
+            "created_at": "2025-05-26T03:33:23.000000Z",
+            "updated_at": "Jun 04 2025 02:35",
+            "full_name": "Reenu Sharma",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "0",
+            "total_invest": "0",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/15\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"15\"\n          data-name=\"Reenu Sharma\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 5
+        },
+        {
+            "id": 14,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">MS<\/span>\r\n",
+            "first_name": "Monu",
+            "last_name": "Sharma",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "MonuSharma5286",
+            "email": "Test@gamil.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "30 USD",
+            "profit_balance": 18,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge success\">Verified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": true,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": "2025-05-24T11:18:53.000000Z",
+            "created_at": "2025-05-17T13:10:02.000000Z",
+            "updated_at": "May 24 2025 04:48",
+            "full_name": "Monu Sharma",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "40",
+            "total_invest": "0",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/14\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"14\"\n          data-name=\"Monu Sharma\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 6
+        },
+        {
+            "id": 13,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">MP<\/span>\r\n",
+            "first_name": "Minal",
+            "last_name": "Pal",
+            "country": "India",
+            "phone": "+91 7407804809",
+            "username": "MinalPal6996",
+            "email": "minalpal1211@gmail.com",
+            "gender": "male",
+            "date_of_birth": null,
+            "city": "Purba barddhaman",
+            "zip_code": "",
+            "address": "",
+            "balance": "0 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": 11,
+            "kyc": "<div class=\"site-badge success\">Verified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": true,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": "2025-05-24T21:18:02.000000Z",
+            "created_at": "2025-05-17T04:34:15.000000Z",
+            "updated_at": "May 30 2025 01:36",
+            "full_name": "Minal Pal",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "7400",
+            "total_invest": "0",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/13\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"13\"\n          data-name=\"Minal Pal\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 7
+        },
+        {
+            "id": 12,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">SS<\/span>\r\n",
+            "first_name": "Shahid",
+            "last_name": "Shaikh",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "ShahidShaikh4843",
+            "email": "shahifshaikh10@gmail.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": "",
+            "zip_code": "",
+            "address": "",
+            "balance": "1700 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": 11,
+            "kyc": "<div class=\"site-badge success\">Verified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": "2025-05-16T13:17:56.000000Z",
+            "created_at": "2025-05-15T18:44:31.000000Z",
+            "updated_at": "May 17 2025 10:03",
+            "full_name": "Shahid Shaikh",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "1700",
+            "total_invest": "0",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/12\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"12\"\n          data-name=\"Shahid Shaikh\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 8
+        },
+        {
+            "id": 11,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">VV<\/span>\r\n",
+            "first_name": "Varun",
+            "last_name": "Varun",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "VarunVarun7398",
+            "email": "varun9520564@gmail.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "45465 USD",
+            "profit_balance": 258,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge pending\">Unverified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": null,
+            "created_at": "2025-05-15T18:01:22.000000Z",
+            "updated_at": "May 20 2025 01:56",
+            "full_name": "Varun Varun",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "258 USD",
+            "total_deposit": "86000",
+            "total_invest": "5500",
+            "action": "<a href=\"https:\/\/81habibi.com\/admin\/user\/11\/edit\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"11\"\n          data-name=\"Varun Varun\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 9
+        },
+        {
+            "id": 10,
+            "ranking_id": 1,
+            "rankings": "[1]",
+            "avatar": "<span class=\"avatar-text\">AJ<\/span>\r\n",
+            "first_name": "Afgg",
+            "last_name": "Jhg",
+            "country": "India",
+            "phone": "+91 ",
+            "username": "AfggJhg8130",
+            "email": "khankhhhs@gmail.com",
+            "gender": "",
+            "date_of_birth": null,
+            "city": null,
+            "zip_code": null,
+            "address": null,
+            "balance": "1500 USD",
+            "profit_balance": 8,
+            "status": "<div class=\"site-badge success\">Active<\/div>\r\n",
+            "ref_id": null,
+            "kyc": "<div class=\"site-badge pending\">Unverified<\/div>\r\n",
+            "kyc_credential": null,
+            "two_fa": false,
+            "deposit_status": 1,
+            "withdraw_status": 1,
+            "transfer_status": 1,
+            "email_verified_at": null,
+            "created_at": "2025-05-07T12:14:40.000000Z",
+            "updated_at": "May 16 2025 01:54",
+            "full_name": "Afgg Jhg",
+            "kyc_time": "",
+            "kyc_type": "",
+            "total_profit": "8 USD",
+            "total_deposit": "1500",
+            "total_invest": "1000",
+            "action": "<a href=\"users_edit.html\" class=\"round-icon-btn primary-btn\" data-bs-toggle=\"tooltip\"\n       title=\"Edit User\" data-bs-original-title=\"Edit User\"><i icon-name=\"edit-3\"><\/i><\/a>\n    <span type=\"button\"\n          data-id=\"10\"\n          data-name=\"Afgg Jhg\"\n          class=\"send-mail\"\n    ><button class=\"round-icon-btn red-btn\" data-bs-toggle=\"tooltip\" title=\"Send Email\"\n             data-bs-original-title=\"Send Email\"><i icon-name=\"mail\"><\/i><\/button><\/span>\n\n<script>\n    lucide.createIcons();\n    $(document).ajaxComplete(function () {\n        \"use strict\";\n        $('[data-bs-toggle=\"tooltip\"]').tooltip({\n            \"html\": true,\n        });\n    });\n<\/script>\n",
+            "DT_RowIndex": 10
+        }
+    ],
+    "queries": [
+        {
+            "query": "select count(*) as aggregate from (select * from `users` order by `created_at` desc) count_row_table",
+            "bindings": [],
+            "time": 0.6
+        },
+        {
+            "query": "select * from `users` order by `created_at` desc, `avatar` asc limit 10 offset 0",
+            "bindings": [],
+            "time": 0.59
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.55
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "investment"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "investment"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.57
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "investment"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 2.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "investment"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                19,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "investment"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "investment"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.38
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "investment"
+            ],
+            "time": 0.36
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.49
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "investment"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "investment"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                18,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 1.83
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.55
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 2.17
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "investment"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "investment"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 1.87
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "investment"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                17,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "investment"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "investment"
+            ],
+            "time": 0.36
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "investment"
+            ],
+            "time": 0.37
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.49
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "investment"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                16,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "investment"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "investment"
+            ],
+            "time": 0.41
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "investment"
+            ],
+            "time": 1.73
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                15,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.66
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "investment"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "investment"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.56
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "investment"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.63
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "investment"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.58
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "investment"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                14,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.49
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "investment"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "investment"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.56
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.49
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "investment"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.53
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "investment"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.56
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                13,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.63
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.37
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "investment"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "investment"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 1.77
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.49
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "investment"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "investment"
+            ],
+            "time": 1.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                12,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "investment"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.54
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.53
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "investment"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.54
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "investment"
+            ],
+            "time": 0.42
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.47
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.37
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "investment"
+            ],
+            "time": 0.36
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "investment"
+            ],
+            "time": 0.34
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                11,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "investment"
+            ],
+            "time": 0.48
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.46
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.44
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "investment"
+            ],
+            "time": 0.4
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.45
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.39
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "investment"
+            ],
+            "time": 0.38
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.51
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "investment"
+            ],
+            "time": 0.49
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.52
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "deposit",
+                "manual_deposit"
+            ],
+            "time": 0.5
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "investment"
+            ],
+            "time": 0.43
+        },
+        {
+            "query": "select sum(`amount`) as aggregate from `transactions` where `transactions`.`user_id` = ? and `transactions`.`user_id` is not null and `status` = ? and (`type` = ? or `type` = ? or `type` = ? or `type` = ?)",
+            "bindings": [
+                10,
+                "success",
+                "referral",
+                "signup_bonus",
+                "interest",
+                "bonus"
+            ],
+            "time": 0.45
+        }
+    ],
+    "input": {
+        "draw": "1",
+        "columns": [
+            {
+                "data": "avatar",
+                "name": "avatar",
+                "searchable": "true",
+                "orderable": "true",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "username",
+                "name": "username",
+                "searchable": "true",
+                "orderable": "true",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "email",
+                "name": "email",
+                "searchable": "true",
+                "orderable": "true",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "balance",
+                "name": "balance",
+                "searchable": "true",
+                "orderable": "true",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "total_profit",
+                "name": "total_profit",
+                "searchable": "false",
+                "orderable": "false",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "kyc",
+                "name": "kyc",
+                "searchable": "true",
+                "orderable": "true",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "status",
+                "name": "status",
+                "searchable": "true",
+                "orderable": "true",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            },
+            {
+                "data": "action",
+                "name": "action",
+                "searchable": "false",
+                "orderable": "false",
+                "search": {
+                    "value": "",
+                    "regex": "false"
+                }
+            }
+        ],
+        "order": [
+            {
+                "column": "0",
+                "dir": "asc"
+            }
+        ],
+        "start": "0",
+        "length": "10",
+        "search": {
+            "value": "",
+            "regex": "false"
+        },
+        "_": "1749148420656"
+    }
+}

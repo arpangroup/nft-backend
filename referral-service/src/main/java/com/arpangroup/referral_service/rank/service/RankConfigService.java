@@ -54,6 +54,7 @@ public class RankConfigService {
         dto.setTxnPerDay(config.getTxnPerDay());
         dto.setCommissionRate(config.getCommissionRate());
         dto.setRequiredLevelCounts(new HashMap<>(config.getRequiredLevelCounts()));
+        dto.setStakeValue(config.getStakeValue());
         return dto;
     }
 }

@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class RegistrationRequest {
     @NotBlank(message = "username is required")
-    @Pattern(regexp = "^[a-z0-9_]{3,20}$", message = "Username can contain only lowercase letters, numbers, and underscores") // Username must be 3–20 chars
+//    @Pattern(regexp = "^[a-z0-9_]{3,20}$", message = "Username can contain only lowercase letters, numbers, and underscores") // Username must be 3–20 chars
     private String username;
 
 //    @NotBlank(message = "password is required")

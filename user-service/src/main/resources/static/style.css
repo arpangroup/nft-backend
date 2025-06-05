@@ -171,8 +171,8 @@ body {
 
 .sidebar.config,
 .sidebar.sql {
-  right: -1100px;
-  width: 1050px;
+  right: -1250px;
+  width: 1200px;
 }
 
 #sidebar-sql #result{

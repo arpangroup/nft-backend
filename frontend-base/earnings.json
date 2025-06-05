@@ -1,0 +1,34 @@
+{
+    "draw": 1,
+    "recordsTotal": 1,
+    "recordsFiltered": 1,
+    "data": [
+        {
+            "id": 173,
+            "user_id": 19,
+            "from_user_id": null,
+            "from_model": "User",
+            "target_id": null,
+            "target_type": null,
+            "is_level": 0,
+            "tnx": "TRXEZJPEYJV8G",
+            "description": "Signup Bonus",
+            "amount": 8,
+            "type": "<div class=\"site-badge primary-bg\">Signup Bonus<\/div>\n",
+            "charge": "0 USD",
+            "final_amount": "<strong\r\n    class=\"green-color\">+8 USD<\/strong>\r\n",
+            "method": "System",
+            "pay_currency": null,
+            "pay_amount": null,
+            "manual_field_data": "[]",
+            "approval_cause": "none",
+            "status": "success",
+            "created_at": "May 27 2025 01:28",
+            "updated_at": "2025-05-27T07:58:14.000000Z",
+            "day": "27 May",
+            "username": "<a class=\"link\" href=\"https:\/\/81habibi.com\/admin\/user\/19\/edit\">Monuking1000kKing2638<\/a>\n",
+            "profit_from": "System",
+            "DT_RowIndex": 1
+        }
+    ]
+}
