@@ -76,6 +76,16 @@ function renderRankConfigTable() {
     tdProfit.appendChild(inputProfit);
     tr.appendChild(tdProfit);
 
+    const tdStake = document.createElement('td');
+    const inputStake = document.createElement('input');
+    inputStake.type = 'number';
+    inputStake.value = rankConfig.stakeValue;
+    inputStake.dataset.rank = rankConfig.rank;
+    inputStake.dataset.field = 'stakeValue';
+    inputStake.addEventListener('input', onRankInputChange);
+    tdStake.appendChild(inputStake);
+    tr.appendChild(tdStake);
+
 
     tbody.appendChild(tr);
   });

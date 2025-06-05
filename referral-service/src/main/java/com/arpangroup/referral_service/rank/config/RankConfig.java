@@ -23,7 +23,7 @@ public class RankConfig {
     private int maxWalletBalance;
     private int txnPerDay = 1;
     //private double profitPerDay;
-    private double annualizedReturns;
+    private int stakeValue;
 
     // Required downline users per level (depth = 1 = level A, etc.)
     @ElementCollection //  Tells JPA this is a collection of simple values (not entities).
