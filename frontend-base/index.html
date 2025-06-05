@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="tAlWAwzyEa2XNDEaOQGfJURs5sqf66BiknGdP3Yk ">
+    <link rel="shortcut icon" href="/assets/global/images/Iprtp3RPPX5omVb7MORF.png" type="image/x-icon" />
+    <link rel="icon" href="" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/datatables.min.css" />
+    <link rel="stylesheet" href="assets/css/simple-notify.min.css" />
+    <link rel="stylesheet" href="assets/css/simple-notify.min.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/vendor/mckenziearts/laravel-notify/css/notify.css" /> -->
+    <!-- <link rel="stylesheet" href="/assets/backend/css/summernote-lite.min.css" /> -->
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+    <link rel="stylesheet" href="/assets/css/custom.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <title>Money Globals - Dashboard
+    </title>
+</head>
+
+<body>
+    <!--Full Layout-->
+    <div class="layout">
+
+        <div
+            class="notify fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end" style="display: none;">
+            <div x-data="{ show:  true  }" x-init="setTimeout(() => { show = true }, 500)" x-show="show"
+                x-description="Notification panel, show/hide based on alert state."
+                x-transition:enter="transform ease-out duration-300 transition"
+                x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
+                x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="max-w-sm w-full  bg-white  shadow-lg rounded-lg pointer-events-auto">
+                <div class="relative rounded-lg shadow-xs overflow-hidden">
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <div class="inline-flex items-center text-white text-2xl rounded-full flex-shrink-0">
+                                <span>👍</span>
+                            </div>
+                            <div class="ml-6 w-0 flex-1">
+                                <p class="text-base leading-5 font-medium capitalize  text-green-600 ">
+                                    success !
+                                </p>
+                                <p class="mt-1 text-sm leading-5  text-gray-500 ">
+                                    Successfully login your account 🔥 !
+                                </p>
+                            </div>
+                            <div class="ml-4 flex-shrink-0 flex">
+                                <button @click="show = false;"
+                                    class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150">
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <script>
+            var notify = {
+                timeout: "5000",
+            }
+        </script>
+        <!--Header-->
+        <div class="header">
+            <div class="logo">
+                <a href="/admin">
+                    <img class="logo-unfold" src="/assets/global/images/6nlIjl7Nsmy7obWFci9X.png" alt="Logo" />
+                    <img class="logo-fold" src="/assets/global/images/6nlIjl7Nsmy7obWFci9X.png" alt="Logo" />
+                </a>
+            </div>
+            <div class="nav-wrap">
+                <div class="nav-left">
+                    <button class="sidebar-toggle"><i icon-name="list"></i></button>
+                </div>
+                <div class="nav-right">
+
+                    <div class="single-nav-right admin-language-switch">
+                        <select name="language" class="form-select"
+                            onchange="window.location.href=this.options[this.selectedIndex].value;">
+                            <option value="/language-update?name=en" selected>English</option>
+                            <option value="/language-update?name=es">Spanish</option>
+                            <option value="/language-update?name=fr">Franch</option>
+                            <option value="/language-update?name=hi">Hindi</option>
+                        </select>
+                    </div>
+
+                    <div class="single-nav-right admin-notifications">
+                        <button type="button" class="item notification-dot" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i icon-name="bell-ring" class="bell-ringng"></i>
+                            <div class="number">15</div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end notification-pop">
+                            <div class="noti-head">Notifications <span>15</span></div>
+                            <div class="all-noti">
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/195" class="">
+                                        <div class="icon">
+                                            <i icon-name="newspaper"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> The manual deposit request details:
+                                                TRXLWGFQHME4I
+                                                Vyerge75764tr74676
+                                                100
+                                            </div>
+                                            <div class="time">3 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/194" class="read">
+                                        <div class="icon">
+                                            <i icon-name="newspaper"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> The manual deposit request details:
+                                                TRXEDMUGHVXFW
+                                                Cytugi
+                                                100
+                                            </div>
+                                            <div class="time">3 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/192" class="">
+                                        <div class="icon">
+                                            <i icon-name="newspaper"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> The manual deposit request details:
+                                                TRXJ6PUHYXJVE
+                                                Cytugi
+                                                100
+                                            </div>
+                                            <div class="time">3 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/189" class="read">
+                                        <div class="icon">
+                                            <i icon-name="wallet"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> Withdraw Request details:
+                                                TRX2ZGFNUAAZS
+                                                WITHDRAWAL
+                                                5000INR
+                                            </div>
+                                            <div class="time">5 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/188" class="">
+                                        <div class="icon">
+                                            <i icon-name="wallet"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> Withdraw Request details:
+                                                TRXLXUMEFJWGP
+                                                WITHDRAWAL
+                                                100INR
+                                            </div>
+                                            <div class="time">5 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/187" class="">
+                                        <div class="icon">
+                                            <i icon-name="wallet"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> Withdraw Request details:
+                                                TRX2LW6OFMMXC
+                                                WITHDRAWAL
+                                                100INR
+                                            </div>
+                                            <div class="time">5 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/184" class="read">
+                                        <div class="icon">
+                                            <i icon-name="newspaper"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> The manual deposit request details:
+                                                TRX8GMNTM9TIT
+                                                Testbep201234567890
+                                                5000
+                                            </div>
+                                            <div class="time">6 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/181" class="">
+                                        <div class="icon">
+                                            <i icon-name="newspaper"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Test Test</span> The manual deposit request details:
+                                                TRXATP7HPOHZJ
+                                                Testbep201234567890
+                                                5000
+                                            </div>
+                                            <div class="time">6 days ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/178" class="">
+                                        <div class="icon">
+                                            <i icon-name="newspaper"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Monuking1000k King</span> The manual deposit request details:
+                                                TRX9UGQVFC62Y
+                                                Cytugi
+                                                100
+                                            </div>
+                                            <div class="time">1 week ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="single-noti">
+                                    <a href="/admin/notification-read/177" class="">
+                                        <div class="icon">
+                                            <i icon-name="user-plus"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main-cont">
+                                                <span>Monuking1000k King</span> Thanks for joining us Monuking1000k King
+
+                                                .New User added our system.
+                                            </div>
+                                            <div class="time">1 week ago</div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="noti-footer mt-3">
+                                <a class="noti-btn-1 me-1 w-100" href="/admin/notification-read/0">Mark All as Read</a>
+                                <a class="noti-btn-2 ms-1 w-100" href="/admin/notification/all">See
+                                    all Notifications</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="single-nav-right">
+                        <a href="" target="_blank" class="item" data-bs-toggle="tooltip" title=""
+                            data-bs-placement="left" data-bs-original-title="Visit Landing Page">
+                            <i icon-name="globe"></i>
+                        </a>
+                    </div>
+                    <div class="single-nav-right">
+                        <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i icon-name="user"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a href="/admin/profile" class="dropdown-item"><i icon-name="user"></i>Profile</a>
+                            </li>
+                            <li>
+                                <a href="/admin/password-change" class="dropdown-item">
+                                    <i icon-name="lock"></i>Change Password
+                                </a>
+                            </li>
+                            <li class="logout">
+
+                                <a href="/admin/logout" class="dropdown-item" type="button"
+                                    onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();">
+                                    <i icon-name="log-out"></i> Logout
+                                </a>
+                                <form id="logout-form" action="/admin/logout" method="POST" class="d-none">
+                                    <input type="hidden" name="_token" value="tAlWAwzyEa2XNDEaOQGfJURs5sqf66BiknGdP3Yk">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Header-->
+
+        <!--Side Nav-->
+        <div class="side-nav">
+            <div class="side-nav-inside">
+                <ul class="side-nav-menu">
+
+                    <li class="side-nav-item active">
+                        <a href="/admin"><i icon-name="layout-dashboard"></i><span>Dashboard</span></a>
+                    </li>
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Customer Management</span>
+                    </li>
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link">
+                            <i icon-name="users"></i><span>Customers</span>
+                            <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="users.html"><i icon-name="users"></i>All Customers</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/user/active"><i icon-name="user-check"></i>Active
+                                    Customers</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/user/disabled"><i icon-name="user-x"></i>Disabled
+                                    Customers</a>
+                            </li>
+
+                            <li class="">
+                                <a href="notification_all.html"><i icon-name="megaphone"></i>Notifications</a>
+                            </li>
+                            <li class="">
+                                <a href="mail-send-all.html"><i icon-name="send"></i>Send
+                                    Email to all</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="check-square"></i><span>KYC
+                                Management</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="/admin/kyc/pending"><i icon-name="airplay"></i>Pending
+                                    KYC</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/kyc/rejected"><i icon-name="file-warning"></i>Rejected KYC</a>
+                            </li>
+                            <li class="">
+                                <a href="kyc_all.html"><i icon-name="contact"></i>All KYC Logs</a>
+                            </li>
+                            <li class="">
+                                <a href="kyc_form.html"><i icon-name="check-square"></i>KYC
+                                    Form</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Staff Management</span>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="roles.html"><i icon-name="contact"></i><span>Manage
+                                Roles</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/staff"><i icon-name="user-cog"></i><span>Manage
+                                Staffs</span></a>
+                    </li>
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Plans</span>
+                    </li>
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="album"></i><span>Manage
+                                Schema</span>
+                            <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="side-nav-item ">
+                                <a href="/admin/schedule"><i icon-name="alarm-check"></i><span>Schedule</span></a>
+                            </li>
+                            <li class="side-nav-item ">
+                                <a href="schema.html"><i icon-name="airplay"></i><span>Manage
+                                        Schema</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Transactions</span>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="transactions.html"><i icon-name="cast"></i><span>Transactions</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="investments.html"><i icon-name="anchor"></i><span>Investments</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="profits_all.html"><i icon-name="credit-card"></i><span>User
+                                Profits</span></a>
+                    </li>
+
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Essentials</span>
+                    </li>
+
+                    <li class="side-nav-item ">
+                        <a href="gateway.html"><i icon-name="door-open"></i><span>Automatic
+                                Gateways</span></a>
+                    </li>
+
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="arrow-down-circle"></i><span>Deposits</span><span class="right-arrow"><i
+                                    icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+
+                            <li class=""><a href="deposit_method_auto.html"><i icon-name="workflow"></i>Automatic
+                                    Methods</a></li>
+
+                            <li class=""><a href="deposit_method_manual.html"><i icon-name="compass"></i>Manual
+                                    Methods</a></li>
+
+                            <li class=""><a href="deposit_mannual_pending.html"><i icon-name="columns"></i>Pending
+                                    Manual Deposits</a></li>
+                            <li class=""><a href="deposit_history.html"><i icon-name="clipboard-check"></i>Deposit
+                                    History</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="side-nav-item side-nav-dropdown  ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="landmark"></i><span>Withdraw</span><span class="right-arrow"><i
+                                    icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="withdraw_methods_auto.html"><i icon-name="workflow"></i>Automatic
+                                    Methods</a>
+                            </li>
+                            <li class="">
+                                <a href="withdraw_methods_manual.html"><i icon-name="compass"></i>Manual
+                                    Methods</a>
+                            </li>
+
+                            <li class=""><a href="withdraw_pendings.html"><i icon-name="wallet"></i>Pending
+                                    Withdraws</a></li>
+                            <li class=""><a href="withdraw_schedule.html"><i icon-name="alarm-clock"></i>Withdraw
+                                    Schedule</a></li>
+                            <li class=""><a href="withdraw_history.html"><i icon-name="piggy-bank"></i>Withdraw
+                                    History</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="settings-2"></i><span>Manage
+                                Referral</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+
+                            <li class="">
+                                <a href="referral_level.html"><i icon-name="align-end-horizontal"></i>Multi Level
+                                    Referral</a>
+                            </li>
+                            <li class="">
+                                <a href="referral_index.html"><i icon-name="expand"></i>Targets
+                                    Referral</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="side-nav-item ">
+                        <a href="ranking.html"><i icon-name="medal"></i><span>User
+                                Rankings</span></a>
+                    </li>
+
+
+
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Site Settings</span>
+                    </li>
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="settings"></i>
+                            <span>Settings</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="/admin/settings/site"><i icon-name="settings-2"></i>Site
+                                    Settings</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/settings/mail"><i icon-name="inbox"></i>Email
+                                    Settings</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/settings/plugin/system"><i icon-name="toy-brick"></i>Plugin Settings</a>
+                            </li>
+
+                            <li class="">
+                                <a href="/admin/settings/plugin/sms"><i icon-name="message-circle"></i>SMS Settings</a>
+                            </li>
+
+                            <li class="">
+                                <a href="/admin/settings/plugin/notification"><i icon-name="bell-ring"></i>Push
+                                    Notification</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/settings/notification/tune"><i icon-name="volume-2"></i>Notification
+                                    Tune</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="side-nav-item ">
+                        <a href="/admin/language"><i icon-name="languages"></i><span>Language
+                                Settings</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/page/settings"><i icon-name="layout"></i><span>Page
+                                Settings</span></a>
+                    </li>
+
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Site Essentials</span>
+                    </li>
+
+
+                    <li class="side-nav-item side-nav-dropdown  ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="palette"></i><span>Theme
+                                Manage</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="/admin/theme/site"><i icon-name="roller-coaster"></i>Site
+                                    Theme</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/theme/dynamic-landing"><i icon-name="warehouse"></i>Dynamic Landing
+                                    Theme</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="side-nav-item side-nav-dropdown  ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="home"></i><span>Landing
+                                Page</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="/admin/page/section/hero"><i icon-name="egg"></i>Hero
+                                    Section</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/schema"><i icon-name="egg"></i>Schema
+                                    Section</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/calculation"><i icon-name="egg"></i>Calculation Section</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/howitworks"><i icon-name="egg"></i>How
+                                    it works Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/recent"><i icon-name="egg"></i>Recent
+                                    Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/whychooseus"><i icon-name="egg"></i>Why
+                                    Choose Us Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/counter"><i icon-name="egg"></i>Counter
+                                    Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/faq"><i icon-name="egg"></i>FAQ Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/cta"><i icon-name="egg"></i>Call To
+                                    Action
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/blog"><i icon-name="egg"></i>Blog
+                                    Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/gateway"><i icon-name="egg"></i>Gateway
+                                    Section
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/section/newsletter"><i icon-name="egg"></i>Newslatter Section
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="layout-grid"></i><span>Pages</span><span class="right-arrow"><i
+                                    icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="/admin/page/edit/schema"><i icon-name="egg"></i>Schema</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/howitworks"><i icon-name="egg"></i>How It
+                                    Works</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/about"><i icon-name="egg"></i>About Us</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/faq"><i icon-name="egg"></i>FAQ </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/ranking"><i icon-name="egg"></i>Rankings
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/blog"><i icon-name="egg"></i>Blog </a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/contact"><i icon-name="egg"></i>Contact
+                                    Us</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/privacy"><i icon-name="egg"></i>Privacy
+                                    Policy</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/terms"><i icon-name="egg"></i>Terms and
+                                    Conditions</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/login"><i icon-name="egg"></i>Login</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/registration"><i icon-name="egg"></i>Registration</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/edit/forgetpassword"><i icon-name="egg"></i>Forgot Password</a>
+                            </li>
+                            <li class="">
+                                <a href="/admin/page/create"><i icon-name="egg"></i>Add New Page</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/navigation/menu"><i icon-name="menu"></i><span>Site
+                                Navigations</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/footer-content"><i icon-name="list-end"></i><span>Footer
+                                Contents</span></a>
+                    </li>
+
+
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Templates</span>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/email-template"><i icon-name="mail"></i><span>Email
+                                Template</span></a>
+                    </li>
+
+                    <li class="side-nav-item ">
+                        <a href="/admin/template/sms"><i icon-name="message-square"></i><span>SMS
+                                Template</span></a>
+                    </li>
+
+                    <li class="side-nav-item ">
+                        <a href="/admin/template/notification"><i icon-name="bell-ring"></i><span>Push Notification
+                                Template</span></a>
+                    </li>
+
+
+
+                    <li class="side-nav-item category-title">
+                        <span>Others</span>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/subscribers"><i icon-name="mail-open"></i><span>All
+                                Subscriber</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="/admin/support-ticket/index"><i icon-name="wrench"></i><span>Support Tickets</span></a>
+                    </li>
+
+
+                    <li class="side-nav-item ">
+                        <a href="/admin/custom-css"><i icon-name="braces"></i><span>Custom
+                                CSS</span></a>
+                    </li>
+
+                    <li class="side-nav-item ">
+                        <a href="/admin/clear-cache"><i icon-name="trash-2"></i><span>Clear
+                                Cache</span></a>
+                    </li>
+                    <li class="side-nav-item  ">
+                        <a href="/admin/application-info"><i icon-name="indent"></i><span>Application
+                                Details</span><span class="badge yellow-color">2.3</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--/Side Nav-->
+
+        <!--Page Content-->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="page-title">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <div class="title-content">
+                                    <h2 class="title">Money Globals Dashboard</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="admin-latest-announcements">
+                                <div class="content"><i icon-name="zap"></i>Explore what&#039;s important to review
+                                    first</div>
+                                <div class="content">
+
+
+                                    <a href="/admin/deposit/manual-pending" class="site-btn-xs primary-btn"><i
+                                            icon-name="loader" class="spining-icon"></i>Deposit Requests
+                                        (1)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="users"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="count">19</h4>
+                                    <p>Registered User</p>
+                                </div>
+                                <a class="link" href="/admin/user"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="user-check"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="count">18</h4>
+                                    <p>Active Users</p>
+                                </div>
+                                <a class="link" href="/admin/user/active"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="user-cog"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="count">1</h4>
+                                    <p>Site Staff</p>
+                                </div>
+                                <a class="link" href="/admin/staff"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="wallet"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>₹<span class="count">728846</span></h4>
+                                    <p>Total Deposits</p>
+                                </div>
+                                <a class="link" href="/admin/deposit/history"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="landmark"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>₹<span class="count">50700</span></h4>
+                                    <p>Total Withdraw</p>
+                                </div>
+                                <a class="link" href="/admin/withdraw/history"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="link"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="count">7</h4>
+                                    <p>Total Referral</p>
+                                </div>
+                                <a class="link" href="/admin/referral/index"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="send"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>₹<span class="count">100</span></h4>
+                                    <p>Total Send</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="droplet"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>₹<span class="count">105350</span></h4>
+                                    <p>Total Investment</p>
+                                </div>
+                                <a class="link" href="/admin/investments"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="package-plus"></i>
+                                </div>
+                                <div class="content">
+                                    <h4>₹<span class="count">1950</span></h4>
+                                    <p>Deposit Bonus</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="sprout"></i>
+                                </div>
+                                <div class="content">
+                                    <h4> ₹<span class="count">0</span></h4>
+                                    <p>Investment Bonus</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="webhook"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="count">16</h4>
+                                    <p>Total Automatic Gateway</p>
+                                </div>
+                                <a class="link" href="/admin/gateway/automatic"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                            <div class="data-card">
+                                <div class="icon">
+                                    <i icon-name="help-circle"></i>
+                                </div>
+                                <div class="content">
+                                    <h4 class="count">3</h4>
+                                    <p>Total Ticket</p>
+                                </div>
+                                <a class="link" href="/admin/support-ticket/index"><i icon-name="external-link"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                            <div class="site-chart">
+                                <div class="site-card">
+                                    <div class="site-card-header">
+                                        <h3 class="title">Site Statistics</h3>
+                                        <div class="card-header-links">
+                                            <input class="card-header-input" type="text" name="daterange"
+                                                value="05/22/2025 - 06/05/2025" />
+                                        </div>
+                                    </div>
+                                    <div class="site-card-body">
+                                        <canvas id="depositChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="site-chart">
+                                <div class="site-card">
+                                    <div class="site-card-header">
+                                        <h3 class="title">Scheme Statistics</h3>
+                                    </div>
+                                    <div class="site-card-body">
+                                        <canvas id="schemeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="site-chart">
+                                <div class="site-card">
+                                    <div class="site-card-header">
+                                        <h3 class="title">Top Country Statistics</h3>
+                                    </div>
+                                    <div class="site-card-body">
+                                        <canvas id="countryChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="site-chart">
+                                <div class="site-card">
+                                    <div class="site-card-header">
+                                        <h3 class="title">Best Browser Statistics</h3>
+                                    </div>
+                                    <div class="site-card-body">
+                                        <canvas id="browserChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="site-chart">
+                                <div class="site-card">
+                                    <div class="site-card-header">
+                                        <h3 class="title">Best OS Statistics</h3>
+                                    </div>
+                                    <div class="site-card-body">
+                                        <canvas id="osChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="site-card">
+                                <div class="site-card-header">
+                                    <h3 class="title">Latest Registered User</h3>
+                                </div>
+                                <div class="site-card-body table-responsive">
+                                    <div class="site-datatable">
+                                        <table class="data-table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Avatar</th>
+                                                    <th>User</th>
+                                                    <th>Email</th>
+                                                    <th>Balance</th>
+                                                    <th>Profit</th>
+                                                    <th>KYC</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">MK</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/19/edit"
+                                                            class="link">Monuking1000kKing2638</a></td>
+                                                    <td>
+                                                        <strong>Anitarani3774@gamil.com</strong>
+                                                    </td>
+                                                    <td><strong>₹0</strong></td>
+                                                    <td><strong>₹8</strong></td>
+                                                    <td>
+                                                        <div class="site-badge pending">Unverified</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge danger">Deactivated</div>
+                                                    </td>
+                                                    <td>
+
+                                                        <a href="/admin/user/19/edit" class="round-icon-btn primary-btn"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Edit User"><i
+                                                                icon-name="edit-3"></i></a>
+                                                        <span type="button" data-id="19" data-name="Monuking1000k King"
+                                                            class="send-mail"><button class="round-icon-btn red-btn"
+                                                                data-bs-toggle="tooltip" title=""
+                                                                data-bs-original-title="Send Email"><i
+                                                                    icon-name="mail"></i></button></span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">SY</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/18/edit" class="link">Sanjay
+                                                            yadavYadav2284</a></td>
+                                                    <td>
+                                                        <strong>sanja@gmail.com</strong>
+                                                    </td>
+                                                    <td><strong>₹0</strong></td>
+                                                    <td><strong>₹8</strong></td>
+                                                    <td>
+                                                        <div class="site-badge pending">Unverified</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Active</div>
+                                                    </td>
+                                                    <td>
+
+                                                        <a href="/admin/user/18/edit" class="round-icon-btn primary-btn"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Edit User"><i
+                                                                icon-name="edit-3"></i></a>
+                                                        <span type="button" data-id="18" data-name="Sanjay yadav Yadav"
+                                                            class="send-mail"><button class="round-icon-btn red-btn"
+                                                                data-bs-toggle="tooltip" title=""
+                                                                data-bs-original-title="Send Email"><i
+                                                                    icon-name="mail"></i></button></span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">RN</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/17/edit" class="link">RajeshNaskar9819</a>
+                                                    </td>
+                                                    <td>
+                                                        <strong>rajeshnaskar996@gmail.vom</strong>
+                                                    </td>
+                                                    <td><strong>₹0</strong></td>
+                                                    <td><strong>₹8</strong></td>
+                                                    <td>
+                                                        <div class="site-badge pending">Unverified</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Active</div>
+                                                    </td>
+                                                    <td>
+
+                                                        <a href="/admin/user/17/edit" class="round-icon-btn primary-btn"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Edit User"><i
+                                                                icon-name="edit-3"></i></a>
+                                                        <span type="button" data-id="17" data-name="Rajesh Naskar"
+                                                            class="send-mail"><button class="round-icon-btn red-btn"
+                                                                data-bs-toggle="tooltip" title=""
+                                                                data-bs-original-title="Send Email"><i
+                                                                    icon-name="mail"></i></button></span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">RS</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/16/edit" class="link">RAnveerSingh4666</a>
+                                                    </td>
+                                                    <td>
+                                                        <strong>singhranveer3807@gmail.com</strong>
+                                                    </td>
+                                                    <td><strong>₹0</strong></td>
+                                                    <td><strong>₹8</strong></td>
+                                                    <td>
+                                                        <div class="site-badge pending">Unverified</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Active</div>
+                                                    </td>
+                                                    <td>
+
+                                                        <a href="/admin/user/16/edit" class="round-icon-btn primary-btn"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Edit User"><i
+                                                                icon-name="edit-3"></i></a>
+                                                        <span type="button" data-id="16" data-name="RAnveer Singh"
+                                                            class="send-mail"><button class="round-icon-btn red-btn"
+                                                                data-bs-toggle="tooltip" title=""
+                                                                data-bs-original-title="Send Email"><i
+                                                                    icon-name="mail"></i></button></span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">RS</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/15/edit" class="link">ReenuSharma1785</a>
+                                                    </td>
+                                                    <td>
+                                                        <strong>admin@gmail.com</strong>
+                                                    </td>
+                                                    <td><strong>₹0</strong></td>
+                                                    <td><strong>₹8</strong></td>
+                                                    <td>
+                                                        <div class="site-badge success">Verified</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Active</div>
+                                                    </td>
+                                                    <td>
+
+                                                        <a href="/admin/user/15/edit" class="round-icon-btn primary-btn"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Edit User"><i
+                                                                icon-name="edit-3"></i></a>
+                                                        <span type="button" data-id="15" data-name="Reenu Sharma"
+                                                            class="send-mail"><button class="round-icon-btn red-btn"
+                                                                data-bs-toggle="tooltip" title=""
+                                                                data-bs-original-title="Send Email"><i
+                                                                    icon-name="mail"></i></button></span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="centered">
+                                                    <td colspan="7">
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="site-card">
+                                <div class="site-card-header">
+                                    <h3 class="title">Latest Investment</h3>
+                                </div>
+                                <div class="site-card-body table-responsive">
+                                    <div class="site-datatable">
+                                        <table class="data-table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Avatar</th>
+                                                    <th>User</th>
+                                                    <th>Schema</th>
+                                                    <th>ROI</th>
+                                                    <th>Profit</th>
+                                                    <th>Capital Back</th>
+                                                    <th>Timeline</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">TT</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/3/edit" class="link">TestTest2362</a></td>
+                                                    <td>
+
+                                                        <strong> Crypto investment <i icon-name="arrow-big-right"></i>
+                                                            ₹1000
+                                                        </strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <strong>20%</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <strong>0 x 200 = 0 USD</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Yes</div>
+                                                    </td>
+                                                    <td>
+
+
+                                                        <div>
+                                                            <strong><span id="days37"></span>D : <span
+                                                                    id="hours37"></span>H : <span
+                                                                    id="minutes37"></span>M : <span
+                                                                    id="seconds37"></span>S</strong>
+                                                            <span class="site-badge primary-bg ms-2"
+                                                                id="percentage37"></span>
+                                                        </div>
+                                                        <div class="progress investment-timeline">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                                id="time-progress37" role="progressbar"
+                                                                aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+
+
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">TT</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/3/edit" class="link">TestTest2362</a></td>
+                                                    <td>
+
+                                                        <strong> Test123 <i icon-name="arrow-big-right"></i> ₹50
+                                                        </strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <strong>1%</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <strong>0 x 0.5 = 0 USD</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Yes</div>
+                                                    </td>
+                                                    <td>
+
+
+                                                        <div>
+                                                            <strong><span id="days36"></span>D : <span
+                                                                    id="hours36"></span>H : <span
+                                                                    id="minutes36"></span>M : <span
+                                                                    id="seconds36"></span>S</strong>
+                                                            <span class="site-badge primary-bg ms-2"
+                                                                id="percentage36"></span>
+                                                        </div>
+                                                        <div class="progress investment-timeline">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                                id="time-progress36" role="progressbar"
+                                                                aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+
+
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">TT</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/3/edit" class="link">TestTest2362</a></td>
+                                                    <td>
+
+                                                        <strong> Crypto investment <i icon-name="arrow-big-right"></i>
+                                                            ₹500
+                                                        </strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <strong>20%</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <strong>0 x 100 = 0 USD</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Yes</div>
+                                                    </td>
+                                                    <td>
+
+
+                                                        <div>
+                                                            <strong><span id="days35"></span>D : <span
+                                                                    id="hours35"></span>H : <span
+                                                                    id="minutes35"></span>M : <span
+                                                                    id="seconds35"></span>S</strong>
+                                                            <span class="site-badge primary-bg ms-2"
+                                                                id="percentage35"></span>
+                                                        </div>
+                                                        <div class="progress investment-timeline">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                                id="time-progress35" role="progressbar"
+                                                                aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+
+
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">TT</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/3/edit" class="link">TestTest2362</a></td>
+                                                    <td>
+
+                                                        <strong> Crypto investment <i icon-name="arrow-big-right"></i>
+                                                            ₹25000
+                                                        </strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <strong>20%</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <strong>0 x 5000 = 0 USD</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge success">Yes</div>
+                                                    </td>
+                                                    <td>
+
+                                                        <div class="site-badge pending">Pending</div>
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>
+                                                        <span class="avatar-text">TT</span>
+                                                    </td>
+                                                    <td><a href="/admin/user/3/edit" class="link">TestTest2362</a></td>
+                                                    <td>
+
+                                                        <strong> Usdt <i icon-name="arrow-big-right"></i> ₹5000
+                                                        </strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <strong>2%</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <strong>0 x 100 = 0 USD</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="site-badge pending">No</div>
+                                                    </td>
+                                                    <td>
+
+
+                                                        <div>
+                                                            <strong><span id="days33"></span>D : <span
+                                                                    id="hours33"></span>H : <span
+                                                                    id="minutes33"></span>M : <span
+                                                                    id="seconds33"></span>S</strong>
+                                                            <span class="site-badge primary-bg ms-2"
+                                                                id="percentage33"></span>
+                                                        </div>
+                                                        <div class="progress investment-timeline">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                                id="time-progress33" role="progressbar"
+                                                                aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="centered">
+                                                    <td colspan="7">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    ;
+
+                </div>
+            </div>
+            <!-- Modal for Send Email -->
+            <div class="modal fade" id="sendEmail" tabindex="-1" aria-labelledby="sendEmailModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-md modal-dialog-centered">
+                    <div class="modal-content site-table-modal">
+                        <div class="modal-body popup-body">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="popup-body-text">
+                                <h3 class="title mb-4"> Send Mail to <span id="name"></span></h3>
+                                <form action="/admin/user/mail-send" method="post" id="send-mail-form">
+                                    <input type="hidden" name="_token" value="tAlWAwzyEa2XNDEaOQGfJURs5sqf66BiknGdP3Yk">
+                                    <input type="hidden" name="id" value="0" id="userId">
+
+                                    <div class="site-input-groups">
+                                        <label for="" class="box-input-label">Subject:</label>
+                                        <input type="text" name="subject" class="box-input mb-0" required="" />
+                                    </div>
+                                    <div class="site-input-groups">
+                                        <label for="" class="box-input-label">Email Details</label>
+                                        <textarea name="message" class="form-textarea mb-0"></textarea>
+                                    </div>
+
+                                    <div class="action-btns">
+                                        <button type="submit" class="site-btn-sm primary-btn me-2">
+                                            <i icon-name="send"></i>
+                                            Send Email
+                                        </button>
+                                        <a href="#" class="site-btn-sm red-btn" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <i icon-name="x"></i>
+                                            Close
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for Send Email-->
+
+        </div>
+        <!--Page Content-->
+    </div>
+    <!--/Full Layout-->
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-migrate.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scrollUp.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/lucide.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/datatables.min.js" type="text/javascript" charset="utf8"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/daterangepicker.min.js"></script>
+
+    <script src="assets/js/simple-notify.min.js"></script>
+    <script src="assets/js/summernote-lite.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pusher.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+            (function ($) {
+                'use strict';
+
+                let pusherAppKey = "";
+                let pusherAppCluster = "mt1";
+                let soundUrl = "/notification-tune";
+
+                var notification = new Pusher(pusherAppKey, {
+                    encrypted: true,
+                    cluster: pusherAppCluster,
+                });
+                var channel = notification.subscribe('admin-notification');
+                channel.bind('notification-event', function (result) {
+                    playSound();
+                    latestNotification();
+                    // notifyToast(result);
+                });
+
+                function latestNotification() {
+                    $.get('/admin/latest-notification', function (data) {
+                        $('.admin-notifications').html(data);
+                    })
+                }
+
+                function notifyToast(data) {
+                    new Notify({
+                        status: 'info',
+                        title: data.data.title,
+                        text: data.data.notice,
+                        effect: 'slide',
+                        speed: 300,
+                        customClass: '',
+                        customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
+                        showIcon: true,
+                        showCloseButton: true,
+                        autoclose: true,
+                        autotimeout: 9000,
+                        gap: 20,
+                        distance: 20,
+                        type: 1,
+                        position: 'right bottom',
+                        customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
+                    })
+
+                }
+
+                function playSound() {
+                    $.get(soundUrl, function (data) {
+                        var audio = new Audio(data);
+                        audio.play();
+                        audio.muted = false;
+                    });
+                }
+
+
+
+            })(jQuery);
+    </script>
+    <script type="text/javascript" src="/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
+    <script>
+        (function ($) {
+            'use strict';
+
+            //site chart
+            let chart;
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function (start, end) {
+
+                $.get('/admin', {
+                    start_date: start.format('YYYY-MM-DD'),
+                    end_date: end.format('YYYY-MM-DD')
+                }, function (chartData) {
+
+                    chart.destroy()
+                    chart_show(chartData);
+                });
+            });
+
+
+            function chart_show(chartData) {
+                var date_label = Object.keys(chartData['date_label']);
+                var deposit_data = Object.values(chartData['deposit_statistics']);
+                var invest_data = Object.values(chartData['invest_statistics']);
+                var withdraw_data = Object.values(chartData['withdraw_statistics']);
+                var profit_data = Object.values(chartData['profit_statistics']);
+                var symbol = chartData['symbol'];
+
+
+                // Bar Chart
+                var data = {
+                    labels: date_label,
+                    datasets: [{
+                        label: 'Total Deposit ' + symbol + sumArrayValues(deposit_data),
+                        data: deposit_data,
+                        backgroundColor: '#ef476f',
+                        borderColor: '#ffffff',
+                        borderWidth: 0,
+                        borderRadius: 90,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Total Investment ' + symbol + sumArrayValues(invest_data),
+                        data: invest_data,
+                        backgroundColor: '#5e3fc9',
+                        borderColor: '#ffffff',
+                        borderWidth: 0,
+                        borderRadius: 90,
+                        tension: 1
+                    },
+                    {
+                        label: 'Total Withdraw ' + symbol + sumArrayValues(withdraw_data),
+                        data: withdraw_data,
+                        backgroundColor: '#2a9d8f',
+                        borderColor: '#ffffff',
+                        borderWidth: 0,
+                        borderRadius: 90,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Total Profit ' + symbol + sumArrayValues(profit_data),
+                        data: profit_data,
+                        backgroundColor: '#003566',
+                        borderColor: '#ffffff',
+                        borderWidth: 0,
+                        borderRadius: 90,
+                        tension: 0.1
+                    },
+                    ]
+                };
+                // render init block
+
+
+                var ctx = document.getElementById('depositChart');
+                var configuration = {
+                    type: 'bar',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return (context.dataset.label.split(symbol)[0]).split(' ')[1] + ': ' + symbol + context.formattedValue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (chart) {
+                    chart.destroy();
+                    chart = new Chart(ctx, configuration);
+                } else {
+                    chart = new Chart(ctx, configuration);
+                }
+            }
+
+            var chartData = {
+                'date_label': { "22 May": 0, "23 May": 0, "24 May": 0, "25 May": 0, "26 May": 0, "27 May": 0, "28 May": 0, "29 May": 0, "30 May": 0, "31 May": 0, "01 Jun": 0, "02 Jun": 0, "03 Jun": 0, "04 Jun": 0, "05 Jun": 0 },
+                'deposit_statistics': { "22 May": 0, "23 May": 10, "24 May": 100, "25 May": 800, "26 May": 1000, "27 May": 1101, "28 May": 0, "29 May": 0, "30 May": 5000, "31 May": 0, "01 Jun": 100, "02 Jun": 300, "03 Jun": 0, "04 Jun": 0, "05 Jun": 0 },
+                'invest_statistics': { "22 May": 0, "23 May": 17600, "24 May": 5000, "25 May": 0, "26 May": 0, "27 May": 5000, "28 May": 3000, "29 May": 0, "30 May": 5000, "31 May": 0, "01 Jun": 0, "02 Jun": 500, "03 Jun": 50, "04 Jun": 0, "05 Jun": 1000 },
+                'withdraw_statistics': { "22 May": 0, "23 May": 15500, "24 May": 0, "25 May": 0, "26 May": 0, "27 May": 0, "28 May": 0, "29 May": 0, "30 May": 0, "31 May": 200, "01 Jun": 0, "02 Jun": 0, "03 Jun": 0, "04 Jun": 0, "05 Jun": 0 },
+                'profit_statistics': { "22 May": 0, "23 May": 0, "24 May": 0, "25 May": 0, "26 May": 24, "27 May": 16, "28 May": 0, "29 May": 0, "30 May": 0, "31 May": 0, "01 Jun": 0, "02 Jun": 0, "03 Jun": 0, "04 Jun": 0, "05 Jun": 0 },
+                'symbol': "\u20b9",
+            }
+            chart_show(chartData);
+
+
+            //Plan chart
+            var schema = { "Crypto investment": 27, "VIP 10": 1, "Usdt": 7, "Test123": 1 };
+            var invest_data = Object.values(schema);
+            var invest_label = Object.keys(schema);
+            // Bar Chart
+            var data = {
+                labels: invest_label,
+                datasets: [{
+                    label: 'Total Investment',
+                    data: invest_data,
+                    backgroundColor: [
+                        '#5e3fc9',
+                        '#2a9d8f',
+                        '#ee6c4d',
+                        '#6d597a',
+                        '#003566',
+                        '#ef476f',
+                        '#718355',
+                    ],
+                    borderColor: [
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff'
+                    ],
+                    borderWidth: 3,
+                    borderRadius: 12,
+                    barPercentage: 0.3,
+                    hoverBackgroundColor: '#003566',
+                }]
+            };
+            // render init block
+            new Chart(
+                document.getElementById('schemeChart'),
+                {
+                    type: 'doughnut',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+
+
+            // Country Chart
+            var country = { "India": 19 };
+            var country_data = Object.values(country);
+            var country_label = Object.keys(country);
+            var data = {
+                labels: country_label,
+                datasets: [{
+                    label: 'Country',
+                    data: country_data,
+                    backgroundColor: [
+                        '#5e3fc9',
+                        '#2a9d8f',
+                        '#ef476f',
+                        '#718355',
+                        '#ee6c4d',
+                        '#6d597a',
+                        '#003566',
+                        "#b91d47",
+                        "#00aba9",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145"
+                    ],
+                    borderColor: [
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff'
+                    ],
+                    borderWidth: 3,
+                    borderRadius: 12,
+                    barPercentage: 0.3,
+                    hoverBackgroundColor: '#003566',
+                }]
+            };
+            // render init block
+            new Chart(
+                document.getElementById('countryChart'),
+                {
+                    type: 'doughnut',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+
+            // Browser Chart
+            var browser = { "Chrome": 230, "Safari": 3, "Edge": 4, "Opera": 1 };
+            var browser_data = Object.values(browser);
+            var browser_label = Object.keys(browser);
+            var data = {
+                labels: browser_label,
+                datasets: [{
+                    label: 'Browser',
+                    data: browser_data,
+                    backgroundColor: [
+                        '#5e3fc9',
+                        '#2a9d8f',
+                        '#ef476f',
+                        '#718355',
+                        '#ee6c4d',
+                        '#6d597a',
+                        '#003566',
+                        "#b91d47",
+                        "#00aba9",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145"
+                    ],
+                    borderColor: [
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 12,
+                    barPercentage: 0.3,
+                    hoverBackgroundColor: '#003566',
+                }]
+            };
+            // render init block
+            new Chart(
+                document.getElementById('browserChart'),
+                {
+                    type: 'polarArea',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+
+            // OS Chart
+            var platform = { "Windows": 96, "AndroidOS": 127, "OS X": 3, "Linux": 7, "iOS": 5 };
+            var platform_data = Object.values(platform);
+            var platform_label = Object.keys(platform);
+            var data = {
+                labels: platform_label,
+                datasets: [{
+                    label: 'OS',
+                    data: platform_data,
+                    backgroundColor: [
+                        '#5e3fc9',
+                        '#718355',
+                        '#ef476f',
+                        '#ee6c4d',
+                        "#b91d47",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145",
+                        '#2a9d8f',
+                    ],
+                    borderColor: [
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff'
+                    ],
+                    borderWidth: 3,
+                    borderRadius: 12,
+                    barPercentage: 0.3,
+                    hoverBackgroundColor: '#003566',
+                }]
+            };
+            // render init block
+            new Chart(
+                document.getElementById('osChart'),
+                {
+                    type: 'pie',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+
+        })(jQuery);
+    </script>
+    <script>
+        (function ($) {
+            'use strict';
+            //send mail modal form open
+            $('.send-mail').on('click', function () {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                $('#name').html(name);
+                $('#userId').val(id);
+                $('#sendEmail').modal('toggle')
+            })
+        })(jQuery);
+    </script>
+    <script>
+        (function ($) {
+            "use strict";
+            // Countdown
+            const second = 1000,
+                minute = second * 60,
+                hour = minute * 60,
+                day = hour * 24;
+            let timezone = "Asia\/Kolkata";
+
+            let countDown = new Date('Jun 06, 2025 15:21').getTime()
+            var start = new Date('Jun 05, 2025 15:21').getTime()
+            setInterval(function () {
+
+                let utc_datetime_str = new Date().toLocaleString("en-US", { timeZone: timezone });
+                let now = new Date(utc_datetime_str).getTime();
+                let distance = countDown - now;
+
+
+                var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
+
+
+                $("#time-progress37").css("width", progress + '%');
+
+                $("#percentage37").text(progress >= 100 ? 100 + '%' : progress + '%');
+
+                document.getElementById('days37').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
+                    document.getElementById('hours37').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
+                    document.getElementById('minutes37').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
+                    document.getElementById('seconds37').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
+
+            }, second)
+
+        })(jQuery)
+    </script>
+    <script>
+            (function ($) {
+                "use strict";
+                // Countdown
+                const second = 1000,
+                    minute = second * 60,
+                    hour = minute * 60,
+                    day = hour * 24;
+                let timezone = "Asia\/Kolkata";
+
+                let countDown = new Date('Jun 04, 2025 14:25').getTime()
+                var start = new Date('Jun 03, 2025 14:25').getTime()
+                setInterval(function () {
+
+                    let utc_datetime_str = new Date().toLocaleString("en-US", { timeZone: timezone });
+                    let now = new Date(utc_datetime_str).getTime();
+                    let distance = countDown - now;
+
+
+                    var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
+
+
+                    $("#time-progress36").css("width", progress + '%');
+
+                    $("#percentage36").text(progress >= 100 ? 100 + '%' : progress + '%');
+
+                    document.getElementById('days36').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
+                        document.getElementById('hours36').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
+                        document.getElementById('minutes36').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
+                        document.getElementById('seconds36').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
+
+                }, second)
+
+            })(jQuery)
+    </script>
+    <script>
+            (function ($) {
+                "use strict";
+                // Countdown
+                const second = 1000,
+                    minute = second * 60,
+                    hour = minute * 60,
+                    day = hour * 24;
+                let timezone = "Asia\/Kolkata";
+
+                let countDown = new Date('Jun 03, 2025 13:36').getTime()
+                var start = new Date('Jun 02, 2025 13:36').getTime()
+                setInterval(function () {
+
+                    let utc_datetime_str = new Date().toLocaleString("en-US", { timeZone: timezone });
+                    let now = new Date(utc_datetime_str).getTime();
+                    let distance = countDown - now;
+
+
+                    var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
+
+
+                    $("#time-progress35").css("width", progress + '%');
+
+                    $("#percentage35").text(progress >= 100 ? 100 + '%' : progress + '%');
+
+                    document.getElementById('days35').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
+                        document.getElementById('hours35').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
+                        document.getElementById('minutes35').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
+                        document.getElementById('seconds35').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
+
+                }, second)
+
+            })(jQuery)
+    </script>
+    <script>
+            (function ($) {
+                "use strict";
+                // Countdown
+                const second = 1000,
+                    minute = second * 60,
+                    hour = minute * 60,
+                    day = hour * 24;
+                let timezone = "Asia\/Kolkata";
+
+                let countDown = new Date('May 31, 2025 13:41').getTime()
+                var start = new Date('May 30, 2025 13:41').getTime()
+                setInterval(function () {
+
+                    let utc_datetime_str = new Date().toLocaleString("en-US", { timeZone: timezone });
+                    let now = new Date(utc_datetime_str).getTime();
+                    let distance = countDown - now;
+
+
+                    var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
+
+
+                    $("#time-progress33").css("width", progress + '%');
+
+                    $("#percentage33").text(progress >= 100 ? 100 + '%' : progress + '%');
+
+                    document.getElementById('days33').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
+                        document.getElementById('hours33').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
+                        document.getElementById('minutes33').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
+                        document.getElementById('seconds33').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
+
+                }, second)
+
+            })(jQuery)
+    </script>
+
+
+
+
+</body>
+
+</html>

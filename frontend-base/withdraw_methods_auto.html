@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="tAlWAwzyEa2XNDEaOQGfJURs5sqf66BiknGdP3Yk ">
+    <link rel="shortcut icon" href="/assets/global/images/Iprtp3RPPX5omVb7MORF.png" type="image/x-icon" />
+    <link rel="icon" href="" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/datatables.min.css" />
+    <link rel="stylesheet" href="assets/css/simple-notify.min.css" />
+    <link rel="stylesheet" href="assets/css/simple-notify.min.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/vendor/mckenziearts/laravel-notify/css/notify.css" /> -->
+    <!-- <link rel="stylesheet" href="/assets/backend/css/summernote-lite.min.css" /> -->
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+    <link rel="stylesheet" href="/assets/css/custom.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    
+    <title>Money Globals -     Withdraw Methods
+</title>
+</head>
+
+<body>
+<!--Full Layout-->
+<div class="layout">
+
+    <script>
+    var notify = {
+        timeout: "5000",
+    }
+</script>
+    <!--Header-->
+    <div class="header">
+    <div class="logo">
+        <a href="https://81habibi.com/admin">
+            <img
+                class="logo-unfold"
+                src="https://81habibi.com/assets/global/images/6nlIjl7Nsmy7obWFci9X.png"
+                alt="Logo"
+            />
+            <img
+                class="logo-fold"
+                src="https://81habibi.com/assets/global/images/6nlIjl7Nsmy7obWFci9X.png"
+                alt="Logo"
+            />
+        </a>
+    </div>
+    <div class="nav-wrap">
+        <div class="nav-left">
+            <button class="sidebar-toggle"><i icon-name="list"></i></button>
+        </div>
+        <div class="nav-right">
+
+            <div class="single-nav-right admin-language-switch">
+                <select name="language" class="form-select"
+                        onchange="window.location.href=this.options[this.selectedIndex].value;">
+                                            <option
+                            value="https://81habibi.com/language-update?name=en" selected>English</option>
+                                            <option
+                            value="https://81habibi.com/language-update?name=es" >Spanish</option>
+                                            <option
+                            value="https://81habibi.com/language-update?name=fr" >Franch</option>
+                                            <option
+                            value="https://81habibi.com/language-update?name=hi" >Hindi</option>
+                                    </select>
+            </div>
+
+            <div class="single-nav-right admin-notifications">
+                                <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
+    <i icon-name="bell-ring" class=""></i>
+    <div class="number">0</div>
+</button>
+<div class="dropdown-menu dropdown-menu-end notification-pop">
+    <div class="noti-head">Notifications <span>0</span></div>
+    <div class="all-noti">
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/195" class="read">
+                    <div class="icon">
+                        <i icon-name="newspaper"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> The manual deposit request details:
+TRXLWGFQHME4I
+Vyerge75764tr74676
+100
+                        </div>
+                        <div class="time">3 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/194" class="read">
+                    <div class="icon">
+                        <i icon-name="newspaper"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> The manual deposit request details:
+TRXEDMUGHVXFW
+Cytugi
+100
+                        </div>
+                        <div class="time">3 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/192" class="read">
+                    <div class="icon">
+                        <i icon-name="newspaper"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> The manual deposit request details:
+TRXJ6PUHYXJVE
+Cytugi
+100
+                        </div>
+                        <div class="time">3 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/189" class="read">
+                    <div class="icon">
+                        <i icon-name="wallet"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> Withdraw Request details:
+TRX2ZGFNUAAZS
+WITHDRAWAL
+5000INR
+                        </div>
+                        <div class="time">5 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/188" class="read">
+                    <div class="icon">
+                        <i icon-name="wallet"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> Withdraw Request details:
+TRXLXUMEFJWGP
+WITHDRAWAL
+100INR
+                        </div>
+                        <div class="time">5 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/187" class="read">
+                    <div class="icon">
+                        <i icon-name="wallet"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> Withdraw Request details:
+TRX2LW6OFMMXC
+WITHDRAWAL
+100INR
+                        </div>
+                        <div class="time">5 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/184" class="read">
+                    <div class="icon">
+                        <i icon-name="newspaper"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> The manual deposit request details:
+TRX8GMNTM9TIT
+Testbep201234567890
+5000
+                        </div>
+                        <div class="time">6 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/181" class="read">
+                    <div class="icon">
+                        <i icon-name="newspaper"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Test Test</span> The manual deposit request details:
+TRXATP7HPOHZJ
+Testbep201234567890
+5000
+                        </div>
+                        <div class="time">6 days ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/178" class="read">
+                    <div class="icon">
+                        <i icon-name="newspaper"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Monuking1000k King</span> The manual deposit request details:
+TRX9UGQVFC62Y
+Cytugi
+100
+                        </div>
+                        <div class="time">1 week ago</div>
+                    </div>
+                </a>
+            </div>
+                    <div class="single-noti">
+                <a href="https://81habibi.com/admin/notification-read/177" class="read">
+                    <div class="icon">
+                        <i icon-name="user-plus"></i>
+                    </div>
+                    <div class="content">
+                        <div class="main-cont">
+                            <span>Monuking1000k King</span> Thanks for joining us  Monuking1000k King
+
+.New User added our system.
+                        </div>
+                        <div class="time">1 week ago</div>
+                    </div>
+                </a>
+            </div>
+        
+            </div>
+
+            <div class="noti-footer mt-3">
+                        <a class="noti-btn-2 ms-1 w-100"
+               href="https://81habibi.com/admin/notification/all">See all Notifications</a>
+        </div>
+    </div>
+
+
+            </div>
+
+
+            <div class="single-nav-right">
+                <a href="https://81habibi.com" target="_blank" class="item" data-bs-toggle="tooltip" title=""
+                   data-bs-placement="left" data-bs-original-title="Visit Landing Page">
+                    <i icon-name="globe"></i>
+                </a>
+            </div>
+            <div class="single-nav-right">
+                <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i icon-name="user"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a href="https://81habibi.com/admin/profile" class="dropdown-item"><i
+                                icon-name="user"></i>Profile</a>
+                    </li>
+                    <li>
+                        <a href="https://81habibi.com/admin/password-change" class="dropdown-item">
+                            <i icon-name="lock"></i>Change Password
+                        </a>
+                    </li>
+                    <li class="logout">
+
+                        <a href="https://81habibi.com/admin/logout" class="dropdown-item" type="button"
+                           onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();">
+                            <i icon-name="log-out"></i> Logout
+                        </a>
+                        <form id="logout-form" action="https://81habibi.com/admin/logout" method="POST" class="d-none">
+                            <input type="hidden" name="_token" value="7NrcjLzu982bkMt6OlX8RJFogDmioNU796KbvICr">                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--/Header-->
+
+    <!--Side Nav-->
+    <div class="side-nav">
+    <div class="side-nav-inside">
+        <ul class="side-nav-menu">
+
+            <li class="side-nav-item ">
+                <a href="https://81habibi.com/admin"><i
+                        icon-name="layout-dashboard"></i><span>Dashboard</span></a>
+            </li>
+
+            
+                            <li class="side-nav-item category-title">
+                    <span>Customer Management</span>
+                </li>
+                <li class="side-nav-item side-nav-dropdown ">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                        <i icon-name="users"></i><span>Customers</span>
+                        <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                                                    <li class="">
+                                <a href="https://81habibi.com/admin/user"><i
+                                        icon-name="users"></i>All Customers</a>
+                            </li>
+                            <li class="">
+                                <a href="https://81habibi.com/admin/user/active"><i
+                                        icon-name="user-check"></i>Active Customers</a>
+                            </li>
+                            <li class="">
+                                <a href="https://81habibi.com/admin/user/disabled"><i
+                                        icon-name="user-x"></i>Disabled Customers</a>
+                            </li>
+
+                                                <li class="">
+                            <a href="https://81habibi.com/admin/notification/all"><i
+                                    icon-name="megaphone"></i>Notifications</a>
+                        </li>
+                                                    <li class="">
+                                <a href="https://81habibi.com/admin/user/mail-send/all"><i
+                                        icon-name="send"></i>Send Email to all</a>
+                            </li>
+                        
+                    </ul>
+                </li>
+            
+                            <li class="side-nav-item side-nav-dropdown ">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="check-square"></i><span>KYC Management</span><span
+                            class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                                                    <li class="">
+                                <a href="https://81habibi.com/admin/kyc/pending"><i
+                                        icon-name="airplay"></i>Pending KYC</a>
+                            </li>
+                            <li class="">
+                                <a href="https://81habibi.com/admin/kyc/rejected"><i
+                                        icon-name="file-warning"></i>Rejected KYC</a>
+                            </li>
+                            <li class="">
+                                <a href="https://81habibi.com/admin/kyc/all"><i
+                                        icon-name="contact"></i>All KYC Logs</a>
+                            </li>
+                                                                            <li class="">
+                                <a href="https://81habibi.com/admin/kyc-form"><i
+                                        icon-name="check-square"></i>KYC Form</a>
+                            </li>
+                        
+                    </ul>
+                </li>
+            
+
+            
+                            <li class="side-nav-item category-title">
+                    <span>Staff Management</span>
+                </li>
+                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/roles"><i
+                                icon-name="contact"></i><span>Manage Roles</span></a>
+                    </li>
+                                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/staff"><i
+                                icon-name="user-cog"></i><span>Manage Staffs</span></a>
+                    </li>
+                            
+            
+                            <li class="side-nav-item category-title">
+                    <span>Plans</span>
+                </li>
+                <li class="side-nav-item side-nav-dropdown ">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="album"></i><span>Manage Schema</span>
+                        <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                                                    <li class="side-nav-item ">
+                                <a href="https://81habibi.com/admin/schedule"><i
+                                        icon-name="alarm-check"></i><span>Schedule</span></a>
+                            </li>
+                                                                            <li class="side-nav-item ">
+                                <a href="https://81habibi.com/admin/schema"><i
+                                        icon-name="airplay"></i><span>Manage Schema</span></a>
+                            </li>
+                        
+                    </ul>
+                </li>
+            
+            
+                            <li class="side-nav-item category-title">
+                    <span>Transactions</span>
+                </li>
+                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/transactions"><i
+                                icon-name="cast"></i><span>Transactions</span></a>
+                    </li>
+                                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/investments"><i
+                                icon-name="anchor"></i><span>Investments</span></a>
+                    </li>
+                                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/all-profits"><i
+                                icon-name="credit-card"></i><span>User Profits</span></a>
+                    </li>
+                            
+            
+            
+                <li class="side-nav-item category-title">
+                    <span>Essentials</span>
+                </li>
+
+                                                            <li class="side-nav-item ">
+                            <a href="https://81habibi.com/admin/gateway/automatic"><i
+                                    icon-name="door-open"></i><span>Automatic Gateways</span></a>
+                        </li>
+                    
+                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="arrow-down-circle"></i><span>Deposits</span><span
+                                class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+
+                                                            <li class=""><a
+                                        href="https://81habibi.com/admin/deposit/method/list/auto"><i
+                                            icon-name="workflow"></i>Automatic Methods</a></li>
+                            
+                                                            <li class=""><a
+                                        href="https://81habibi.com/admin/deposit/method/list/manual"><i
+                                            icon-name="compass"></i>Manual Methods</a></li>
+                            
+                                                            <li class=""><a
+                                        href="https://81habibi.com/admin/deposit/manual-pending"><i
+                                            icon-name="columns"></i>Pending Manual Deposits</a></li>
+                                <li class=""><a
+                                        href="https://81habibi.com/admin/deposit/history"><i
+                                            icon-name="clipboard-check"></i>Deposit History</a></li>
+                                                    </ul>
+                    </li>
+                
+                                    <li class="side-nav-item side-nav-dropdown  show">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="landmark"></i><span>Withdraw</span><span class="right-arrow"><i
+                                    icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                                                            <li class="active">
+                                    <a
+                                        href="https://81habibi.com/admin/withdraw/method/list/auto"><i
+                                            icon-name="workflow"></i>Automatic Methods</a></li>
+                                <li class="">
+                                    <a
+                                        href="https://81habibi.com/admin/withdraw/method/list/manual"><i
+                                            icon-name="compass"></i>Manual Methods</a></li>
+
+                                                                                        <li class=""><a
+                                        href="https://81habibi.com/admin/withdraw/pending"><i
+                                            icon-name="wallet"></i>Pending Withdraws</a></li>
+                                                                                        <li class=""><a
+                                        href="https://81habibi.com/admin/withdraw/schedule"><i
+                                            icon-name="alarm-clock"></i>Withdraw Schedule</a></li>
+                                                                                        <li class=""><a
+                                        href="https://81habibi.com/admin/withdraw/history"><i
+                                            icon-name="piggy-bank"></i>Withdraw History</a></li>
+                                                    </ul>
+                    </li>
+                
+                                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="settings-2"></i><span>Manage Referral</span><span
+                                class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/referral/level"><i
+                                            icon-name="align-end-horizontal"></i>Multi Level Referral</a>
+                                </li>
+                                <li class="">
+                                    <a href="https://81habibi.com/admin/referral/index"><i
+                                            icon-name="expand"></i>Targets Referral</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/ranking"><i
+                                icon-name="medal"></i><span>User Rankings</span></a>
+                    </li>
+                
+            
+
+
+            
+                            <li class="side-nav-item category-title">
+                    <span>Site Settings</span>
+                </li>
+                                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="settings"></i>
+                            <span>Settings</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/settings/site"><i
+                                            icon-name="settings-2"></i>Site Settings</a>
+                                </li>
+                                                                                        <li class="">
+                                    <a href="https://81habibi.com/admin/settings/mail"><i
+                                            icon-name="inbox"></i>Email Settings</a>
+                                </li>
+                                                                                        <li class="">
+                                    <a href="https://81habibi.com/admin/settings/plugin/system"><i
+                                            icon-name="toy-brick"></i>Plugin Settings</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="https://81habibi.com/admin/settings/plugin/sms"><i
+                                            icon-name="message-circle"></i>SMS Settings</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="https://81habibi.com/admin/settings/plugin/notification"><i
+                                            icon-name="bell-ring"></i>Push Notification</a>
+                                </li>
+                                <li class="">
+                                    <a href="https://81habibi.com/admin/settings/notification/tune"><i
+                                            icon-name="volume-2"></i>Notification Tune</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                
+                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/language"><i
+                                icon-name="languages"></i><span>Language Settings</span></a>
+                    </li>
+                                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/page/settings"><i
+                                icon-name="layout"></i><span>Page Settings</span></a>
+                    </li>
+                            
+
+            
+                            <li class="side-nav-item category-title">
+                    <span>Site Essentials</span>
+                </li>
+                
+                    
+                    <li class="side-nav-item side-nav-dropdown  ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="palette"></i><span>Theme Manage</span><span
+                                class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                            <li class="">
+                                <a href="https://81habibi.com/admin/theme/site"><i
+                                        icon-name="roller-coaster"></i>Site Theme</a>
+                            </li>
+                            <li class="">
+                                <a href="https://81habibi.com/admin/theme/dynamic-landing"><i
+                                        icon-name="warehouse"></i>Dynamic Landing Theme</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    
+
+                    <li class="side-nav-item side-nav-dropdown  ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="home"></i><span>Landing Page</span><span class="right-arrow"><i
+                                    icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/hero"><i
+                                            icon-name="egg"></i>Hero Section</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/schema"><i
+                                            icon-name="egg"></i>Schema Section</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/calculation"><i
+                                            icon-name="egg"></i>Calculation Section</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/howitworks"><i
+                                            icon-name="egg"></i>How it works Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/recent"><i
+                                            icon-name="egg"></i>Recent Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/whychooseus"><i
+                                            icon-name="egg"></i>Why Choose Us Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/counter"><i
+                                            icon-name="egg"></i>Counter Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/faq"><i
+                                            icon-name="egg"></i>FAQ Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/cta"><i
+                                            icon-name="egg"></i>Call To Action
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/blog"><i
+                                            icon-name="egg"></i>Blog Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/gateway"><i
+                                            icon-name="egg"></i>Gateway Section
+</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/section/newsletter"><i
+                                            icon-name="egg"></i>Newslatter Section
+</a>
+                                </li>
+                            
+                        </ul>
+                    </li>
+                                                    <li class="side-nav-item side-nav-dropdown ">
+                        <a href="javascript:void(0);" class="dropdown-link"><i
+                                icon-name="layout-grid"></i><span>Pages</span><span class="right-arrow"><i
+                                    icon-name="chevron-down"></i></span></a>
+                        <ul class="dropdown-items">
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/schema"><i
+                                            icon-name="egg"></i>Schema</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/howitworks"><i
+                                            icon-name="egg"></i>How It Works</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/about"><i
+                                            icon-name="egg"></i>About Us</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/faq"><i
+                                            icon-name="egg"></i>FAQ </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/ranking"><i
+                                            icon-name="egg"></i>Rankings </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/blog"><i
+                                            icon-name="egg"></i>Blog </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/contact"><i
+                                            icon-name="egg"></i>Contact Us</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/privacy"><i
+                                            icon-name="egg"></i>Privacy Policy</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/terms"><i
+                                            icon-name="egg"></i>Terms and Conditions</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/login"><i
+                                            icon-name="egg"></i>Login</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/registration"><i
+                                            icon-name="egg"></i>Registration</a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/page/edit/forgetpassword"><i
+                                            icon-name="egg"></i>Forgot Password</a>
+                                </li>
+                                                        <li class="">
+                                <a href="https://81habibi.com/admin/page/create"><i
+                                        icon-name="egg"></i>Add New Page</a>
+                            </li>
+                        </ul>
+                    </li>
+                                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/navigation/menu"><i
+                                icon-name="menu"></i><span>Site Navigations</span></a>
+                    </li>
+                                                    <li class="side-nav-item ">
+                        <a href="https://81habibi.com/admin/footer-content"><i
+                                icon-name="list-end"></i><span>Footer Contents</span></a>
+                    </li>
+                            
+
+            
+
+            <li class="side-nav-item category-title">
+                <span>Templates</span>
+            </li>
+                            <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/email-template"><i
+                            icon-name="mail"></i><span>Email Template</span></a>
+                </li>
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/template/sms"><i
+                            icon-name="message-square"></i><span>SMS Template</span></a>
+                </li>
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/template/notification"><i
+                            icon-name="bell-ring"></i><span>Push Notification Template</span></a>
+                </li>
+            
+
+            
+            <li class="side-nav-item category-title">
+                <span>Others</span>
+            </li>
+                            <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/subscribers"><i
+                            icon-name="mail-open"></i><span>All Subscriber</span></a>
+                </li>
+                                        <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/support-ticket/index"><i
+                            icon-name="wrench"></i><span>Support Tickets</span></a>
+                </li>
+            
+
+                            <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/custom-css"><i
+                            icon-name="braces"></i><span>Custom CSS</span></a>
+                </li>
+            
+            <li class="side-nav-item ">
+                <a href="https://81habibi.com/admin/clear-cache"><i
+                        icon-name="trash-2"></i><span>Clear Cache</span></a>
+            </li>
+            <li class="side-nav-item  ">
+                <a href="https://81habibi.com/admin/application-info"><i
+                        icon-name="indent"></i><span>Application Details</span><span
+                        class="badge yellow-color">2.3</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!--/Side Nav-->
+
+    <!--Page Content-->
+    <div class="page-container">
+            <div class="main-content">
+        <div class="page-title">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="title-content">
+                            <h2 class="title">     Withdraw Methods
+</h2>
+                                                            <a href="withdraw_method_create.html"
+                                   class="title-btn"
+                                   type="button"
+                                ><i icon-name="plus"></i>ADD NEW</a>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="site-tab-bars">
+                        <ul>
+                                                            <li class="">
+                                    <a href="https://81habibi.com/admin/withdraw/pending"><i
+                                            icon-name="anchor"></i>Pending Withdraws</a>
+                                </li>
+                                                        
+                                <!--<li class="active">-->
+                                <!--    <a href="https://81habibi.com/admin/withdraw/method/list/auto"><i-->
+                                <!--            icon-name="banknote"></i>Automatic Method</a>-->
+                                <!--</li>-->
+
+                                <!--<li class="">-->
+                                <!--    <a href="https://81habibi.com/admin/withdraw/method/list/manual"><i-->
+                                <!--            icon-name="landmark"></i>Manual Method</a>-->
+                                <!--</li>-->
+                                                                                        <li class="">
+                                    <a href="https://81habibi.com/admin/withdraw/schedule"><i
+                                            icon-name="alarm-clock"></i>Withdraw Schedule</a>
+                                </li>
+                                                                                        <li class="">
+                                    <a href="https://81habibi.com/admin/withdraw/history"><i
+                                            icon-name="calendar"></i>Withdraw History</a>
+                                </li>
+                                                    </ul>
+                    </div>
+                    <div class="row">
+                            <div class="col-xl-12 col-md-12">
+        <div class="site-card">
+            <div class="site-card-header">
+                <h3 class="title">Withdraw Methods</h3>
+            </div>
+            <div class="site-card-body">
+                <p class="paragraph">
+                     All the  <strong>Withdraw Methods</strong> setup for user
+                </p>
+                            </div>
+
+        </div>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--Page Content-->
+</div>
+<!--/Full Layout-->
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-migrate.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scrollUp.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/lucide.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/datatables.min.js" type="text/javascript" charset="utf8"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/daterangepicker.min.js"></script>
+
+    <script src="assets/js/simple-notify.min.js"></script>
+    <script src="assets/js/summernote-lite.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pusher.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+<script>
+    (function ($) {
+        'use strict';
+
+        let pusherAppKey = "";
+        let pusherAppCluster = "mt1";
+        let soundUrl = "https://81habibi.com/notification-tune";
+
+        var notification = new Pusher(pusherAppKey, {
+            encrypted: true,
+            cluster: pusherAppCluster,
+        });
+        var channel = notification.subscribe('admin-notification');
+        channel.bind('notification-event', function (result) {
+            playSound();
+            latestNotification();
+            notifyToast(result);
+        });
+
+        function latestNotification() {
+            $.get('https://81habibi.com/admin/latest-notification', function (data) {
+                $('.admin-notifications').html(data);
+            })
+        }
+
+        function notifyToast(data) {
+            new Notify({
+                status: 'info',
+                title: data.data.title,
+                text: data.data.notice,
+                effect: 'slide',
+                speed: 300,
+                customClass: '',
+                customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: 9000,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: 'right bottom',
+                customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
+            })
+
+        }
+
+        function playSound() {
+            $.get(soundUrl, function (data) {
+                var audio = new Audio(data);
+                audio.play();
+                audio.muted = false;
+            });
+        }
+
+
+
+    })(jQuery);
+</script>
+<script type="text/javascript" src="https://81habibi.com/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
