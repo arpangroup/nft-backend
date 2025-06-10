@@ -1,17 +1,15 @@
-package com.arpangroup.nft_core.appconfig.controller;
+package com.arpangroup.config_service.controller;
 
-import com.arpangroup.nft_core.appconfig.dto.AppConfigUpdateRequest;
-import com.arpangroup.nft_core.appconfig.entity.AppConfig;
-import com.arpangroup.nft_core.appconfig.repository.AppConfigRepository;
-import com.arpangroup.nft_core.appconfig.service.ConfigService;
+import com.arpangroup.config_service.repository.AppConfigRepository;
+import com.arpangroup.config_service.service.ConfigService;
+import com.arpangroup.config_service.dto.AppConfigUpdateRequest;
+import com.arpangroup.config_service.entity.AppConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/configs")

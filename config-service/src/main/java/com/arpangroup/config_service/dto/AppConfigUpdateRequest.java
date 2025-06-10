@@ -1,4 +1,4 @@
-package com.arpangroup.nft_core.appconfig.dto;
+package com.arpangroup.config_service.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

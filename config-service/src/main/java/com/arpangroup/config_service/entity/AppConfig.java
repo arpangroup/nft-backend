@@ -1,4 +1,4 @@
-package com.arpangroup.nft_core.appconfig.entity;
+package com.arpangroup.config_service.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

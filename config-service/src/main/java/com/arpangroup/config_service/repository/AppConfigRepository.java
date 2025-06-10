@@ -1,6 +1,6 @@
-package com.arpangroup.nft_core.appconfig.repository;
+package com.arpangroup.config_service.repository;
 
-import com.arpangroup.nft_core.appconfig.entity.AppConfig;
+import com.arpangroup.config_service.entity.AppConfig;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

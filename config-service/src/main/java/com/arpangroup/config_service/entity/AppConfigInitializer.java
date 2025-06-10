@@ -1,6 +1,6 @@
-package com.arpangroup.nft_core.appconfig.entity;
+package com.arpangroup.config_service.entity;
 
-import com.arpangroup.nft_core.appconfig.repository.AppConfigRepository;
+import com.arpangroup.config_service.repository.AppConfigRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
