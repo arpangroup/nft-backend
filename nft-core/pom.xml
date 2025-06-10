@@ -54,7 +54,11 @@
 			<artifactId>referral-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.arpangroup</groupId>
+			<artifactId>config-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>com.arpangroup</groupId>
 			<artifactId>notification-service</artifactId>
