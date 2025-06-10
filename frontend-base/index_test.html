@@ -1,0 +1,1449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="tAlWAwzyEa2XNDEaOQGfJURs5sqf66BiknGdP3Yk ">
+    <link rel="shortcut icon" href="/assets/global/images/Iprtp3RPPX5omVb7MORF.png" type="image/x-icon" />
+    <link rel="icon" href="" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/datatables.min.css" />
+    <link rel="stylesheet" href="assets/css/simple-notify.min.css" />
+    <link rel="stylesheet" href="assets/css/simple-notify.min.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/vendor/mckenziearts/laravel-notify/css/notify.css" /> -->
+    <!-- <link rel="stylesheet" href="/assets/backend/css/summernote-lite.min.css" /> -->
+    <!-- <link rel="stylesheet" href="/assets/global/css/select2.min.css" /> -->
+    <!-- <link rel="stylesheet" href="/assets/global/css/custom.css?var=2.2" /> -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <title>Money Globals -     Create Role
+    </title>
+</head>
+
+<body>
+<!--Full Layout-->
+<div class="layout">
+
+
+    <!--Page Content-->
+    <div class="page-container">
+        <div class="main-content">
+            <div class="page-title">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="title-content">
+                                <h2 class="title">Update Role</h2>
+                                <a href="/admin/roles" class="title-btn"><i
+                                        icon-name="corner-down-left"></i>Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-card">
+                            <div class="site-card-body">
+                                <div class="row">
+                                    <form action="/admin/roles/2" method="post">
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <input type="hidden" name="_token" value="7NrcjLzu982bkMt6OlX8RJFogDmioNU796KbvICr">                                    <div class="col-xl-12">
+                                        <div class="site-input-groups">
+                                            <label for="" class="box-input-label">Role Name</label>
+                                            <input type="text" class="box-input" required="" name="name"
+                                                   value="Manager"/>
+                                        </div>
+                                    </div>
+
+
+                                        <div class="col-xl-12">
+                                            <div class="site-card">
+                                                <div class="site-card-header">
+                                                    <h3 class="title mb-0">All Permissions</h3>
+                                                </div>
+                                                <div class="site-card-body">
+                                                    <div class="row">
+                                                        <div class="col-xl-12">
+                                                            <div class="role-cat-items">
+                                                                <div class="accordion">
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#CustomerManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Customer Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Customer Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="CustomerManagement"
+                                                                             class="accordion-collapse collapse  show "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="customer-list">Customer List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="customer-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="1"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="customer-login">Customer Login</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="customer-login"
+                                                                                                    name="permission[]"
+                                                                                                    value="2"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="customer-mail-send">Customer Mail Send</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="customer-mail-send"
+                                                                                                    name="permission[]"
+                                                                                                    value="3"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="customer-basic-manage">Customer Basic Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="customer-basic-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="4"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="customer-balance-add-or-subtract">Customer Balance Add Or Subtract</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="customer-balance-add-or-subtract"
+                                                                                                    name="permission[]"
+                                                                                                    value="5"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="customer-change-password">Customer Change Password</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="customer-change-password"
+                                                                                                    name="permission[]"
+                                                                                                    value="6"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="all-type-status">All Type Status</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="all-type-status"
+                                                                                                    name="permission[]"
+                                                                                                    value="7"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#KycManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Kyc Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Kyc Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="KycManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="kyc-list">Kyc List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="kyc-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="8"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="kyc-action">Kyc Action</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="kyc-action"
+                                                                                                    name="permission[]"
+                                                                                                    value="9"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="kyc-form-manage">Kyc Form Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="kyc-form-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="10"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#RoleManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Role Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Role Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="RoleManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="role-list">Role List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="role-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="11"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="role-create">Role Create</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="role-create"
+                                                                                                    name="permission[]"
+                                                                                                    value="12"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="role-edit">Role Edit</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="role-edit"
+                                                                                                    name="permission[]"
+                                                                                                    value="13"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#StaffManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Staff Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Staff Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="StaffManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="staff-list">Staff List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="staff-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="14"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="staff-create">Staff Create</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="staff-create"
+                                                                                                    name="permission[]"
+                                                                                                    value="15"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="staff-edit">Staff Edit</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="staff-edit"
+                                                                                                    name="permission[]"
+                                                                                                    value="16"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#PlanManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Plan Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Plan Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="PlanManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="schedule-manage">Schedule Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="schedule-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="17"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="schema-list">Schema List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="schema-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="18"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="schema-create">Schema Create</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="schema-create"
+                                                                                                    name="permission[]"
+                                                                                                    value="19"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="schema-edit">Schema Edit</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="schema-edit"
+                                                                                                    name="permission[]"
+                                                                                                    value="20"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#TransactionManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Transaction Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Transaction Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="TransactionManagement"
+                                                                             class="accordion-collapse collapse  show "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="transaction-list">Transaction List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="transaction-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="21"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="investment-list">Investment List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="investment-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="22"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="profit-list">Profit List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="profit-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="23"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#DepositManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Deposit Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Deposit Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="DepositManagement"
+                                                                             class="accordion-collapse collapse  show "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="automatic-gateway-manage">Automatic Gateway Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="automatic-gateway-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="24"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="manual-gateway-manage">Manual Gateway Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="manual-gateway-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="25"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="deposit-list">Deposit List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="deposit-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="26"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="deposit-action">Deposit Action</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="deposit-action"
+                                                                                                    name="permission[]"
+                                                                                                    value="27"
+                                                                                                    checked                                                                                                 />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#WithdrawManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Withdraw Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Withdraw Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="WithdrawManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="withdraw-list">Withdraw List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="withdraw-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="28"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="withdraw-method-manage">Withdraw Method Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="withdraw-method-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="29"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="withdraw-action">Withdraw Action</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="withdraw-action"
+                                                                                                    name="permission[]"
+                                                                                                    value="30"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="withdraw-schedule">Withdraw Schedule</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="withdraw-schedule"
+                                                                                                    name="permission[]"
+                                                                                                    value="31"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#ReferralManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Referral Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Referral Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="ReferralManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="target-manage">Target Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="target-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="32"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="referral-create">Referral Create</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="referral-create"
+                                                                                                    name="permission[]"
+                                                                                                    value="33"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="referral-list">Referral List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="referral-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="34"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="referral-edit">Referral Edit</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="referral-edit"
+                                                                                                    name="permission[]"
+                                                                                                    value="35"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="referral-delete">Referral Delete</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="referral-delete"
+                                                                                                    name="permission[]"
+                                                                                                    value="36"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#RankingManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Ranking Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Ranking Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="RankingManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="ranking-list">Ranking List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="ranking-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="37"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="ranking-create">Ranking Create</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="ranking-create"
+                                                                                                    name="permission[]"
+                                                                                                    value="38"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="ranking-edit">Ranking Edit</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="ranking-edit"
+                                                                                                    name="permission[]"
+                                                                                                    value="39"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#FrontendManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Frontend Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Frontend Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="FrontendManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="landing-page-manage">Landing Page Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="landing-page-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="40"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="page-manage">Page Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="page-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="41"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="footer-manage">Footer Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="footer-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="42"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="navigation-manage">Navigation Manage</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="navigation-manage"
+                                                                                                    name="permission[]"
+                                                                                                    value="43"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#SubscriberManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Subscriber Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Subscriber Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="SubscriberManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="subscriber-list">Subscriber List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="subscriber-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="44"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="subscriber-mail-send">Subscriber Mail Send</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="subscriber-mail-send"
+                                                                                                    name="permission[]"
+                                                                                                    value="45"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#SupportTicketManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Support Ticket Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Support Ticket Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="SupportTicketManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="support-ticket-list">Support Ticket List</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="support-ticket-list"
+                                                                                                    name="permission[]"
+                                                                                                    value="46"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="support-ticket-action">Support Ticket Action</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="support-ticket-action"
+                                                                                                    name="permission[]"
+                                                                                                    value="47"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="headingOne">
+                                                                            <button
+                                                                                    class="accordion-button  collapsed "
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#SettingManagement"
+                                                                                    aria-expanded="true"
+                                                                                    aria-controls="Setting Management">
+                                                                                <span class="icon"><i
+                                                                                        icon-name="check"></i></span>Setting Management
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="SettingManagement"
+                                                                             class="accordion-collapse collapse "
+                                                                             aria-labelledby="headingOne">
+                                                                            <div class="accordion-body">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="site-setting">Site Setting</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="site-setting"
+                                                                                                    name="permission[]"
+                                                                                                    value="48"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="email-setting">Email Setting</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="email-setting"
+                                                                                                    name="permission[]"
+                                                                                                    value="49"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="plugin-setting">Plugin Setting</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="plugin-setting"
+                                                                                                    name="permission[]"
+                                                                                                    value="50"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="language-setting">Language Setting</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="language-setting"
+                                                                                                    name="permission[]"
+                                                                                                    value="51"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="page-setting">Page Setting</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="page-setting"
+                                                                                                    name="permission[]"
+                                                                                                    value="52"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="custom-css">Custom Css</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="custom-css"
+                                                                                                    name="permission[]"
+                                                                                                    value="53"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                            class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                                                                                        <div
+                                                                                                class="form-check form-switch role-permission-switch">
+                                                                                            <label
+                                                                                                    class="switch-label"
+                                                                                                    for="email-template">Email Template</label>
+                                                                                            <input
+                                                                                                    class="form-check-input big"
+                                                                                                    type="checkbox"
+                                                                                                    role="switch"
+                                                                                                    id="email-template"
+                                                                                                    name="permission[]"
+                                                                                                    value="54"
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-12">
+                                                            <button class="site-btn primary-btn" type="submit"><i
+                                                                    icon-name="check"></i>Save Changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Page Content-->
+</div>
+<!--/Full Layout-->
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-migrate.js"></script>
+<script src="assets/js/jquery-ui.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/scrollUp.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/chart.js"></script>
+<script src="assets/js/lucide.min.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/datatables.min.js" type="text/javascript" charset="utf8"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/daterangepicker.min.js"></script>
+
+<script src="assets/js/simple-notify.min.js"></script>
+<script src="assets/js/summernote-lite.min.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<script src="assets/js/main.js?var=5"></script>
+<script src="assets/js/pusher.min.js"></script>
+<script src="assets/js/custom.js?var=6"></script>
+
+<script>
+    (function ($) {
+        'use strict';
+
+        let pusherAppKey = "";
+        let pusherAppCluster = "mt1";
+        let soundUrl = "/notification-tune";
+
+        var notification = new Pusher(pusherAppKey, {
+            encrypted: true,
+            cluster: pusherAppCluster,
+        });
+        var channel = notification.subscribe('admin-notification');
+        channel.bind('notification-event', function (result) {
+            playSound();
+            latestNotification();
+            notifyToast(result);
+        });
+
+        function latestNotification() {
+            $.get('/admin/latest-notification', function (data) {
+                $('.admin-notifications').html(data);
+            })
+        }
+
+        function notifyToast(data) {
+            new Notify({
+                status: 'info',
+                title: data.data.title,
+                text: data.data.notice,
+                effect: 'slide',
+                speed: 300,
+                customClass: '',
+                customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: 9000,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: 'right bottom',
+                customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
+            })
+
+        }
+
+        function playSound() {
+            $.get(soundUrl, function (data) {
+                var audio = new Audio(data);
+                audio.play();
+                audio.muted = false;
+            });
+        }
+
+
+
+    })(jQuery);
+</script>
+<script type="text/javascript" src="/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

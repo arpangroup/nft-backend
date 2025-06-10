@@ -56,6 +56,8 @@
         <module>referral-service</module>
         <module>nft-core</module>
         <module>product-catalog</module>
+        <module>notification-service</module>
+        <module>config-service</module>
     </modules>
 
     <build>

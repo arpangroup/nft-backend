@@ -21,7 +21,8 @@ import java.util.List;
 		"com.arpangroup.nft_common",
 		"com.arpangroup.product_catalog",
 		"com.arpangroup.user_service",
-		"com.arpangroup.referral_service"
+		"com.arpangroup.referral_service",
+		"com.arpangroup.notification_service"
 })
 @EnableAspectJAutoProxy
 public class NftCoreApplication implements CommandLineRunner {
