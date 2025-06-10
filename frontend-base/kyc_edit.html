@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content="fgpBEaTjxA9GoVm7n9MYp7N9YkJPVyAJOjsqLTxo ">
+    <link
+            rel="shortcut icon"
+            href="https://81habibi.com/assets/global/images/Iprtp3RPPX5omVb7MORF.png"
+            type="image/x-icon"
+    />
+    <link rel="icon" href="https://81habibi.com/assets/global/images/Iprtp3RPPX5omVb7MORF.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/fontawesome.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/backend/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/backend/css/animate.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/nice-select.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/datatables.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/simple-notify.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/simple-notify.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="https://81habibi.com/assets/vendor/mckenziearts/laravel-notify/css/notify.css"/>    <link rel="stylesheet" href="https://81habibi.com/assets/backend/css/summernote-lite.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/select2.min.css"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/global/css/custom.css?var=2.2"/>
+    <link rel="stylesheet" href="https://81habibi.com/assets/backend/css/styles.css?var=2.2"/>
+
+    <title>Money Globals -     Add New KYC
+    </title>
+</head>
+
+<body>
+<!--Full Layout-->
+<div class="layout">
+
+    <script>
+        var notify = {
+            timeout: "5000",
+        }
+    </script>
+    <!--Header-->
+    <div class="header">
+        <div class="logo">
+            <a href="https://81habibi.com/admin">
+                <img
+                        class="logo-unfold"
+                        src="https://81habibi.com/assets/global/images/TFtpwBBsdXp0L7VjWG0M.jpg"
+                        alt="Logo"
+                />
+                <img
+                        class="logo-fold"
+                        src="https://81habibi.com/assets/global/images/TFtpwBBsdXp0L7VjWG0M.jpg"
+                        alt="Logo"
+                />
+            </a>
+        </div>
+        <div class="nav-wrap">
+            <div class="nav-left">
+                <button class="sidebar-toggle"><i icon-name="list"></i></button>
+            </div>
+            <div class="nav-right">
+
+                <div class="single-nav-right admin-language-switch">
+                    <select name="language" class="form-select"
+                            onchange="window.location.href=this.options[this.selectedIndex].value;">
+                        <option
+                                value="https://81habibi.com/language-update?name=en" selected>English</option>
+                        <option
+                                value="https://81habibi.com/language-update?name=es" >Spanish</option>
+                        <option
+                                value="https://81habibi.com/language-update?name=fr" >Franch</option>
+                        <option
+                                value="https://81habibi.com/language-update?name=hi" >Hindi</option>
+                    </select>
+                </div>
+
+                <div class="single-nav-right admin-notifications">
+                    <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i icon-name="bell-ring" class=""></i>
+                        <div class="number">0</div>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end notification-pop">
+                        <div class="noti-head">Notifications <span>0</span></div>
+                        <div class="all-noti">
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/189" class="read">
+                                    <div class="icon">
+                                        <i icon-name="wallet"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> Withdraw Request details:
+                                            TRX2ZGFNUAAZS
+                                            WITHDRAWAL
+                                            5000INR
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/188" class="read">
+                                    <div class="icon">
+                                        <i icon-name="wallet"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> Withdraw Request details:
+                                            TRXLXUMEFJWGP
+                                            WITHDRAWAL
+                                            100INR
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/187" class="read">
+                                    <div class="icon">
+                                        <i icon-name="wallet"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> Withdraw Request details:
+                                            TRX2LW6OFMMXC
+                                            WITHDRAWAL
+                                            100INR
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/184" class="read">
+                                    <div class="icon">
+                                        <i icon-name="newspaper"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> The manual deposit request details:
+                                            TRX8GMNTM9TIT
+                                            Testbep201234567890
+                                            5000
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/181" class="read">
+                                    <div class="icon">
+                                        <i icon-name="newspaper"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> The manual deposit request details:
+                                            TRXATP7HPOHZJ
+                                            Testbep201234567890
+                                            5000
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/178" class="read">
+                                    <div class="icon">
+                                        <i icon-name="newspaper"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Monuking1000k King</span> The manual deposit request details:
+                                            TRX9UGQVFC62Y
+                                            Cytugi
+                                            100
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/177" class="read">
+                                    <div class="icon">
+                                        <i icon-name="user-plus"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Monuking1000k King</span> Thanks for joining us  Monuking1000k King
+
+                                            .New User added our system.
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/176" class="read">
+                                    <div class="icon">
+                                        <i icon-name="user-plus"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Sanjay Yadav Yadav</span> Thanks for joining us  Sanjay yadav Yadav
+
+                                            .New User added our system.
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/174" class="read">
+                                    <div class="icon">
+                                        <i icon-name="newspaper"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> The manual deposit request details:
+                                            TRXAA4ANO1CFX
+                                            Cytugi
+                                            100
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-noti">
+                                <a href="https://81habibi.com/admin/notification-read/171" class="read">
+                                    <div class="icon">
+                                        <i icon-name="newspaper"></i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="main-cont">
+                                            <span>Test Test</span> The manual deposit request details:
+                                            TRXWANLIWAM87
+                                            Cytugi
+                                            1001
+                                        </div>
+                                        <div class="time">1 week ago</div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="noti-footer mt-3">
+                            <a class="noti-btn-2 ms-1 w-100"
+                               href="https://81habibi.com/admin/notification/all">See all Notifications</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="single-nav-right">
+                    <a href="https://81habibi.com" target="_blank" class="item" data-bs-toggle="tooltip" title=""
+                       data-bs-placement="left" data-bs-original-title="Visit Landing Page">
+                        <i icon-name="globe"></i>
+                    </a>
+                </div>
+                <div class="single-nav-right">
+                    <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i icon-name="user"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a href="https://81habibi.com/admin/profile" class="dropdown-item"><i
+                                    icon-name="user"></i>Profile</a>
+                        </li>
+                        <li>
+                            <a href="https://81habibi.com/admin/password-change" class="dropdown-item">
+                                <i icon-name="lock"></i>Change Password
+                            </a>
+                        </li>
+                        <li class="logout">
+
+                            <a href="https://81habibi.com/admin/logout" class="dropdown-item" type="button"
+                               onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();">
+                                <i icon-name="log-out"></i> Logout
+                            </a>
+                            <form id="logout-form" action="https://81habibi.com/admin/logout" method="POST" class="d-none">
+                                <input type="hidden" name="_token" value="fgpBEaTjxA9GoVm7n9MYp7N9YkJPVyAJOjsqLTxo">                        </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Header-->
+
+    <!--Side Nav-->
+    <div class="side-nav">
+        <div class="side-nav-inside">
+            <ul class="side-nav-menu">
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin"><i
+                            icon-name="layout-dashboard"></i><span>Dashboard</span></a>
+                </li>
+
+
+                <li class="side-nav-item category-title">
+                    <span>Customer Management</span>
+                </li>
+                <li class="side-nav-item side-nav-dropdown ">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                        <i icon-name="users"></i><span>Customers</span>
+                        <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                        <li class="">
+                            <a href="https://81habibi.com/admin/user"><i
+                                    icon-name="users"></i>All Customers</a>
+                        </li>
+                        <li class="">
+                            <a href="https://81habibi.com/admin/user/active"><i
+                                    icon-name="user-check"></i>Active Customers</a>
+                        </li>
+                        <li class="">
+                            <a href="https://81habibi.com/admin/user/disabled"><i
+                                    icon-name="user-x"></i>Disabled Customers</a>
+                        </li>
+
+                        <li class="">
+                            <a href="https://81habibi.com/admin/notification/all"><i
+                                    icon-name="megaphone"></i>Notifications</a>
+                        </li>
+                        <li class="">
+                            <a href="https://81habibi.com/admin/user/mail-send/all"><i
+                                    icon-name="send"></i>Send Email to all</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="side-nav-item side-nav-dropdown show">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="check-square"></i><span>KYC Management</span><span
+                            class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                        <li class="">
+                            <a href="https://81habibi.com/admin/kyc/pending"><i
+                                    icon-name="airplay"></i>Pending KYC</a>
+                        </li>
+                        <li class="">
+                            <a href="https://81habibi.com/admin/kyc/rejected"><i
+                                    icon-name="file-warning"></i>Rejected KYC</a>
+                        </li>
+                        <li class="">
+                            <a href="https://81habibi.com/admin/kyc/all"><i
+                                    icon-name="contact"></i>All KYC Logs</a>
+                        </li>
+                        <li class="active">
+                            <a href="https://81habibi.com/admin/kyc-form"><i
+                                    icon-name="check-square"></i>KYC Form</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+                <li class="side-nav-item category-title">
+                    <span>Staff Management</span>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/roles"><i
+                            icon-name="contact"></i><span>Manage Roles</span></a>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/staff"><i
+                            icon-name="user-cog"></i><span>Manage Staffs</span></a>
+                </li>
+
+
+                <li class="side-nav-item category-title">
+                    <span>Plans</span>
+                </li>
+                <li class="side-nav-item side-nav-dropdown ">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="album"></i><span>Manage Schema</span>
+                        <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                        <li class="side-nav-item ">
+                            <a href="https://81habibi.com/admin/schedule"><i
+                                    icon-name="alarm-check"></i><span>Schedule</span></a>
+                        </li>
+                        <li class="side-nav-item ">
+                            <a href="https://81habibi.com/admin/schema"><i
+                                    icon-name="airplay"></i><span>Manage Schema</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="side-nav-item category-title">
+                    <span>Transactions</span>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/transactions"><i
+                            icon-name="cast"></i><span>Transactions</span></a>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/investments"><i
+                            icon-name="anchor"></i><span>Investments</span></a>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/all-profits"><i
+                            icon-name="credit-card"></i><span>User Profits</span></a>
+                </li>
+
+
+
+                <li class="side-nav-item category-title">
+                    <span>Essentials</span>
+                </li>
+
+
+
+                <li class="side-nav-item side-nav-dropdown ">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="arrow-down-circle"></i><span>Deposits</span><span
+                            class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+
+
+
+
+
+                        <li class=""><a
+                                href="https://81habibi.com/admin/deposit/manual-pending"><i
+                                icon-name="columns"></i>Pending Manual Deposits</a></li>
+                        <li class=""><a
+                                href="https://81habibi.com/admin/deposit/history"><i
+                                icon-name="clipboard-check"></i>Deposit History</a></li>
+                    </ul>
+                </li>
+
+                <li class="side-nav-item side-nav-dropdown  ">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="landmark"></i><span>Withdraw</span><span class="right-arrow"><i
+                            icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+
+
+                        <li class=""><a
+                                href="https://81habibi.com/admin/withdraw/pending"><i
+                                icon-name="wallet"></i>Pending Withdraws</a></li>
+                        <li class=""><a
+                                href="https://81habibi.com/admin/withdraw/schedule"><i
+                                icon-name="alarm-clock"></i>Withdraw Schedule</a></li>
+                        <li class=""><a
+                                href="https://81habibi.com/admin/withdraw/history"><i
+                                icon-name="piggy-bank"></i>Withdraw History</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/ranking"><i
+                            icon-name="medal"></i><span>User Rankings</span></a>
+                </li>
+
+
+
+
+
+                <li class="side-nav-item category-title">
+                    <span>Site Settings</span>
+                </li>
+
+
+
+
+
+
+
+                <li class="side-nav-item category-title">
+                    <span>Site Essentials</span>
+                </li>
+
+
+                <li class="side-nav-item side-nav-dropdown  ">
+                    <a href="javascript:void(0);" class="dropdown-link"><i
+                            icon-name="palette"></i><span>Theme Manage</span><span
+                            class="right-arrow"><i icon-name="chevron-down"></i></span></a>
+                    <ul class="dropdown-items">
+                        <li class="">
+                            <a href="https://81habibi.com/admin/theme/site"><i
+                                    icon-name="roller-coaster"></i>Site Theme</a>
+                        </li>
+                        <li class="">
+                            <a href="https://81habibi.com/admin/theme/dynamic-landing"><i
+                                    icon-name="warehouse"></i>Dynamic Landing Theme</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+                <li class="side-nav-item category-title">
+                    <span>Templates</span>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/email-template"><i
+                            icon-name="mail"></i><span>Email Template</span></a>
+                </li>
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/template/sms"><i
+                            icon-name="message-square"></i><span>SMS Template</span></a>
+                </li>
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/template/notification"><i
+                            icon-name="bell-ring"></i><span>Push Notification Template</span></a>
+                </li>
+
+
+
+                <li class="side-nav-item category-title">
+                    <span>Others</span>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/subscribers"><i
+                            icon-name="mail-open"></i><span>All Subscriber</span></a>
+                </li>
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/support-ticket/index"><i
+                            icon-name="wrench"></i><span>Support Tickets</span></a>
+                </li>
+
+
+
+
+                <li class="side-nav-item ">
+                    <a href="https://81habibi.com/admin/clear-cache"><i
+                            icon-name="trash-2"></i><span>Clear Cache</span></a>
+                </li>
+                <li class="side-nav-item  ">
+                    <a href="https://81habibi.com/admin/application-info"><i
+                            icon-name="indent"></i><span>Application Details</span><span
+                            class="badge yellow-color">2.3</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/Side Nav-->
+
+    <!--Page Content-->
+    <div class="page-container">
+        <div class="main-content">
+            <div class="page-title">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8">
+                            <div class="title-content">
+                                <h2 class="title">Edit KYC Form</h2>
+                                <a href="https://81habibi.com/admin/kyc-form" class="title-btn"><i
+                                        icon-name="corner-down-left"></i>Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-12 col-md-12 col-12">
+                        <div class="site-card">
+                            <div class="site-card-body">
+                                <form action="https://81habibi.com/admin/kyc-form/2" method="post" class="row">
+                                    <input type="hidden" name="_method" value="PUT">                                <input type="hidden" name="_token" value="fgpBEaTjxA9GoVm7n9MYp7N9YkJPVyAJOjsqLTxo">
+                                    <div class="col-xl-12">
+                                        <div class="site-input-groups">
+                                            <label class="box-input-label" for="">Name:</label>
+                                            <input type="text" name="name" value="PAN Verify"
+                                                   class="box-input" placeholder="KYC Type Name" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <a href="javascript:void(0)" id="generate"
+                                           class="site-btn-xs primary-btn mb-3">Add Field option</a>
+                                    </div>
+
+                                    <div class="addOptions">
+                                        <div class="mb-4">
+                                            <div class="option-remove-row row">
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="site-input-groups">
+                                                        <input name="fields[1][name]" class="box-input"
+                                                               type="text" value="Enter PAN Number" required
+                                                               placeholder="Field Name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="site-input-groups">
+                                                        <select name="fields[1][type]"
+                                                                class="form-select form-select-lg mb-3">
+                                                            <option value="text"
+                                                                    selected >Input Text</option>
+                                                            <option value="textarea"
+                                                            >Textarea</option>
+                                                            <option value="file"
+                                                            >File upload</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="site-input-groups mb-0">
+                                                        <select name="fields[1][validation]"
+                                                                class="form-select form-select-lg mb-1">
+                                                            <option value="required"
+                                                                    selected >Required</option>
+                                                            <option value="nullable"
+                                                            >Optional</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-1 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <button class="delete-option-row delete_desc" type="button">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4">
+                                            <div class="option-remove-row row">
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="site-input-groups">
+                                                        <input name="fields[5][name]" class="box-input"
+                                                               type="text" value="Upload PAN Card" required
+                                                               placeholder="Field Name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="site-input-groups">
+                                                        <select name="fields[5][type]"
+                                                                class="form-select form-select-lg mb-3">
+                                                            <option value="text"
+                                                            >Input Text</option>
+                                                            <option value="textarea"
+                                                            >Textarea</option>
+                                                            <option value="file"
+                                                                    selected >File upload</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="site-input-groups mb-0">
+                                                        <select name="fields[5][validation]"
+                                                                class="form-select form-select-lg mb-1">
+                                                            <option value="required"
+                                                                    selected >Required</option>
+                                                            <option value="nullable"
+                                                            >Optional</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-1 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <button class="delete-option-row delete_desc" type="button">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12">
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                                <div class="site-input-groups">
+                                                    <label class="box-input-label" for="">Status:</label>
+                                                    <div class="switch-field">
+                                                        <input
+                                                                type="radio"
+                                                                id="active-status"
+                                                                name="status"
+                                                                checked                                                         value="1"
+                                                        />
+                                                        <label for="active-status">Active</label>
+                                                        <input
+                                                                type="radio"
+                                                                id="deactivate-status"
+                                                                name="status"
+                                                                value="0"
+                                                        />
+                                                        <label for="deactivate-status">Deactivate</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <button type="submit" class="site-btn primary-btn w-100">
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Page Content-->
+</div>
+<!--/Full Layout-->
+
+<script src="https://81habibi.com/assets/global/js/jquery.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/jquery-migrate.js"></script>
+<script src="https://81habibi.com/assets/backend/js/jquery-ui.js"></script>
+
+<script src="https://81habibi.com/assets/backend/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://81habibi.com/assets/backend/js/scrollUp.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/waypoints.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/jquery.counterup.min.js"></script>
+<script src="https://81habibi.com/assets/backend/js/chart.js"></script>
+<script src="https://81habibi.com/assets/global/js/lucide.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/jquery.nice-select.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/datatables.min.js" type="text/javascript" charset="utf8"></script>
+<script src="https://81habibi.com/assets/global/js/moment.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/daterangepicker.min.js"></script>
+
+<script src="https://81habibi.com/assets/global/js/simple-notify.min.js"></script>
+<script src="https://81habibi.com/assets/backend/js/summernote-lite.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/select2.min.js"></script>
+<script src="https://81habibi.com/assets/backend/js/main.js?var=5"></script>
+<script src="https://81habibi.com/assets/global/js/pusher.min.js"></script>
+<script src="https://81habibi.com/assets/global/js/custom.js?var=6"></script>
+
+<script>
+    (function ($) {
+        'use strict';
+
+        let pusherAppKey = "";
+        let pusherAppCluster = "mt1";
+        let soundUrl = "https://81habibi.com/notification-tune";
+
+        var notification = new Pusher(pusherAppKey, {
+            encrypted: true,
+            cluster: pusherAppCluster,
+        });
+        var channel = notification.subscribe('admin-notification');
+        channel.bind('notification-event', function (result) {
+            playSound();
+            latestNotification();
+            notifyToast(result);
+        });
+
+        function latestNotification() {
+            $.get('https://81habibi.com/admin/latest-notification', function (data) {
+                $('.admin-notifications').html(data);
+            })
+        }
+
+        function notifyToast(data) {
+            new Notify({
+                status: 'info',
+                title: data.data.title,
+                text: data.data.notice,
+                effect: 'slide',
+                speed: 300,
+                customClass: '',
+                customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: 9000,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: 'right bottom',
+                customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
+            })
+
+        }
+
+        function playSound() {
+            $.get(soundUrl, function (data) {
+                var audio = new Audio(data);
+                audio.play();
+                audio.muted = false;
+            });
+        }
+
+
+
+    })(jQuery);
+</script>
+<script type="text/javascript" src="https://81habibi.com/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>    <script>
+    $(document).ready(function (e) {
+        "use strict";
+        var i = Object.keys(JSON.parse("{\u00221\u0022:{\u0022name\u0022:\u0022Enter PAN Number\u0022,\u0022type\u0022:\u0022text\u0022,\u0022validation\u0022:\u0022required\u0022},\u00225\u0022:{\u0022name\u0022:\u0022Upload PAN Card\u0022,\u0022type\u0022:\u0022file\u0022,\u0022validation\u0022:\u0022required\u0022}}")).length;
+
+        $("#generate").on('click', function () {
+            ++i;
+            var form = `<div class="mb-4">
+              <div class="option-remove-row row">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="site-input-groups">
+                    <input name="fields[` + i + `][name]" class="box-input" type="text" value="" required placeholder="Field Name">
+                  </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="site-input-groups">
+                    <select name="fields[` + i + `][type]" class="form-select form-select-lg mb-3">
+                        <option value="text">Input Text</option>
+                        <option value="textarea">Textarea</option>
+                        <option value="file">File upload</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="site-input-groups mb-0">
+                    <select name="fields[` + i + `][validation]" class="form-select form-select-lg mb-1">
+                        <option value="required">Required</option>
+                        <option value="nullable">Optional</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-xl-1 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <button class="delete-option-row delete_desc" type="button">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                </div>
+              </div>`;
+            $('.addOptions').append(form)
+        });
+
+        $(document).on('click', '.delete_desc', function () {
+            $(this).closest('.option-remove-row').parent().remove();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
