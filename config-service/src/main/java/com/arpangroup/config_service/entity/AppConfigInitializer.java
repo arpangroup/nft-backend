@@ -31,7 +31,6 @@ public class AppConfigInitializer {
                 new AppConfig("mail.smtp.auth", true),
                 new AppConfig("mail.starttls.enable", true)
         );
-
         repository.saveAll(configs);
     }
 }
